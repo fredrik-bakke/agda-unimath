@@ -44,8 +44,9 @@ open import foundation.universal-property-set-truncation
 
 ## Idea
 
-The set truncation of a type `A` is a map `η : A → trunc-Set A` that satisfies
-the universal property of set truncations.
+The set truncation of a type `A` is a type `trunc-Set A` together with a
+unit map `η : A → trunc-Set A` that satisfies the universal property of set
+truncations.
 
 ## Definition
 
@@ -117,7 +118,7 @@ module _
     map-inv-equiv (equiv-dependent-universal-property-trunc-Set B)
 ```
 
-### The universal property of set truncations
+### The non-dependent universal property of set truncations
 
 ```agda
 universal-property-trunc-Set :
@@ -457,7 +458,7 @@ module _
     map-equiv equiv-trunc-Σ-Set
 ```
 
-## `trunc-Set` distributes over coproducts
+### `trunc-Set` distributes over coproducts
 
 ```agda
 module _
@@ -522,7 +523,7 @@ module _
     pr2 (center distributive-trunc-coprod-Set)
 ```
 
-## `trunc-Set` distributes over cartesian products
+### `trunc-Set` distributes over cartesian products
 
 ```agda
 module _
@@ -574,3 +575,9 @@ module _
   triangle-distributive-trunc-prod-Set =
     pr2 (center distributive-trunc-prod-Set)
 ```
+
+## See also
+
+- [Functoriality of set truncation](foundation.functoriality-set-truncation)
+- [The universal property of set truncation](foundation.universal-property-set-truncation)
+- [Uniqueness of set truncations](foundation.uniqueness-set-truncations)
