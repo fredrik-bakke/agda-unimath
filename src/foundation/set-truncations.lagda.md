@@ -4,32 +4,33 @@
 ```agda
 module foundation.set-truncations where
 
+open import foundation-core.cartesian-product-types
+open import foundation-core.contractible-types
+open import foundation-core.coproduct-types
+open import foundation-core.dependent-pair-types
+open import foundation-core.embeddings
+open import foundation-core.empty-types
+open import foundation-core.equivalences
 open import foundation-core.function-extensionality
+open import foundation-core.functions
+open import foundation-core.functoriality-dependent-function-types
+open import foundation-core.functoriality-dependent-pair-types
+open import foundation-core.functoriality-function-types
+open import foundation-core.homotopies
+open import foundation-core.identity-types
+open import foundation-core.propositions
+open import foundation-core.truncation-levels
+open import foundation-core.universe-levels
 
-open import foundation.cartesian-product-types
-open import foundation.contractible-types
-open import foundation.coproduct-types
-open import foundation.dependent-pair-types
 open import foundation.effective-maps-equivalence-relations
-open import foundation.embeddings
-open import foundation.empty-types
 open import foundation.equality-coproduct-types
-open import foundation.equivalences
-open import foundation.functions
 open import foundation.functoriality-cartesian-product-types
 open import foundation.functoriality-coproduct-types
-open import foundation.functoriality-dependent-function-types
-open import foundation.functoriality-dependent-pair-types
-open import foundation.functoriality-function-types
-open import foundation.homotopies
-open import foundation.identity-types
 open import foundation.mere-equality
-open import foundation.propositions
 open import foundation.reflecting-maps-equivalence-relations
 open import foundation.sets
 open import foundation.slice
 open import foundation.surjective-maps
-open import foundation.truncation-levels
 open import foundation.truncations
 open import foundation.uniqueness-set-truncations
 open import foundation.unit-type
@@ -38,13 +39,13 @@ open import foundation.universal-property-dependent-pair-types
 open import foundation.universal-property-image
 open import foundation.universal-property-set-quotients
 open import foundation.universal-property-set-truncation
-open import foundation.universe-levels
 ```
 </details>
 
 ## Idea
 
-The set truncation of a type `A` is a map `η : A → trunc-Set A` that satisfies the universal property of set truncations.
+The set truncation of a type `A` is a map `η : A → trunc-Set A` that satisfies
+the universal property of set truncations.
 
 ## Definition
 
@@ -84,32 +85,32 @@ equiv-dependent-universal-property-trunc-Set :
 equiv-dependent-universal-property-trunc-Set = equiv-dependent-universal-property-trunc
 
 module _
-  {l1 : Level} {A : UU l1}
+  {l1 l2 : Level} {A : UU l1}
   where
 
   Π-trunc-Set :
-    {l2 : Level} (B : type-trunc-Set A → Set l2)
+    (B : type-trunc-Set A → Set l2)
     (f : (a : A) → type-Set (B (unit-trunc-Set a))) → UU (l1 ⊔ l2)
   Π-trunc-Set B f =
     Σ ( (x : type-trunc-Set A) → type-Set (B x))
       ( λ g → (g ∘ unit-trunc-Set) ~ f)
 
   function-dependent-universal-property-trunc-Set :
-    {l2 : Level} (B : type-trunc-Set A → Set l2) →
+    (B : type-trunc-Set A → Set l2) →
     ((x : A) → type-Set (B (unit-trunc-Set x))) →
     (x : type-trunc-Set A) → type-Set (B x)
   function-dependent-universal-property-trunc-Set B f =
     function-dependent-universal-property-trunc B f
 
   compute-dependent-universal-property-trunc-Set :
-    {l2 : Level} (B : type-trunc-Set A → Set l2) →
+    (B : type-trunc-Set A → Set l2) →
     (f : (x : A) → type-Set (B (unit-trunc-Set x))) →
     (function-dependent-universal-property-trunc-Set B f ∘ unit-trunc-Set) ~ f
   compute-dependent-universal-property-trunc-Set B f =
     htpy-dependent-universal-property-trunc B f
 
   apply-dependent-universal-property-trunc-Set' :
-    {l2 : Level} (B : type-trunc-Set A → Set l2) →
+    (B : type-trunc-Set A → Set l2) →
     ((x : A) → type-Set (B (unit-trunc-Set x))) →
     (x : type-trunc-Set A) → type-Set (B x)
   apply-dependent-universal-property-trunc-Set' B =
@@ -119,7 +120,8 @@ module _
 ### The universal property of set truncations
 
 ```agda
-universal-property-trunc-Set : {l1 l2 : Level} (A : UU l1) →
+universal-property-trunc-Set :
+  {l1 l2 : Level} (A : UU l1) →
   universal-property-set-truncation l2
     ( trunc-Set A)
     ( unit-trunc-Set)
@@ -147,16 +149,16 @@ triangle-universal-property-trunc-Set :
 triangle-universal-property-trunc-Set = triangle-universal-property-trunc
 
 module _
-  {l1 : Level} {A : UU l1}
+  {l1 l2 : Level} {A : UU l1}
   where
 
   Map-trunc-Set :
-    {l2 : Level} (B : Set l2) (f : A → type-Set B) → UU (l1 ⊔ l2)
+    (B : Set l2) (f : A → type-Set B) → UU (l1 ⊔ l2)
   Map-trunc-Set B f =
     Σ (type-trunc-Set A → type-Set B) (λ g → (g ∘ unit-trunc-Set) ~ f)
 
   apply-universal-property-trunc-Set' :
-    {l2 : Level} (t : type-trunc-Set A) (B : Set l2) →
+    (t : type-trunc-Set A) (B : Set l2) →
     (A → type-Set B) → type-Set B
   apply-universal-property-trunc-Set' t B f =
     map-universal-property-trunc-Set B f t
@@ -257,9 +259,11 @@ abstract
       ( trunc-Set A)
       ( unit-trunc-Set)
       ( is-surjective-and-effective-unit-trunc-Set A)
+```
 
--- Uniqueness of trunc-Set
+###  Uniqueness of `trunc-Set`
 
+```agda
 module _
   {l1 l2 : Level} {A : UU l1} (B : Set l2) (f : A → type-Set B)
   {h : type-hom-Set B (trunc-Set A)} (H : (h ∘ f) ~ unit-trunc-Set)
@@ -411,6 +415,50 @@ module _
     pr2 (center uniqueness-trunc-Set')
 ```
 
+### Set truncations of Σ-types
+
+```agda
+module _
+  {l1 l2 : Level} (A : UU l1) (B : A → UU l2)
+  where
+
+  abstract
+    trunc-Σ-Set :
+      is-contr
+        ( Σ ( type-trunc-Set (Σ A B) ≃
+              type-trunc-Set (Σ A (type-trunc-Set ∘ B)))
+            ( λ e →
+              ( map-equiv e ∘ unit-trunc-Set) ~
+              ( unit-trunc-Set ∘ tot (λ x → unit-trunc-Set))))
+    trunc-Σ-Set =
+      uniqueness-trunc-Set
+        ( trunc-Set (Σ A (type-trunc-Set ∘ B)))
+        ( unit-trunc-Set ∘ tot (λ x → unit-trunc-Set))
+        ( λ {l} C →
+          is-equiv-right-factor
+            ( ev-pair)
+            ( precomp-Set (unit-trunc-Set ∘ tot (λ x → unit-trunc-Set)) C)
+            ( is-equiv-ev-pair)
+            ( is-equiv-htpy-equiv
+              ( ( equiv-map-Π
+                  ( λ x → equiv-universal-property-trunc-Set (B x) C)) ∘e
+                ( ( equiv-ev-pair) ∘e
+                  ( equiv-universal-property-trunc-Set (Σ A (type-trunc-Set ∘ B)) C)))
+              ( refl-htpy)))
+
+  equiv-trunc-Σ-Set :
+    type-trunc-Set (Σ A B) ≃ type-trunc-Set (Σ A (type-trunc-Set ∘ B))
+  equiv-trunc-Σ-Set =
+    pr1 (center trunc-Σ-Set)
+
+  map-equiv-trunc-Σ-Set :
+    type-trunc-Set (Σ A B) → type-trunc-Set (Σ A (type-trunc-Set ∘ B))
+  map-equiv-trunc-Σ-Set =
+    map-equiv equiv-trunc-Σ-Set
+```
+
+## `trunc-Set` distributes over coproducts
+
 ```agda
 module _
   {l1 l2 : Level} (A : UU l1) (B : UU l2)
@@ -459,55 +507,24 @@ module _
       ( coprod-Set (trunc-Set A) (trunc-Set B))
   map-equiv-distributive-trunc-coprod-Set =
     map-equiv equiv-distributive-trunc-coprod-Set
+  
+  map-inv-equiv-distributive-trunc-coprod-Set :
+    type-hom-Set
+      ( coprod-Set (trunc-Set A) (trunc-Set B))
+      ( trunc-Set (A + B))
+  map-inv-equiv-distributive-trunc-coprod-Set =
+    map-inv-equiv equiv-distributive-trunc-coprod-Set
 
   triangle-distributive-trunc-coprod-Set :
     ( map-equiv-distributive-trunc-coprod-Set ∘ unit-trunc-Set) ~
     ( map-coprod unit-trunc-Set unit-trunc-Set)
   triangle-distributive-trunc-coprod-Set =
     pr2 (center distributive-trunc-coprod-Set)
+```
 
--- Set truncations of Σ-types
+## `trunc-Set` distributes over cartesian products
 
-module _
-  {l1 l2 : Level} (A : UU l1) (B : A → UU l2)
-  where
-
-  abstract
-    trunc-Σ-Set :
-      is-contr
-        ( Σ ( type-trunc-Set (Σ A B) ≃
-              type-trunc-Set (Σ A (λ x → type-trunc-Set (B x))))
-            ( λ e →
-              ( map-equiv e ∘ unit-trunc-Set) ~
-              ( unit-trunc-Set ∘ tot (λ x → unit-trunc-Set))))
-    trunc-Σ-Set =
-      uniqueness-trunc-Set
-        ( trunc-Set (Σ A (λ x → type-trunc-Set (B x))))
-        ( unit-trunc-Set ∘ tot (λ x → unit-trunc-Set))
-        ( λ {l} C →
-          is-equiv-right-factor
-            ( ev-pair)
-            ( precomp-Set (unit-trunc-Set ∘ tot (λ x → unit-trunc-Set)) C)
-            ( is-equiv-ev-pair)
-            ( is-equiv-htpy-equiv
-              ( ( equiv-map-Π
-                  ( λ x → equiv-universal-property-trunc-Set (B x) C)) ∘e
-                ( ( equiv-ev-pair) ∘e
-                  ( equiv-universal-property-trunc-Set (Σ A (type-trunc-Set ∘ B)) C)))
-              ( refl-htpy)))
-
-  equiv-trunc-Σ-Set :
-    type-trunc-Set (Σ A B) ≃ type-trunc-Set (Σ A (λ x → type-trunc-Set (B x)))
-  equiv-trunc-Σ-Set =
-    pr1 (center trunc-Σ-Set)
-
-  map-equiv-trunc-Σ-Set :
-    type-trunc-Set (Σ A B) → type-trunc-Set (Σ A (λ x → type-trunc-Set (B x)))
-  map-equiv-trunc-Σ-Set =
-    map-equiv equiv-trunc-Σ-Set
-
--- trunc-Set distributes over products
-
+```agda
 module _
   {l1 l2 : Level} (A : UU l1) (B : UU l2)
   where
@@ -529,7 +546,7 @@ module _
             ( precomp-Set (map-prod unit-trunc-Set unit-trunc-Set) C)
             ( is-equiv-ev-pair)
             ( is-equiv-htpy-equiv
-              ( ( equiv-universal-property-trunc-Set A (Π-Set' B (λ y → C))) ∘e
+              ( ( equiv-universal-property-trunc-Set A (function-Set B C)) ∘e
                 ( ( equiv-postcomp
                     ( type-trunc-Set A)
                     (equiv-universal-property-trunc-Set B C)) ∘e
@@ -537,7 +554,7 @@ module _
               ( refl-htpy)))
 
   equiv-distributive-trunc-prod-Set :
-    type-trunc-Set (A × B) ≃ ( type-trunc-Set A × type-trunc-Set B)
+    type-trunc-Set (A × B) ≃ (type-trunc-Set A × type-trunc-Set B)
   equiv-distributive-trunc-prod-Set =
     pr1 (center distributive-trunc-prod-Set)
 
@@ -545,6 +562,11 @@ module _
     type-trunc-Set (A × B) → type-trunc-Set A × type-trunc-Set B
   map-equiv-distributive-trunc-prod-Set =
     map-equiv equiv-distributive-trunc-prod-Set
+
+  map-inv-equiv-distributive-trunc-prod-Set :
+    type-trunc-Set A × type-trunc-Set B → type-trunc-Set (A × B)
+  map-inv-equiv-distributive-trunc-prod-Set =
+    map-inv-equiv equiv-distributive-trunc-prod-Set
 
   triangle-distributive-trunc-prod-Set :
     ( map-equiv-distributive-trunc-prod-Set ∘ unit-trunc-Set) ~

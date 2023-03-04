@@ -6,6 +6,7 @@ module ring-theory.dependent-products-rings where
 
 open import foundation.dependent-pair-types
 open import foundation.function-extensionality
+open import foundation.functions
 open import foundation.homotopies
 open import foundation.identity-types
 open import foundation.sets
@@ -31,7 +32,7 @@ module _
   where
 
   set-Π-Ring : Set (l1 ⊔ l2)
-  set-Π-Ring = Π-Set' I (λ i → set-Ring (R i))
+  set-Π-Ring = Π-Set' I (set-Ring ∘ R)
 
   type-Π-Ring : UU (l1 ⊔ l2)
   type-Π-Ring = type-Set set-Π-Ring

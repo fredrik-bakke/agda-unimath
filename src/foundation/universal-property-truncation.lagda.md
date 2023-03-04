@@ -608,7 +608,7 @@ module _
             ( precomp-Set (map-prod unit-trunc-Set unit-trunc-Set) C)
             ( is-equiv-ev-pair)
             ( is-equiv-htpy-equiv
-              ( ( equiv-universal-property-trunc-Set A (Π-Set' B (λ y → C))) ∘e
+              ( ( equiv-universal-property-trunc-Set A (function-Set B C)) ∘e
                 ( ( equiv-postcomp
                     ( type-trunc-Set A)
                     (equiv-universal-property-trunc-Set B C)) ∘e
@@ -644,7 +644,7 @@ abstract
             ( map-Π (λ x → unit-trunc-Set))))
   distributive-trunc-Π-Fin-Set zero-ℕ A =
     uniqueness-trunc-Set
-      ( Π-Set empty-Set (λ x → trunc-Set (A x)))
+      ( Π-Set empty-Set (trunc-Set ∘ A))
       ( map-Π (λ x → unit-trunc-Set))
       ( λ {l} B →
         is-equiv-precomp-is-equiv
@@ -656,7 +656,7 @@ abstract
           ( type-Set B))
   distributive-trunc-Π-Fin-Set (succ-ℕ k) A =
     uniqueness-trunc-Set
-      ( Π-Set (Fin-Set (succ-ℕ k)) (λ x → trunc-Set (A x)))
+      ( Π-Set (Fin-Set (succ-ℕ k)) (trunc-Set ∘ A))
       ( map-Π (λ x → unit-trunc-Set))
       ( λ {l} B →
         is-equiv-left-factor
@@ -679,7 +679,7 @@ abstract
                         ( (map-Π (λ x → unit-trunc-Set)))
                         ( A (inr star) → type-Set B))
                       ( is-set-truncation-is-equiv
-                        ( Π-Set (Fin-Set k) (λ x → trunc-Set (A (inl x))))
+                        ( Π-Set (Fin-Set k) (trunc-Set ∘ (A ∘ inl)))
                         ( map-Π (λ x → unit-trunc-Set))
                         { map-equiv
                           ( pr1
@@ -691,7 +691,7 @@ abstract
                           ( pr1
                             ( center
                               ( distributive-trunc-Π-Fin-Set k (A ∘ inl)))))
-                        ( Π-Set' (A (inr star)) (λ a → B)))) ∘e
+                        ( function-Set (A (inr star)) B))) ∘e
                     ( equiv-postcomp
                       ( (x : Fin k) → type-trunc-Set (A (inl x)))
                       ( equiv-universal-property-trunc-Set
