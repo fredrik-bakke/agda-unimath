@@ -368,8 +368,8 @@ module _
   abstract
     uniqueness-trunc-Set :
       is-contr
-        ( Σ (type-trunc-Set A ≃ type-Set B)
-        ( λ e → (map-equiv e ∘ unit-trunc-Set) ~ f))
+        ( Σ ( type-trunc-Set A ≃ type-Set B)
+            ( λ e → (map-equiv e ∘ unit-trunc-Set) ~ f))
     uniqueness-trunc-Set =
       uniqueness-set-truncation (trunc-Set A) unit-trunc-Set B f
         ( λ {l} → is-set-truncation-trunc-Set A)
@@ -444,7 +444,8 @@ module _
               ( ( equiv-map-Π
                   ( λ x → equiv-universal-property-trunc-Set (B x) C)) ∘e
                 ( ( equiv-ev-pair) ∘e
-                  ( equiv-universal-property-trunc-Set (Σ A (type-trunc-Set ∘ B)) C)))
+                  ( equiv-universal-property-trunc-Set
+                    ( Σ A (type-trunc-Set ∘ B)) C)))
               ( refl-htpy)))
 
   equiv-trunc-Σ-Set :
@@ -456,6 +457,59 @@ module _
     type-trunc-Set (Σ A B) → type-trunc-Set (Σ A (type-trunc-Set ∘ B))
   map-equiv-trunc-Σ-Set =
     map-equiv equiv-trunc-Σ-Set
+```
+
+### `trunc-Set` distributes over cartesian products
+
+```agda
+module _
+  {l1 l2 : Level} (A : UU l1) (B : UU l2)
+  where
+
+  abstract
+    distributive-trunc-prod-Set :
+      is-contr
+        ( Σ ( type-trunc-Set (A × B) ≃ (type-trunc-Set A × type-trunc-Set B))
+            ( λ e →
+              ( map-equiv e ∘ unit-trunc-Set) ~
+              ( map-prod unit-trunc-Set unit-trunc-Set)))
+    distributive-trunc-prod-Set =
+      uniqueness-trunc-Set
+        ( prod-Set (trunc-Set A) (trunc-Set B))
+        ( map-prod unit-trunc-Set unit-trunc-Set)
+        ( λ {l} C →
+          is-equiv-right-factor
+            ( ev-pair)
+            ( precomp-Set (map-prod unit-trunc-Set unit-trunc-Set) C)
+            ( is-equiv-ev-pair)
+            ( is-equiv-htpy-equiv
+              ( ( equiv-universal-property-trunc-Set A (function-Set B C)) ∘e
+                ( ( equiv-postcomp
+                    ( type-trunc-Set A)
+                    ( equiv-universal-property-trunc-Set B C)) ∘e
+                  ( equiv-ev-pair)))
+              ( refl-htpy)))
+
+  equiv-distributive-trunc-prod-Set :
+    type-trunc-Set (A × B) ≃ (type-trunc-Set A × type-trunc-Set B)
+  equiv-distributive-trunc-prod-Set =
+    pr1 (center distributive-trunc-prod-Set)
+
+  map-equiv-distributive-trunc-prod-Set :
+    type-trunc-Set (A × B) → type-trunc-Set A × type-trunc-Set B
+  map-equiv-distributive-trunc-prod-Set =
+    map-equiv equiv-distributive-trunc-prod-Set
+
+  map-inv-equiv-distributive-trunc-prod-Set :
+    type-trunc-Set A × type-trunc-Set B → type-trunc-Set (A × B)
+  map-inv-equiv-distributive-trunc-prod-Set =
+    map-inv-equiv equiv-distributive-trunc-prod-Set
+
+  triangle-distributive-trunc-prod-Set :
+    ( map-equiv-distributive-trunc-prod-Set ∘ unit-trunc-Set) ~
+    ( map-prod unit-trunc-Set unit-trunc-Set)
+  triangle-distributive-trunc-prod-Set =
+    pr2 (center distributive-trunc-prod-Set)
 ```
 
 ### `trunc-Set` distributes over coproducts
@@ -523,61 +577,9 @@ module _
     pr2 (center distributive-trunc-coprod-Set)
 ```
 
-### `trunc-Set` distributes over cartesian products
-
-```agda
-module _
-  {l1 l2 : Level} (A : UU l1) (B : UU l2)
-  where
-
-  abstract
-    distributive-trunc-prod-Set :
-      is-contr
-        ( Σ ( type-trunc-Set (A × B) ≃ ( type-trunc-Set A × type-trunc-Set B))
-            ( λ e →
-              ( map-equiv e ∘ unit-trunc-Set) ~
-              ( map-prod unit-trunc-Set unit-trunc-Set)))
-    distributive-trunc-prod-Set =
-      uniqueness-trunc-Set
-        ( prod-Set (trunc-Set A) (trunc-Set B))
-        ( map-prod unit-trunc-Set unit-trunc-Set)
-        ( λ {l} C →
-          is-equiv-right-factor
-            ( ev-pair)
-            ( precomp-Set (map-prod unit-trunc-Set unit-trunc-Set) C)
-            ( is-equiv-ev-pair)
-            ( is-equiv-htpy-equiv
-              ( ( equiv-universal-property-trunc-Set A (function-Set B C)) ∘e
-                ( ( equiv-postcomp
-                    ( type-trunc-Set A)
-                    (equiv-universal-property-trunc-Set B C)) ∘e
-                  ( equiv-ev-pair)))
-              ( refl-htpy)))
-
-  equiv-distributive-trunc-prod-Set :
-    type-trunc-Set (A × B) ≃ (type-trunc-Set A × type-trunc-Set B)
-  equiv-distributive-trunc-prod-Set =
-    pr1 (center distributive-trunc-prod-Set)
-
-  map-equiv-distributive-trunc-prod-Set :
-    type-trunc-Set (A × B) → type-trunc-Set A × type-trunc-Set B
-  map-equiv-distributive-trunc-prod-Set =
-    map-equiv equiv-distributive-trunc-prod-Set
-
-  map-inv-equiv-distributive-trunc-prod-Set :
-    type-trunc-Set A × type-trunc-Set B → type-trunc-Set (A × B)
-  map-inv-equiv-distributive-trunc-prod-Set =
-    map-inv-equiv equiv-distributive-trunc-prod-Set
-
-  triangle-distributive-trunc-prod-Set :
-    ( map-equiv-distributive-trunc-prod-Set ∘ unit-trunc-Set) ~
-    ( map-prod unit-trunc-Set unit-trunc-Set)
-  triangle-distributive-trunc-prod-Set =
-    pr2 (center distributive-trunc-prod-Set)
-```
-
 ## See also
 
-- [Functoriality of set truncation](foundation.functoriality-set-truncation)
-- [The universal property of set truncation](foundation.universal-property-set-truncation)
-- [Uniqueness of set truncations](foundation.uniqueness-set-truncations)
+- [Functoriality of set truncation](foundation.functoriality-set-truncation.md)
+- [The universal property of set truncation](foundation.universal-property-set-truncation.md)
+- [Uniqueness of set truncations](foundation.uniqueness-set-truncations.md)
+- [Set quotients](foundation.set-quotients.md)

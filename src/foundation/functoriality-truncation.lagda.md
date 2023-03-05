@@ -4,17 +4,17 @@
 ```agda
 module foundation.functoriality-truncation where
 
+open import foundation-core.contractible-types
+open import foundation-core.dependent-pair-types
+open import foundation-core.equivalences
 open import foundation-core.function-extensionality
+open import foundation-core.functions
+open import foundation-core.homotopies
+open import foundation-core.identity-types
+open import foundation-core.truncation-levels
+open import foundation-core.universe-levels
 
-open import foundation.contractible-types
-open import foundation.dependent-pair-types
-open import foundation.equivalences
-open import foundation.functions
-open import foundation.homotopies
-open import foundation.identity-types
-open import foundation.truncation-levels
 open import foundation.truncations
-open import foundation.universe-levels
 ```
 </details>
 
@@ -75,7 +75,7 @@ htpy-trunc {k = k} {f} {g} H =
 
 ```agda
 id-map-trunc :
-  { l1 : Level} {A : UU l1} (k : 𝕋) → map-trunc k (id {A = A}) ~ id
+  {l1 : Level} {A : UU l1} (k : 𝕋) → map-trunc k (id {A = A}) ~ id
 id-map-trunc {l1} {A} k =
   htpy-uniqueness-map-trunc k id id refl-htpy
 ```
