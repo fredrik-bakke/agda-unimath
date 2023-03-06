@@ -199,6 +199,7 @@
   - [0-images of maps](foundation.0-images-of-maps.md)
   - [0-maps](foundation.0-maps.md)
   - [1-types](foundation.1-types.md)
+  - [2-identifications](foundation.2-identifications.md)
   - [2-types](foundation.2-types.md)
   - [Algebras polynomial endofunctors](foundation.algebras-polynomial-endofunctors.md)
   - [Apartness relations](foundation.apartness-relations.md)
