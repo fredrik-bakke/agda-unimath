@@ -17,22 +17,22 @@ open import foundation.universe-levels
 
 ## Idea
 
-As we iterate identity type (i.e., consider the type of identifications between two identifications), the identity types gain further structure.
+As we iterate identity type (i.e. consider the type of identifications between two identifications), the identity types gain further structure.
 
 Identity types of identity types are types of the form `p ＝ q`, where `p q : x ＝ y` and `x y : A`. Using the homotopy interpretation of type theory, elements of such a type are often called *2-paths* and a twice iterated identity type is often called a *type of 2-paths*.
 
-Since 2-paths are just identifications, they have the usual operations and coherences on paths/identifications. In the context of 2-paths, this famliar concatination operation is called vertical concatination (see `vertical-concat-Id²` below). However, 2-paths have novel operations and coherences derived from the operations and coherences of the boundary 1-paths (these are `p` and `q` in the example above). Since concatination of 1-paths is a functor, it has an induced action on paths. We call this operation horizontal concatination (see `horizontal-concat-Id²` below). It comes with the standard coherences of an action on paths function, as well as coherences induced by coherences on the boundary 1-paths.
+Since 2-paths are just identifications, they have the usual operations and coherences on paths/identifications. In the context of 2-paths, this famliar concatenation operation is called vertical concatenation (see `vertical-concat-Id²` below). However, 2-paths have novel operations and coherences derived from the operations and coherences of the boundary 1-paths (these are `p` and `q` in the example above). Since concatenation of 1-paths is a functor, it has an induced action on paths. We call this operation horizontal concatenation (see `horizontal-concat-Id²` below). It comes with the standard coherences of an action on paths function, as well as coherences induced by coherences on the boundary 1-paths.
 
 ## Properties
 
-### the unit laws of concatination induce homotopies
+### the unit laws of concatenation induce homotopies
 
 ```agda
 module _
   {l : Level} {A : UU l} {a0 a1 : A}
   where
 
-  htpy-left-unit : (λ (p : a0 ＝ a1) → refl {x = a0} ∙ p) ~ id
+  htpy-left-unit : (λ (p : a0 ＝ a1) → refl ∙ p) ~ id
   htpy-left-unit p = left-unit
 
   htpy-right-unit : (λ (p : a0 ＝ a1) → p ∙ refl) ~ id
@@ -65,12 +65,9 @@ horizontal-unit-square p = right-unit
 left-unit-law-horizontal-concat-square :
   {l : Level} {A : UU l} {a b c d : A}
   (p-left : a ＝ b) (p-bottom : b ＝ d) (p-top : a ＝ c) (p-right : c ＝ d) →
-  (s : coherence-square-identifications p-left p-bottom p-top p-right) →
   ( horizontal-concat-square
     p-left refl p-bottom p-left refl p-top p-right
-    ( horizontal-unit-square p-left)
-    ( s)) ＝
-  ( s)
+    ( horizontal-unit-square p-left)) ~ id
 left-unit-law-horizontal-concat-square refl p-bottom p-top p-right s =
   right-unit ∙ ap-id s
 
@@ -126,12 +123,12 @@ unit-law-assoc-110' refl refl = refl
 ```agda
 vertical-concat-Id² :
   {l : Level} {A : UU l} {x y : A} {p q r : x ＝ y} → p ＝ q → q ＝ r → p ＝ r
-vertical-concat-Id² α β = α ∙ β
+vertical-concat-Id² = _∙_
 
 horizontal-concat-Id² :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} {u v : y ＝ z} →
   p ＝ q → u ＝ v → (p ∙ u) ＝ (q ∙ v)
-horizontal-concat-Id² α β = ap-binary (λ s t → s ∙ t) α β
+horizontal-concat-Id² α = ap-binary _∙_ α
 ```
 
 ### Both horizontal and vertical concatenation of 2-paths are binary equivalences
@@ -165,15 +162,15 @@ right-unit-law-vertical-concat-Id² = right-unit
 left-unit-law-horizontal-concat-Id² :
   {l : Level} {A : UU l} {x y z : A} {p : x ＝ y} {u v : y ＝ z} (γ : u ＝ v) →
   horizontal-concat-Id² (refl {x = p}) γ ＝ ap (concat p z) γ
-left-unit-law-horizontal-concat-Id² γ = left-unit-ap-binary (λ s t → s ∙ t) γ
+left-unit-law-horizontal-concat-Id² = left-unit-ap-binary _∙_
 
 right-unit-law-horizontal-concat-Id² :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} (α : p ＝ q) {u : y ＝ z} →
   horizontal-concat-Id² α (refl {x = u}) ＝ ap (concat' x u) α
-right-unit-law-horizontal-concat-Id² α = right-unit-ap-binary (λ s t → s ∙ t) α
+right-unit-law-horizontal-concat-Id² = right-unit-ap-binary _∙_
 ```
 
-Horizontal concatination satisfies an additional "2-dimensional" unit law (on both the left and right) induced
+Horizontal concatenation satisfies an additional "2-dimensional" unit law (on both the left and right) induced
 by the unit laws on the boundary 1-paths.
 
 ```agda
@@ -192,7 +189,8 @@ module _
     coherence-square-identifications left-unit α (horizontal-concat-Id² (refl {x = refl}) α) left-unit
   nat-sq-left-unit-Id² =
     ( ( (inv (ap-id α) ∙ (nat-htpy htpy-left-unit α)) ∙ right-unit) ∙
-    ( inv (left-unit-law-horizontal-concat-Id² α))) ∙ inv right-unit
+      ( inv (left-unit-law-horizontal-concat-Id² α))) ∙
+    ( inv right-unit)
 ```
 
 ### Definition of horizontal inverse
@@ -204,8 +202,8 @@ module _
   {l : Level} {A : UU l} {a0 a1 : A} {p p' : a0 ＝ a1}
   where
 
-  horizontal-inv-Id² : p ＝ p' → (inv p) ＝ (inv p')
-  horizontal-inv-Id² α = ap inv α
+  horizontal-inv-Id² : p ＝ p' → inv p ＝ inv p'
+  horizontal-inv-Id² = ap inv
 ```
 
 This operation satisfies a left and right idenity induced by the inverse laws on 1-paths
@@ -218,16 +216,16 @@ module _
   nat-sq-right-inv-Id² :
     coherence-square-identifications (right-inv p) refl (horizontal-concat-Id² α (horizontal-inv-Id² α)) (right-inv p')
   nat-sq-right-inv-Id² =
-    (((horizontal-concat-Id² refl (inv (ap-const refl α))) ∙ nat-htpy right-inv α) ∙
-      (horizontal-concat-Id² (ap-binary-comp-diagonal (_∙_) id inv α) refl)) ∙
-        ap (λ t → (horizontal-concat-Id² t (horizontal-inv-Id² α)) ∙ right-inv p')  (ap-id α)
+    ((horizontal-concat-Id² refl (inv (ap-const refl α)) ∙ nat-htpy right-inv α) ∙
+      (horizontal-concat-Id² (ap-binary-comp-diagonal _∙_ id inv α) refl)) ∙
+        ap (λ t → (horizontal-concat-Id² t (horizontal-inv-Id² α)) ∙ right-inv p') (ap-id α)
 
   nat-sq-left-inv-Id² :
     coherence-square-identifications (left-inv p) refl (horizontal-concat-Id² (horizontal-inv-Id² α) α) (left-inv p')
   nat-sq-left-inv-Id² =
-    ((((horizontal-concat-Id² refl (inv (ap-const refl α))) ∙ nat-htpy left-inv α) ∙
-      (horizontal-concat-Id² (ap-binary-comp-diagonal (_∙_) inv id α) refl)) ∙
-        ap (λ t → (horizontal-concat-Id² (horizontal-inv-Id² α) t) ∙ left-inv p')  (ap-id α))
+    (((horizontal-concat-Id² refl (inv (ap-const refl α)) ∙ nat-htpy left-inv α) ∙
+      (horizontal-concat-Id² (ap-binary-comp-diagonal _∙_ inv id α) refl)) ∙
+        ap (λ t → (horizontal-concat-Id² (horizontal-inv-Id² α) t) ∙ left-inv p') (ap-id α))
 ```
 
 ### Interchange laws for 2-paths
@@ -277,12 +275,11 @@ Functions have an induced action on 2-paths
 
 ```agda
 module _
-  {l1 l2 : Level} {A : UU l1} {B : UU l2} {a0 a1 : A}
-  {p p' : a0 ＝ a1} (f : A → B) (α : p ＝ p')
+  {l1 l2 : Level} {A : UU l1} {B : UU l2} {a0 a1 : A} {p p' : a0 ＝ a1}  
   where
 
-  ap² : (ap f p) ＝ (ap f p')
-  ap² = (ap (ap f)) α
+  ap² : (f : A → B) → p ＝ p' → ap f p ＝ ap f p'
+  ap² f = ap (ap f)
 ```
 
 Since this is define in terms of `ap`, it comes with the standard coherences. It also has induced cohereces.
@@ -315,14 +312,13 @@ module _
   nat-sq-ap-id-Id² :
     coherence-square-identifications (ap-id p) α (ap² id α) (ap-id p')
   nat-sq-ap-id-Id² =
-    ((horizontal-concat-Id² refl (inv (ap-id α))) ∙ (nat-htpy ap-id α))
+    horizontal-concat-Id² refl (inv (ap-id α)) ∙ nat-htpy ap-id α
 
   nat-sq-ap-const-Id² :
     (b : B) →
     coherence-square-identifications (ap-const b p) refl (ap² (const A B b) α) (ap-const b p')
   nat-sq-ap-const-Id² b =
-    (inv (horizontal-concat-Id² refl (ap-const refl α)) ∙
-      (nat-htpy (ap-const b) α))
+    inv (horizontal-concat-Id² refl (ap-const refl α)) ∙ nat-htpy (ap-const b) α
 ```
 
 Composition law
@@ -337,44 +333,44 @@ module _
     coherence-square-identifications (ap-comp g f p) ((ap² g ∘ ap² f) α)
       (ap² (g ∘ f) α) (ap-comp g f p')
   nat-sq-ap-comp-Id² =
-    (horizontal-concat-Id² refl (inv (ap-comp (ap g) (ap f) α)) ∙
-      (nat-htpy (ap-comp g f) α))
+    horizontal-concat-Id² refl (inv (ap-comp (ap g) (ap f) α)) ∙
+      nat-htpy (ap-comp g f) α
 ```
 
 ## Properties of 3-paths
 
 3-paths are identifications of 2-paths. In symbols, a type of 3-paths is a type of the form `α ＝ β` where `α β : p ＝ q` and `p q : x ＝ y`.
 
-### Concatination in a type of 3-paths
+### concatenation in a type of 3-paths
 
 Like with 2-paths, 3-paths have the standard operations on equalties, plus the operations induced by the operations on 1-paths. But 3-paths also have operations induced by those on 2-paths. Thus there are three ways to concatenate in triple identity types. We name the three concatenations of triple identity types x-, y-, and z-concatenation, after the standard names for the three axis in 3-dimensional space.
 
-The x-concatenation operation corresponds the standard concatination of equalities.
+The x-concatenation operation corresponds the standard concatenation of equalities.
 
 ```agda
 x-concat-Id³ :
   {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} {α β γ : p ＝ q} →
   α ＝ β → β ＝ γ → α ＝ γ
-x-concat-Id³ σ τ = vertical-concat-Id² σ τ
+x-concat-Id³ = vertical-concat-Id²
 ```
 
-The y-concatenation operation corresponds the operation induced by the concatination on 1-paths.
+The y-concatenation operation corresponds the operation induced by the concatenation on 1-paths.
 
 ```agda
 y-concat-Id³ :
   {l : Level} {A : UU l} {x y : A} {p q r : x ＝ y} {α β : p ＝ q}
   {γ δ : q ＝ r} → α ＝ β → γ ＝ δ → (α ∙ γ) ＝ (β ∙ δ)
-y-concat-Id³ σ τ = horizontal-concat-Id² σ τ
+y-concat-Id³ = horizontal-concat-Id²
 ```
 
-The z-concatenation operation corresponds the concatination induced by the horizontal concatination on 2-paths.
+The z-concatenation operation corresponds the concatenation induced by the horizontal concatenation on 2-paths.
 
 ```agda
 z-concat-Id³ :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} {u v : y ＝ z}
   {α β : p ＝ q} {γ δ : u ＝ v} →
   α ＝ β → γ ＝ δ → horizontal-concat-Id² α γ ＝ horizontal-concat-Id² β δ
-z-concat-Id³ σ τ = ap-binary (λ s t → horizontal-concat-Id² s t) σ τ
+z-concat-Id³ σ = ap-binary horizontal-concat-Id² σ
 ```
 
 ### Unit laws for the concatenation operations on 3-paths
@@ -404,15 +400,13 @@ left-unit-law-z-concat-Id³ :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} {u v : y ＝ z}
   {α : p ＝ q} {γ δ : u ＝ v} (τ : γ ＝ δ) →
   z-concat-Id³ (refl {x = α}) τ ＝ ap (horizontal-concat-Id² α) τ
-left-unit-law-z-concat-Id³ τ =
-  left-unit-ap-binary (λ s t → horizontal-concat-Id² s t) τ
+left-unit-law-z-concat-Id³ = left-unit-ap-binary horizontal-concat-Id²
 
 right-unit-law-z-concat-Id³ :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} {u v : y ＝ z}
   {α β : p ＝ q} {γ : u ＝ v} (σ : α ＝ β) →
   z-concat-Id³ σ (refl {x = γ}) ＝ ap (λ ω → horizontal-concat-Id² ω γ) σ
-right-unit-law-z-concat-Id³ σ =
-  right-unit-ap-binary (λ s t → horizontal-concat-Id² s t) σ
+right-unit-law-z-concat-Id³ σ = right-unit-ap-binary horizontal-concat-Id² σ
 ```
 
 ### Interchange laws for 3-paths for the concatenation operations on 3-paths
@@ -446,47 +440,47 @@ interchange-y-z-concat-Id³ refl refl refl refl = inv right-unit
 
 ## Properties of 4-paths
 
-The pattern for concatination of 1, 2, and 3-paths continues. There are four ways to concatenate in quadruple identity types. We name the three non-standard concatenations in quadruple identity types i-, j-, and k-concatenation, after the standard names for the quaternions i, j, and k.
+The pattern for concatenation of 1, 2, and 3-paths continues. There are four ways to concatenate in quadruple identity types. We name the three non-standard concatenations in quadruple identity types i-, j-, and k-concatenation, after the standard names for the quaternions i, j, and k.
 
-### Concatination of four paths.
+### concatenation of four paths.
 
-#### The standard concatination
+#### The standard concatenation
 
 ```agda
 concat-Id⁴ :
   {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} {α β : p ＝ q}
   {r s t : α ＝ β} → r ＝ s → s ＝ t → r ＝ t
-concat-Id⁴ σ τ = x-concat-Id³ σ τ
+concat-Id⁴ = x-concat-Id³
 ```
 
-#### Concatination induced by concatination of boundary 1-paths
+#### concatenation induced by concatenation of boundary 1-paths
 
 ```agda
 i-concat-Id⁴ :
   {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} {α β γ : p ＝ q} →
   {s s' : α ＝ β} (σ : s ＝ s') {t t' : β ＝ γ} (τ : t ＝ t') →
   x-concat-Id³ s t ＝ x-concat-Id³ s' t'
-i-concat-Id⁴ σ τ = y-concat-Id³ σ τ
+i-concat-Id⁴ σ = y-concat-Id³ σ
 ```
 
-#### Concatination induced by concatination of boundary 2-paths
+#### concatenation induced by concatenation of boundary 2-paths
 
 ```agda
 j-concat-Id⁴ :
   {l : Level} {A : UU l} {x y : A} {p q r : x ＝ y} {α β : p ＝ q}
   {γ δ : q ＝ r} {s s' : α ＝ β} (σ : s ＝ s') {t t' : γ ＝ δ} (τ : t ＝ t') →
   y-concat-Id³ s t ＝ y-concat-Id³ s' t'
-j-concat-Id⁴ σ τ = z-concat-Id³ σ τ
+j-concat-Id⁴ σ = z-concat-Id³ σ
 ```
 
-#### Concatination induced by concatination of boundary 3-paths
+#### concatenation induced by concatenation of boundary 3-paths
 
 ```agda
 k-concat-Id⁴ :
   {l : Level} {A : UU l} {x y z : A} {p q : x ＝ y} {u v : y ＝ z}
   {α β : p ＝ q} {γ δ : u ＝ v} {s s' : α ＝ β} (σ : s ＝ s') {t t' : γ ＝ δ}
   (τ : t ＝ t') → z-concat-Id³ s t ＝ z-concat-Id³ s' t'
-k-concat-Id⁴ σ τ = ap-binary (λ m n → z-concat-Id³ m n) σ τ
+k-concat-Id⁴ = ap-binary z-concat-Id³
 ```
 
 ### Commuting cubes
@@ -496,7 +490,7 @@ module _
   {l : Level} {A : UU l} {x000 x001 x010 x100 x011 x101 x110 x111 : A}
   where
 
-  cube :
+  coherence-cube-identifications :
     (p000̂ : x000 ＝ x001) (p00̂0 : x000 ＝ x010) (p0̂00 : x000 ＝ x100)
     (p00̂1 : x001 ＝ x011) (p0̂01 : x001 ＝ x101) (p010̂ : x010 ＝ x011)
     (p0̂10 : x010 ＝ x110) (p100̂ : x100 ＝ x101) (p10̂0 : x100 ＝ x110)
@@ -507,19 +501,20 @@ module _
     (p0̂0̂1 : coherence-square-identifications p00̂1 p0̂11 p0̂01 p10̂1)
     (p0̂10̂ : coherence-square-identifications p010̂ p0̂11 p0̂10 p110̂)
     (p10̂0̂ : coherence-square-identifications p100̂ p10̂1 p10̂0 p110̂) → UU l
-  cube
+  coherence-cube-identifications
     p000̂ p00̂0 p0̂00 p00̂1 p0̂01 p010̂ p0̂10 p100̂ p10̂0 p0̂11 p10̂1 p110̂
     p00̂0̂ p0̂00̂ p0̂0̂0 p0̂0̂1 p0̂10̂ p10̂0̂ =
-    Id ( ( ap (concat' x000 p0̂11) p00̂0̂) ∙
-         ( ( assoc p00̂0 p010̂ p0̂11) ∙
-           ( ( ap (concat p00̂0 x111) p0̂10̂) ∙
-             ( ( inv (assoc p00̂0 p0̂10 p110̂)) ∙
-               ( ( ap (concat' x000 p110̂) p0̂0̂0) ∙
-                 ( assoc p0̂00 p10̂0 p110̂))))))
-       ( ( assoc p000̂ p00̂1 p0̂11) ∙
-         (  ( ap (concat p000̂ x111) p0̂0̂1) ∙
-           ( ( inv (assoc p000̂ p0̂01 p10̂1)) ∙
-             ( ( ap (concat' x000 p10̂1) p0̂00̂) ∙
-               ( ( assoc p0̂00 p100̂ p10̂1) ∙
-                 ( ( ap (concat p0̂00 x111) p10̂0̂)))))))
+    Id
+      ( ap (concat' x000 p0̂11) p00̂0̂ ∙
+        ( assoc p00̂0 p010̂ p0̂11 ∙
+          ( ap (concat p00̂0 x111) p0̂10̂ ∙
+            ( inv (assoc p00̂0 p0̂10 p110̂) ∙
+              ( ap (concat' x000 p110̂) p0̂0̂0 ∙
+                assoc p0̂00 p10̂0 p110̂)))))
+      ( assoc p000̂ p00̂1 p0̂11 ∙
+        ( ap (concat p000̂ x111) p0̂0̂1 ∙
+          ( inv (assoc p000̂ p0̂01 p10̂1) ∙
+            ( ap (concat' x000 p10̂1) p0̂00̂ ∙
+              ( assoc p0̂00 p100̂ p10̂1 ∙
+                ap (concat p0̂00 x111) p10̂0̂)))))
 ```
