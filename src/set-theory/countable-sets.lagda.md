@@ -1,9 +1,14 @@
 # Countable sets
 
-<details><summary>Imports</summary>
 ```agda
 module set-theory.countable-sets where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.complements-subtypes
 open import foundation.decidable-propositions
 open import foundation.decidable-subtypes
@@ -22,6 +27,7 @@ open import foundation.type-arithmetic-coproduct-types
 open import foundation.unit-type
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

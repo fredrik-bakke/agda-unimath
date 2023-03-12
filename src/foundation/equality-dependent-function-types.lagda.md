@@ -1,16 +1,22 @@
 # Equality on dependent function types
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.equality-dependent-function-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
+open import foundation.type-theoretic-principle-of-choice
+
 open import foundation-core.contractible-types
 open import foundation-core.dependent-pair-types
 open import foundation-core.equivalences
 open import foundation-core.fundamental-theorem-of-identity-types
 open import foundation-core.identity-types
 open import foundation-core.universe-levels
-open import foundation.type-theoretic-principle-of-choice
 ```
+
 </details>
 
 ## Idea

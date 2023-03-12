@@ -1,10 +1,15 @@
 # The binomial types
 
-<details><summary>Imports</summary>
 ```agda
 module univalent-combinatorics.binomial-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.binomial-coefficients
 open import elementary-number-theory.natural-numbers
+
 open import foundation.booleans
 open import foundation.connected-components-universes
 open import foundation.contractible-maps
@@ -40,10 +45,12 @@ open import foundation.unit-type
 open import foundation.universal-property-empty-type
 open import foundation.universal-property-maybe
 open import foundation.universe-levels
+
 open import univalent-combinatorics.coproduct-types
 open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ## Idea

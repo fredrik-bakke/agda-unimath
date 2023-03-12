@@ -1,13 +1,19 @@
 # Sieves in categories
 
-<details><summary>Imports</summary>
 ```agda
 module category-theory.sieves-categories where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import category-theory.categories
+
 open import foundation.propositions
 open import foundation.subtypes
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

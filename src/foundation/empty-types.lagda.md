@@ -1,9 +1,20 @@
 # Empty types
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.empty-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation-core.empty-types public
+
+open import foundation.embeddings
+open import foundation.equivalences
+open import foundation.propositional-truncations
+open import foundation.propositions
+open import foundation.raising-universe-levels
+
 open import foundation-core.dependent-pair-types
 open import foundation-core.functions
 open import foundation-core.homotopies
@@ -11,12 +22,8 @@ open import foundation-core.sets
 open import foundation-core.truncated-types
 open import foundation-core.truncation-levels
 open import foundation-core.universe-levels
-open import foundation.embeddings
-open import foundation.equivalences
-open import foundation.propositional-truncations
-open import foundation.propositions
-open import foundation.raising-universe-levels
 ```
+
 </details>
 
 ## Idea

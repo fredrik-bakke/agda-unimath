@@ -1,10 +1,15 @@
 # Isomorphisms in categories
 
-<details><summary>Imports</summary>
 ```agda
 module category-theory.isomorphisms-categories where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import category-theory.categories
 open import category-theory.isomorphisms-precategories
+
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
 open import foundation.equational-reasoning
@@ -16,6 +21,7 @@ open import foundation.sets
 open import foundation.subtype-identity-principle
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

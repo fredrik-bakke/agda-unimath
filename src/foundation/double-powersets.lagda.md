@@ -1,8 +1,12 @@
 # Double powersets
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.double-powersets where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.dependent-pair-types
 open import foundation.existential-quantification
 open import foundation.powersets
@@ -10,9 +14,11 @@ open import foundation.propositional-truncations
 open import foundation.propositions
 open import foundation.subtypes
 open import foundation.universe-levels
+
 open import order-theory.large-posets
 open import order-theory.posets
 ```
+
 </details>
 
 ## Definitions

@@ -1,19 +1,26 @@
 # The concrete quaternion group
 
-<details><summary>Imports</summary>
 ```agda
 module finite-group-theory.concrete-quaternion-group where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.dependent-pair-types
 open import foundation.equivalences
 open import foundation.identity-types
 open import foundation.isolated-points
 open import foundation.universe-levels
+
 open import univalent-combinatorics.complements-isolated-points
 open import univalent-combinatorics.cubes
 open import univalent-combinatorics.equality-finite-types
 open import univalent-combinatorics.equivalences-cubes
 ```
+
 </details>
 
 ## Definition

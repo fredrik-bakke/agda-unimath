@@ -1,8 +1,17 @@
 # The booleans
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.booleans where
+```
+
+<details><summary>Imports</summary>
+
+```agda
+open import foundation.coproduct-types
+open import foundation.injective-maps
+open import foundation.raising-universe-levels
+open import foundation.unit-type
+
 open import foundation-core.constant-maps
 open import foundation-core.dependent-pair-types
 open import foundation-core.empty-types
@@ -14,13 +23,11 @@ open import foundation-core.negation
 open import foundation-core.propositions
 open import foundation-core.sets
 open import foundation-core.universe-levels
-open import foundation.coproduct-types
-open import foundation.injective-maps
-open import foundation.raising-universe-levels
-open import foundation.unit-type
+
 open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ## Idea

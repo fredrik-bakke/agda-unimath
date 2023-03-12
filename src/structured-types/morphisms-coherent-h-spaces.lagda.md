@@ -1,18 +1,25 @@
 # Morphisms of coherent H-spaces
 
-<details><summary>Imports</summary>
 ```agda
 module structured-types.morphisms-coherent-h-spaces where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.dependent-pair-types
 open import foundation.functions
 open import foundation.homotopies
 open import foundation.identity-types
 open import foundation.path-algebra
 open import foundation.universe-levels
+
 open import group-theory.homomorphisms-semigroups
+
 open import structured-types.coherent-h-spaces
 open import structured-types.pointed-maps
 ```
+
 </details>
 
 ## Idea

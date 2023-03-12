@@ -1,8 +1,12 @@
 # Exclusive disjunction of propositions
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.xor where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.cartesian-product-types
 open import foundation.conjunction
 open import foundation.contractible-types
@@ -34,11 +38,13 @@ open import foundation.unit-type
 open import foundation.universal-property-coproduct-types
 open import foundation.universe-levels
 open import foundation.unordered-pairs
+
 open import univalent-combinatorics.2-element-types
 open import univalent-combinatorics.equality-finite-types
 open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ## Idea

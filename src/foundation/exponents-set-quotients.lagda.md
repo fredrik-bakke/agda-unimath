@@ -4,9 +4,13 @@
 {-# OPTIONS --lossy-unification #-}
 ```
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.exponents-set-quotients where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.binary-relations
 open import foundation.commuting-triangles-of-maps
 open import foundation.contractible-types
@@ -27,6 +31,7 @@ open import foundation.surjective-maps
 open import foundation.universal-property-set-quotients
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea
@@ -470,4 +475,3 @@ module _
   pr2 emb-inclusion-set-quotient-hom-Eq-Rel =
     is-emb-inclusion-set-quotient-hom-Eq-Rel
 ```
-

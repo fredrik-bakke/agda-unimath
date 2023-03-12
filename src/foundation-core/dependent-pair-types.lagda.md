@@ -4,11 +4,16 @@
 {-# OPTIONS --safe #-}
 ```
 
-<details><summary>Imports</summary>
 ```agda
 module foundation-core.dependent-pair-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation-core.universe-levels
 ```
+
 </details>
 
 ## Idea

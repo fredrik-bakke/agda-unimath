@@ -4,9 +4,13 @@
 {-# OPTIONS --lossy-unification #-}
 ```
 
-<details><summary>Imports</summary>
 ```agda
 module univalent-combinatorics.orientations-complete-undirected-graph where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.addition-natural-numbers
 open import elementary-number-theory.congruence-natural-numbers
 open import elementary-number-theory.distance-natural-numbers
@@ -16,7 +20,9 @@ open import elementary-number-theory.modular-arithmetic-standard-finite-types
 open import elementary-number-theory.multiplication-natural-numbers
 open import elementary-number-theory.natural-numbers
 open import elementary-number-theory.well-ordering-principle-standard-finite-types
+
 open import finite-group-theory.transpositions
+
 open import foundation.cartesian-product-types
 open import foundation.coproduct-types
 open import foundation.decidable-equality
@@ -52,6 +58,7 @@ open import foundation.type-arithmetic-coproduct-types
 open import foundation.unit-type
 open import foundation.universal-property-propositional-truncation-into-sets
 open import foundation.universe-levels
+
 open import univalent-combinatorics.2-element-decidable-subtypes
 open import univalent-combinatorics.2-element-subtypes
 open import univalent-combinatorics.2-element-types
@@ -64,12 +71,14 @@ open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.standard-finite-types
 open import univalent-combinatorics.symmetric-difference
 ```
+
 </details>
 
 ```agda
 module _
   {l : Level} (n : ℕ) (X : UU-Fin l n)
   where
+
   orientation-Complete-Undirected-Graph : UU (lsuc l)
   orientation-Complete-Undirected-Graph =
     ((pair P H) : 2-Element-Decidable-Subtype l (type-UU-Fin n X)) →
@@ -603,6 +612,7 @@ module _
             ( map-orientation-complete-undirected-graph-equiv X X' e d'))
           ( P))
 ```
+
 </details>
 
 ```agda

@@ -1,9 +1,14 @@
 # Repetitions in sequences
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.repetitions-sequences where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.dependent-pair-types
 open import foundation.identity-types
 open import foundation.negation
@@ -12,6 +17,7 @@ open import foundation.repetitions
 open import foundation.sequences
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

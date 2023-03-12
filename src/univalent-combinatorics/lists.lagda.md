@@ -1,11 +1,16 @@
 # Lists
 
-<details><summary>Imports</summary>
 ```agda
 module univalent-combinatorics.lists where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.addition-natural-numbers
 open import elementary-number-theory.multiplication-natural-numbers
 open import elementary-number-theory.natural-numbers
+
 open import foundation.cartesian-product-types
 open import foundation.contractible-types
 open import foundation.coproduct-types
@@ -24,8 +29,10 @@ open import foundation.truncated-types
 open import foundation.truncation-levels
 open import foundation.unit-type
 open import foundation.universe-levels
+
 open import group-theory.monoids
 ```
+
 </details>
 
 ## Idea

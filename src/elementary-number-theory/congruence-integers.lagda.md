@@ -1,8 +1,12 @@
 # The congruence relations on the integers
 
-<details><summary>Imports</summary>
 ```agda
 module elementary-number-theory.congruence-integers where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.addition-integers
 open import elementary-number-theory.congruence-natural-numbers
 open import elementary-number-theory.difference-integers
@@ -11,12 +15,14 @@ open import elementary-number-theory.divisibility-integers
 open import elementary-number-theory.integers
 open import elementary-number-theory.multiplication-integers
 open import elementary-number-theory.natural-numbers
+
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
 open import foundation.functions
 open import foundation.identity-types
 open import foundation.universe-levels
 ```
+
 </details>
 
 # The congruence relations on the integers

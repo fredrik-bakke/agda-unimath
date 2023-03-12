@@ -1,8 +1,12 @@
 # Bezout's lemma
 
-<details><summary>Imports</summary>
 ```agda
 module elementary-number-theory.bezouts-lemma where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.absolute-value-integers
 open import elementary-number-theory.addition-integers
 open import elementary-number-theory.addition-natural-numbers
@@ -26,6 +30,7 @@ open import elementary-number-theory.multiplication-integers
 open import elementary-number-theory.multiplication-natural-numbers
 open import elementary-number-theory.natural-numbers
 open import elementary-number-theory.well-ordering-principle-natural-numbers
+
 open import foundation.cartesian-product-types
 open import foundation.coproduct-types
 open import foundation.decidable-maps
@@ -37,8 +42,10 @@ open import foundation.identity-types
 open import foundation.negation
 open import foundation.unit-type
 open import foundation.universe-levels
+
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ## Idea
@@ -1441,4 +1448,3 @@ div-right-factor-coprime-ℤ x y z H K = pair (add-ℤ (mul-ℤ s z) (mul-ℤ t 
     ＝ mul-ℤ one-ℤ z by ap (λ M → mul-ℤ M z) (bezout-eqn ∙ K)
     ＝ z by left-unit-law-mul-ℤ z
 ```
-

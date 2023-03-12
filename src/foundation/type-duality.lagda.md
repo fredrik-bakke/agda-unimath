@@ -1,10 +1,12 @@
 # Type duality
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.type-duality where
-open import foundation-core.fibers-of-maps
-open import foundation-core.injective-maps
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.contractible-maps
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
@@ -30,7 +32,11 @@ open import foundation.type-theoretic-principle-of-choice
 open import foundation.unit-type
 open import foundation.univalence
 open import foundation.universe-levels
+
+open import foundation-core.fibers-of-maps
+open import foundation-core.injective-maps
 ```
+
 </details>
 
 ## Idea

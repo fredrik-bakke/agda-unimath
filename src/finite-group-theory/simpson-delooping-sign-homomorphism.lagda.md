@@ -4,19 +4,25 @@
 {-# OPTIONS --lossy-unification #-}
 ```
 
-<details><summary>Imports</summary>
 ```agda
 module finite-group-theory.simpson-delooping-sign-homomorphism where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.addition-natural-numbers
 open import elementary-number-theory.congruence-natural-numbers
 open import elementary-number-theory.inequality-natural-numbers
 open import elementary-number-theory.modular-arithmetic-standard-finite-types
 open import elementary-number-theory.natural-numbers
+
 open import finite-group-theory.delooping-sign-homomorphism
 open import finite-group-theory.finite-type-groups
 open import finite-group-theory.permutations
 open import finite-group-theory.sign-homomorphism
 open import finite-group-theory.transpositions
+
 open import foundation.commuting-squares-of-maps
 open import foundation.contractible-types
 open import foundation.coproduct-types
@@ -51,6 +57,7 @@ open import foundation.unit-type
 open import foundation.univalence
 open import foundation.universal-property-set-quotients
 open import foundation.universe-levels
+
 open import group-theory.automorphism-groups
 open import group-theory.concrete-groups
 open import group-theory.groups
@@ -63,7 +70,9 @@ open import group-theory.loop-groups-sets
 open import group-theory.semigroups
 open import group-theory.subgroups-generated-by-subsets-groups
 open import group-theory.symmetric-groups
+
 open import synthetic-homotopy-theory.loop-spaces
+
 open import univalent-combinatorics.2-element-decidable-subtypes
 open import univalent-combinatorics.2-element-types
 open import univalent-combinatorics.counting
@@ -73,6 +82,7 @@ open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.lists
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ### Simpson's delooping of the sign homomorphism
@@ -762,4 +772,3 @@ module _
           ( (succ-ℕ (succ-ℕ n), compute-raise l (Fin (succ-ℕ (succ-ℕ n)))))
           ( star))
 ```
-

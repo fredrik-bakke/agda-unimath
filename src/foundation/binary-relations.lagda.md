@@ -1,8 +1,16 @@
 # Binary relations
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.binary-relations where
+```
+
+<details><summary>Imports</summary>
+
+```agda
+open import foundation.equality-dependent-function-types
+open import foundation.subtypes
+open import foundation.univalence
+
 open import foundation-core.cartesian-product-types
 open import foundation-core.contractible-types
 open import foundation-core.dependent-pair-types
@@ -11,10 +19,8 @@ open import foundation-core.fundamental-theorem-of-identity-types
 open import foundation-core.identity-types
 open import foundation-core.propositions
 open import foundation-core.universe-levels
-open import foundation.equality-dependent-function-types
-open import foundation.subtypes
-open import foundation.univalence
 ```
+
 </details>
 
 ## Idea

@@ -1,16 +1,23 @@
 # Endomorphisms of objects in categories
 
-<details><summary>Imports</summary>
 ```agda
 module category-theory.endomorphisms-of-objects-categories where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import category-theory.categories
+
 open import foundation.dependent-pair-types
 open import foundation.identity-types
 open import foundation.sets
 open import foundation.universe-levels
+
 open import group-theory.monoids
 open import group-theory.semigroups
 ```
+
 </details>
 
 ## Definition
@@ -58,4 +65,3 @@ module _
   pr1 (pr2 (pr2 monoid-endo-Cat)) = left-unit-law-comp-endo-Cat
   pr2 (pr2 (pr2 monoid-endo-Cat)) = right-unit-law-comp-endo-Cat
 ```
-

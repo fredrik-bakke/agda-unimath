@@ -1,15 +1,22 @@
 # Transposition of matrices
 
-<details><summary>Imports</summary>
 ```agda
 module linear-algebra.transposition-matrices where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.identity-types
 open import foundation.universe-levels
+
 open import linear-algebra.functoriality-vectors
 open import linear-algebra.matrices
 open import linear-algebra.vectors
 ```
+
 </details>
 
 ## Idea

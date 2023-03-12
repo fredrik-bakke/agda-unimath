@@ -1,8 +1,14 @@
 # Truncated types
 
-<details><summary>Imports</summary>
 ```agda
 module foundation-core.truncated-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
+open import foundation.function-extensionality
+
 open import foundation-core.cartesian-product-types
 open import foundation-core.contractible-types
 open import foundation-core.dependent-pair-types
@@ -16,8 +22,8 @@ open import foundation-core.propositions
 open import foundation-core.retractions
 open import foundation-core.truncation-levels
 open import foundation-core.universe-levels
-open import foundation.function-extensionality
 ```
+
 </details>
 
 ## Idea

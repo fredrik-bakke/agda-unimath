@@ -1,9 +1,14 @@
 # Non-contractible types
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.noncontractible-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
 open import foundation.empty-types
@@ -12,6 +17,7 @@ open import foundation.identity-types
 open import foundation.negation
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

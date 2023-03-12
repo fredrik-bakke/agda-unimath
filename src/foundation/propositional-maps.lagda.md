@@ -1,18 +1,25 @@
 # Propositional maps
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.propositional-maps where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation-core.propositional-maps public
+
+open import foundation.embeddings
+open import foundation.logical-equivalences
+open import foundation.truncated-maps
+
 open import foundation-core.dependent-pair-types
 open import foundation-core.equivalences
 open import foundation-core.propositions
 open import foundation-core.truncation-levels
 open import foundation-core.universe-levels
-open import foundation.embeddings
-open import foundation.logical-equivalences
-open import foundation.truncated-maps
 ```
+
 </details>
 
 ## Properties

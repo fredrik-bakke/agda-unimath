@@ -1,10 +1,14 @@
 # Coproduct types
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.coproduct-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation-core.coproduct-types public
-open import foundation-core.empty-types
+
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
 open import foundation.equivalences
@@ -17,7 +21,10 @@ open import foundation.noncontractible-types
 open import foundation.propositions
 open import foundation.unit-type
 open import foundation.universe-levels
+
+open import foundation-core.empty-types
 ```
+
 </details>
 
 ### The predicates of being in the left and in the right summand

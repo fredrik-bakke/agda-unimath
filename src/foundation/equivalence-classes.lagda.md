@@ -1,9 +1,12 @@
 # Equivalence classes
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.equivalence-classes where
-open import foundation-core.equivalence-relations
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.cartesian-product-types
 open import foundation.contractible-types
 open import foundation.coproduct-types
@@ -37,7 +40,10 @@ open import foundation.subtypes
 open import foundation.surjective-maps
 open import foundation.universal-property-image
 open import foundation.universe-levels
+
+open import foundation-core.equivalence-relations
 ```
+
 </details>
 
 ## Idea

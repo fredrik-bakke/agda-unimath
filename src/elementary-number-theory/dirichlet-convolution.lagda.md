@@ -1,8 +1,12 @@
 # Dirichlet convolution
 
-<details><summary>Imports</summary>
 ```agda
 module elementary-number-theory.dirichlet-convolution where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.arithmetic-functions
 open import elementary-number-theory.bounded-sums-arithmetic-functions
 open import elementary-number-theory.inequality-natural-numbers
@@ -10,6 +14,7 @@ open import elementary-number-theory.modular-arithmetic-standard-finite-types
 open import elementary-number-theory.multiplication-natural-numbers
 open import elementary-number-theory.natural-numbers
 open import elementary-number-theory.nonzero-natural-numbers
+
 open import foundation.coproduct-types
 open import foundation.decidable-propositions
 open import foundation.decidable-types
@@ -18,8 +23,10 @@ open import foundation.empty-types
 open import foundation.functions
 open import foundation.identity-types
 open import foundation.universe-levels
+
 open import ring-theory.rings
 ```
+
 </details>
 
 ## Definition

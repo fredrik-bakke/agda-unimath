@@ -1,14 +1,20 @@
 # Normal subgroups of concrete groups
 
-<details><summary>Imports</summary>
 ```agda
 module group-theory.normal-subgroups-concrete-groups where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.universe-levels
+
 open import group-theory.concrete-group-actions
 open import group-theory.concrete-groups
 open import group-theory.subgroups-concrete-groups
 open import group-theory.transitive-concrete-group-actions
 ```
+
 </details>
 
 ## Idea
@@ -42,4 +48,3 @@ module _
     transitive-action-subgroup-Concrete-Group G
       ( subgroup-normal-subgroup-Concrete-Group)
 ```
-

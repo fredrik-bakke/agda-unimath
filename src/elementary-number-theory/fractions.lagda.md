@@ -1,10 +1,15 @@
 # Fractions
 
-<details><summary>Imports</summary>
 ```agda
 module elementary-number-theory.fractions where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.integers
 open import elementary-number-theory.multiplication-integers
+
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
 open import foundation.equivalence-relations
@@ -13,6 +18,7 @@ open import foundation.propositions
 open import foundation.sets
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

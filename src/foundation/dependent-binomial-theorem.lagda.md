@@ -1,8 +1,12 @@
 # The dependent binomial theorem for types (Distributivity of dependent function types over coproduct types)
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.dependent-binomial-theorem where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.cartesian-product-types
 open import foundation.contractible-types
 open import foundation.coproduct-types
@@ -19,9 +23,11 @@ open import foundation.type-theoretic-principle-of-choice
 open import foundation.unit-type
 open import foundation.universal-property-coproduct-types
 open import foundation.universe-levels
+
 open import univalent-combinatorics.equality-standard-finite-types
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ## Idea
@@ -120,4 +126,3 @@ module _
     ( equiv-map-Π
       ( λ x → inv-compute-total-fam-coprod (A x) (B x)))
 ```
-

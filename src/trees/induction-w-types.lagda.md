@@ -1,9 +1,14 @@
 # Induction principles on W-types
 
-<details><summary>Imports</summary>
 ```agda
 module trees.induction-w-types where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.dependent-pair-types
 open import foundation.equivalences
 open import foundation.fibers-of-maps
@@ -12,10 +17,12 @@ open import foundation.functions
 open import foundation.identity-types
 open import foundation.negation
 open import foundation.universe-levels
+
 open import trees.elementhood-relation-w-types
 open import trees.inequality-w-types
 open import trees.w-types
 ```
+
 </details>
 
 ## Idea

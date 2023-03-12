@@ -1,8 +1,12 @@
 # Morphisms of finite species
 
-<details><summary>Imports</summary>
 ```agda
 module univalent-combinatorics.morphisms-finite-species where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-function-types
@@ -14,11 +18,13 @@ open import foundation.identity-types
 open import foundation.propositions
 open import foundation.sets
 open import foundation.universe-levels
+
 open import univalent-combinatorics.equality-finite-types
 open import univalent-combinatorics.finite-species
 open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.morphisms-species
 ```
+
 </details>
 
 ## Idea

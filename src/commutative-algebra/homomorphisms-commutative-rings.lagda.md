@@ -1,12 +1,19 @@
 # Homomorphisms of commutative rings
 
-<details><summary>Imports</summary>
 ```agda
 module commutative-algebra.homomorphisms-commutative-rings where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import commutative-algebra.commutative-rings
+
 open import foundation.universe-levels
+
 open import ring-theory.homomorphisms-rings
 ```
+
 </details>
 
 ## Idea

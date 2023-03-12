@@ -4,11 +4,13 @@
 {-# OPTIONS --lossy-unification #-}
 ```
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.universal-property-set-quotients where
-open import foundation-core.equivalence-relations
-open import foundation-core.univalence
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.cartesian-product-types
 open import foundation.contractible-maps
 open import foundation.contractible-types
@@ -40,7 +42,11 @@ open import foundation.subtypes
 open import foundation.surjective-maps
 open import foundation.universal-property-image
 open import foundation.universe-levels
+
+open import foundation-core.equivalence-relations
+open import foundation-core.univalence
 ```
+
 </details>
 
 ## Idea

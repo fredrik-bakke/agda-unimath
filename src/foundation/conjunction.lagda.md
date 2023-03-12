@@ -1,14 +1,20 @@
 # Conjunction of propositions
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.conjunction where
-open import foundation-core.decidable-propositions
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.decidable-types
 open import foundation.dependent-pair-types
 open import foundation.propositions
 open import foundation.universe-levels
+
+open import foundation-core.decidable-propositions
 ```
+
 </details>
 
 ## Idea

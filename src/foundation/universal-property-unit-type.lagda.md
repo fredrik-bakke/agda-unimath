@@ -1,9 +1,12 @@
 # The universal property of the unit type
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.universal-property-unit-type where
-open import foundation-core.homotopies
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.constant-maps
 open import foundation.contractible-types
 open import foundation.dependent-pair-types
@@ -12,7 +15,10 @@ open import foundation.functions
 open import foundation.identity-types
 open import foundation.unit-type
 open import foundation.universe-levels
+
+open import foundation-core.homotopies
 ```
+
 </details>
 
 ## Idea

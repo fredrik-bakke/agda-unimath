@@ -1,8 +1,12 @@
 # Symmetric groups
 
-<details><summary>Imports</summary>
 ```agda
 module group-theory.symmetric-groups where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.automorphisms
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-pair-types
@@ -21,6 +25,7 @@ open import foundation.subuniverses
 open import foundation.truncated-types
 open import foundation.univalence
 open import foundation.universe-levels
+
 open import group-theory.concrete-groups
 open import group-theory.groups
 open import group-theory.homomorphisms-groups
@@ -31,6 +36,7 @@ open import group-theory.opposite-groups
 open import group-theory.semigroups
 open import group-theory.symmetric-concrete-groups
 ```
+
 </details>
 
 ## Definitions

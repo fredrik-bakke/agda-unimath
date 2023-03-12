@@ -2,16 +2,18 @@
 
 ```agda
 {-# OPTIONS --safe #-}
+module foundation-core.identity-types where
 ```
 
 <details><summary>Imports</summary>
+
 ```agda
-module foundation-core.identity-types where
 open import foundation-core.constant-maps
 open import foundation-core.dependent-pair-types
 open import foundation-core.functions
 open import foundation-core.universe-levels
 ```
+
 </details>
 
 ## Idea

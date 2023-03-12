@@ -1,9 +1,12 @@
 # Epimorphisms with respect to maps into sets
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.epimorphisms-with-respect-to-sets where
-open import foundation-core.univalence
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.dependent-pair-types
 open import foundation.embeddings
 open import foundation.equivalences
@@ -20,7 +23,10 @@ open import foundation.sets
 open import foundation.surjective-maps
 open import foundation.unit-type
 open import foundation.universe-levels
+
+open import foundation-core.univalence
 ```
+
 </details>
 
 ## Idea

@@ -1,16 +1,22 @@
 # Lawvere's fixed point theorem
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.lawveres-fixed-point-theorem where
-open import foundation-core.function-extensionality
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.dependent-pair-types
 open import foundation.existential-quantification
 open import foundation.identity-types
 open import foundation.propositional-truncations
 open import foundation.surjective-maps
 open import foundation.universe-levels
+
+open import foundation-core.function-extensionality
 ```
+
 </details>
 
 ## Idea

@@ -1,14 +1,20 @@
 # Planar binary trees
 
-<details><summary>Imports</summary>
 ```agda
 module order-theory.planar-binary-trees where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.booleans
 open import foundation.empty-types
 open import foundation.functions
 open import foundation.universe-levels
+
 open import trees.w-types
 ```
+
 </details>
 
 ## Idea

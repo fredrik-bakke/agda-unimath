@@ -1,14 +1,20 @@
 # Idempotent elements in rings
 
-<details><summary>Imports</summary>
 ```agda
 module ring-theory.idempotent-elements-rings where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.propositions
 open import foundation.sets
 open import foundation.subtypes
 open import foundation.universe-levels
+
 open import ring-theory.rings
 ```
+
 </details>
 
 ## Idea

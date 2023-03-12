@@ -1,15 +1,22 @@
 # Path-split maps
 
-<details><summary>Imports</summary>
 ```agda
 module foundation.path-split-maps where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation-core.path-split-maps public
+
+open import foundation.equivalences
+
 open import foundation-core.contractible-types
 open import foundation-core.dependent-pair-types
 open import foundation-core.propositions
 open import foundation-core.universe-levels
-open import foundation.equivalences
 ```
+
 </details>
 
 ## Properties

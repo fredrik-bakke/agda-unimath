@@ -1,8 +1,17 @@
 # Pullbacks
 
-<details><summary>Imports</summary>
 ```agda
 module foundation-core.pullbacks where
+```
+
+<details><summary>Imports</summary>
+
+```agda
+open import foundation.functoriality-cartesian-product-types
+open import foundation.identity-types
+open import foundation.structure-identity-principle
+open import foundation.type-theoretic-principle-of-choice
+
 open import foundation-core.cartesian-product-types
 open import foundation-core.cones-pullbacks
 open import foundation-core.contractible-maps
@@ -21,11 +30,8 @@ open import foundation-core.morphisms-cospans
 open import foundation-core.type-arithmetic-dependent-pair-types
 open import foundation-core.universal-property-pullbacks
 open import foundation-core.universe-levels
-open import foundation.functoriality-cartesian-product-types
-open import foundation.identity-types
-open import foundation.structure-identity-principle
-open import foundation.type-theoretic-principle-of-choice
 ```
+
 </details>
 
 ## Definitions

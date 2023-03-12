@@ -1,17 +1,24 @@
 # Counting the elements in Maybe
 
-<details><summary>Imports</summary>
 ```agda
 module univalent-combinatorics.counting-maybe where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.dependent-pair-types
 open import foundation.equivalences-maybe
 open import foundation.identity-types
 open import foundation.maybe
 open import foundation.universe-levels
+
 open import univalent-combinatorics.coproduct-types
 open import univalent-combinatorics.counting
 ```
+
 </details>
 
 ## Idea

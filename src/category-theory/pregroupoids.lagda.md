@@ -1,14 +1,20 @@
 # Pregroupoids
 
-<details><summary>Imports</summary>
 ```agda
 module category-theory.pregroupoids where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import category-theory.isomorphisms-precategories
 open import category-theory.precategories
+
 open import foundation.dependent-pair-types
 open import foundation.propositions
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

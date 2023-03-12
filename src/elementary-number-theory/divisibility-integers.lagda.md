@@ -1,8 +1,12 @@
 # Divisibility of integers
 
-<details><summary>Imports</summary>
 ```agda
 module elementary-number-theory.divisibility-integers where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.absolute-value-integers
 open import elementary-number-theory.addition-integers
 open import elementary-number-theory.divisibility-natural-numbers
@@ -10,6 +14,7 @@ open import elementary-number-theory.equality-integers
 open import elementary-number-theory.integers
 open import elementary-number-theory.multiplication-integers
 open import elementary-number-theory.natural-numbers
+
 open import foundation.cartesian-product-types
 open import foundation.coproduct-types
 open import foundation.decidable-types
@@ -24,6 +29,7 @@ open import foundation.propositions
 open import foundation.unit-type
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

@@ -1,9 +1,14 @@
 # Functors between precategories
 
-<details><summary>Imports</summary>
 ```agda
 module category-theory.functors-precategories where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import category-theory.precategories
+
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
 open import foundation.functions
@@ -11,6 +16,7 @@ open import foundation.identity-types
 open import foundation.propositions
 open import foundation.universe-levels
 ```
+
 </details>
 
 ## Idea

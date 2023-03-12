@@ -1,11 +1,14 @@
 # Distributivity of set truncation over finite products
 
-<details><summary>Imports</summary>
 ```agda
-module
-  univalent-combinatorics.distributivity-of-set-truncation-over-finite-products
-  where
+module univalent-combinatorics.distributivity-of-set-truncation-over-finite-products where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import elementary-number-theory.natural-numbers
+
 open import foundation.contractible-types
 open import foundation.coproduct-types
 open import foundation.dependent-pair-types
@@ -28,10 +31,12 @@ open import foundation.universal-property-dependent-pair-types
 open import foundation.universal-property-empty-type
 open import foundation.universal-property-maybe
 open import foundation.universe-levels
+
 open import univalent-combinatorics.counting
 open import univalent-combinatorics.finite-types
 open import univalent-combinatorics.standard-finite-types
 ```
+
 </details>
 
 ```agda

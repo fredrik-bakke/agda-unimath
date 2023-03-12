@@ -1,19 +1,25 @@
 # Cartesian products of groups
 
-<details><summary>Imports</summary>
 ```agda
 module group-theory.cartesian-products-groups where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.dependent-pair-types
 open import foundation.equality-cartesian-product-types
 open import foundation.identity-types
 open import foundation.sets
 open import foundation.universe-levels
+
 open import group-theory.cartesian-products-monoids
 open import group-theory.cartesian-products-semigroups
 open import group-theory.groups
 open import group-theory.monoids
 open import group-theory.semigroups
 ```
+
 </details>
 
 ## Idea

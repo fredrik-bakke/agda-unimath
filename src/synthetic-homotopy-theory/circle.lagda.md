@@ -1,8 +1,12 @@
 # The circle
 
-<details><summary>Imports</summary>
 ```agda
 module synthetic-homotopy-theory.circle where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.0-connected-types
 open import foundation.contractible-maps
 open import foundation.contractible-types
@@ -22,12 +26,15 @@ open import foundation.sections
 open import foundation.structure-identity-principle
 open import foundation.universal-property-propositional-truncation
 open import foundation.universe-levels
+
 open import structured-types.pointed-homotopies
 open import structured-types.pointed-maps
 open import structured-types.pointed-types
+
 open import synthetic-homotopy-theory.free-loops
 open import synthetic-homotopy-theory.universal-property-circle
 ```
+
 </details>
 
 ## Postulates

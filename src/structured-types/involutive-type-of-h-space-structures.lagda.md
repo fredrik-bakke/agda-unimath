@@ -1,8 +1,12 @@
 # The involutive type of H-Space structures on a pointed type
 
-<details><summary>Imports</summary>
 ```agda
 module structured-types.involutive-type-of-h-space-structures where
+```
+
+<details><summary>Imports</summary>
+
+```agda
 open import foundation.binary-transport
 open import foundation.constant-maps
 open import foundation.contractible-types
@@ -18,10 +22,13 @@ open import foundation.structure-identity-principle
 open import foundation.symmetric-identity-types
 open import foundation.symmetric-operations
 open import foundation.universe-levels
+
 open import structured-types.constant-maps-pointed-types
 open import structured-types.pointed-types
+
 open import univalent-combinatorics.2-element-types
 ```
+
 </details>
 
 ## Idea
@@ -191,4 +198,3 @@ module _
   eq-htpy-h-space-Involutive-Type μ μ' =
     map-inv-equiv (extensionality-h-space-Involutive-Type μ μ')
 ```
-
