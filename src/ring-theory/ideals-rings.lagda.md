@@ -43,6 +43,13 @@ module _
     is-additive-subgroup-subset-Ring R P ×
     is-closed-under-left-multiplication-subset-Ring R P
 
+  is-prop-is-left-ideal-subset-Ring :
+    {l2 : Level} (S : subset-Ring l2 R) → is-prop (is-left-ideal-subset-Ring S)
+  is-prop-is-left-ideal-subset-Ring S =
+    is-prop-prod
+      ( is-prop-is-additive-subgroup-subset-Ring R S)
+      ( is-prop-is-closed-under-left-multiplication-subset-Ring R S)
+
 left-ideal-Ring :
   (l : Level) {l1 : Level} (R : Ring l1) → UU ((lsuc l) ⊔ l1)
 left-ideal-Ring l R = Σ (subset-Ring l R) (is-left-ideal-subset-Ring R)
@@ -123,6 +130,13 @@ module _
   is-right-ideal-subset-Ring P =
     is-additive-subgroup-subset-Ring R P ×
     is-closed-under-right-multiplication-subset-Ring R P
+
+  is-prop-is-right-ideal-subset-Ring :
+    {l2 : Level} (S : subset-Ring l2 R) → is-prop (is-right-ideal-subset-Ring S)
+  is-prop-is-right-ideal-subset-Ring S =
+    is-prop-prod
+      ( is-prop-is-additive-subgroup-subset-Ring R S)
+      ( is-prop-is-closed-under-right-multiplication-subset-Ring R S)
 
 right-ideal-Ring :
   (l : Level) {l1 : Level} (R : Ring l1) → UU ((lsuc l) ⊔ l1)
