@@ -9,11 +9,11 @@ module foundation-core.equivalences where
 ```agda
 open import foundation.action-on-identifications-binary-functions
 open import foundation.action-on-identifications-functions
+open import foundation.dependent-pair-types
 open import foundation.universe-levels
 
 open import foundation-core.cartesian-product-types
 open import foundation-core.coherently-invertible-maps
-open import foundation-core.dependent-pair-types
 open import foundation-core.function-types
 open import foundation-core.homotopies
 open import foundation-core.identity-types
@@ -421,6 +421,33 @@ module _
       where
       h : A → B
       h = map-inv-is-equiv is-equiv-section-f
+```
+
+### Any section of an equivalence is homotopic to its inverse
+
+```agda
+module _
+  {l1 l2 : Level} {A : UU l1} {B : UU l2} (e : A ≃ B)
+  where
+
+  htpy-map-inv-equiv-section :
+    (f : section (map-equiv e)) → map-inv-equiv e ~ map-section (map-equiv e) f
+  htpy-map-inv-equiv-section (f , H) =
+    (map-inv-equiv e ·l inv-htpy H) ∙h (is-retraction-map-inv-equiv e ·r f)
+```
+
+### Any retraction of an equivalence is homotopic to its inverse
+
+```agda
+module _
+  {l1 l2 : Level} {A : UU l1} {B : UU l2} (e : A ≃ B)
+  where
+
+  htpy-map-inv-equiv-retraction :
+    (f : retraction (map-equiv e)) →
+    map-inv-equiv e ~ map-retraction (map-equiv e) f
+  htpy-map-inv-equiv-retraction (f , H) =
+    (inv-htpy H ·r map-inv-equiv e) ∙h (f ·l is-section-map-inv-equiv e)
 ```
 
 ### Equivalences in commuting squares
