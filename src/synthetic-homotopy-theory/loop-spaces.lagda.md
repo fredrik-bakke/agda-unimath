@@ -43,7 +43,8 @@ module _
   refl-Ω = refl
 
   Ω : Pointed-Type l
-  Ω = pair type-Ω refl-Ω
+  pr1 Ω = type-Ω
+  pr2 Ω = refl-Ω
 ```
 
 ### The magma of loops on a pointed space
@@ -127,7 +128,8 @@ module _
   where
 
   equiv-tr-Ω : Id x y → Ω (pair A x) ≃∗ Ω (pair A y)
-  equiv-tr-Ω refl = pair id-equiv refl
+  pr1 (equiv-tr-Ω refl) = id-equiv
+  pr2 (equiv-tr-Ω refl) = refl
 
   equiv-tr-type-Ω : Id x y → type-Ω (pair A x) ≃ type-Ω (pair A y)
   equiv-tr-type-Ω p =

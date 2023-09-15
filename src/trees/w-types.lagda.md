@@ -72,7 +72,8 @@ structure-𝕎-Alg (pair x α) = tree-𝕎 x α
 𝕎-Alg :
   {l1 l2 : Level} (A : UU l1) (B : A → UU l2) →
   algebra-polynomial-endofunctor (l1 ⊔ l2) A B
-𝕎-Alg A B = pair (𝕎 A B) structure-𝕎-Alg
+pr1 (𝕎-Alg A B) = 𝕎 A B
+pr2 (𝕎-Alg A B) = structure-𝕎-Alg
 ```
 
 ### W-types as coalgebras for a polynomial endofunctor
@@ -129,16 +130,20 @@ module _
     Σ (x ＝ y) (λ p → (z : B x) → Eq-𝕎 (α z) (β (tr B p z)))
 
   refl-Eq-𝕎 : (w : 𝕎 A B) → Eq-𝕎 w w
-  refl-Eq-𝕎 (tree-𝕎 x α) = pair refl (λ z → refl-Eq-𝕎 (α z))
+  pr1 (refl-Eq-𝕎 (tree-𝕎 x α)) = refl
+  pr2 (refl-Eq-𝕎 (tree-𝕎 x α)) z = refl-Eq-𝕎 (α z)
 
   center-total-Eq-𝕎 : (w : 𝕎 A B) → Σ (𝕎 A B) (Eq-𝕎 w)
-  center-total-Eq-𝕎 w = pair w (refl-Eq-𝕎 w)
+  pr1 (center-total-Eq-𝕎 w) = w
+  pr2 (center-total-Eq-𝕎 w) = refl-Eq-𝕎 w
 
   aux-total-Eq-𝕎 :
     (x : A) (α : B x → 𝕎 A B) →
     Σ (B x → 𝕎 A B) (λ β → (y : B x) → Eq-𝕎 (α y) (β y)) →
     Σ (𝕎 A B) (Eq-𝕎 (tree-𝕎 x α))
-  aux-total-Eq-𝕎 x α (pair β e) = pair (tree-𝕎 x β) (pair refl e)
+  pr1 (aux-total-Eq-𝕎 x α (β , e)) = tree-𝕎 x β
+  pr1 (pr2 (aux-total-Eq-𝕎 x α (β , e))) = refl
+  pr2 (pr2 (aux-total-Eq-𝕎 x α (β , e))) = e
 
   contraction-total-Eq-𝕎 :
     (w : 𝕎 A B) (t : Σ (𝕎 A B) (Eq-𝕎 w)) → center-total-Eq-𝕎 w ＝ t
@@ -171,7 +176,8 @@ module _
   eq-Eq-𝕎 v w = map-inv-is-equiv (is-equiv-Eq-𝕎-eq v w)
 
   equiv-Eq-𝕎-eq : (v w : 𝕎 A B) → (v ＝ w) ≃ Eq-𝕎 v w
-  equiv-Eq-𝕎-eq v w = pair (Eq-𝕎-eq v w) (is-equiv-Eq-𝕎-eq v w)
+  pr1 (equiv-Eq-𝕎-eq v w) = Eq-𝕎-eq v w
+  pr2 (equiv-Eq-𝕎-eq v w) = is-equiv-Eq-𝕎-eq v w
 
   is-trunc-𝕎 : (k : 𝕋) → is-trunc (succ-𝕋 k) A → is-trunc (succ-𝕋 k) (𝕎 A B)
   is-trunc-𝕎 k is-trunc-A (tree-𝕎 x α) (tree-𝕎 y β) =
@@ -199,7 +205,8 @@ module _
 map-inv-structure-𝕎-Alg :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} →
   𝕎 A B → type-polynomial-endofunctor A B (𝕎 A B)
-map-inv-structure-𝕎-Alg (tree-𝕎 x α) = pair x α
+pr1 (map-inv-structure-𝕎-Alg (tree-𝕎 x α)) = x
+pr2 (map-inv-structure-𝕎-Alg (tree-𝕎 x α)) = α
 
 is-section-map-inv-structure-𝕎-Alg :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} →
@@ -265,7 +272,8 @@ hom-𝕎-Alg :
   {l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2}
   (X : algebra-polynomial-endofunctor l3 A B) →
   hom-algebra-polynomial-endofunctor (𝕎-Alg A B) X
-hom-𝕎-Alg X = pair (map-hom-𝕎-Alg X) (structure-hom-𝕎-Alg X)
+pr1 (hom-𝕎-Alg X) = map-hom-𝕎-Alg X
+pr2 (hom-𝕎-Alg X) = structure-hom-𝕎-Alg X
 
 htpy-htpy-hom-𝕎-Alg :
   {l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2}

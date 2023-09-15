@@ -208,14 +208,16 @@ module _
     is-equiv-map-Π _ (λ x → is-equiv-inv-con (H x) (K x) (L x))
 
   equiv-inv-con-htpy : ((H ∙h K) ~ L) ≃ (K ~ ((inv-htpy H) ∙h L))
-  equiv-inv-con-htpy = pair (inv-con-htpy H K L) is-equiv-inv-con-htpy
+  pr1 equiv-inv-con-htpy = inv-con-htpy H K L
+  pr2 equiv-inv-con-htpy = is-equiv-inv-con-htpy
 
   is-equiv-con-inv-htpy : is-equiv (con-inv-htpy H K L)
   is-equiv-con-inv-htpy =
     is-equiv-map-Π _ (λ x → is-equiv-con-inv (H x) (K x) (L x))
 
   equiv-con-inv-htpy : ((H ∙h K) ~ L) ≃ (H ~ (L ∙h (inv-htpy K)))
-  equiv-con-inv-htpy = pair (con-inv-htpy H K L) is-equiv-con-inv-htpy
+  pr1 equiv-con-inv-htpy = con-inv-htpy H K L
+  pr2 equiv-con-inv-htpy = is-equiv-con-inv-htpy
 ```
 
 ### Computing dependent-identifications in the type family `eq-value` of dependent functions

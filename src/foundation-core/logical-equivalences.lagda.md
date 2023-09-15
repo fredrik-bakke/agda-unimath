@@ -134,7 +134,8 @@ infixl 0 step-logical-equivalence-reasoning
 
 logical-equivalence-reasoning_ :
   {l1 : Level} (X : UU l1) → X ↔ X
-logical-equivalence-reasoning X = pair id id
+pr1 (logical-equivalence-reasoning X) = id
+pr2 (logical-equivalence-reasoning X) = id
 
 step-logical-equivalence-reasoning :
   {l1 l2 l3 : Level} {X : UU l1} {Y : UU l2} →

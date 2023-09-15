@@ -46,7 +46,8 @@ module _
   preserves-refl-map-Ω = preserves-refl-tr-Ω (pr2 f)
 
   pointed-map-Ω : Ω A →∗ Ω B
-  pointed-map-Ω = pair map-Ω preserves-refl-map-Ω
+  pr1 pointed-map-Ω = map-Ω
+  pr2 pointed-map-Ω = preserves-refl-map-Ω
 
   preserves-mul-map-Ω :
     (x y : type-Ω A) → Id (map-Ω (mul-Ω A x y)) (mul-Ω B (map-Ω x) (map-Ω y))

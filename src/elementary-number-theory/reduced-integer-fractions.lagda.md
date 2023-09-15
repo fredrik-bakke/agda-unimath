@@ -329,14 +329,16 @@ sim-unique-numerator-reduce-fraction-ℤ x y H =
       ( mul-ℤ
         ( int-reduce-denominator-fraction-ℤ y)
         ( int-reduce-numerator-fraction-ℤ x))
-  div-red-y-num = pair (int-reduce-denominator-fraction-ℤ x)
-    ( commutative-mul-ℤ
+  div-red-y-num =
+    pair
       ( int-reduce-denominator-fraction-ℤ x)
-      ( int-reduce-numerator-fraction-ℤ y) ∙
-      ( inv (reduced-eqn) ∙
-        commutative-mul-ℤ
-          ( int-reduce-numerator-fraction-ℤ x)
-          ( int-reduce-denominator-fraction-ℤ y)))
+      ( commutative-mul-ℤ
+        ( int-reduce-denominator-fraction-ℤ x)
+        ( int-reduce-numerator-fraction-ℤ y) ∙
+        ( inv (reduced-eqn) ∙
+          commutative-mul-ℤ
+            ( int-reduce-numerator-fraction-ℤ x)
+            ( int-reduce-denominator-fraction-ℤ y)))
   red-y-coprime :
     gcd-ℤ
       ( int-reduce-numerator-fraction-ℤ y)
@@ -486,8 +488,10 @@ sim-unique-denominator-reduce-fraction-ℤ x y H = antisymmetric-div-ℤ
       ( mul-ℤ
         ( int-reduce-numerator-fraction-ℤ x)
         ( int-reduce-denominator-fraction-ℤ y))
-  div-red-x-num = pair (int-reduce-numerator-fraction-ℤ y)
-    (inv (reduced-eqn))
+  div-red-x-num =
+    pair
+      ( int-reduce-numerator-fraction-ℤ y)
+      ( inv (reduced-eqn))
   red-x-coprime :
     gcd-ℤ
       ( int-reduce-denominator-fraction-ℤ x)
@@ -513,8 +517,10 @@ sim-unique-denominator-reduce-fraction-ℤ x y H = antisymmetric-div-ℤ
       ( mul-ℤ
         ( int-reduce-numerator-fraction-ℤ y)
         ( int-reduce-denominator-fraction-ℤ x))
-  div-red-y-num = pair (int-reduce-numerator-fraction-ℤ x)
-    (reduced-eqn)
+  div-red-y-num =
+    pair
+      ( int-reduce-numerator-fraction-ℤ x)
+      ( reduced-eqn)
   red-y-coprime :
     gcd-ℤ
       ( int-reduce-denominator-fraction-ℤ y)

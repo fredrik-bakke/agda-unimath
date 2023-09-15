@@ -104,7 +104,8 @@ module _
   element-face-Finitely-Graded-Poset :
     {i : Fin (succ-ℕ k)} → face-Finitely-Graded-Poset i →
     type-Finitely-Graded-Poset
-  element-face-Finitely-Graded-Poset {i} x = pair i x
+  pr1 (element-face-Finitely-Graded-Poset {i} x) = i
+  pr2 (element-face-Finitely-Graded-Poset {i} x) = x
 
   shape-Finitely-Graded-Poset :
     type-Finitely-Graded-Poset → Fin (succ-ℕ k)

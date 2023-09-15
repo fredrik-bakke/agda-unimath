@@ -52,8 +52,9 @@ is-decidable-Σ-Fin (succ-ℕ k) {P} d with d (inr star)
     ( is-decidable-Σ-Fin k {P ∘ inl} (λ x → d (inl x)))
   where
   g : Σ (Fin (succ-ℕ k)) P → Σ (Fin k) (P ∘ inl)
-  g (pair (inl x) p) = pair x p
-  g (pair (inr star) p) = ex-falso (f p)
+  pr1 (g (inl x , p)) = x
+  pr2 (g (inl x , p)) = p
+  g (inr star , p) = ex-falso (f p)
 ```
 
 ### The Σ-type of any family of decidable types over a type equipped with count is decidable

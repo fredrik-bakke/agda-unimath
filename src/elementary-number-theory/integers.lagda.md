@@ -312,7 +312,8 @@ is-set-is-positive-ℤ (inr (inl x)) = is-set-empty
 is-set-is-positive-ℤ (inr (inr x)) = is-set-unit
 
 is-positive-ℤ-Set : ℤ → Set lzero
-is-positive-ℤ-Set z = pair (is-positive-ℤ z) (is-set-is-positive-ℤ z)
+pr1 (is-positive-ℤ-Set z) = is-positive-ℤ z
+pr2 (is-positive-ℤ-Set z) = is-set-is-positive-ℤ z
 
 positive-ℤ : UU lzero
 positive-ℤ = Σ ℤ is-positive-ℤ

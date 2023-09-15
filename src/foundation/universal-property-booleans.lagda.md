@@ -25,19 +25,20 @@ open import foundation-core.identity-types
 ```agda
 ev-true-false :
   {l : Level} (A : UU l) → (f : bool → A) → A × A
-ev-true-false A f = pair (f true) (f false)
+pr1 (ev-true-false A f) = f true
+pr2 (ev-true-false A f) = f false
 
 map-universal-property-bool :
   {l : Level} {A : UU l} →
   A × A → (bool → A)
-map-universal-property-bool (pair x y) true = x
-map-universal-property-bool (pair x y) false = y
+map-universal-property-bool (x , y) true = x
+map-universal-property-bool (x , y) false = y
 
 abstract
   is-section-map-universal-property-bool :
     {l : Level} {A : UU l} →
     ((ev-true-false A) ∘ map-universal-property-bool) ~ id
-  is-section-map-universal-property-bool (pair x y) =
+  is-section-map-universal-property-bool (x , y) =
     eq-pair refl refl
 
 abstract
@@ -57,7 +58,7 @@ abstract
 abstract
   universal-property-bool :
     {l : Level} (A : UU l) →
-    is-equiv (λ (f : bool → A) → pair (f true) (f false))
+    is-equiv (λ (f : bool → A) → (f true , f false))
   universal-property-bool A =
     is-equiv-has-inverse
       map-universal-property-bool
@@ -111,7 +112,7 @@ eq-false-equiv' e p (inr x) =
       ( ap pr1
         ( eq-is-contr'
           ( is-contr-map-is-equiv (is-equiv-map-equiv e) true)
-          ( pair true p)
-          ( pair false (eq-true (map-equiv e false) x)))))
+          ( true , p)
+          ( false , (eq-true (map-equiv e false) x)))))
 -}
 ```

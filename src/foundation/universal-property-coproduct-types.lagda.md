@@ -34,7 +34,8 @@ module _
   ev-inl-inr :
     {l3 : Level} (P : A + B → UU l3) →
     ((t : A + B) → P t) → ((x : A) → P (inl x)) × ((y : B) → P (inr y))
-  ev-inl-inr P s = pair (λ x → s (inl x)) (λ y → s (inr y))
+  pr1 (ev-inl-inr P s) x = s (inl x)
+  pr2 (ev-inl-inr P s) y = s (inr y)
 
   dependent-universal-property-coprod :
     {l3 : Level} (P : A + B → UU l3) → is-equiv (ev-inl-inr P)

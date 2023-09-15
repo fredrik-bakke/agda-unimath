@@ -89,7 +89,8 @@ is-equiv-Nat-𝕎-ℕ =
     is-retraction-ℕ-Nat-𝕎
 
 equiv-Nat-𝕎-ℕ : ℕ ≃ Nat-𝕎
-equiv-Nat-𝕎-ℕ = pair Nat-𝕎-ℕ is-equiv-Nat-𝕎-ℕ
+pr1 equiv-Nat-𝕎-ℕ = Nat-𝕎-ℕ
+pr2 equiv-Nat-𝕎-ℕ = is-equiv-Nat-𝕎-ℕ
 
 is-equiv-ℕ-Nat-𝕎 : is-equiv ℕ-Nat-𝕎
 is-equiv-ℕ-Nat-𝕎 =
@@ -99,5 +100,6 @@ is-equiv-ℕ-Nat-𝕎 =
     is-section-ℕ-Nat-𝕎
 
 equiv-ℕ-Nat-𝕎 : Nat-𝕎 ≃ ℕ
-equiv-ℕ-Nat-𝕎 = pair ℕ-Nat-𝕎 is-equiv-ℕ-Nat-𝕎
+pr1 equiv-ℕ-Nat-𝕎 = ℕ-Nat-𝕎
+pr2 equiv-ℕ-Nat-𝕎 = is-equiv-ℕ-Nat-𝕎
 ```

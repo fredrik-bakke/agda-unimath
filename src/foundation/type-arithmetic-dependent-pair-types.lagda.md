@@ -40,7 +40,8 @@ module _
   where
 
   map-inv-left-unit-law-Σ-is-contr : B a → Σ A B
-  map-inv-left-unit-law-Σ-is-contr b = pair a b
+  pr1 (map-inv-left-unit-law-Σ-is-contr b) = a
+  pr2 (map-inv-left-unit-law-Σ-is-contr b) = b
 
   map-left-unit-law-Σ-is-contr : Σ A B → B a
   map-left-unit-law-Σ-is-contr =

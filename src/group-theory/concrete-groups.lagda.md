@@ -83,7 +83,8 @@ module _
   is-set-type-Concrete-Group = pr2 G
 
   set-Concrete-Group : Set l
-  set-Concrete-Group = pair type-Concrete-Group is-set-type-Concrete-Group
+  pr1 (set-Concrete-Group) = type-Concrete-Group
+  pr2 (set-Concrete-Group) = is-set-type-Concrete-Group
 
   is-1-type-classifying-type-Concrete-Group :
     is-trunc one-𝕋 classifying-type-Concrete-Group

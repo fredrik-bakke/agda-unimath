@@ -247,7 +247,8 @@ module _
           ( is-injective-is-emb (is-emb-inclusion-im f)))
 
   emb-trunc-im-Set : type-trunc-Set (im f) ↪ type-trunc-Set B
-  emb-trunc-im-Set = pair inclusion-trunc-im-Set is-emb-inclusion-trunc-im-Set
+  pr1 emb-trunc-im-Set = inclusion-trunc-im-Set
+  pr2 emb-trunc-im-Set = is-emb-inclusion-trunc-im-Set
 
   abstract
     is-injective-inclusion-trunc-im-Set : is-injective inclusion-trunc-im-Set

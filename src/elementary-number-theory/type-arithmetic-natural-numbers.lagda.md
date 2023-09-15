@@ -114,7 +114,8 @@ is-equiv-map-ℕ+ℕ-to-ℕ =
     ( is-split-surjective-map-ℕ+ℕ-to-ℕ)
 
 ℕ+ℕ≃ℕ : (ℕ + ℕ) ≃ ℕ
-ℕ+ℕ≃ℕ = pair map-ℕ+ℕ-to-ℕ is-equiv-map-ℕ+ℕ-to-ℕ
+pr1 ℕ+ℕ≃ℕ = map-ℕ+ℕ-to-ℕ
+pr2 ℕ+ℕ≃ℕ = is-equiv-map-ℕ+ℕ-to-ℕ
 
 map-ℕ-to-ℕ+ℕ : ℕ → ℕ + ℕ
 map-ℕ-to-ℕ+ℕ = map-inv-is-equiv (pr2 ℕ+ℕ≃ℕ)
@@ -138,7 +139,8 @@ equiv-iterated-coproduct-ℕ (succ-ℕ n) =
 
 ```agda
 ℕ×ℕ≃ℕ : (ℕ × ℕ) ≃ ℕ
-ℕ×ℕ≃ℕ = pair pairing-map is-equiv-pairing-map
+pr1 ℕ×ℕ≃ℕ = pairing-map
+pr2 ℕ×ℕ≃ℕ = is-equiv-pairing-map
 
 map-ℕ-to-ℕ×ℕ : ℕ → ℕ × ℕ
 map-ℕ-to-ℕ×ℕ = map-inv-is-equiv (pr2 ℕ×ℕ≃ℕ)

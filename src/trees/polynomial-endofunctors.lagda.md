@@ -60,7 +60,8 @@ module _
   refl-Eq-type-polynomial-endofunctor :
     (x : type-polynomial-endofunctor A B X) →
     Eq-type-polynomial-endofunctor x x
-  refl-Eq-type-polynomial-endofunctor (pair x α) = pair refl refl-htpy
+  pr1 (refl-Eq-type-polynomial-endofunctor (x , α)) = refl
+  pr2 (refl-Eq-type-polynomial-endofunctor (x , α)) = refl-htpy
 
   is-contr-total-Eq-type-polynomial-endofunctor :
     (x : type-polynomial-endofunctor A B X) →

@@ -99,7 +99,8 @@ is-equiv-generating-map-fibonacci-pair-Fin k =
 
 fibonacci-pair-Fin :
   (k : ℕ) → ℕ → Fin (succ-ℕ k) × Fin (succ-ℕ k)
-fibonacci-pair-Fin k zero-ℕ = pair (zero-Fin k) (one-Fin k)
+pr1 (fibonacci-pair-Fin k zero-ℕ) = zero-Fin k
+pr2 (fibonacci-pair-Fin k zero-ℕ) = one-Fin k
 fibonacci-pair-Fin k (succ-ℕ n) =
   generating-map-fibonacci-pair-Fin k (fibonacci-pair-Fin k n)
 

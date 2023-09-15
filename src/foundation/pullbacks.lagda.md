@@ -50,7 +50,8 @@ module _
   is-property-is-pullback c = is-property-is-equiv (gap f g c)
 
   is-pullback-Prop : (c : cone f g C) → Prop (l1 ⊔ l2 ⊔ l3 ⊔ l4)
-  is-pullback-Prop c = pair (is-pullback f g c) (is-property-is-pullback c)
+  pr1 (is-pullback-Prop c) = is-pullback f g c
+  pr2 (is-pullback-Prop c) = is-property-is-pullback c
 ```
 
 ### Exponents of pullbacks are pullbacks

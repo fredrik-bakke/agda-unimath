@@ -114,7 +114,8 @@ module _
 
   comp-emb :
     (B ↪ C) → (A ↪ B) → (A ↪ C)
-  comp-emb (pair g H) (pair f K) = pair (g ∘ f) (is-emb-comp g f H K)
+  pr1 (comp-emb (g , H) (f , K)) = g ∘ f
+  pr2 (comp-emb (g , H) (f , K)) = is-emb-comp g f H K
 ```
 
 ### The right factor of a composed embedding is an embedding

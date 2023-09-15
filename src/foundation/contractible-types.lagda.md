@@ -75,7 +75,8 @@ eq-equiv-Contr = eq-equiv-subuniverse is-contr-Prop
 
 abstract
   center-Contr : (l : Level) → Contr l
-  center-Contr l = pair (raise-unit l) is-contr-raise-unit
+  pr1 (center-Contr l) = raise-unit l
+  pr2 (center-Contr l) = is-contr-raise-unit
 
   contraction-Contr :
     {l : Level} (A : Contr l) → center-Contr l ＝ A
@@ -85,7 +86,8 @@ abstract
 
 abstract
   is-contr-Contr : (l : Level) → is-contr (Contr l)
-  is-contr-Contr l = pair (center-Contr l) contraction-Contr
+  pr1 (is-contr-Contr l) = center-Contr l
+  pr2 (is-contr-Contr l) = contraction-Contr
 ```
 
 ### The predicate that a subuniverse contains any contractible types
@@ -156,10 +158,11 @@ module _
 
   is-contr-Σ-is-prop :
     ((x : A) → is-prop (B x)) → ((x : A) → B x → a ＝ x) → is-contr (Σ A B)
-  pr1 (is-contr-Σ-is-prop p f) = pair a b
-  pr2 (is-contr-Σ-is-prop p f) (pair x y) =
+  pr1 (pr1 (is-contr-Σ-is-prop p f)) = a
+  pr2 (pr1 (is-contr-Σ-is-prop p f)) = b
+  pr2 (is-contr-Σ-is-prop p f) (x , y) =
     eq-type-subtype
-      ( λ x' → pair (B x') (p x'))
+      ( λ x' → (B x' , p x'))
       ( f x y)
 ```
 

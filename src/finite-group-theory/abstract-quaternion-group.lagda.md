@@ -847,10 +847,13 @@ is-set-Q8 : is-set Q8
 is-set-Q8 = is-set-has-decidable-equality has-decidable-equality-Q8
 
 Q8-Set : Set lzero
-Q8-Set = pair Q8 is-set-Q8
+pr1 Q8-Set = Q8
+pr2 Q8-Set = is-set-Q8
 
 Q8-Semigroup : Semigroup lzero
-Q8-Semigroup = pair Q8-Set (pair mul-Q8 associative-mul-Q8)
+pr1 Q8-Semigroup = Q8-Set
+pr1 (pr2 Q8-Semigroup) = mul-Q8
+pr2 (pr2 Q8-Semigroup) = associative-mul-Q8
 
 Q8-Group : Group lzero
 Q8-Group =
@@ -918,23 +921,28 @@ is-equiv-map-equiv-count-Q8 =
     is-retraction-map-inv-equiv-count-Q8
 
 equiv-count-Q8 : Fin 8 ≃ Q8
-equiv-count-Q8 = pair map-equiv-count-Q8 is-equiv-map-equiv-count-Q8
+pr1 equiv-count-Q8 = map-equiv-count-Q8
+pr2 equiv-count-Q8 = is-equiv-map-equiv-count-Q8
 
 count-Q8 : count Q8
-count-Q8 = pair 8 equiv-count-Q8
+pr1 count-Q8 = 8
+pr2 count-Q8 = equiv-count-Q8
 
 is-finite-Q8 : is-finite Q8
 is-finite-Q8 = unit-trunc-Prop count-Q8
 
 Q8-𝔽 : 𝔽 lzero
-Q8-𝔽 = pair Q8 is-finite-Q8
+pr1 Q8-𝔽 = Q8
+pr2 Q8-𝔽 = is-finite-Q8
 
 has-cardinality-eight-Q8 : has-cardinality 8 Q8
 has-cardinality-eight-Q8 = unit-trunc-Prop equiv-count-Q8
 
 Q8-UU-Fin-8 : UU-Fin lzero 8
-Q8-UU-Fin-8 = pair Q8 has-cardinality-eight-Q8
+pr1 Q8-UU-Fin-8 = Q8
+pr2 Q8-UU-Fin-8 = has-cardinality-eight-Q8
 
 has-finite-cardinality-Q8 : has-finite-cardinality Q8
-has-finite-cardinality-Q8 = pair 8 has-cardinality-eight-Q8
+pr1 has-finite-cardinality-Q8 = 8
+pr2 has-finite-cardinality-Q8 = has-cardinality-eight-Q8
 ```

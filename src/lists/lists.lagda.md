@@ -153,7 +153,8 @@ Eq-list {l1} (cons x l) (cons x' l') = (Id x x') × Eq-list l l'
 
 refl-Eq-list : {l1 : Level} {A : UU l1} (l : list A) → Eq-list l l
 refl-Eq-list nil = raise-star
-refl-Eq-list (cons x l) = pair refl (refl-Eq-list l)
+pr1 (refl-Eq-list (cons x l)) = refl
+pr2 (refl-Eq-list (cons x l)) = refl-Eq-list l
 
 Eq-eq-list :
   {l1 : Level} {A : UU l1} (l l' : list A) → Id l l' → Eq-list l l'
@@ -246,7 +247,8 @@ is-set-list :
 is-set-list = is-trunc-list neg-two-𝕋
 
 list-Set : {l : Level} → Set l → Set l
-list-Set A = pair (list (type-Set A)) (is-set-list (is-set-type-Set A))
+pr1 (list-Set A) = list (type-Set A)
+pr2 (list-Set A) = is-set-list (is-set-type-Set A)
 ```
 
 ### The length operation behaves well with respect to the other list operations

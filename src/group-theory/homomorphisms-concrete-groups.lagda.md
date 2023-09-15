@@ -46,7 +46,8 @@ module _
   pr2 hom-set-Concrete-Group = is-set-hom-Concrete-Group
 
   hom-Concrete-Group-Set : Set (l1 ⊔ l2)
-  hom-Concrete-Group-Set = pair hom-Concrete-Group is-set-hom-Concrete-Group
+  pr1 hom-Concrete-Group-Set = hom-Concrete-Group
+  pr2 hom-Concrete-Group-Set = is-set-hom-Concrete-Group
 
   classifying-map-hom-Concrete-Group :
     hom-Concrete-Group →

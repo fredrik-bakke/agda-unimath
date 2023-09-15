@@ -60,7 +60,8 @@ map-axis-equiv-cube k X Y e d =
 
 id-equiv-cube :
   (k : ℕ) (X : cube k) → equiv-cube k X X
-id-equiv-cube k X = pair id-equiv (λ x → id-equiv)
+pr1 (id-equiv-cube k X) = id-equiv
+pr2 (id-equiv-cube k X) d = id-equiv
 
 equiv-eq-cube :
   (k : ℕ) {X Y : cube k} → Id X Y → equiv-cube k X Y
@@ -110,7 +111,8 @@ htpy-equiv-cube k X Y e f =
 
 refl-htpy-equiv-cube :
   (k : ℕ) (X Y : cube k) (e : equiv-cube k X Y) → htpy-equiv-cube k X Y e e
-refl-htpy-equiv-cube k X Y e = pair refl-htpy (λ d → refl-htpy)
+pr1 (refl-htpy-equiv-cube k X Y e) = refl-htpy
+pr2 (refl-htpy-equiv-cube k X Y e) d = refl-htpy
 
 htpy-eq-equiv-cube :
   (k : ℕ) (X Y : cube k) (e f : equiv-cube k X Y) →

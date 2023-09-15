@@ -147,7 +147,8 @@ is-small-resize-𝕍 (tree-𝕎 A α) (pair (pair A' e) H2) =
 resize-𝕍' :
   {l1 l2 : Level} →
   Σ (𝕍 l1) (is-small-𝕍 l2) → Σ (𝕍 l2) (is-small-𝕍 l1)
-resize-𝕍' (pair X H) = pair (resize-𝕍 X H) (is-small-resize-𝕍 X H)
+pr1 (resize-𝕍' (X , H)) = resize-𝕍 X H
+pr2 (resize-𝕍' (X , H)) = is-small-resize-𝕍 X H
 
 abstract
   resize-resize-𝕍 :
@@ -189,15 +190,16 @@ abstract
 
 is-equiv-resize-𝕍' :
   {l1 l2 : Level} → is-equiv (resize-𝕍' {l1} {l2})
-is-equiv-resize-𝕍' {l1} {l2} =
+is-equiv-resize-𝕍' =
   is-equiv-has-inverse
-    ( resize-𝕍' {l2} {l1})
+    ( resize-𝕍')
     ( resize-resize-𝕍')
     ( resize-resize-𝕍')
 
 equiv-resize-𝕍' :
   {l1 l2 : Level} → Σ (𝕍 l1) (is-small-𝕍 l2) ≃ Σ (𝕍 l2) (is-small-𝕍 l1)
-equiv-resize-𝕍' {l1} {l2} = pair resize-𝕍' is-equiv-resize-𝕍'
+pr1 equiv-resize-𝕍' = resize-𝕍'
+pr2 equiv-resize-𝕍' = is-equiv-resize-𝕍'
 ```
 
 The resizing operation on small multisets is an embedding

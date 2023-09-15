@@ -58,7 +58,9 @@ pr2 (in-fraction-ℤ x) = is-reduced-reduce-fraction-ℤ x
 
 ```agda
 in-int : ℤ → ℚ
-in-int x = pair (pair x one-positive-ℤ) (is-one-gcd-one-ℤ' x)
+pr1 (pr1 (in-int x)) = x
+pr2 (pr1 (in-int x)) = one-positive-ℤ
+pr2 (in-int x) = is-one-gcd-one-ℤ' x
 ```
 
 ### Negative one, zero and one

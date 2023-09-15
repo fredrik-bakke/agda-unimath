@@ -56,11 +56,11 @@ is-decidable-is-multiple-of-cofibonacci m x =
       ( is-decidable-div-ℕ m (Fibonacci-ℕ x)))
 
 cofibonacci-multiple : (m : ℕ) → Σ ℕ (is-multiple-of-cofibonacci m)
-cofibonacci-multiple zero-ℕ = pair zero-ℕ (λ f → (ex-falso (f refl)))
-cofibonacci-multiple (succ-ℕ m) =
-  pair
-    ( pisano-period m)
-    ( λ f → pair (is-nonzero-pisano-period m) (div-fibonacci-pisano-period m))
+pr1 (cofibonacci-multiple zero-ℕ) = zero-ℕ
+pr2 (cofibonacci-multiple zero-ℕ) f = (ex-falso (f refl))
+pr1 (cofibonacci-multiple (succ-ℕ m)) = pisano-period m
+pr1 (pr2 (cofibonacci-multiple (succ-ℕ m)) f) = is-nonzero-pisano-period m
+pr2 (pr2 (cofibonacci-multiple (succ-ℕ m)) f) = div-fibonacci-pisano-period m
 ```
 
 ### The cofibonacci sequence
