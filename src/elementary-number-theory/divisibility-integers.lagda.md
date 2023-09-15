@@ -44,8 +44,9 @@ interpretation of logic into type theory, we express divisibility as follows:
   div-ℤ m n := Σ (k : ℤ), k *ℤ m ＝ n.
 ```
 
-If `n` is a nonzero integer, then `div-ℤ m n` is always a proposition in the
-sense that the type `div-ℤ m n` contains at most one element.
+If `n` is a nonzero integer, then `div-ℤ m n` is always a
+[proposition](foundation-core.propositions.md) in the sense that the type
+`div-ℤ m n` contains at most one element.
 
 We also introduce **unit integers**, which are integers that divide the integer
 `1`, and an equivalence relation `sim-unit-ℤ` on the integers in which two
@@ -114,7 +115,7 @@ pr2 (div-is-unit-ℤ x y (pair d p)) =
 ### The equivalence relation `sim-unit-ℤ`
 
 We define the equivalence relation `sim-unit-ℤ` in such a way that
-`sim-unit-ℤ x y` is always a proposition.
+`sim-unit-ℤ x y` is always a [proposition](foundation-core.propositions.md).
 
 ```agda
 presim-unit-ℤ : ℤ → ℤ → UU lzero

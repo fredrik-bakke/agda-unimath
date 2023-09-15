@@ -25,7 +25,7 @@ open import foundation.universe-levels
 ## Idea
 
 A **preorder** is a type equipped with a reflexive, transitive relation that is
-valued in propositions.
+valued in [propositions](foundation-core.propositions.md).
 
 ## Definition
 

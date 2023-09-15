@@ -24,8 +24,8 @@ open import trees.w-types
 
 ## Idea
 
-The W-type of the type of propositions is defined using the type of propositions
-and the canonical type family over it.
+The W-type of the type of [propositions](foundation-core.propositions.md) is
+defined using the type of propositions and the canonical type family over it.
 
 ## Definition
 

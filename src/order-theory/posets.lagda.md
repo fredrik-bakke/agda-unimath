@@ -28,7 +28,7 @@ open import order-theory.preorders
 ## Idea
 
 A **poset** is a set equipped with a reflexive, antisymmetric, transitive
-relation that takes values in propositions.
+relation that takes values in [propositions](foundation-core.propositions.md).
 
 ## Definition
 

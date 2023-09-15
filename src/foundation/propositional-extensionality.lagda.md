@@ -35,8 +35,9 @@ open import foundation-core.sets
 
 ## Idea
 
-Propositional extensionality characterizes identifications of propositions. It
-asserts that for any two propositions `P` and `Q`, we have `Id P Q ≃ (P ⇔ Q)`.
+Propositional extensionality characterizes identifications of
+[propositions](foundation-core.propositions.md). It asserts that for any two
+propositions `P` and `Q`, we have `Id P Q ≃ (P ⇔ Q)`.
 
 ## Properties
 

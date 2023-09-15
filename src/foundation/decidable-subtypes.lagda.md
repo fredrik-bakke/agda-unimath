@@ -34,8 +34,8 @@ open import foundation-core.truncation-levels
 
 ## Idea
 
-A decidable subtype of a type consists of a family of decidable propositions
-over it.
+A decidable subtype of a type consists of a family of
+[decidable propositions](foundation-core.decidable-propositions.md) over it.
 
 ## Definitions
 

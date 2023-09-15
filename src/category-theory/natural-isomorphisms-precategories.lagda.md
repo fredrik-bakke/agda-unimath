@@ -53,8 +53,9 @@ module _
 
 ### Being a natural isomorphism is a proposition
 
-That a natural transformation is a natural isomorphism is a proposition. This
-follows from the fact that being an isomorphism is a proposition.
+That a natural transformation is a natural isomorphism is a
+[proposition](foundation-core.propositions.md). This follows from the fact that
+being an isomorphism is a proposition.
 
 ```agda
 is-prop-is-natural-isomorphism-Precategory :

@@ -67,7 +67,7 @@ in several ways:
   contractible.
 
 Note that the univalence axiom is neccessary to prove the second uniqueness
-property of prime factorizations.
+[property](foundation-core.propositions.md) of prime factorizations.
 
 ## Definitions
 

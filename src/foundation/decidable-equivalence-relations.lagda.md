@@ -53,7 +53,9 @@ open import foundation-core.transport
 ## Idea
 
 A decidable equivalence relation on a type `X` is an equivalence relation `R` on
-`X` such that `R x y` is a decidable proposition for each `x y : X`.
+`X` such that `R x y` is a
+[decidable proposition](foundation-core.decidable-propositions.md) for each
+`x y : X`.
 
 ## Definitions
 

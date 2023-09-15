@@ -23,7 +23,8 @@ open import foundation-core.propositions
 ## Idea
 
 A **decidable (binary) relation** on `X` is a binary relation `R` on `X` such
-that each `R x y` is a decidable proposition.
+that each `R x y` is a
+[decidable proposition](foundation-core.decidable-propositions.md).
 
 ## Definitions
 

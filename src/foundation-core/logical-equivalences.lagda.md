@@ -22,7 +22,8 @@ open import foundation-core.propositions
 
 Logical equivalences between two types `A` and `B` consist of a map `A → B` and
 a map `B → A`. The type of logical equivalences between types is the
-Curry-Howard interpretation of logical equivalences between propositions.
+Curry-Howard interpretation of logical equivalences between
+[propositions](foundation-core.propositions.md).
 
 ## Definition
 

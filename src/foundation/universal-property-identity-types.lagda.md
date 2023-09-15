@@ -88,8 +88,8 @@ via the
 by showing that the [fiber](foundation.fibers-of-maps.md) of `Id` at `Id a` is
 [contractible](foundation.contractible-types.md) for each `a : A`. To see this,
 we first note that this fiber has an element `(a , refl)`. Therefore it suffices
-to show that this fiber is a proposition. We do this by constructing an
-embedding
+to show that this fiber is a [proposition](foundation-core.propositions.md). We
+do this by constructing an embedding
 
 ```text
   fib Id (Id a) ↪ Σ A (Id a).

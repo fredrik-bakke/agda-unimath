@@ -18,7 +18,8 @@ open import foundation-core.propositions
 
 ## Idea
 
-A partial element of `X` consists of a proposition `P` and a map `P → X`. We say
+A partial element of `X` consists of a
+[proposition](foundation-core.propositions.md) `P` and a map `P → X`. We say
 that a partial element `(P, f)` is defined if the proposition `P` holds.
 
 ```agda

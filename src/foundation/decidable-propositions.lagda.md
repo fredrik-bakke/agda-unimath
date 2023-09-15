@@ -44,7 +44,8 @@ open import univalent-combinatorics.finite-types
 
 ## Idea
 
-A decidable proposition is a proposition that has a decidable underlying type.
+A **decidable proposition** is a [proposition](foundation-core.propositions.md)
+that has a decidable underlying type.
 
 ## Properties
 

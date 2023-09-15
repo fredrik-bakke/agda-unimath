@@ -28,10 +28,11 @@ open import foundation-core.sets
 
 ## Idea
 
-By quantifying over all propositions in a universe, we can define all the
-logical operations. The idea is to use the fact that any proposition `P` is
-equivalent to the proposition `(Q : Prop l) → (P ⇒ Q) ⇒ Q`, which can be thought
-of as the least proposition `Q` containing `P`.
+By quantifying over all [propositions](foundation-core.propositions.md) in a
+universe, we can define all the logical operations. The idea is to use the fact
+that any proposition `P` is equivalent to the proposition
+`(Q : Prop l) → (P ⇒ Q) ⇒ Q`, which can be thought of as the least proposition
+`Q` containing `P`.
 
 ### The impredicative encoding of the propositional truncation
 

@@ -24,8 +24,9 @@ open import foundation-core.propositions
 
 ## Idea
 
-An equivalence relation is a relation valued in propositions, which is
-reflexive,symmetric, and transitive.
+An equivalence relation is a relation valued in
+[propositions](foundation-core.propositions.md), which is reflexive,symmetric,
+and transitive.
 
 ## Definition
 

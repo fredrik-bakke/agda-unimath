@@ -23,7 +23,8 @@ open import foundation-core.truncation-levels
 
 ## Idea
 
-A type is a set if its identity types are propositions.
+A type is a set if its identity types are
+[propositions](foundation-core.propositions.md).
 
 ## Definition
 

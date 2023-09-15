@@ -42,7 +42,8 @@ open import univalent-combinatorics.surjective-maps
 ## Idea
 
 A decidable equivalence relation on a finite type is an equivalence relation `R`
-such that each `R x y` is a decidable proposition.
+such that each `R x y` is a
+[decidable proposition](foundation-core.decidable-propositions.md).
 
 ## Definition
 

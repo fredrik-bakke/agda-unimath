@@ -33,7 +33,8 @@ open import univalent-combinatorics.standard-finite-types
 ## Idea
 
 The type of booleans is a 2-element type with elements `true false : bool`,
-which is used for reasoning with decidable propositions.
+which is used for reasoning with decidable
+[propositions](foundation-core.propositions.md).
 
 ## Definition
 

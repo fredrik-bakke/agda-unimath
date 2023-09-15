@@ -29,8 +29,9 @@ An equivalence is a map that has a section and a (separate) retraction. This is
 also called being biinvertible. This may look odd: Why not say that an
 equivalence is a map that has a 2-sided inverse? The reason is that the latter
 requirement would put nontrivial structure on the map, whereas having the
-section and retraction separate yields a property. To quickly see this: if `f`
-is an equivalence, then it has up to homotopy only one section, and it has up to
+section and retraction separate yields a
+[property](foundation-core.propositions.md). To quickly see this: if `f` is an
+equivalence, then it has up to homotopy only one section, and it has up to
 homotopy only one retraction.
 
 ## Definition

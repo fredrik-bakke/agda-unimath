@@ -31,7 +31,7 @@ open import foundation.universe-levels
 ## Idea
 
 The [**cofibonacci sequence**][1] is the unique function G : ℕ → ℕ satisfying
-the property that
+the [property](foundation-core.propositions.md) that
 
 ```text
   div-ℕ (G m) n ↔ div-ℕ m (Fibonacci-ℕ n).

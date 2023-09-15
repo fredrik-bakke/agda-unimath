@@ -42,8 +42,9 @@ as follows:
   div-ℕ m n := Σ (k : ℕ), k *ℕ m ＝ n.
 ```
 
-If `n` is a nonzero natural number, then `div-ℕ m n` is always a proposition in
-the sense that the type `div-ℕ m n` contains at most one element.
+If `n` is a nonzero natural number, then `div-ℕ m n` is always a
+[proposition](foundation-core.propositions.md) in the sense that the type
+`div-ℕ m n` contains at most one element.
 
 ## Definitions
 

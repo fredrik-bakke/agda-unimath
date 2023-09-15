@@ -247,12 +247,13 @@ type inference algorithm, and hence any instance of `is-contr-Σ` will type chec
 more efficiently.
 
 The general theme is that it may be computationally expensive to extract
-information from proofs of propositions, such as the center of contraction of a
-proof of contractibility. The reason for that is that when Agda normalizes an
-element (as it inevitably will do sometimes) then in such cases it will not just
-normalize the extracted information (in this case the first projection of the
-proof of contractibility), but it will normalize the entire proof of
-contractibility first, and then apply the projection.
+information from proofs of [propositions](foundation-core.propositions.md), such
+as the center of contraction of a proof of contractibility. The reason for that
+is that when Agda normalizes an element (as it inevitably will do sometimes)
+then in such cases it will not just normalize the extracted information (in this
+case the first projection of the proof of contractibility), but it will
+normalize the entire proof of contractibility first, and then apply the
+projection.
 
 ### Contractible types are propositions
 

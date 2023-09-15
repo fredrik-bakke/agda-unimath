@@ -91,9 +91,9 @@ module _
 
 ### The `is-pullback` property
 
-The proposition is-pullback is the assertion that the gap map is an equivalence.
-Note that this proposition is small, whereas the universal property is a large
-proposition.
+The [proposition](foundation-core.propositions.md) `is-pullback` is the
+assertion that the gap map is an equivalence. Note that this proposition is
+small, whereas the universal property is a large proposition.
 
 ```agda
 module _

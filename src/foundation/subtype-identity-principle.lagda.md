@@ -31,8 +31,9 @@ base type.
 
 The following is a general construction that will help us show that the identity
 type of a subtype agrees with the identity type of the original type. We already
-know that the first projection of a family of propositions is an embedding, but
-the following lemma still has its uses.
+know that the first projection of a family of
+[propositions](foundation-core.propositions.md) is an embedding, but the
+following lemma still has its uses.
 
 ```agda
 module _

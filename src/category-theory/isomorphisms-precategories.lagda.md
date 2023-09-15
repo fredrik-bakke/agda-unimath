@@ -195,8 +195,9 @@ iso-eq-Precategory C x .x refl = id-iso-Precategory C
 ### The property of being an isomorphism is a proposition
 
 Let `f : hom x y` and suppose `g g' : hom y x` are both two-sided inverses to
-`f`. It is enough to show that `g = g'` since the equalities are propositions
-(since the hom-types are sets). But we have the following chain of equalities:
+`f`. It is enough to show that `g = g'` since the equalities are
+[propositions](foundation-core.propositions.md) (since the hom-types are sets).
+But we have the following chain of equalities:
 `g = g ∘ id_y = g ∘ (f ∘ g') = (g ∘ f) ∘ g' = id_x ∘ g' = g'.`
 
 ```agda
@@ -208,7 +209,8 @@ module _
 ### The type of isomorphisms form a set
 
 The type of isomorphisms between objects `x y : A` is a subtype of the set
-`hom x y` since being an isomorphism is a proposition.
+`hom x y` since being an isomorphism is a
+[proposition](foundation-core.propositions.md).
 
 ```agda
 module _
@@ -230,8 +232,8 @@ module _
 ### When `hom x y` is a proposition, The type of isomorphisms from `x` to `y` form a proposition
 
 The type of isomorphisms between objects `x y : A` is a subtype of `hom x y`, so
-when this type is a proposition, then the type of isomorphisms from `x` to `y`
-form a proposition.
+when this type is a [proposition](foundation-core.propositions.md), then the
+type of isomorphisms from `x` to `y` form a proposition.
 
 ```agda
 module _

@@ -24,8 +24,8 @@ An embedding from one type into another is a map that induces equivalences on
 identity types. In other words, the identitifications `(f x) ＝ (f y)` for an
 embedding `f : A → B` are in one-to-one correspondence with the
 identitifications `x ＝ y`. Embeddings are better behaved homotopically than
-injective maps, because the condition of being an equivalence is a property
-under function extensionality.
+injective maps, because the condition of being an equivalence is a
+[property](foundation-core.propositions.md) under function extensionality.
 
 ## Definition
 

@@ -31,8 +31,8 @@ truncation.
 
 **Remark:** This contrasts with the definition of
 [pointed types](structured-types.pointed-types.md) in that we do not discern
-between proofs of inhabitedness, so that it is merely a property of the type to
-be inhabited.
+between proofs of inhabitedness, so that it is merely a
+[property](foundation-core.propositions.md) of the type to be inhabited.
 
 ## Definitions
 

@@ -25,7 +25,8 @@ open import foundation-core.subtypes
 
 ## Idea
 
-Since equality of elements in a set is a proposition, isomorphisms of sets are
+Since equality of elements in a set is a
+[proposition](foundation-core.propositions.md), isomorphisms of sets are
 equivalent to equivalences of sets
 
 ```agda

@@ -57,9 +57,10 @@ module _
 
 ## Properties
 
-If `g` is an embedding, then `is-perfect-image a` is a proposition. In this
-case, if we assume law of exluded middle, we can show `is-perfect-image a` is a
-decidable type for any `a : A`.
+If `g` is an embedding, then `is-perfect-image a` is a
+[proposition](foundation-core.propositions.md). In this case, if we assume law
+of exluded middle, we can show `is-perfect-image a` is a decidable type for any
+`a : A`.
 
 ```agda
 module _

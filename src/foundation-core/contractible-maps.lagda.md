@@ -24,12 +24,12 @@ open import foundation-core.identity-types
 
 ## Idea
 
-A map is often said to satisfy a property `P` if each of its fibers satisfy
-property `P`. Thus, we define contractible maps to be maps of which each fiber
-is contractible. In other words, contractible maps are maps `f : A → B` such
-that for each element `b : B` there is a unique `a : A` equipped with an
-identification `(f a) ＝ b`, i.e., contractible maps are the type theoretic
-bijections.
+A map is often said to satisfy a [property](foundation-core.propositions.md) `P`
+if each of its fibers satisfy property `P`. Thus, we define contractible maps to
+be maps of which each fiber is contractible. In other words, contractible maps
+are maps `f : A → B` such that for each element `b : B` there is a unique
+`a : A` equipped with an identification `(f a) ＝ b`, i.e., contractible maps
+are the type theoretic bijections.
 
 ## Definition
 

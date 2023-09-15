@@ -17,7 +17,8 @@ open import foundation-core.small-types
 
 ## Idea
 
-A universe `U` is impredicative if the type of propositions in `U` is `U`-small.
+A universe `U` is impredicative if the type of
+[propositions](foundation-core.propositions.md) in `U` is `U`-small.
 
 ## Definition
 

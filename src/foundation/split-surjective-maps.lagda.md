@@ -31,8 +31,9 @@ identification `f a ＝ b`.
 ## Warning
 
 Note that split-surjectiveness is the Curry-Howard interpretation of
-surjectiveness. However, this is not a property, and the split surjective maps
-don't fit in a factorization system along with the injective maps.
+surjectiveness. However, this is not a
+[property](foundation-core.propositions.md), and the split surjective maps don't
+fit in a factorization system along with the injective maps.
 
 ## Definition
 

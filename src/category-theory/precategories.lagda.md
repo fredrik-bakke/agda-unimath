@@ -146,9 +146,9 @@ module _
 
 Suppose `e e' : (x : A) → hom x x` are both right and left units with regard to
 composition. It is enough to show that `e = e'` since the right and left unit
-laws are propositions (because all hom-types are sets). By function
-extensionality, it is enough to show that `e x = e' x` for all `x : A`. But by
-the unit laws we have the following chain of equalities:
+laws are [propositions](foundation-core.propositions.md) (because all hom-types
+are sets). By function extensionality, it is enough to show that `e x = e' x`
+for all `x : A`. But by the unit laws we have the following chain of equalities:
 `e x = (e' x) ∘ (e x) = e' x.`
 
 ```agda
