@@ -22,8 +22,9 @@ open import order-theory.subpreorders
 
 ## Idea
 
-A **decidable subpreorder** of `P` is a decidable subtype of `P` equipped with
-the restricted ordering of `P`.
+A **decidable subpreorder** of `P` is a
+[decidable subtype](foundation.decidable-subtypes.md) of `P` equipped with the
+restricted ordering of `P`.
 
 ## Definition
 

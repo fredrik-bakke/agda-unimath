@@ -22,8 +22,9 @@ open import order-theory.subposets
 
 ## Idea
 
-A **decidable subposet** of a poset `P` is a decidable subtype of `P`, equipped
-with the restricted ordering of `P`.
+A **decidable subposet** of a poset `P` is a
+[decidable subtype](foundation.decidable-subtypes.md) of `P`, equipped with the
+restricted ordering of `P`.
 
 ## Definition
 
