@@ -46,7 +46,7 @@ open import foundation.set-truncations
 open import foundation.sets
 open import foundation.subtypes
 open import foundation.surjective-maps
-open import foundation.transport
+open import foundation.transport-along-identifications
 open import foundation.truncated-types
 open import foundation.truncation-levels
 open import foundation.type-arithmetic-coproduct-types
@@ -56,6 +56,7 @@ open import foundation.universal-property-coproduct-types
 open import foundation.universal-property-empty-type
 open import foundation.universal-property-unit-type
 open import foundation.universe-levels
+open import foundation.whiskering-homotopies
 
 open import univalent-combinatorics.cartesian-product-types
 open import univalent-combinatorics.coproduct-types
@@ -743,7 +744,7 @@ module _
     apply-universal-property-trunc-Prop
       ( apply-effectiveness-unit-trunc-Set
         ( inv (is-section-map-inv-equiv e (unit-trunc-Set b)) ∙ inv (H a)))
-      ( trunc-Prop (fib map-is-coprod-codomain b))
+      ( trunc-Prop (fiber map-is-coprod-codomain b))
       ( λ p →
         unit-trunc-Prop
           ( pair

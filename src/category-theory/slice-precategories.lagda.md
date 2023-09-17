@@ -8,9 +8,9 @@ module category-theory.slice-precategories where
 
 ```agda
 open import category-theory.precategories
-open import category-theory.products-precategories
-open import category-theory.pullbacks-precategories
-open import category-theory.terminal-objects-precategories
+open import category-theory.products-in-precategories
+open import category-theory.pullbacks-in-precategories
+open import category-theory.terminal-objects-in-precategories
 
 open import foundation.action-on-identifications-functions
 open import foundation.cartesian-product-types
@@ -432,7 +432,7 @@ module _
   pr1 equiv-pullback-product-Slice-Precategory =
     map-pullback-product-Slice-Precategory
   pr2 equiv-pullback-product-Slice-Precategory =
-    is-equiv-has-inverse
+    is-equiv-is-invertible
       map-inv-pullback-product-Slice-Precategory
       is-section-map-inv-pullback-product-Slice-Precategory
       is-retraction-map-inv-pullback-product-Slice-Precategory

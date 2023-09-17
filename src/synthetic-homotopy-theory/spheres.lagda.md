@@ -9,6 +9,7 @@ module synthetic-homotopy-theory.spheres where
 ```agda
 open import elementary-number-theory.natural-numbers
 
+open import foundation.identity-types
 open import foundation.universe-levels
 
 open import synthetic-homotopy-theory.suspensions-of-types
@@ -29,11 +30,16 @@ sphere : ℕ → UU lzero
 sphere zero-ℕ = Fin 2
 sphere (succ-ℕ n) = suspension (sphere n)
 
-N-sphere : (n : ℕ) → sphere n
-N-sphere zero-ℕ = zero-Fin 1
-N-sphere (succ-ℕ n) = N-susp
+north-sphere : (n : ℕ) → sphere n
+north-sphere zero-ℕ = zero-Fin 1
+north-sphere (succ-ℕ n) = north-suspension
 
-S-sphere : (n : ℕ) → sphere n
-S-sphere zero-ℕ = one-Fin 1
-S-sphere (succ-ℕ n) = S-susp
+south-sphere : (n : ℕ) → sphere n
+south-sphere zero-ℕ = one-Fin 1
+south-sphere (succ-ℕ n) = south-suspension
+
+meridian-sphere :
+  (n : ℕ) → sphere n →
+  north-sphere (succ-ℕ n) ＝ south-sphere (succ-ℕ n)
+meridian-sphere n = meridian-suspension
 ```

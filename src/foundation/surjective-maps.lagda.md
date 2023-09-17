@@ -15,7 +15,7 @@ open import foundation.embeddings
 open import foundation.equality-cartesian-product-types
 open import foundation.functoriality-cartesian-product-types
 open import foundation.fundamental-theorem-of-identity-types
-open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
 open import foundation.propositional-truncations
 open import foundation.structure-identity-principle
@@ -31,6 +31,7 @@ open import foundation-core.equivalences
 open import foundation-core.fibers-of-maps
 open import foundation-core.function-types
 open import foundation-core.functoriality-dependent-function-types
+open import foundation-core.homotopies
 open import foundation-core.propositional-maps
 open import foundation-core.propositions
 open import foundation-core.sections
@@ -45,7 +46,9 @@ open import orthogonal-factorization-systems.extensions-of-maps
 
 ## Idea
 
-A map `f : A → B` is surjective if all of its fibers are inhabited.
+A map `f : A → B` is **surjective** if all of its
+[fibers](foundation-core.fibers-of-maps.md) are
+[inhabited](foundation.inhabited-types.md).
 
 ## Definition
 
@@ -54,7 +57,7 @@ A map `f : A → B` is surjective if all of its fibers are inhabited.
 ```agda
 is-surjective-Prop :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} → (A → B) → Prop (l1 ⊔ l2)
-is-surjective-Prop {B = B} f = Π-Prop B (trunc-Prop ∘ fib f)
+is-surjective-Prop {B = B} f = Π-Prop B (trunc-Prop ∘ fiber f)
 
 is-surjective :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} → (A → B) → UU (l1 ⊔ l2)
@@ -65,6 +68,7 @@ is-prop-is-surjective :
   is-prop (is-surjective f)
 is-prop-is-surjective f = is-prop-type-Prop (is-surjective-Prop f)
 
+infix 5 _↠_
 _↠_ : {l1 l2 : Level} → UU l1 → UU l2 → UU (l1 ⊔ l2)
 A ↠ B = Σ (A → B) is-surjective
 
@@ -243,7 +247,7 @@ abstract
     is-surjective f
   is-surjective-dependent-universal-property-surj f dup-surj-f =
     map-inv-is-equiv
-      ( dup-surj-f (λ b → trunc-Prop (fib f b)))
+      ( dup-surj-f (λ b → trunc-Prop (fiber f b)))
       ( λ x → unit-trunc-Prop (pair x refl))
 
 abstract
@@ -253,7 +257,7 @@ abstract
     ( λ (h : (y : B) → type-Prop (P y)) x → h (f x)) ~
     ( ( λ h x → h (f x) (pair x refl)) ∘
       ( ( λ h y → (h y) ∘ unit-trunc-Prop) ∘
-        ( λ h y → const (type-trunc-Prop (fib f y)) (type-Prop (P y)) (h y))))
+        ( λ h y → const (type-trunc-Prop (fiber f y)) (type-Prop (P y)) (h y))))
   square-dependent-universal-property-surj f P = refl-htpy
 
   dependent-universal-property-surj-is-surjective :
@@ -264,22 +268,20 @@ abstract
     is-equiv-comp
       ( λ h x → h (f x) (pair x refl))
       ( ( λ h y → (h y) ∘ unit-trunc-Prop) ∘
-        ( λ h y → const (type-trunc-Prop (fib f y)) (type-Prop (P y)) (h y)))
+        ( λ h y → const (type-trunc-Prop (fiber f y)) (type-Prop (P y)) (h y)))
       ( is-equiv-comp
         ( λ h y → (h y) ∘ unit-trunc-Prop)
-        ( λ h y → const (type-trunc-Prop (fib f y)) (type-Prop (P y)) (h y))
-        ( is-equiv-map-Π
-          ( λ y p z → p)
+        ( λ h y → const (type-trunc-Prop (fiber f y)) (type-Prop (P y)) (h y))
+        ( is-equiv-map-Π-is-fiberwise-equiv
           ( λ y →
             is-equiv-diagonal-is-contr
               ( is-proof-irrelevant-is-prop
                 ( is-prop-type-trunc-Prop)
                 ( is-surj-f y))
               ( type-Prop (P y))))
-        ( is-equiv-map-Π
-          ( λ b g → g ∘ unit-trunc-Prop)
-          ( λ b → is-propositional-truncation-trunc-Prop (fib f b) (P b))))
-      ( is-equiv-map-reduce-Π-fib f ( λ y z → type-Prop (P y)))
+        ( is-equiv-map-Π-is-fiberwise-equiv
+          ( λ b → is-propositional-truncation-trunc-Prop (fiber f b) (P b))))
+      ( is-equiv-map-reduce-Π-fiber f ( λ y z → type-Prop (P y)))
 
 equiv-dependent-universal-property-surj-is-surjective :
   {l l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) →
@@ -349,7 +351,7 @@ abstract
           ( is-prop-map-is-emb K y)
           ( apply-universal-property-trunc-Prop
             ( H y)
-            ( fib-emb-Prop (pair f K) y)
+            ( fiber-emb-Prop (pair f K) y)
             ( id)))
 ```
 
@@ -367,11 +369,11 @@ module _
     is-surjective-comp-htpy f g h H is-surj-g is-surj-h x =
       apply-universal-property-trunc-Prop
         ( is-surj-g x)
-        ( trunc-Prop (fib f x))
+        ( trunc-Prop (fiber f x))
         ( λ { (pair b refl) →
           apply-universal-property-trunc-Prop
             ( is-surj-h b)
-            ( trunc-Prop (fib f (g b)))
+            ( trunc-Prop (fiber f (g b)))
             ( λ { (pair a refl) →
               unit-trunc-Prop (pair a (H a))})})
 
@@ -396,7 +398,7 @@ module _
     apply-twice-universal-property-trunc-Prop
       ( s c)
       ( s' d)
-      ( trunc-Prop (fib (map-prod f g) (c , d)))
+      ( trunc-Prop (fiber (map-prod f g) (c , d)))
       ( λ x y →
         unit-trunc-Prop
           ( pair
@@ -438,7 +440,7 @@ module _
     is-surjective-left-factor-htpy f g h H is-surj-f x =
       apply-universal-property-trunc-Prop
         ( is-surj-f x)
-        ( trunc-Prop (fib g x))
+        ( trunc-Prop (fiber g x))
         ( λ { (pair a refl) →
           unit-trunc-Prop (pair (h a) (inv (H a)))})
 
@@ -616,6 +618,7 @@ module _
 ### The type `Surjection-Into-Truncated-Type l2 (succ-𝕋 k) A` is `k`-truncated
 
 This remains to be shown.
+[#735](https://github.com/UniMath/agda-unimath/issues/735)
 
 ### Characterization of the identity type of `Surjection-Into-Set l2 A`
 
@@ -681,10 +684,10 @@ module _
             ( is-section-inv-concat' (g (i a)) (M (f a)) (L a)))))
     where
 
-    J : (b : B) → fib g (h b)
+    J : (b : B) → fiber g (h b)
     J =
       apply-dependent-universal-property-surj-is-surjective f H
-        ( λ b → fib-emb-Prop (g , K) (h b))
+        ( λ b → fiber-emb-Prop (g , K) (h b))
         ( λ a → (i a , L a))
 
     j : B → X
@@ -723,3 +726,4 @@ module _
 ### The type of surjections `A ↠ B` is equivalent to the type of families `P` of inhabited types over `B` equipped with an equivalence `A ≃ Σ B P`
 
 This remains to be shown.
+[#735](https://github.com/UniMath/agda-unimath/issues/735)

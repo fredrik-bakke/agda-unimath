@@ -9,14 +9,19 @@ open import foundation-core.functoriality-function-types public
 <details><summary>Imports</summary>
 
 ```agda
-open import foundation.function-extensionality
+open import foundation.action-on-identifications-functions
+open import foundation.dependent-pair-types
 open import foundation.functoriality-dependent-function-types
 open import foundation.unit-type
 open import foundation.universe-levels
 
 open import foundation-core.constant-maps
+open import foundation-core.embeddings
+open import foundation-core.equivalences
 open import foundation-core.function-types
 open import foundation-core.homotopies
+open import foundation-core.identity-types
+open import foundation-core.propositional-maps
 open import foundation-core.truncated-maps
 open import foundation-core.truncation-levels
 ```
@@ -25,40 +30,114 @@ open import foundation-core.truncation-levels
 
 ## Properties
 
-```agda
-is-trunc-map-postcomp-is-trunc-map :
-  {l1 l2 l3 : Level} (k : 𝕋) (A : UU l3) {X : UU l1} {Y : UU l2} (f : X → Y) →
-  is-trunc-map k f → is-trunc-map k (postcomp A f)
-is-trunc-map-postcomp-is-trunc-map k A {X} {Y} f is-trunc-f =
-  is-trunc-map-map-Π-is-trunc-map' k
-    ( const A unit star)
-    ( const unit (X → Y) f)
-    ( const unit (is-trunc-map k f) is-trunc-f)
+### Equivalent types have equivalent function types
 
-is-trunc-map-is-trunc-map-postcomp :
-  {l1 l2 : Level} (k : 𝕋) {X : UU l1} {Y : UU l2} (f : X → Y) →
-  ( {l3 : Level} (A : UU l3) → is-trunc-map k (postcomp A f)) →
-  is-trunc-map k f
-is-trunc-map-is-trunc-map-postcomp k {X} {Y} f is-trunc-post-f =
-  is-trunc-map-is-trunc-map-map-Π' k
-    ( const unit (X → Y) f)
-    ( λ {l} {J} α → is-trunc-post-f {l} J)
-    ( star)
+```agda
+module _
+  { l1 l2 l3 l4 : Level}
+  { A' : UU l1} {B' : UU l2} {A : UU l3} (B : UU l4)
+  ( e : A' ≃ A) (f : B' ≃ B)
+  where
+
+  map-equiv-function-type : (A' → B') → (A → B)
+  map-equiv-function-type h = map-equiv f ∘ (h ∘ map-inv-equiv e)
+
+  compute-map-equiv-function-type :
+    (h : A' → B') (x : A') →
+    map-equiv-function-type h (map-equiv e x) ＝ map-equiv f (h x)
+  compute-map-equiv-function-type h x =
+    ap (map-equiv f ∘ h) (is-retraction-map-inv-equiv e x)
+
+  is-equiv-map-equiv-function-type : is-equiv map-equiv-function-type
+  is-equiv-map-equiv-function-type =
+    is-equiv-comp
+      ( precomp (map-equiv (inv-equiv e)) B)
+      ( postcomp A' (map-equiv f))
+      ( is-equiv-postcomp-equiv f A')
+      ( is-equiv-precomp-equiv (inv-equiv e) B)
+
+  equiv-function-type : (A' → B') ≃ (A → B)
+  pr1 equiv-function-type = map-equiv-function-type
+  pr2 equiv-function-type = is-equiv-map-equiv-function-type
 ```
 
-### The precomposition function preserves homotopies
+### Two maps being homotopic is equivalent to them being homotopic after pre- or postcomposition by an equivalence
 
 ```agda
-htpy-precomp :
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2}
-  {f g : A → B} (H : f ~ g) (C : UU l3) →
-  (precomp f C) ~ (precomp g C)
-htpy-precomp H C h = eq-htpy (h ·l H)
+module _
+  { l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
+  where
 
-compute-htpy-precomp :
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} (f : A → B) (C : UU l3) →
-  (htpy-precomp (refl-htpy' f) C) ~ refl-htpy
-compute-htpy-precomp f C h = eq-htpy-refl-htpy (h ∘ f)
+  equiv-htpy-precomp-htpy :
+    ( f g : B → C) (e : A ≃ B) →
+    ( (f ∘ map-equiv e) ~ (g ∘ map-equiv e)) ≃
+    ( f ~ g)
+  equiv-htpy-precomp-htpy f g e =
+    equiv-Π
+      ( eq-value f g)
+      ( e)
+      ( λ a → id-equiv)
+
+  equiv-htpy-postcomp-htpy :
+    ( e : B ≃ C) (f g : A → B) →
+    ( f ~ g) ≃
+    ( (map-equiv e ∘ f) ~ (map-equiv e ∘ g))
+  equiv-htpy-postcomp-htpy e f g =
+    equiv-Π-equiv-family
+      ( λ a → equiv-ap e (f a) (g a))
+```
+
+### A map is truncated iff postcomposition by it is truncated
+
+```agda
+module _
+  {l1 l2 : Level} (k : 𝕋) {X : UU l1} {Y : UU l2} (f : X → Y)
+  where
+
+  is-trunc-map-postcomp-is-trunc-map :
+    is-trunc-map k f →
+    {l3 : Level} (A : UU l3) → is-trunc-map k (postcomp A f)
+  is-trunc-map-postcomp-is-trunc-map is-trunc-f A =
+    is-trunc-map-map-Π-is-trunc-map' k
+      ( const A unit star)
+      ( const unit (X → Y) f)
+      ( const unit (is-trunc-map k f) is-trunc-f)
+
+  is-trunc-map-is-trunc-map-postcomp :
+    ({l3 : Level} (A : UU l3) → is-trunc-map k (postcomp A f)) →
+    is-trunc-map k f
+  is-trunc-map-is-trunc-map-postcomp is-trunc-postcomp-f =
+    is-trunc-map-is-trunc-map-map-Π' k
+      ( const unit (X → Y) f)
+      ( λ {l} {J} α → is-trunc-postcomp-f {l} J)
+      ( star)
+
+module _
+  {l1 l2 : Level} {X : UU l1} {Y : UU l2} (f : X → Y)
+  where
+
+  is-emb-postcomp-is-emb :
+    is-emb f →
+    {l3 : Level} (A : UU l3) → is-emb (postcomp A f)
+  is-emb-postcomp-is-emb is-emb-f A =
+    is-emb-is-prop-map
+      ( is-trunc-map-postcomp-is-trunc-map neg-one-𝕋 f
+        ( is-prop-map-is-emb is-emb-f)
+        ( A))
+
+  is-emb-is-emb-postcomp :
+    ({l3 : Level} (A : UU l3) → is-emb (postcomp A f)) →
+    is-emb f
+  is-emb-is-emb-postcomp is-emb-postcomp-f =
+    is-emb-is-prop-map
+      ( is-trunc-map-is-trunc-map-postcomp neg-one-𝕋 f
+        ( is-prop-map-is-emb ∘ is-emb-postcomp-f))
+
+emb-postcomp :
+  {l1 l2 l3 : Level} {X : UU l1} {Y : UU l2} (f : X ↪ Y) (A : UU l3) →
+  (A → X) ↪ (A → Y)
+pr1 (emb-postcomp f A) = postcomp A (map-emb f)
+pr2 (emb-postcomp f A) = is-emb-postcomp-is-emb (map-emb f) (is-emb-map-emb f) A
 ```
 
 ## See also

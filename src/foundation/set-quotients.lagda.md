@@ -32,6 +32,7 @@ open import foundation-core.homotopies
 open import foundation-core.propositions
 open import foundation-core.small-types
 open import foundation-core.subtypes
+open import foundation-core.whiskering-homotopies
 ```
 
 </details>
@@ -301,7 +302,7 @@ module _
     ( (x : A) (y : B) →
       type-Prop (P (quotient-map R x) (quotient-map S y)))
   equiv-double-induction-set-quotient =
-    ( equiv-map-Π
+    ( equiv-Π-equiv-family
       ( λ x →
         equiv-induction-set-quotient S (P (quotient-map R x)))) ∘e
     ( equiv-induction-set-quotient R
@@ -357,7 +358,7 @@ module _
       type-Prop
         ( P (quotient-map R x) (quotient-map S y) (quotient-map T z)))
   equiv-triple-induction-set-quotient =
-    ( equiv-map-Π
+    ( equiv-Π-equiv-family
       ( λ x →
         equiv-double-induction-set-quotient S T
           ( P (quotient-map R x)))) ∘e

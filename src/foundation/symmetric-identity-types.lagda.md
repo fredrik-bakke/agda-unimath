@@ -12,7 +12,7 @@ open import foundation.dependent-pair-types
 open import foundation.function-extensionality
 open import foundation.functoriality-dependent-function-types
 open import foundation.fundamental-theorem-of-identity-types
-open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
 open import foundation.structure-identity-principle
 open import foundation.universe-levels
@@ -24,6 +24,7 @@ open import foundation-core.equality-dependent-pair-types
 open import foundation-core.equivalences
 open import foundation-core.function-types
 open import foundation-core.functoriality-dependent-pair-types
+open import foundation-core.homotopies
 
 open import univalent-combinatorics.standard-finite-types
 ```
@@ -122,7 +123,7 @@ module _
     is-equiv-map-compute-symmetric-Id :
       is-equiv (map-compute-symmetric-Id)
     is-equiv-map-compute-symmetric-Id =
-      is-equiv-has-inverse
+      is-equiv-is-invertible
         ( map-inv-compute-symmetric-Id)
         ( is-section-map-inv-compute-symmetric-Id)
         ( is-retraction-map-inv-compute-symmetric-Id)
@@ -168,7 +169,8 @@ module _
         (x : type-unordered-pair a) →
         b ＝ map-equiv e (element-unordered-pair a x))
       ( e)
-      ( λ x → equiv-map-Π (λ i → equiv-ap e x (element-unordered-pair a i)))
+      ( λ x →
+        equiv-Π-equiv-family (λ i → equiv-ap e x (element-unordered-pair a i)))
 
   map-equiv-symmetric-Id :
     (e : A ≃ B) (a : unordered-pair A) →

@@ -21,7 +21,7 @@ open import foundation.propositional-truncations
 open import foundation.propositions
 open import foundation.sets
 open import foundation.subtype-identity-principle
-open import foundation.transport
+open import foundation.transport-along-identifications
 open import foundation.universe-levels
 
 open import group-theory.concrete-groups
@@ -583,7 +583,7 @@ module _
               ( principal-Torsor-Abstract-Group G)
               ( X)
               ( e))
-            ( is-equiv-has-inverse
+            ( is-equiv-is-invertible
                 equiv-Eq-Torsor-Abstract-Group
                 is-section-equiv-Eq-Torsor-Abstract-Group
                 is-retraction-equiv-Eq-Torsor-Abstract-Group))
@@ -654,6 +654,16 @@ module _
       ( equiv-Eq-equiv-Torsor-Abstract-Group
         ( principal-Torsor-Abstract-Group G))
       ( is-set-type-Group G)
+
+  classifying-type-Group : UU (lsuc l1)
+  classifying-type-Group = classifying-type-Concrete-Group concrete-group-Group
+
+  shape-Group : classifying-type-Group
+  shape-Group = shape-Concrete-Group concrete-group-Group
+
+  is-0-connected-classifying-type-Group : is-0-connected classifying-type-Group
+  is-0-connected-classifying-type-Group =
+    is-0-connected-classifying-type-Concrete-Group concrete-group-Group
 
   abstract-group-concrete-group-Group :
     type-iso-Group (abstract-group-Concrete-Group concrete-group-Group) G

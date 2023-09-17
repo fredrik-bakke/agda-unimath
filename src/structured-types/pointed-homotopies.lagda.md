@@ -16,6 +16,7 @@ open import foundation.homotopies
 open import foundation.identity-types
 open import foundation.structure-identity-principle
 open import foundation.universe-levels
+open import foundation.whiskering-homotopies
 
 open import structured-types.pointed-dependent-functions
 open import structured-types.pointed-families-of-types
@@ -62,8 +63,12 @@ module _
       ( refl-htpy)
       ( inv (right-inv (preserves-point-function-pointed-Π f)))
       ( λ g → equiv-funext)
-      ( λ p → equiv-con-inv refl p (preserves-point-function-pointed-Π f) ∘e
-              equiv-inv (preserves-point-function-pointed-Π f) p)
+      ( λ p →
+        ( equiv-right-transpose-eq-concat
+          ( refl)
+          ( p)
+          ( preserves-point-function-pointed-Π f)) ∘e
+        ( equiv-inv (preserves-point-function-pointed-Π f) p))
 
   eq-htpy-pointed-Π :
     (g : pointed-Π A B) → (htpy-pointed-Π g) → Id f g

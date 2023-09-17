@@ -15,7 +15,7 @@ open import foundation.universe-levels
 open import foundation-core.dependent-identifications
 open import foundation-core.function-types
 open import foundation-core.identity-types
-open import foundation-core.transport
+open import foundation-core.transport-along-identifications
 ```
 
 </details>
@@ -72,6 +72,14 @@ map-compute-dependent-identification-eq-value-id-id :
   dependent-identification (eq-value id id) p q r
 map-compute-dependent-identification-eq-value-id-id refl q r s =
   inv (s ∙ right-unit)
+
+map-compute-dependent-identification-eq-value-comp-id :
+  {l1 l2 : Level} {A : UU l1} {B : UU l2} (g : B → A) (f : A → B) {a b : A}
+  (p : a ＝ b) (q : eq-value (g ∘ f) id a) (r : eq-value (g ∘ f) id b) →
+  coherence-square-identifications (ap g (ap f p)) r q p →
+  dependent-identification (eq-value (g ∘ f) id) p q r
+map-compute-dependent-identification-eq-value-comp-id g f refl q r s =
+  inv (s ∙ right-unit)
 ```
 
 ### Homotopies
@@ -81,6 +89,7 @@ module _
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2}
   where
 
+  infix 6 _~_
   _~_ : (f g : (x : A) → B x) → UU (l1 ⊔ l2)
   f ~ g = (x : A) → eq-value f g x
 ```
@@ -115,6 +124,7 @@ module _
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2}
   where
 
+  infixl 15 _∙h_
   _∙h_ : {f g h : (x : A) → B x} → f ~ g → g ~ h → f ~ h
   (H ∙h K) x = (H x) ∙ (K x)
 
@@ -139,46 +149,6 @@ module _
   concat-inv-htpy' f K = concat-htpy' f (inv-htpy K)
 ```
 
-### Whiskering of homotopies
-
-```agda
-htpy-left-whisk :
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
-  (h : B → C) {f g : A → B} → f ~ g → (h ∘ f) ~ (h ∘ g)
-htpy-left-whisk h H x = ap h (H x)
-
-_·l_ = htpy-left-whisk
-
-htpy-right-whisk :
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : B → UU l3}
-  {g h : (y : B) → C y} (H : g ~ h) (f : A → B) → (g ∘ f) ~ (h ∘ f)
-htpy-right-whisk H f x = H (f x)
-
-_·r_ = htpy-right-whisk
-```
-
-**Note**: The infix whiskering operators `_·l_` and `_·r_` use the
-[middle dot](https://codepoints.net/U+00B7) `·` (agda-input: `\cdot`
-`\centerdot`), as opposed to the infix homotopy concatenation operator `_∙h_`
-which uses the [bullet operator](https://codepoints.net/U+2219) `∙` (agda-input:
-`\.`). If these look the same in your editor, we suggest that you change your
-font. For a reference, see [How to install](HOWTO-INSTALL.md).
-
-### Horizontal composition of homotopies
-
-```agda
-module _
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
-  {f f' : A → B} {g g' : B → C}
-  where
-
-  htpy-comp-horizontal : (f ~ f') → (g ~ g') → (g ∘ f) ~ (g' ∘ f')
-  htpy-comp-horizontal F G = (g ·l F) ∙h (G ·r f')
-
-  htpy-comp-horizontal' : (f ~ f') → (g ~ g') → (g ∘ f) ~ (g' ∘ f')
-  htpy-comp-horizontal' F G = (G ·r f) ∙h (g' ·l F)
-```
-
 ### Transposition of homotopies
 
 ```agda
@@ -187,17 +157,19 @@ module _
   (H : f ~ g) (K : g ~ h) (L : f ~ h) (M : (H ∙h K) ~ L)
   where
 
-  inv-con-htpy : K ~ ((inv-htpy H) ∙h L)
-  inv-con-htpy x = inv-con (H x) (K x) (L x) (M x)
+  left-transpose-htpy-concat : K ~ ((inv-htpy H) ∙h L)
+  left-transpose-htpy-concat x =
+    left-transpose-eq-concat (H x) (K x) (L x) (M x)
 
-  inv-htpy-inv-con-htpy : ((inv-htpy H) ∙h L) ~ K
-  inv-htpy-inv-con-htpy = inv-htpy inv-con-htpy
+  inv-htpy-left-transpose-htpy-concat : ((inv-htpy H) ∙h L) ~ K
+  inv-htpy-left-transpose-htpy-concat = inv-htpy left-transpose-htpy-concat
 
-  con-inv-htpy : H ~ (L ∙h (inv-htpy K))
-  con-inv-htpy x = con-inv (H x) (K x) (L x) (M x)
+  right-transpose-htpy-concat : H ~ (L ∙h (inv-htpy K))
+  right-transpose-htpy-concat x =
+    right-transpose-eq-concat (H x) (K x) (L x) (M x)
 
-  inv-htpy-con-inv-htpy : (L ∙h (inv-htpy K)) ~ H
-  inv-htpy-con-inv-htpy = inv-htpy con-inv-htpy
+  inv-htpy-right-transpose-htpy-concat : (L ∙h (inv-htpy K)) ~ H
+  inv-htpy-right-transpose-htpy-concat = inv-htpy right-transpose-htpy-concat
 ```
 
 ### Associativity of concatenation of homotopies
@@ -301,20 +273,6 @@ inv-nat-htpy-id :
 inv-nat-htpy-id H p = inv (nat-htpy-id H p)
 ```
 
-### A coherence for homotopies to the identity function
-
-```agda
-module _
-  {l : Level} {A : UU l} {f : A → A} (H : f ~ id)
-  where
-
-  coh-htpy-id : (H ·r f) ~ (f ·l H)
-  coh-htpy-id x = is-injective-concat' (H x) (nat-htpy-id H (H x))
-
-  inv-htpy-coh-htpy-id : (f ·l H) ~ (H ·r f)
-  inv-htpy-coh-htpy-id = inv-htpy coh-htpy-id
-```
-
 ### Homotopies preserve the laws of the action on identity types
 
 ```agda
@@ -339,36 +297,6 @@ module _
   ap-inv-htpy :
     H ~ H' → (inv-htpy H) ~ (inv-htpy H')
   ap-inv-htpy K x = ap inv (K x)
-```
-
-### Laws for whiskering an inverted homotopy
-
-```agda
-module _
-  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
-  where
-
-  left-whisk-inv-htpy :
-    {f f' : A → B} (g : B → C) (H : f ~ f') →
-    (g ·l (inv-htpy H)) ~ inv-htpy (g ·l H)
-  left-whisk-inv-htpy g H x = ap-inv g (H x)
-
-  inv-htpy-left-whisk-inv-htpy :
-    {f f' : A → B} (g : B → C) (H : f ~ f') →
-    inv-htpy (g ·l H) ~ (g ·l (inv-htpy H))
-  inv-htpy-left-whisk-inv-htpy g H =
-    inv-htpy (left-whisk-inv-htpy g H)
-
-  right-whisk-inv-htpy :
-    {g g' : B → C} (H : g ~ g') (f : A → B) →
-    ((inv-htpy H) ·r f) ~ (inv-htpy (H ·r f))
-  right-whisk-inv-htpy H f = refl-htpy
-
-  inv-htpy-right-whisk-inv-htpy :
-    {g g' : B → C} (H : g ~ g') (f : A → B) →
-    ((inv-htpy H) ·r f) ~ (inv-htpy (H ·r f))
-  inv-htpy-right-whisk-inv-htpy H f =
-    inv-htpy (right-whisk-inv-htpy H f)
 ```
 
 ## Reasoning with homotopies
@@ -408,3 +336,5 @@ syntax step-homotopy-reasoning p h q = p ~ h by q
 - We postulate that homotopies characterize identifications in (dependent)
   function types in the file
   [`foundation-core.function-extensionality`](foundation-core.function-extensionality.md).
+- The whiskering operations on homotopies are defined in the file
+  [`foundation.whiskering-homotopies`](foundation.whiskering-homotopies.md).

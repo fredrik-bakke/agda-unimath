@@ -12,17 +12,22 @@ open import foundation.identity-types
 open import foundation.propositions
 open import foundation.sets
 open import foundation.subtypes
+open import foundation.unit-type
 open import foundation.unital-binary-operations
 open import foundation.universe-levels
 
 open import group-theory.semigroups
+
+open import structured-types.h-spaces
+open import structured-types.wild-monoids
 ```
 
 </details>
 
 ## Idea
 
-Monoids are unital semigroups
+**Monoids** are [unital](foundation.unital-binary-operations.md)
+[semigroups](group-theory.semigroups.md).
 
 ## Definition
 
@@ -41,6 +46,9 @@ module _
 
   semigroup-Monoid : Semigroup l
   semigroup-Monoid = pr1 M
+
+  is-unital-semigroup-Monoid : is-unital-Semigroup semigroup-Monoid
+  is-unital-semigroup-Monoid = pr2 M
 
   type-Monoid : UU l
   type-Monoid = type-Semigroup semigroup-Monoid
@@ -78,6 +86,27 @@ module _
 
   right-unit-law-mul-Monoid : (x : type-Monoid) → mul-Monoid x unit-Monoid ＝ x
   right-unit-law-mul-Monoid = pr2 (pr2 has-unit-Monoid)
+
+  left-swap-mul-Monoid :
+    {x y z : type-Monoid} → mul-Monoid x y ＝ mul-Monoid y x →
+    mul-Monoid x (mul-Monoid y z) ＝
+    mul-Monoid y (mul-Monoid x z)
+  left-swap-mul-Monoid =
+    left-swap-mul-Semigroup semigroup-Monoid
+
+  right-swap-mul-Monoid :
+    {x y z : type-Monoid} → mul-Monoid y z ＝ mul-Monoid z y →
+    mul-Monoid (mul-Monoid x y) z ＝
+    mul-Monoid (mul-Monoid x z) y
+  right-swap-mul-Monoid =
+    right-swap-mul-Semigroup semigroup-Monoid
+
+  interchange-mul-mul-Monoid :
+    {x y z w : type-Monoid} → mul-Monoid y z ＝ mul-Monoid z y →
+    mul-Monoid (mul-Monoid x y) (mul-Monoid z w) ＝
+    mul-Monoid (mul-Monoid x z) (mul-Monoid y w)
+  interchange-mul-mul-Monoid =
+    interchange-mul-mul-Semigroup semigroup-Monoid
 ```
 
 ## Properties
@@ -88,9 +117,10 @@ module _
 abstract
   all-elements-equal-is-unital-Semigroup :
     {l : Level} (G : Semigroup l) → all-elements-equal (is-unital-Semigroup G)
-  all-elements-equal-is-unital-Semigroup (pair X (pair μ associative-μ))
-    (pair e (pair left-unit-e right-unit-e))
-    (pair e' (pair left-unit-e' right-unit-e')) =
+  all-elements-equal-is-unital-Semigroup
+    ( X , μ , associative-μ)
+    ( e , left-unit-e , right-unit-e)
+    ( e' , left-unit-e' , right-unit-e') =
     eq-type-subtype
       ( λ e →
         prod-Prop
@@ -108,3 +138,36 @@ is-unital-Semigroup-Prop : {l : Level} (G : Semigroup l) → Prop l
 pr1 (is-unital-Semigroup-Prop G) = is-unital-Semigroup G
 pr2 (is-unital-Semigroup-Prop G) = is-prop-is-unital-Semigroup G
 ```
+
+### Monoids are H-spaces
+
+```agda
+h-space-Monoid : {l : Level} (M : Monoid l) → H-Space l
+pr1 (pr1 (h-space-Monoid M)) = type-Monoid M
+pr2 (pr1 (h-space-Monoid M)) = unit-Monoid M
+pr1 (pr2 (h-space-Monoid M)) = mul-Monoid M
+pr1 (pr2 (pr2 (h-space-Monoid M))) = left-unit-law-mul-Monoid M
+pr1 (pr2 (pr2 (pr2 (h-space-Monoid M)))) = right-unit-law-mul-Monoid M
+pr2 (pr2 (pr2 (pr2 (h-space-Monoid M)))) =
+  eq-is-prop (is-set-type-Monoid M _ _)
+```
+
+### Monoids are wild monoids
+
+```agda
+wild-monoid-Monoid : {l : Level} (M : Monoid l) → Wild-Monoid l
+pr1 (wild-monoid-Monoid M) = h-space-Monoid M
+pr1 (pr2 (wild-monoid-Monoid M)) = associative-mul-Monoid M
+pr1 (pr2 (pr2 (wild-monoid-Monoid M))) y z =
+  eq-is-prop (is-set-type-Monoid M _ _)
+pr1 (pr2 (pr2 (pr2 (wild-monoid-Monoid M)))) x z =
+  eq-is-prop (is-set-type-Monoid M _ _)
+pr1 (pr2 (pr2 (pr2 (pr2 (wild-monoid-Monoid M))))) x y =
+  eq-is-prop (is-set-type-Monoid M _ _)
+pr2 (pr2 (pr2 (pr2 (pr2 (wild-monoid-Monoid M))))) = star
+```
+
+## See also
+
+- In [one object precategories](category-theory.one-object-precategories.md), we
+  show that monoids are precategories whose type of objects is contractible.

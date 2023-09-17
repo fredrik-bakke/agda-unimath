@@ -10,10 +10,8 @@ module elementary-number-theory.multiplication-rational-numbers where
 
 ```agda
 open import elementary-number-theory.integer-fractions
-open import elementary-number-theory.integers
 open import elementary-number-theory.multiplication-integer-fractions
 open import elementary-number-theory.rational-numbers
-open import elementary-number-theory.reduced-integer-fractions
 
 open import foundation.dependent-pair-types
 open import foundation.identity-types
@@ -36,7 +34,7 @@ rational numbers.
 mul-ℚ : ℚ → ℚ → ℚ
 mul-ℚ (x , p) (y , q) = in-fraction-ℤ (mul-fraction-ℤ x y)
 
-infix 30 _*ℚ_
+infixl 40 _*ℚ_
 _*ℚ_ = mul-ℚ
 ```
 

@@ -28,6 +28,7 @@ open import foundation.negation
 open import foundation.propositions
 open import foundation.unit-type
 open import foundation.universe-levels
+open import foundation.whiskering-homotopies
 
 open import lists.functoriality-lists
 open import lists.lists
@@ -111,7 +112,7 @@ module _
   pr1 swap-two-last-elements-transposition-Fin =
     map-swap-two-last-elements-transposition-Fin
   pr2 swap-two-last-elements-transposition-Fin =
-    is-equiv-has-inverse
+    is-equiv-is-invertible
       map-swap-two-last-elements-transposition-Fin
       is-involution-map-swap-two-last-elements-transposition-Fin
       is-involution-map-swap-two-last-elements-transposition-Fin

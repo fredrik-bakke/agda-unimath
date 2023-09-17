@@ -19,6 +19,7 @@ open import foundation.function-extensionality
 open import foundation.functoriality-dependent-pair-types
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
 open import foundation.unit-type
 open import foundation.universe-levels
@@ -31,7 +32,8 @@ open import foundation-core.equality-dependent-pair-types
 open import foundation-core.function-types
 open import foundation-core.functoriality-dependent-function-types
 open import foundation-core.propositions
-open import foundation-core.transport
+open import foundation-core.transport-along-identifications
+open import foundation-core.whiskering-homotopies
 ```
 
 </details>
@@ -112,7 +114,7 @@ abstract
     is-equiv-right-factor-htpy
       ( cone-map f g c)
       ( map-canonical-pullback-exponent f g T)
-      ( gap (_∘_ f) (_∘_ g) (exponent-cone T f g c))
+      ( gap (f ∘_) (g ∘_) (exponent-cone T f g c))
       ( triangle-map-canonical-pullback-exponent T f g c)
       ( is-equiv-map-canonical-pullback-exponent f g T)
       ( universal-property-pullback-is-pullback f g c is-pb-c T)
@@ -170,7 +172,7 @@ abstract
     {l : Level} {A : UU l} (x y : A) →
     is-pullback (const unit A x) (const unit A y) (cone-Id x y)
   is-pullback-cone-Id x y =
-    is-equiv-has-inverse
+    is-equiv-is-invertible
       ( inv-gap-cone-Id x y)
       ( is-section-inv-gap-cone-Id x y)
       ( is-retraction-inv-gap-cone-Id x y)
@@ -209,7 +211,7 @@ abstract
     {l : Level} {A : UU l} (t : A × A) →
     is-pullback (const unit (A × A) t) (diagonal A) (cone-Id' t)
   is-pullback-cone-Id' t =
-    is-equiv-has-inverse
+    is-equiv-is-invertible
       ( inv-gap-cone-Id' t)
       ( is-section-inv-gap-cone-Id' t)
       ( is-retraction-inv-gap-cone-Id' t)
@@ -270,7 +272,7 @@ module _
             ( (Hf (p' z)) ∙ (H' z))
             ( inv (Hg (q' z))))) ∙
         ( inv
-          ( con-inv
+          ( right-transpose-eq-concat
             ( (H z) ∙ (ap g (Hq z)))
             ( Hg (q' z))
             ( ( ap f (Hp z)) ∙ ((Hf (p' z)) ∙ (H' z)))
@@ -440,7 +442,6 @@ htpy-eq-square-refl-htpy :
   tr-tr-c ＝ c' → htpy-parallel-cone (refl-htpy' f) (refl-htpy' g) c c'
 htpy-eq-square-refl-htpy f g c c' =
   map-inv-is-equiv-precomp-Π-is-equiv
-    ( λ (p : Id c c') → (tr-tr-refl-htpy-cone f g c) ∙ p)
     ( is-equiv-concat (tr-tr-refl-htpy-cone f g c) c')
     ( λ p → htpy-parallel-cone (refl-htpy' f) (refl-htpy' g) c c')
     ( htpy-eq-square f g c c')
@@ -453,7 +454,6 @@ comp-htpy-eq-square-refl-htpy :
   ( htpy-eq-square f g c c')
 comp-htpy-eq-square-refl-htpy f g c c' =
   is-section-map-inv-is-equiv-precomp-Π-is-equiv
-    ( λ (p : Id c c') → (tr-tr-refl-htpy-cone f g c) ∙ p)
     ( is-equiv-concat (tr-tr-refl-htpy-cone f g c) c')
     ( λ p → htpy-parallel-cone (refl-htpy' f) (refl-htpy' g) c c')
     ( htpy-eq-square f g c c')
@@ -656,7 +656,7 @@ abstract
     (f : (i : I) → A i → X i) (g : (i : I) → B i → X i) →
     is-equiv (map-canonical-pullback-Π f g)
   is-equiv-map-canonical-pullback-Π f g =
-    is-equiv-has-inverse
+    is-equiv-is-invertible
       ( inv-map-canonical-pullback-Π f g)
       ( is-section-inv-map-canonical-pullback-Π f g)
       ( is-retraction-inv-map-canonical-pullback-Π f g)
@@ -692,7 +692,7 @@ abstract
       ( gap (map-Π f) (map-Π g) (cone-Π f g c))
       ( triangle-map-canonical-pullback-Π f g c)
       ( is-equiv-map-canonical-pullback-Π f g)
-      ( is-equiv-map-Π _ is-pb-c)
+      ( is-equiv-map-Π-is-fiberwise-equiv is-pb-c)
 ```
 
 ```agda
@@ -731,17 +731,17 @@ is-pullback-back-left-is-pullback-back-right-cube
       -- ( hD)
       ( refl-htpy)
       { c = pair hA (pair (h' ∘ f')
-        ( rectangle-back-left-front-left-cube
+        ( rectangle-left-cube
           f g h k f' g' h' k' hA hB hC hD
           top back-left back-right front-left front-right bottom))}
       ( pair hA (pair (k' ∘ g')
-        ( rectangle-back-right-front-right-cube
+        ( rectangle-right-cube
           f g h k f' g' h' k' hA hB hC hD
           top back-left back-right front-left front-right bottom)))
       ( pair
         ( refl-htpy)
         ( pair top
-          ( coherence-htpy-square-rectangle-bl-fl-rectangle-br-fr-cube
+          ( coherence-htpy-parallel-cone-rectangle-left-rectangle-right-cube
             f g h k f' g' h' k' hA hB hC hD
             top back-left back-right front-left front-right bottom c)))
       ( is-pullback-rectangle-is-pullback-left-square g k hD
@@ -778,24 +778,22 @@ is-pullback-back-right-is-pullback-back-left-cube
     ( pair hA (pair g' back-right))
     ( is-pb-front-right)
     ( is-pullback-htpy'
-      -- ( h ∘ f)
       { f' = k ∘ g}
       ( bottom)
-      -- ( hD)
       { g' = hD}
       ( refl-htpy)
       ( pair hA (pair (h' ∘ f')
-        ( rectangle-back-left-front-left-cube
+        ( rectangle-left-cube
           f g h k f' g' h' k' hA hB hC hD
           top back-left back-right front-left front-right bottom)))
       { c' = pair hA (pair (k' ∘ g')
-        ( rectangle-back-right-front-right-cube
+        ( rectangle-right-cube
           f g h k f' g' h' k' hA hB hC hD
           top back-left back-right front-left front-right bottom))}
       ( pair
         ( refl-htpy)
         ( pair top
-          ( coherence-htpy-square-rectangle-bl-fl-rectangle-br-fr-cube
+          ( coherence-htpy-parallel-cone-rectangle-left-rectangle-right-cube
             f g h k f' g' h' k' hA hB hC hD
             top back-left back-right front-left front-right bottom c)))
       ( is-pullback-rectangle-is-pullback-left-square f h hD

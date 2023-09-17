@@ -7,13 +7,10 @@ module elementary-number-theory.multiplication-integer-fractions where
 <details><summary>Imports</summary>
 
 ```agda
-open import elementary-number-theory.addition-integers
 open import elementary-number-theory.integer-fractions
-open import elementary-number-theory.integers
 open import elementary-number-theory.multiplication-integers
 
 open import foundation.action-on-identifications-binary-functions
-open import foundation.action-on-identifications-functions
 open import foundation.dependent-pair-types
 open import foundation.identity-types
 ```
@@ -43,7 +40,7 @@ pr2 (pr2 (mul-fraction-ℤ (m , n , n-pos) (m' , n' , n'-pos))) =
 mul-fraction-ℤ' : fraction-ℤ → fraction-ℤ → fraction-ℤ
 mul-fraction-ℤ' x y = mul-fraction-ℤ y x
 
-infix 30 _*fraction-ℤ_
+infixl 40 _*fraction-ℤ_
 _*fraction-ℤ_ = mul-fraction-ℤ
 
 ap-mul-fraction-ℤ :

@@ -16,14 +16,16 @@ open import foundation.function-extensionality
 open import foundation.function-types
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
 open import foundation.propositional-truncations
 open import foundation.sets
-open import foundation.transport
+open import foundation.transport-along-identifications
 open import foundation.truncated-types
 open import foundation.truncation-levels
 open import foundation.type-theoretic-principle-of-choice
 open import foundation.universe-levels
+open import foundation.whiskering-homotopies
 
 open import trees.algebras-polynomial-endofunctors
 open import trees.coalgebras-polynomial-endofunctors
@@ -215,7 +217,7 @@ is-equiv-structure-𝕎-Alg :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} →
   is-equiv (structure-𝕎-Alg {B = B})
 is-equiv-structure-𝕎-Alg =
-  is-equiv-has-inverse
+  is-equiv-is-invertible
     map-inv-structure-𝕎-Alg
     is-section-map-inv-structure-𝕎-Alg
     is-retraction-map-inv-structure-𝕎-Alg
@@ -230,7 +232,7 @@ is-equiv-map-inv-structure-𝕎-Alg :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} →
   is-equiv (map-inv-structure-𝕎-Alg {B = B})
 is-equiv-map-inv-structure-𝕎-Alg =
-  is-equiv-has-inverse
+  is-equiv-is-invertible
     structure-𝕎-Alg
     is-retraction-map-inv-structure-𝕎-Alg
     is-section-map-inv-structure-𝕎-Alg

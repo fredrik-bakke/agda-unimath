@@ -11,7 +11,7 @@ open import foundation.connected-types
 open import foundation.dependent-pair-types
 open import foundation.functoriality-dependent-function-types
 open import foundation.fundamental-theorem-of-identity-types
-open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.structure-identity-principle
 open import foundation.subtype-identity-principle
 open import foundation.truncated-types
@@ -25,6 +25,7 @@ open import foundation-core.embeddings
 open import foundation-core.equivalences
 open import foundation-core.fibers-of-maps
 open import foundation-core.function-types
+open import foundation-core.homotopies
 open import foundation-core.identity-types
 open import foundation-core.propositions
 open import foundation-core.subtypes
@@ -45,7 +46,7 @@ A map is said to be **`k`-connected** if its fibers are `k`-connected types.
 is-connected-map-Prop :
   {l1 l2 : Level} (k : 𝕋) {A : UU l1} {B : UU l2} → (A → B) → Prop (l1 ⊔ l2)
 is-connected-map-Prop k {B = B} f =
-  Π-Prop B (λ b → is-connected-Prop k (fib f b))
+  Π-Prop B (λ b → is-connected-Prop k (fiber f b))
 
 is-connected-map :
   {l1 l2 : Level} (k : 𝕋) {A : UU l1} {B : UU l2} → (A → B) → UU (l1 ⊔ l2)
@@ -354,7 +355,9 @@ module _
 ### The type `Connected-Map-Into-Truncated-Type l2 k k A` is contractible
 
 This remains to be shown.
+[#733](https://github.com/UniMath/agda-unimath/issues/733)
 
-### The type `Connected-Map-Into-Truncated-Type l2 k l A` is `k - l - 2` truncated
+### The type `Connected-Map-Into-Truncated-Type l2 k l A` is `k - l - 2`-truncated
 
 This remains to be shown.
+[#733](https://github.com/UniMath/agda-unimath/issues/733)

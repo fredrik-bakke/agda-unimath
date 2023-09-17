@@ -25,7 +25,7 @@ open import foundation.propositions
 open import foundation.sections
 open import foundation.sets
 open import foundation.subtypes
-open import foundation.transport
+open import foundation.transport-along-identifications
 open import foundation.type-arithmetic-coproduct-types
 open import foundation.type-arithmetic-dependent-pair-types
 open import foundation.universe-levels
@@ -97,7 +97,7 @@ abstract
       ( λ e →
         is-finite-count
           ( count-equiv
-            ( ( equiv-total-fib (map-section-family b)) ∘e
+            ( ( equiv-total-fiber (map-section-family b)) ∘e
               ( equiv-tot
                 ( λ t →
                   ( equiv-tot

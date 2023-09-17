@@ -12,7 +12,7 @@ open import foundation.equivalences
 open import foundation.identity-types
 open import foundation.universe-levels
 
-open import structured-types.coherent-h-spaces
+open import structured-types.h-spaces
 open import structured-types.magmas
 open import structured-types.pointed-equivalences
 open import structured-types.pointed-types
@@ -61,7 +61,7 @@ module _
   pr2 Ω-Magma = mul-Ω
 ```
 
-### The wild unital magma of loops on a pointed space
+### The H-space of loops on a pointed space
 
 ```agda
 module _
@@ -76,12 +76,12 @@ module _
     (x : type-Ω A) → Id (mul-Ω A x (refl-Ω A)) x
   right-unit-law-mul-Ω x = right-unit
 
-  Ω-Coherent-H-Space : Coherent-H-Space l
-  pr1 Ω-Coherent-H-Space = Ω A
-  pr1 (pr2 Ω-Coherent-H-Space) = mul-Ω A
-  pr1 (pr2 (pr2 Ω-Coherent-H-Space)) = left-unit-law-mul-Ω
-  pr1 (pr2 (pr2 (pr2 Ω-Coherent-H-Space))) = right-unit-law-mul-Ω
-  pr2 (pr2 (pr2 (pr2 Ω-Coherent-H-Space))) = refl
+  Ω-H-Space : H-Space l
+  pr1 Ω-H-Space = Ω A
+  pr1 (pr2 Ω-H-Space) = mul-Ω A
+  pr1 (pr2 (pr2 Ω-H-Space)) = left-unit-law-mul-Ω
+  pr1 (pr2 (pr2 (pr2 Ω-H-Space))) = right-unit-law-mul-Ω
+  pr2 (pr2 (pr2 (pr2 Ω-H-Space))) = refl
 ```
 
 ### The wild quasigroup of loops on a pointed space
@@ -115,7 +115,8 @@ module _
   where
 
   associative-mul-Ω :
-    (x y z : type-Ω A) → Id (mul-Ω A (mul-Ω A x y) z) (mul-Ω A x (mul-Ω A y z))
+    (x y z : type-Ω A) →
+    Id (mul-Ω A (mul-Ω A x y) z) (mul-Ω A x (mul-Ω A y z))
   associative-mul-Ω x y z = assoc x y z
 ```
 
@@ -160,4 +161,22 @@ module _
     (p : Id x y) (q : type-Ω (pair A x)) →
     Id (tr-type-Ω p q) (inv p ∙ (q ∙ p))
   eq-tr-type-Ω refl q = inv right-unit
+```
+
+## Properties
+
+### Every pointed identity type is equivalent to a loop space
+
+```agda
+module _
+  {l : Level} (A : Pointed-Type l) {x : type-Pointed-Type A}
+  (p : point-Pointed-Type A ＝ x)
+  where
+
+  pointed-equiv-loop-pointed-identity :
+    ( pair (point-Pointed-Type A ＝ x) p) ≃∗ Ω A
+  pr1 pointed-equiv-loop-pointed-identity =
+    equiv-concat' (point-Pointed-Type A) (inv p)
+  pr2 pointed-equiv-loop-pointed-identity =
+    right-inv p
 ```

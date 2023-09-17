@@ -14,6 +14,7 @@ open import foundation.universe-levels
 open import foundation-core.cartesian-product-types
 open import foundation-core.homotopies
 open import foundation-core.identity-types
+open import foundation-core.whiskering-homotopies
 ```
 
 </details>
@@ -79,7 +80,7 @@ module _
   pr1 (pr2 (coherent-unit-laws-unit-laws (pair H K))) x =
     ( inv (ap (μ x) (K e))) ∙ (( ap (μ x) (H e)) ∙ (K x))
   pr2 (pr2 (coherent-unit-laws-unit-laws (pair H K))) =
-    inv-con
+    left-transpose-eq-concat
       ( ap (μ e) (K e))
       ( H e)
       ( (ap (μ e) (H e)) ∙ (K e))

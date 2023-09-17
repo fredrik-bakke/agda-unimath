@@ -27,13 +27,15 @@ open import foundation.functoriality-dependent-pair-types
 open import foundation.functoriality-function-types
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
 open import foundation.pullbacks
 open import foundation.structure-identity-principle
-open import foundation.transport
+open import foundation.transport-along-identifications
 open import foundation.type-theoretic-principle-of-choice
 open import foundation.univalence
 open import foundation.universe-levels
+open import foundation.whiskering-homotopies
 
 open import synthetic-homotopy-theory.cocones-under-spans
 open import synthetic-homotopy-theory.dependent-pullback-property-pushouts
@@ -101,7 +103,7 @@ pullback-property-dependent-pullback-property-pushout
         ( λ h → right-unit ∙
           ( ( ap eq-htpy
               ( eq-htpy (λ s →
-                inv-con
+                left-transpose-eq-concat
                   ( tr-constant-type-family (H s) (h (i (f s))))
                   ( ap h (H s))
                   ( apd h (H s))
@@ -388,7 +390,8 @@ coherence-inv-htpy-distributive-Π-Σ-refl-htpy {X = X} P f =
     ( ( htpy-precomp refl-htpy (Σ X P)) ·r map-inv-distributive-Π-Σ)
     ( refl-htpy)
     ( inv-htpy
-      ( λ h → compute-htpy-precomp f (Σ X P) (map-inv-distributive-Π-Σ h))))
+      ( λ h →
+        compute-htpy-precomp-refl-htpy f (Σ X P) (map-inv-distributive-Π-Σ h))))
 
 abstract
   coherence-inv-htpy-distributive-Π-Σ :
@@ -655,10 +658,11 @@ is-equiv-Fam-pushout-cocone-UU :
   is-equiv (Fam-pushout-cocone-UU l {f = f} {g})
 is-equiv-Fam-pushout-cocone-UU l {f = f} {g} =
   is-equiv-tot-is-fiberwise-equiv
-    ( λ PA → is-equiv-tot-is-fiberwise-equiv
-      ( λ PB → is-equiv-map-Π
-        ( λ s → equiv-eq)
-        ( λ s → univalence (PA (f s)) (PB (g s)))))
+    ( λ PA →
+      is-equiv-tot-is-fiberwise-equiv
+        ( λ PB →
+          is-equiv-map-Π-is-fiberwise-equiv
+            ( λ s → univalence (PA (f s)) (PB (g s)))))
 
 htpy-equiv-eq-ap-fam :
   {l1 l2 : Level} {A : UU l1} (B : A → UU l2) {x y : A} (p : Id x y) →
@@ -717,7 +721,7 @@ uniqueness-Fam-pushout :
       equiv-Fam-pushout P (desc-fam c Q)))
 uniqueness-Fam-pushout {l = l} f g c up-c P =
   is-contr-equiv'
-    ( fib (desc-fam c) P)
+    ( fiber (desc-fam c) P)
     ( equiv-tot (λ Q →
       ( equiv-equiv-Fam-pushout P (desc-fam c Q)) ∘e
       ( equiv-inv (desc-fam c Q) P)))

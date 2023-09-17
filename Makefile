@@ -10,31 +10,34 @@ AGDAHTMLFLAGS ?= --html --html-highlight=code --html-dir=docs --css=Agda.css --o
 AGDA ?= agda $(AGDAVERBOSE)
 TIME ?= time
 
-METAFILES :=CITE-THIS-LIBRARY.md \
-			CODINGSTYLE.md \
-			CONTRIBUTING.md \
-			CONTRIBUTORS.md \
-			FILE-CONVENTIONS.md \
-			DESIGN-PRINCIPLES.md \
-			GRANT-ACKNOWLEDGEMENTS.md \
-			HOME.md \
-			HOWTO-INSTALL.md \
-			LICENSE.md \
-			MAINTAINERS.md \
-			README.md \
-			STATEMENT-OF-INCLUSION.md \
-			SUMMARY.md \
-			TEMPLATE.lagda.md \
-			USERS.md \
+METAFILES := \
+  ART.md \
+  CITE-THIS-LIBRARY.md \
+  CODINGSTYLE.md \
+  CONTRIBUTING.md \
+  CONTRIBUTORS.md \
+  FILE-CONVENTIONS.md \
+  DESIGN-PRINCIPLES.md \
+  GRANT-ACKNOWLEDGEMENTS.md \
+  HOME.md \
+  HOWTO-INSTALL.md \
+  LICENSE.md \
+  MIXFIX-OPERATORS.md \
+  MAINTAINERS.md \
+  README.md \
+  STATEMENT-OF-INCLUSION.md \
+  SUMMARY.md \
+  TEMPLATE.lagda.md \
+  USERS.md \
 
 .PHONY: agdaFiles
 agdaFiles:
 	@rm -rf $@
 	@rm -rf ./src/everything.lagda.md
-	@find src -name temp -prune -o -type f \( -name "*.agda" -o -name "*.lagda" -o -name "*.lagda.md" \) -print > $@
+	@git ls-files src | grep '\.lagda.md$$' > $@
 	@sort -o $@ $@
 	@wc -l $@
-	@echo "$(shell (find src -name '*.lagda.md' -print0 | xargs -0 cat ) | wc -l) LOC"
+	@echo "$(shell (git ls-files src | grep '.lagda.md$$' | xargs cat) | wc -l) LOC"
 
 .PHONY: ./src/everything.lagda.md
 src/everything.lagda.md: agdaFiles
@@ -68,15 +71,18 @@ agda-html: ./src/everything.lagda.md
 SUMMARY.md: ${AGDAFILES}
 	@python3 ./scripts/generate_main_index_file.py
 
-.PHONY: website
-website: agda-html \
-		./SUMMARY.md
+.PHONY: website-prepare
+website-prepare: agda-html ./SUMMARY.md
 	@cp $(METAFILES) ./docs/
-	@cp ./theme/images/agda-unimath-logo.svg  ./docs/
+	@cp ./theme/images/agda-unimath-logo.svg ./docs/
+	@cp ./theme/images/agda-unimath-black-and-gold.png ./docs/
+
+.PHONY: website
+website: website-prepare
 	@mdbook build
 
 .PHONY: serve-website
-serve-website:
+serve-website: website-prepare
 	@mdbook serve -p 8080 --open -d ./book/html
 
 .PHONY: graph
