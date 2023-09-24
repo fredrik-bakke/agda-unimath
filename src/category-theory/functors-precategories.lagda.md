@@ -9,6 +9,7 @@ module category-theory.functors-precategories where
 ```agda
 open import category-theory.maps-precategories
 open import category-theory.precategories
+open import category-theory.isomorphisms-in-precategories
 
 open import foundation.action-on-identifications-functions
 open import foundation.cartesian-product-types
@@ -336,4 +337,53 @@ module _
     eq-htpy-map-functor-Precategory ∘ htpy-map-eq-functor-Precategory ~ id
   is-retraction-eq-htpy-map-functor-Precategory =
     is-retraction-map-inv-equiv equiv-htpy-map-eq-functor-Precategory
+```
+
+### Functors preserve isomorphisms
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  (C : Precategory l1 l2)
+  (D : Precategory l3 l4)
+  (F : functor-Precategory C D)
+  {x y : obj-Precategory C}
+  where
+
+  preserves-is-iso-functor-Precategory :
+    (f : hom-Precategory C x y) →
+    is-iso-Precategory C f →
+    is-iso-Precategory D (hom-functor-Precategory C D F f)
+  pr1 (preserves-is-iso-functor-Precategory f is-iso-f) =
+    hom-functor-Precategory C D F (hom-inv-is-iso-Precategory C is-iso-f)
+  pr1 (pr2 (preserves-is-iso-functor-Precategory f is-iso-f)) =
+    ( inv
+      ( preserves-comp-functor-Precategory C D F
+        ( f)
+        ( hom-inv-is-iso-Precategory C is-iso-f))) ∙
+    ( ap
+      ( hom-functor-Precategory C D F)
+      ( is-section-hom-inv-is-iso-Precategory C is-iso-f)) ∙
+    ( preserves-id-functor-Precategory C D F y)
+  pr2 (pr2 (preserves-is-iso-functor-Precategory f is-iso-f)) =
+    ( inv
+      ( preserves-comp-functor-Precategory C D F
+        ( hom-inv-is-iso-Precategory C is-iso-f)
+        ( f))) ∙
+    ( ap
+      ( hom-functor-Precategory C D F)
+      ( is-retraction-hom-inv-is-iso-Precategory C is-iso-f)) ∙
+    ( preserves-id-functor-Precategory C D F x)
+
+  preserves-iso-functor-Precategory :
+    iso-Precategory C x y →
+    iso-Precategory D
+      ( obj-functor-Precategory C D F x)
+      ( obj-functor-Precategory C D F y)
+  pr1 (preserves-iso-functor-Precategory f) =
+    hom-functor-Precategory C D F (hom-iso-Precategory C f)
+  pr2 (preserves-iso-functor-Precategory f) =
+    preserves-is-iso-functor-Precategory
+      ( hom-iso-Precategory C f)
+      ( is-iso-iso-Precategory C f)
 ```

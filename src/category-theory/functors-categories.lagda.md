@@ -10,6 +10,7 @@ module category-theory.functors-categories where
 open import category-theory.categories
 open import category-theory.functors-precategories
 open import category-theory.maps-categories
+open import category-theory.isomorphisms-in-categories
 
 open import foundation.equivalences
 open import foundation.function-types
@@ -312,4 +313,37 @@ module _
     eq-htpy-map-functor-Category ∘ htpy-map-eq-functor-Category ~ id
   is-retraction-eq-htpy-map-functor-Category =
     is-retraction-map-inv-equiv equiv-htpy-map-eq-functor-Category
+```
+
+### Functors preserve isomorphisms
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  (C : Category l1 l2)
+  (D : Category l3 l4)
+  (F : functor-Category C D)
+  {x y : obj-Category C}
+  where
+
+  preserves-is-iso-functor-Category :
+    (f : hom-Category C x y) →
+    is-iso-Category C f →
+    is-iso-Category D (hom-functor-Category C D F f)
+  preserves-is-iso-functor-Category =
+    preserves-is-iso-functor-Precategory
+      ( precategory-Category C)
+      ( precategory-Category D)
+      ( F)
+
+  preserves-iso-functor-Category :
+    iso-Category C x y →
+    iso-Category D
+      ( obj-functor-Category C D F x)
+      ( obj-functor-Category C D F y)
+  preserves-iso-functor-Category =
+    preserves-iso-functor-Precategory
+      ( precategory-Category C)
+      ( precategory-Category D)
+      ( F)
 ```
