@@ -9,8 +9,8 @@ module category-theory.functors-categories where
 ```agda
 open import category-theory.categories
 open import category-theory.functors-precategories
-open import category-theory.maps-categories
 open import category-theory.isomorphisms-in-categories
+open import category-theory.maps-categories
 
 open import foundation.equivalences
 open import foundation.function-types

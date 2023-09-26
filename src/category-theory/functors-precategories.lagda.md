@@ -7,9 +7,9 @@ module category-theory.functors-precategories where
 <details><summary>Imports</summary>
 
 ```agda
+open import category-theory.isomorphisms-in-precategories
 open import category-theory.maps-precategories
 open import category-theory.precategories
-open import category-theory.isomorphisms-in-precategories
 
 open import foundation.action-on-identifications-functions
 open import foundation.cartesian-product-types

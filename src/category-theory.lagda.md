@@ -92,6 +92,7 @@ open import category-theory.products-in-precategories public
 open import category-theory.products-of-precategories public
 open import category-theory.pullbacks-in-precategories public
 open import category-theory.representable-functors-categories public
+open import category-theory.representable-functors-large-precategories public
 open import category-theory.representable-functors-precategories public
 open import category-theory.representing-arrow-category public
 open import category-theory.sieves-in-categories public
