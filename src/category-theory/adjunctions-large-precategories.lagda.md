@@ -108,8 +108,8 @@ module _
     {l1 l2 : Level}
     (X : obj-Large-Precategory C l1)
     (Y : obj-Large-Precategory D l2) →
-    ( hom-Large-Precategory D (obj-functor-Large-Precategory F X) Y) ≃
-    ( hom-Large-Precategory C X (obj-functor-Large-Precategory G Y))
+    hom-Large-Precategory D (obj-functor-Large-Precategory F X) Y ≃
+    hom-Large-Precategory C X (obj-functor-Large-Precategory G Y)
   inv-equiv-is-adjoint-pair-Large-Precategory H X Y =
     inv-equiv (equiv-is-adjoint-pair-Large-Precategory H X Y)
 
@@ -237,9 +237,9 @@ module _
     (FG : Adjunction-Large-Precategory)
     {l1 : Level}
     (X : obj-Large-Precategory C l1) →
-    ( hom-left-adjoint-Adjunction-Large-Precategory FG
-      ( id-hom-Large-Precategory C {X = X})) ＝
-    ( id-hom-Large-Precategory D)
+    hom-left-adjoint-Adjunction-Large-Precategory FG
+      ( id-hom-Large-Precategory C {X = X}) ＝
+    id-hom-Large-Precategory D
   preserves-id-left-adjoint-Adjunction-Large-Precategory FG X =
     preserves-id-functor-Large-Precategory
       ( left-adjoint-Adjunction-Large-Precategory FG)
@@ -271,9 +271,9 @@ module _
     (FG : Adjunction-Large-Precategory)
     {l : Level}
     (Y : obj-Large-Precategory D l) →
-    ( hom-right-adjoint-Adjunction-Large-Precategory FG
-      ( id-hom-Large-Precategory D {X = Y})) ＝
-    ( id-hom-Large-Precategory C)
+    hom-right-adjoint-Adjunction-Large-Precategory FG
+      ( id-hom-Large-Precategory D {X = Y}) ＝
+    id-hom-Large-Precategory C
   preserves-id-right-adjoint-Adjunction-Large-Precategory FG Y =
     preserves-id-functor-Large-Precategory
       ( right-adjoint-Adjunction-Large-Precategory FG)
@@ -341,12 +341,12 @@ module _
     {l1 l2 : Level}
     (X : obj-Large-Precategory C l1)
     (Y : obj-Large-Precategory D l2) →
-    ( hom-Large-Precategory D
+    hom-Large-Precategory D
       ( obj-left-adjoint-Adjunction-Large-Precategory FG X)
-      ( Y)) ≃
-    ( hom-Large-Precategory C
+      ( Y) ≃
+    hom-Large-Precategory C
       ( X)
-      ( obj-right-adjoint-Adjunction-Large-Precategory FG Y))
+      ( obj-right-adjoint-Adjunction-Large-Precategory FG Y)
   inv-equiv-is-adjoint-pair-Adjunction-Large-Precategory FG X Y =
     inv-equiv (equiv-is-adjoint-pair-Adjunction-Large-Precategory FG X Y)
 

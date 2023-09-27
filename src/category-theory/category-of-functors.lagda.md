@@ -30,7 +30,7 @@ open import foundation.universe-levels
 
 [Functors](category-theory.functors-categories.md) between
 [categories](category-theory.categories.md) and
-[natural transformations](category-theory.natural-transformations-functors-categories.md)
+[natural transformations](category-theory.natural-transformations-categories.md)
 between them assemble to a new category whose identity functor and composition
 structure are inherited pointwise from the codomain category. This is called the
 **category of functors**.
@@ -49,10 +49,10 @@ module _
 
   equiv-natural-isomorphism-htpy-map-functor-is-category-Precategory :
     (F G : functor-Precategory C D) →
-    ( htpy-map-Precategory C D
+    htpy-map-Precategory C D
       ( map-functor-Precategory C D F)
-      ( map-functor-Precategory C D G)) ≃
-    ( natural-isomorphism-Precategory C D F G)
+      ( map-functor-Precategory C D G) ≃
+    natural-isomorphism-Precategory C D F G
   equiv-natural-isomorphism-htpy-map-functor-is-category-Precategory F G =
     equiv-natural-isomorphism-htpy-map-is-category-Precategory C D
       ( is-category-D)
@@ -86,10 +86,9 @@ module _
         ( ( equiv-iso-functor-natural-isomorphism-Precategory C D F G) ∘e
           ( extensionality-functor-is-category-Precategory
               C D is-category-D F G))
-        ( λ
-          { refl →
-            compute-iso-functor-natural-isomorphism-eq-Precategory
-              C D F G refl})
+        ( λ { refl →
+              compute-iso-functor-natural-isomorphism-eq-Precategory
+                C D F G refl})
 ```
 
 ### The category of functors
