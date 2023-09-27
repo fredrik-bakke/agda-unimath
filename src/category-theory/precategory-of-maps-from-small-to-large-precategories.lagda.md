@@ -137,3 +137,8 @@ module _
     precategory-Large-Precategory
       ( map-large-precategory-Small-Large-Precategory C D)
 ```
+
+## See also
+
+- [The precategory of functors and natural transformations from small to large precategories](category-theory.precategory-of-functors-from-small-to-large-precategories.md)
+- [The category of maps and natural transformations from small to large categories](category-theory.category-of-maps-from-small-to-large-categories.md)

@@ -270,3 +270,8 @@ module _
       ( functor-precategory-Precategory C D)
       { F} {G} _ _ refl
 ```
+
+## See also
+
+- [The category of functors and natural transformations between precategories](category-theory.category-of-functors.md)
+- [The precategory of maps and natural transformations between precategories](category-theory.precategory-of-maps-precategories.md)

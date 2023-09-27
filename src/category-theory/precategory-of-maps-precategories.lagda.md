@@ -268,3 +268,8 @@ module _
   compute-iso-map-natural-isomorphism-map-eq-Precategory refl =
     eq-iso-eq-hom-Precategory (map-precategory-Precategory C D) _ _ refl
 ```
+
+## See also
+
+- [The precategory of functors and natural transformations between precategories](category-theory.precategory-of-functors.md)
+- [The category of maps and natural transformations between categories](category-theory.category-of-maps-categories.md)

@@ -166,3 +166,8 @@ module _
   functor-category-Small-Large-Category =
     category-Large-Category (functor-large-category-Small-Large-Category C D)
 ```
+
+## See also
+
+- [Presheaf categories](category-theory.presheaf-categories.md)
+- [The category of maps and natural transformations from small to large categories](category-theory.category-of-maps-from-small-to-large-categories.md)

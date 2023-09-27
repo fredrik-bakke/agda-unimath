@@ -156,3 +156,8 @@ module _
   eq-natural-isomorphism-map-Category F G =
     map-inv-equiv (extensionality-map-Category F G)
 ```
+
+## See also
+
+- [The category of functors and natural transformations between categories](category-theory.category-of-functors.md)
+- [The category of maps and natural transformations from small to large categories](category-theory.category-of-maps-from-small-to-large-categories.md)
