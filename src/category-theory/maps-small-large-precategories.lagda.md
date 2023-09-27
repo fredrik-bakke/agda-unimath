@@ -7,12 +7,12 @@ module category-theory.maps-small-large-precategories where
 <details><summary>Imports</summary>
 
 ```agda
-open import category-theory.precategories
 open import category-theory.large-precategories
+open import category-theory.precategories
 
 open import foundation.action-on-identifications-functions
-open import foundation.function-types
 open import foundation.dependent-pair-types
+open import foundation.function-types
 open import foundation.identity-types
 open import foundation.universe-levels
 ```
@@ -42,4 +42,19 @@ module _
       ( λ F₀ →
         { X Y : obj-Precategory C} →
         hom-Precategory C X Y → hom-Large-Precategory D (F₀ X) (F₀ Y))
+
+  obj-map-Small-Large-Precategory :
+    {γ : Level} → map-Small-Large-Precategory γ →
+    obj-Precategory C → obj-Large-Precategory D γ
+  obj-map-Small-Large-Precategory = pr1
+
+  hom-map-Small-Large-Precategory :
+    {γ : Level} →
+    (F : map-Small-Large-Precategory γ) →
+    { X Y : obj-Precategory C} →
+    hom-Precategory C X Y →
+    hom-Large-Precategory D
+      ( obj-map-Small-Large-Precategory F X)
+      ( obj-map-Small-Large-Precategory F Y)
+  hom-map-Small-Large-Precategory = pr2
 ```
