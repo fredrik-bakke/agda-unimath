@@ -8,8 +8,8 @@ module category-theory.representable-functors-large-precategories where
 
 ```agda
 open import category-theory.functors-large-precategories
-open import category-theory.natural-transformations-large-precategories
 open import category-theory.large-precategories
+open import category-theory.natural-transformations-large-precategories
 
 open import foundation.category-of-sets
 open import foundation.dependent-pair-types
