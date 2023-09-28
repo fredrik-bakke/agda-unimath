@@ -65,14 +65,14 @@ module _
       ( F)
       ( G)
 
-  extensionality-functor-is-category-Small-Large-Precategory :
+  extensionality-functor-is-large-category-Small-Large-Precategory :
     {γ : Level}
     (F G : functor-Small-Large-Precategory C D γ) →
     ( F ＝ G) ≃
     ( natural-isomorphism-Precategory C (precategory-Large-Precategory D γ)
       ( F)
       ( G))
-  extensionality-functor-is-category-Small-Large-Precategory F G =
+  extensionality-functor-is-large-category-Small-Large-Precategory F G =
     ( equiv-natural-isomorphism-htpy-functor-is-large-category-Small-Large-Precategory
       ( F)
       ( G)) ∘e
