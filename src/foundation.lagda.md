@@ -190,6 +190,7 @@ open import foundation.morphisms-cospans public
 open import foundation.multisubsets public
 open import foundation.multivariable-correspondences public
 open import foundation.multivariable-decidable-relations public
+open import foundation.multivariable-families-of-equivalences public
 open import foundation.multivariable-functoriality-set-quotients public
 open import foundation.multivariable-operations public
 open import foundation.multivariable-relations public
