@@ -162,7 +162,7 @@ module _
 
   extensionality-equiv-Abstract-Group-Action :
     (f : equiv-Abstract-Group-Action G X Y) →
-    e ＝ f ≃ htpy-equiv-Abstract-Group-Action f
+    (e ＝ f) ≃ htpy-equiv-Abstract-Group-Action f
   pr1 (extensionality-equiv-Abstract-Group-Action f) =
     htpy-eq-equiv-Abstract-Group-Action f
   pr2 (extensionality-equiv-Abstract-Group-Action f) =
@@ -272,7 +272,7 @@ module _
 
   extensionality-Abstract-Group-Action :
     (Y : Abstract-Group-Action G l2) →
-    X ＝ Y ≃ equiv-Abstract-Group-Action G X Y
+    (X ＝ Y) ≃ equiv-Abstract-Group-Action G X Y
   pr1 (extensionality-Abstract-Group-Action Y) =
     equiv-eq-Abstract-Group-Action Y
   pr2 (extensionality-Abstract-Group-Action Y) =

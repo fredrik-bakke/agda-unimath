@@ -139,7 +139,7 @@ module _
                     ( fundamental-theorem-id (is-contr-total-path a))) ∘e
                   ( distributive-Π-Σ)))))
           ( emb-Σ
-            ( λ x → (y : A) → x ＝ y ≃ a ＝ y)
+            ( λ x → (y : A) → (x ＝ y) ≃ (a ＝ y))
             ( id-emb)
             ( λ x →
               comp-emb

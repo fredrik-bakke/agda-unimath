@@ -230,7 +230,7 @@ module _
   iso-eq-Group = iso-eq-Large-Precategory Group-Large-Precategory G
 
   abstract
-    extensionality-Group' : (H : Group l) → G ＝ H ≃ type-iso-Group G H
+    extensionality-Group' : (H : Group l) → (G ＝ H) ≃ type-iso-Group G H
     extensionality-Group' H =
       ( extensionality-Semigroup
         ( semigroup-Group G)

@@ -80,7 +80,7 @@ module _
       Σ ( Id (pr1 (pr2 x)) (pr1 (pr2 y))) (λ β →
         Id ( pr2 (pr2 x) ∙ β) ( (ap (tr P path-𝕀) α) ∙ pr2 (pr2 y))))
 
-  extensionality-Data-𝕀 : (x y : Data-𝕀 P) → x ＝ y ≃ Eq-Data-𝕀 x y
+  extensionality-Data-𝕀 : (x y : Data-𝕀 P) → (x ＝ y) ≃ Eq-Data-𝕀 x y
   extensionality-Data-𝕀 (pair u (pair v α)) =
     extensionality-Σ
       ( λ {u'} vα' p →

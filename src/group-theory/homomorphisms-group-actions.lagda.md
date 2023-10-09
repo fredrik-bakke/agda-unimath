@@ -159,7 +159,7 @@ module _
 
   extensionality-hom-Abstract-Group-Action :
     (g : hom-Abstract-Group-Action G X Y) →
-    f ＝ g ≃ htpy-hom-Abstract-Group-Action g
+    (f ＝ g) ≃ htpy-hom-Abstract-Group-Action g
   pr1 (extensionality-hom-Abstract-Group-Action g) =
     htpy-eq-hom-Abstract-Group-Action g
   pr2 (extensionality-hom-Abstract-Group-Action g) =

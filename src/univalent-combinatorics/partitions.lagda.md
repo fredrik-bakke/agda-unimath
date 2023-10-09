@@ -166,7 +166,7 @@ pr2 (pr2 (id-equiv-partition-𝔽 X P)) = refl-htpy
 
 extensionality-partition-𝔽 :
   {l1 l2 l3 : Level} (X : 𝔽 l1) (P Q : partition-𝔽 l2 l3 X) →
-  P ＝ Q ≃ equiv-partition-𝔽 X P Q
+  (P ＝ Q) ≃ equiv-partition-𝔽 X P Q
 extensionality-partition-𝔽 X P =
   extensionality-Σ
     ( λ {Y} Zf e →

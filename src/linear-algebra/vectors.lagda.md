@@ -202,7 +202,7 @@ module _
       ( is-section-eq-Eq-vec n u v)
       ( is-retraction-eq-Eq-vec n u v)
 
-  extensionality-vec : (n : ℕ) → (u v : vec A n) → u ＝ v ≃ Eq-vec n u v
+  extensionality-vec : (n : ℕ) → (u v : vec A n) → (u ＝ v) ≃ Eq-vec n u v
   extensionality-vec n u v = (Eq-eq-vec n u v , is-equiv-Eq-eq-vec n u v)
 ```
 

@@ -94,7 +94,7 @@ module _
 
   extensionality-hom-orbit-Monoid-Action :
     {x y : type-Monoid-Action M X} (f g : hom-orbit-Monoid-Action x y) →
-    f ＝ g ≃ htpy-hom-orbit-Monoid-Action f g
+    (f ＝ g) ≃ htpy-hom-orbit-Monoid-Action f g
   pr1 (extensionality-hom-orbit-Monoid-Action f g) =
     htpy-eq-hom-orbit-Monoid-Action f g
   pr2 (extensionality-hom-orbit-Monoid-Action f g) =

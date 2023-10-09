@@ -183,7 +183,7 @@ iso-eq-Ab A .A refl = id-iso-Ab A
 
 abstract
   equiv-iso-eq-Ab' :
-    {l : Level} (A B : Ab l) → A ＝ B ≃ type-iso-Ab A B
+    {l : Level} (A B : Ab l) → (A ＝ B) ≃ type-iso-Ab A B
   equiv-iso-eq-Ab' A B =
     ( extensionality-Group' (group-Ab A) (group-Ab B)) ∘e
     ( equiv-ap-inclusion-subtype is-abelian-group-Prop {A} {B})

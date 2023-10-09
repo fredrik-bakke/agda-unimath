@@ -570,7 +570,7 @@ equiv-𝔽 X Y = type-𝔽 X ≃ type-𝔽 Y
 id-equiv-𝔽 : {l : Level} → (X : 𝔽 l) → equiv-𝔽 X X
 id-equiv-𝔽 X = id-equiv
 
-extensionality-𝔽 : {l : Level} → (X Y : 𝔽 l) → X ＝ Y ≃ equiv-𝔽 X Y
+extensionality-𝔽 : {l : Level} → (X Y : 𝔽 l) → (X ＝ Y) ≃ equiv-𝔽 X Y
 extensionality-𝔽 = extensionality-subuniverse is-finite-Prop
 
 is-contr-total-equiv-𝔽 :
@@ -598,7 +598,7 @@ id-equiv-fam-𝔽 : {l1 l2 : Level} {X : UU l1} → (Y : X → 𝔽 l2) → equi
 id-equiv-fam-𝔽 Y x = id-equiv
 
 extensionality-fam-𝔽 :
-  {l1 l2 : Level} {X : UU l1} (Y Z : X → 𝔽 l2) → Y ＝ Z ≃ equiv-fam-𝔽 Y Z
+  {l1 l2 : Level} {X : UU l1} (Y Z : X → 𝔽 l2) → (Y ＝ Z) ≃ equiv-fam-𝔽 Y Z
 extensionality-fam-𝔽 = extensionality-fam-subuniverse is-finite-Prop
 ```
 
@@ -639,7 +639,7 @@ eq-equiv-UU-Fin k X Y =
 
 equiv-equiv-eq-UU-Fin :
   {l : Level} (k : ℕ) (X Y : UU-Fin l k) →
-  X ＝ Y ≃ equiv-UU-Fin k X Y
+  (X ＝ Y) ≃ equiv-UU-Fin k X Y
 pr1 (equiv-equiv-eq-UU-Fin k X Y) = equiv-eq-UU-Fin k
 pr2 (equiv-equiv-eq-UU-Fin k X Y) = is-equiv-equiv-eq-UU-Fin k X Y
 ```

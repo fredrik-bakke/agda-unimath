@@ -178,7 +178,7 @@ module _
     map-inv-is-equiv (is-equiv-equiv-eq-Torsor-Abstract-Group Y)
 
   extensionality-Torsor-Abstract-Group :
-    (Y : Torsor-Abstract-Group G l2) → X ＝ Y ≃ equiv-Torsor-Abstract-Group Y
+    (Y : Torsor-Abstract-Group G l2) → (X ＝ Y) ≃ equiv-Torsor-Abstract-Group Y
   pr1 (extensionality-Torsor-Abstract-Group Y) =
     equiv-eq-Torsor-Abstract-Group Y
   pr2 (extensionality-Torsor-Abstract-Group Y) =
@@ -234,7 +234,7 @@ module _
 
   extensionality-equiv-Torsor-Abstract-Group :
     (f : equiv-Torsor-Abstract-Group G X Y) →
-    e ＝ f ≃ htpy-equiv-Torsor-Abstract-Group f
+    (e ＝ f) ≃ htpy-equiv-Torsor-Abstract-Group f
   pr1 (extensionality-equiv-Torsor-Abstract-Group f) =
     htpy-eq-equiv-Torsor-Abstract-Group f
   pr2 (extensionality-equiv-Torsor-Abstract-Group f) =

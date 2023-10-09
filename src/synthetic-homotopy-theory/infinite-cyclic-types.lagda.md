@@ -113,7 +113,7 @@ module _
     is-equiv-equiv-eq-Cyclic-Type zero-ℕ X
 
   extensionality-Infinite-Cyclic-Type :
-    (Y : Infinite-Cyclic-Type l1) → X ＝ Y ≃ equiv-Infinite-Cyclic-Type Y
+    (Y : Infinite-Cyclic-Type l1) → (X ＝ Y) ≃ equiv-Infinite-Cyclic-Type Y
   extensionality-Infinite-Cyclic-Type = extensionality-Cyclic-Type zero-ℕ X
 
 module _

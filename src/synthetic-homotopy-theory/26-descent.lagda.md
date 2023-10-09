@@ -596,7 +596,7 @@ is-equiv-equiv-Fam-pushout-eq P =
 equiv-equiv-Fam-pushout :
   {l1 l2 l3 l : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   {f : S → A} {g : S → B} (P Q : Fam-pushout l f g) →
-  P ＝ Q ≃ equiv-Fam-pushout P Q
+  (P ＝ Q) ≃ equiv-Fam-pushout P Q
 equiv-equiv-Fam-pushout P Q =
   pair
     ( equiv-Fam-pushout-eq)
