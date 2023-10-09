@@ -79,7 +79,7 @@ module _
 
   Eq-free-loop : (α α' : free-loop X) → UU l1
   Eq-free-loop (pair x α) α' =
-    Σ (x ＝ base-free-loop α') (λ p → Id (α ∙ p) (p ∙ (loop-free-loop α')))
+    Σ (x ＝ base-free-loop α') (λ p → α ∙ p ＝ p ∙ loop-free-loop α')
 
   refl-Eq-free-loop : (α : free-loop X) → Eq-free-loop α α
   pr1 (refl-Eq-free-loop (pair x α)) = refl
@@ -142,7 +142,7 @@ module _
       is-contr (Σ (free-dependent-loop α P) (Eq-free-dependent-loop p))
     is-contr-total-Eq-free-dependent-loop (pair y p) =
       is-contr-total-Eq-structure
-        ( λ y' p' q → Id (p ∙ q) ((ap (tr P (loop-free-loop α)) q) ∙ p'))
+        ( λ y' p' q → p ∙ q ＝ ap (tr P (loop-free-loop α)) q ∙ p')
         ( is-contr-total-path y)
         ( pair y refl)
         ( is-contr-is-equiv'

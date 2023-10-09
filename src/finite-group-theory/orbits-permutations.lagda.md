@@ -447,7 +447,7 @@ module _
       (h : Fin n ≃ type-UU-Fin n X) (k : ℕ) →
       Σ ( ℕ)
         ( λ j →
-          Id (j +ℕ k) (k *ℕ (pr1 (has-finite-orbits-permutation-a h))))
+          j +ℕ k ＝ k *ℕ (pr1 (has-finite-orbits-permutation-a h)))
     lemma h k =
       subtraction-leq-ℕ
         ( k)
@@ -900,7 +900,7 @@ module _
           Σ ( ℕ)
             ( λ l →
               is-nonzero-ℕ l ×
-              Id (l +ℕ k) (pr1 (minimal-element-iterate g a b pa)))
+              l +ℕ k ＝ (pr1 (minimal-element-iterate g a b pa)))
         pair-k2 =
           (subtraction-le-ℕ k (pr1 (minimal-element-iterate g a b pa)) ineq)
       pr2 (neq-iterate-nonzero-le-minimal-element pa k (pair nz ineq)) r =

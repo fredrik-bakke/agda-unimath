@@ -109,7 +109,7 @@ zero-Eq-ELIM-ℤ :
   ( p0 : P zero-ℤ) (pS : (k : ℤ) → (P k) ≃ (P (succ-ℤ k))) →
   ( s t : ELIM-ℤ P p0 pS) (H : (pr1 s) ~ (pr1 t)) → UU l1
 zero-Eq-ELIM-ℤ P p0 pS s t H =
-  Id (H zero-ℤ) ((pr1 (pr2 s)) ∙ (inv (pr1 (pr2 t))))
+  H zero-ℤ ＝ pr1 (pr2 s) ∙ inv (pr1 (pr2 t))
 
 succ-Eq-ELIM-ℤ :
   { l1 : Level} (P : ℤ → UU l1)

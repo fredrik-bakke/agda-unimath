@@ -84,7 +84,7 @@ module _
   extensionality-Data-𝕀 (pair u (pair v α)) =
     extensionality-Σ
       ( λ {u'} vα' p →
-        Σ (v ＝ pr1 vα') (λ q → Id (α ∙ q) (ap (tr P path-𝕀) p ∙ pr2 vα')))
+        Σ (v ＝ pr1 vα') (λ q → α ∙ q ＝ ap (tr P path-𝕀) p ∙ pr2 vα'))
       ( refl)
       ( pair refl right-unit)
       ( λ u' → id-equiv)
@@ -129,7 +129,7 @@ is-section-inv-ev-𝕀 (pair u (pair v q)) =
 tr-value :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} (f g : (x : A) → B x) {x y : A}
   (p : x ＝ y) (q : f x ＝ g x) (r : f y ＝ g y) →
-  Id (apd f p ∙ r) (ap (tr B p) q ∙ apd g p) →
+  apd f p ∙ r ＝ ap (tr B p) q ∙ apd g p →
   Id (tr (λ x → f x ＝ g x) p q) r
 tr-value f g refl q r s = (inv (ap-id q) ∙ inv right-unit) ∙ inv s
 

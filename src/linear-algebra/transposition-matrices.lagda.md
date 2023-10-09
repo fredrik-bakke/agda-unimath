@@ -57,7 +57,7 @@ is-involution-transpose-matrix {m = succ-ℕ m} (r ∷ rs) =
 
   lemma-rest :
     {l : Level} → {A : UU l} → {m n : ℕ} → (x : vec A n) → (xs : matrix A m n) →
-    Id (transpose-matrix xs) (map-vec tail-vec (transpose-matrix (x ∷ xs)))
+    transpose-matrix xs ＝ map-vec tail-vec (transpose-matrix (x ∷ xs))
   lemma-rest {n = zero-ℕ} empty-vec xs = refl
   lemma-rest {n = succ-ℕ n} (k ∷ ks) xs =
     ap
