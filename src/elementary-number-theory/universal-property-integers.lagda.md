@@ -127,7 +127,7 @@ Eq-ELIM-ℤ :
   ( s t : ELIM-ℤ P p0 pS) → UU l1
 Eq-ELIM-ℤ P p0 pS s t =
   ELIM-ℤ
-    ( λ k → Id (pr1 s k) (pr1 t k))
+    ( λ k → pr1 s k ＝ pr1 t k)
     ( (pr1 (pr2 s)) ∙ (inv (pr1 (pr2 t))))
     ( equiv-comparison-map-Eq-ELIM-ℤ P p0 pS s t)
 
@@ -206,7 +206,7 @@ abstract
     is-prop-all-elements-equal
       ( λ s t → eq-Eq-ELIM-ℤ P p0 pS s t
         ( Elim-ℤ
-          ( λ k → Id (pr1 s k) (pr1 t k))
+          ( λ k → pr1 s k ＝ pr1 t k)
           ( (pr1 (pr2 s)) ∙ (inv (pr1 (pr2 t))))
           ( equiv-comparison-map-Eq-ELIM-ℤ P p0 pS s t)))
 ```

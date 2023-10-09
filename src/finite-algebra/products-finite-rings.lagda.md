@@ -97,7 +97,7 @@ module _
     associative-add-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
   commutative-add-prod-Ring-𝔽 :
-    (x y : type-prod-Ring-𝔽) → Id (add-prod-Ring-𝔽 x y) (add-prod-Ring-𝔽 y x)
+    (x y : type-prod-Ring-𝔽) → add-prod-Ring-𝔽 x y ＝ add-prod-Ring-𝔽 y x
   commutative-add-prod-Ring-𝔽 =
     commutative-add-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 

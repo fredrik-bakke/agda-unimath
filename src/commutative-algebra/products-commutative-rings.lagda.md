@@ -115,7 +115,7 @@ module _
 
   commutative-add-prod-Commutative-Ring :
     (x y : type-prod-Commutative-Ring) →
-    Id (add-prod-Commutative-Ring x y) (add-prod-Commutative-Ring y x)
+    add-prod-Commutative-Ring x y ＝ add-prod-Commutative-Ring y x
   commutative-add-prod-Commutative-Ring =
     commutative-add-prod-Ring
       ( ring-Commutative-Ring R1)

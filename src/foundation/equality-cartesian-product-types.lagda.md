@@ -23,10 +23,9 @@ open import foundation-core.transport-along-identifications
 
 ## Idea
 
-Identifications `Id (pair x y) (pair x' y')` in a cartesian product are
-equivalently described as pairs of identifications `x ＝ x'` and `y ＝ y'`. This
-provides us with a characterization of the identity type of cartesian product
-types.
+Identifications `pair x y ＝ pair x' y'` in a cartesian product are equivalently
+described as pairs of identifications `x ＝ x'` and `y ＝ y'`. This provides us
+with a characterization of the identity type of cartesian product types.
 
 ## Definition
 

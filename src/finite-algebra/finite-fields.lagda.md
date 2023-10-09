@@ -132,7 +132,7 @@ module _
 
   commutative-add-Field-𝔽 :
     (x y : type-Field-𝔽) →
-    Id (add-Field-𝔽 x y) (add-Field-𝔽 y x)
+    add-Field-𝔽 x y ＝ add-Field-𝔽 y x
   commutative-add-Field-𝔽 = commutative-add-Ab ab-Field-𝔽
 
   interchange-add-add-Field-𝔽 :
@@ -277,7 +277,7 @@ module _
 
   ap-mul-Field-𝔽 :
     {x x' y y' : type-Field-𝔽} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Field-𝔽 x y) (mul-Field-𝔽 x' y')
+    mul-Field-𝔽 x y ＝ mul-Field-𝔽 x' y'
   ap-mul-Field-𝔽 p q = ap-binary mul-Field-𝔽 p q
 
   associative-mul-Field-𝔽 :

@@ -1007,8 +1007,8 @@ cone-ap :
       H = pr2 (pr2 c)
   in
   cone
-    ( λ (α : Id (p c1) (p c2)) → (ap f α) ∙ (H c2))
-    ( λ (β : Id (q c1) (q c2)) → (H c1) ∙ (ap g β))
+    ( λ (α : p c1 ＝ p c2) → (ap f α) ∙ (H c2))
+    ( λ (β : q c1 ＝ q c2) → (H c1) ∙ (ap g β))
     ( c1 ＝ c2)
 pr1 (cone-ap f g (pair p (pair q H)) c1 c2) = ap p
 pr1 (pr2 (cone-ap f g (pair p (pair q H)) c1 c2)) = ap q
@@ -1025,8 +1025,8 @@ cone-ap' :
       H = pr2 (pr2 c)
   in
   cone
-    ( λ (α : Id (p c1) (p c2)) → tr (λ t → Id (f (p c1)) t) (H c2) (ap f α))
-    ( λ (β : Id (q c1) (q c2)) → (H c1) ∙ (ap g β))
+    ( λ (α : p c1 ＝ p c2) → tr (λ t → Id (f (p c1)) t) (H c2) (ap f α))
+    ( λ (β : q c1 ＝ q c2) → (H c1) ∙ (ap g β))
     ( c1 ＝ c2)
 pr1 (cone-ap' f g (pair p (pair q H)) c1 c2) = ap p
 pr1 (pr2 (cone-ap' f g (pair p (pair q H)) c1 c2)) = ap q
@@ -1045,9 +1045,9 @@ is-pullback-cone-ap :
       H = pr2 (pr2 c)
   in
   is-pullback
-    ( λ (α : Id (vertical-map-cone f g c c1) (vertical-map-cone f g c c2)) →
+    ( λ (α : vertical-map-cone f g c c1 ＝ vertical-map-cone f g c c2) →
       (ap f α) ∙ (coherence-square-cone f g c c2))
-    ( λ (β : Id (horizontal-map-cone f g c c1) (horizontal-map-cone f g c c2)) →
+    ( λ (β : horizontal-map-cone f g c c1 ＝ horizontal-map-cone f g c c2) →
       (H c1) ∙ (ap g β))
     ( cone-ap f g c c1 c2)
 is-pullback-cone-ap f g (pair p (pair q H)) is-pb-c c1 c2 =

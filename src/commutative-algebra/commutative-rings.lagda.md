@@ -133,7 +133,7 @@ module _
 
   commutative-add-Commutative-Ring :
     (x y : type-Commutative-Ring) →
-    Id (add-Commutative-Ring x y) (add-Commutative-Ring y x)
+    add-Commutative-Ring x y ＝ add-Commutative-Ring y x
   commutative-add-Commutative-Ring = commutative-add-Ab ab-Commutative-Ring
 
   interchange-add-add-Commutative-Ring :
@@ -325,7 +325,7 @@ module _
 
   ap-mul-Commutative-Ring :
     {x x' y y' : type-Commutative-Ring} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Commutative-Ring x y) (mul-Commutative-Ring x' y')
+    mul-Commutative-Ring x y ＝ mul-Commutative-Ring x' y'
   ap-mul-Commutative-Ring p q = ap-binary mul-Commutative-Ring p q
 
   associative-mul-Commutative-Ring :

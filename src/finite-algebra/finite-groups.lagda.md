@@ -108,7 +108,7 @@ module _
 
   ap-mul-Group-𝔽 :
     {x x' y y' : type-Group-𝔽} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Group-𝔽 x y) (mul-Group-𝔽 x' y')
+    mul-Group-𝔽 x y ＝ mul-Group-𝔽 x' y'
   ap-mul-Group-𝔽 = ap-mul-Group group-Group-𝔽
 
   mul-Group-𝔽' : type-Group-𝔽 → type-Group-𝔽 → type-Group-𝔽

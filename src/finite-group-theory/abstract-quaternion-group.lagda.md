@@ -862,7 +862,7 @@ Q8-Group =
       ( pair inv-Q8 (pair left-inverse-law-mul-Q8 right-inverse-law-mul-Q8)))
 
 is-noncommutative-mul-Q8 :
-  ¬ ((x y : Q8) → Id (mul-Q8 x y) (mul-Q8 y x))
+  ¬ ((x y : Q8) → mul-Q8 x y ＝ mul-Q8 y x)
 is-noncommutative-mul-Q8 f = Eq-eq-Q8 (f i-Q8 j-Q8)
 
 map-equiv-count-Q8 : Fin 8 → Q8

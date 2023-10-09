@@ -111,7 +111,7 @@ module _
     right-inverse-law-add-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
   commutative-add-Π-Ring-𝔽 :
-    (x y : type-Π-Ring-𝔽) → Id (add-Π-Ring-𝔽 x y) (add-Π-Ring-𝔽 y x)
+    (x y : type-Π-Ring-𝔽) → add-Π-Ring-𝔽 x y ＝ add-Π-Ring-𝔽 y x
   commutative-add-Π-Ring-𝔽 =
     commutative-add-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 

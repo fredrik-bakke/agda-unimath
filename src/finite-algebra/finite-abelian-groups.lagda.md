@@ -96,7 +96,7 @@ module _
   add-Ab-𝔽' : type-Ab-𝔽 → type-Ab-𝔽 → type-Ab-𝔽
   add-Ab-𝔽' = mul-Group' group-Ab-𝔽
 
-  commutative-add-Ab-𝔽 : (x y : type-Ab-𝔽) → Id (add-Ab-𝔽 x y) (add-Ab-𝔽 y x)
+  commutative-add-Ab-𝔽 : (x y : type-Ab-𝔽) → add-Ab-𝔽 x y ＝ add-Ab-𝔽 y x
   commutative-add-Ab-𝔽 = pr2 A
 
   ab-Ab-𝔽 : Ab l

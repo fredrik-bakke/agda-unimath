@@ -131,7 +131,7 @@ module _
 
   ap-add-Ring-𝔽 :
     {x y x' y' : type-Ring-𝔽 R} →
-    x ＝ x' → y ＝ y' → Id (add-Ring-𝔽 x y) (add-Ring-𝔽 x' y')
+    x ＝ x' → y ＝ y' → add-Ring-𝔽 x y ＝ add-Ring-𝔽 x' y'
   ap-add-Ring-𝔽 = ap-add-Ring (ring-Ring-𝔽 R)
 
   associative-add-Ring-𝔽 :
@@ -144,7 +144,7 @@ module _
     is-group-additive-semigroup-Ring (ring-Ring-𝔽 R)
 
   commutative-add-Ring-𝔽 :
-    (x y : type-Ring-𝔽 R) → Id (add-Ring-𝔽 x y) (add-Ring-𝔽 y x)
+    (x y : type-Ring-𝔽 R) → add-Ring-𝔽 x y ＝ add-Ring-𝔽 y x
   commutative-add-Ring-𝔽 = commutative-add-Ring (ring-Ring-𝔽 R)
 
   interchange-add-add-Ring-𝔽 :
@@ -272,7 +272,7 @@ module _
 
   ap-mul-Ring-𝔽 :
     {x x' y y' : type-Ring-𝔽 R} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Ring-𝔽 x y) (mul-Ring-𝔽 x' y')
+    mul-Ring-𝔽 x y ＝ mul-Ring-𝔽 x' y'
   ap-mul-Ring-𝔽 = ap-mul-Ring (ring-Ring-𝔽 R)
 
   associative-mul-Ring-𝔽 :
