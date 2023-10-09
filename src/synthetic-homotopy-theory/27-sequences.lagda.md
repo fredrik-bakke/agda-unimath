@@ -68,7 +68,7 @@ reflexive-equiv-Seq A =
     ( λ n → refl-htpy)
 
 equiv-eq-Seq :
-  { l1 : Level} (A B : Sequence l1) → Id A B → equiv-Seq A B
+  { l1 : Level} (A B : Sequence l1) → A ＝ B → equiv-Seq A B
 equiv-eq-Seq A .A refl = reflexive-equiv-Seq A
 
 is-contr-total-equiv-Seq :
@@ -94,7 +94,7 @@ is-equiv-equiv-eq-Seq A =
     ( equiv-eq-Seq A)
 
 eq-equiv-Seq :
-  { l1 : Level} {A B : Sequence l1} → equiv-Seq A B → Id A B
+  { l1 : Level} {A B : Sequence l1} → equiv-Seq A B → A ＝ B
 eq-equiv-Seq {A = A} {B} =
   map-inv-is-equiv (is-equiv-equiv-eq-Seq A B)
 ```
@@ -151,7 +151,7 @@ reflexive-htpy-cocone-sequence A c =
 
 htpy-cocone-sequence-eq :
   { l1 l2 : Level} (A : Sequence l1) {X : UU l2} →
-  ( c c' : cocone-sequence A X) → Id c c' → htpy-cocone-sequence A c c'
+  ( c c' : cocone-sequence A X) → c ＝ c' → htpy-cocone-sequence A c c'
 htpy-cocone-sequence-eq A c .c refl =
   reflexive-htpy-cocone-sequence A c
 

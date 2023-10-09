@@ -37,6 +37,6 @@ equiv-species-types {l1} F G = (X : UU l1) → F X ≃ G X
 ```agda
 extensionality-species-types :
   {l1 l2 : Level} (F : species-types l1 l2) (G : species-types l1 l2) →
-  (Id F G) ≃ (equiv-species-types F G)
+  (F ＝ G) ≃ (equiv-species-types F G)
 extensionality-species-types = extensionality-fam
 ```

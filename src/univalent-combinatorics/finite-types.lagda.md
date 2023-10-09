@@ -307,10 +307,10 @@ abstract
     eq-type-subtype
       ( λ k → mere-equiv-Prop (Fin k) X)
       ( apply-universal-property-trunc-Prop K
-        ( pair (Id k l) (is-set-ℕ k l))
+        ( pair (k ＝ l) (is-set-ℕ k l))
         ( λ (e : Fin k ≃ X) →
           apply-universal-property-trunc-Prop L
-            ( pair (Id k l) (is-set-ℕ k l))
+            ( pair (k ＝ l) (is-set-ℕ k l))
             ( λ (f : Fin l ≃ X) → is-injective-Fin ((inv-equiv f) ∘e e))))
 
 abstract
@@ -397,7 +397,7 @@ number-of-elements-𝔽 X = number-of-elements-is-finite (is-finite-type-𝔽 X)
 ```agda
 eq-cardinality :
   {l1 : Level} {k l : ℕ} {A : UU l1} →
-  has-cardinality k A → has-cardinality l A → Id k l
+  has-cardinality k A → has-cardinality l A → k ＝ l
 eq-cardinality H K =
   apply-universal-property-trunc-Prop H
     ( Id-Prop ℕ-Set _ _)
@@ -570,7 +570,7 @@ equiv-𝔽 X Y = type-𝔽 X ≃ type-𝔽 Y
 id-equiv-𝔽 : {l : Level} → (X : 𝔽 l) → equiv-𝔽 X X
 id-equiv-𝔽 X = id-equiv
 
-extensionality-𝔽 : {l : Level} → (X Y : 𝔽 l) → Id X Y ≃ equiv-𝔽 X Y
+extensionality-𝔽 : {l : Level} → (X Y : 𝔽 l) → X ＝ Y ≃ equiv-𝔽 X Y
 extensionality-𝔽 = extensionality-subuniverse is-finite-Prop
 
 is-contr-total-equiv-𝔽 :
@@ -581,10 +581,10 @@ is-contr-total-equiv-𝔽 {l} X =
     ( equiv-tot (extensionality-𝔽 X))
     ( is-contr-total-path X)
 
-equiv-eq-𝔽 : {l : Level} → (X Y : 𝔽 l) → Id X Y → equiv-𝔽 X Y
+equiv-eq-𝔽 : {l : Level} → (X Y : 𝔽 l) → X ＝ Y → equiv-𝔽 X Y
 equiv-eq-𝔽 X Y = map-equiv (extensionality-𝔽 X Y)
 
-eq-equiv-𝔽 : {l : Level} → (X Y : 𝔽 l) → equiv-𝔽 X Y → Id X Y
+eq-equiv-𝔽 : {l : Level} → (X Y : 𝔽 l) → equiv-𝔽 X Y → X ＝ Y
 eq-equiv-𝔽 X Y = map-inv-equiv (extensionality-𝔽 X Y)
 ```
 
@@ -598,7 +598,7 @@ id-equiv-fam-𝔽 : {l1 l2 : Level} {X : UU l1} → (Y : X → 𝔽 l2) → equi
 id-equiv-fam-𝔽 Y x = id-equiv
 
 extensionality-fam-𝔽 :
-  {l1 l2 : Level} {X : UU l1} (Y Z : X → 𝔽 l2) → Id Y Z ≃ equiv-fam-𝔽 Y Z
+  {l1 l2 : Level} {X : UU l1} (Y Z : X → 𝔽 l2) → Y ＝ Z ≃ equiv-fam-𝔽 Y Z
 extensionality-fam-𝔽 = extensionality-fam-subuniverse is-finite-Prop
 ```
 
@@ -614,7 +614,7 @@ id-equiv-UU-Fin :
 id-equiv-UU-Fin X = id-equiv-component-UU-Level X
 
 equiv-eq-UU-Fin :
-  {l : Level} (k : ℕ) {X Y : UU-Fin l k} → Id X Y → equiv-UU-Fin k X Y
+  {l : Level} (k : ℕ) {X Y : UU-Fin l k} → X ＝ Y → equiv-UU-Fin k X Y
 equiv-eq-UU-Fin k p = equiv-eq-component-UU-Level p
 
 abstract
@@ -633,13 +633,13 @@ abstract
 
 eq-equiv-UU-Fin :
   {l : Level} (k : ℕ) (X Y : UU-Fin l k) →
-  equiv-UU-Fin k X Y → Id X Y
+  equiv-UU-Fin k X Y → X ＝ Y
 eq-equiv-UU-Fin k X Y =
   eq-equiv-component-UU-Level X Y
 
 equiv-equiv-eq-UU-Fin :
   {l : Level} (k : ℕ) (X Y : UU-Fin l k) →
-  Id X Y ≃ equiv-UU-Fin k X Y
+  X ＝ Y ≃ equiv-UU-Fin k X Y
 pr1 (equiv-equiv-eq-UU-Fin k X Y) = equiv-eq-UU-Fin k
 pr2 (equiv-equiv-eq-UU-Fin k X Y) = is-equiv-equiv-eq-UU-Fin k X Y
 ```

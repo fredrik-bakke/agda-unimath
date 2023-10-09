@@ -63,7 +63,7 @@ id-equiv-cube :
 id-equiv-cube k X = pair id-equiv (λ x → id-equiv)
 
 equiv-eq-cube :
-  (k : ℕ) {X Y : cube k} → Id X Y → equiv-cube k X Y
+  (k : ℕ) {X Y : cube k} → X ＝ Y → equiv-cube k X Y
 equiv-eq-cube k {X} refl = id-equiv-cube k X
 
 is-contr-total-equiv-cube :
@@ -89,7 +89,7 @@ is-equiv-equiv-eq-cube k X =
     ( λ Y → equiv-eq-cube k {X = X} {Y})
 
 eq-equiv-cube :
-  (k : ℕ) (X Y : cube k) → equiv-cube k X Y → Id X Y
+  (k : ℕ) (X Y : cube k) → equiv-cube k X Y → X ＝ Y
 eq-equiv-cube k X Y =
   map-inv-is-equiv (is-equiv-equiv-eq-cube k X Y)
 
@@ -114,7 +114,7 @@ refl-htpy-equiv-cube k X Y e = pair refl-htpy (λ d → refl-htpy)
 
 htpy-eq-equiv-cube :
   (k : ℕ) (X Y : cube k) (e f : equiv-cube k X Y) →
-  Id e f → htpy-equiv-cube k X Y e f
+  e ＝ f → htpy-equiv-cube k X Y e f
 htpy-eq-equiv-cube k X Y e .e refl = refl-htpy-equiv-cube k X Y e
 
 is-contr-total-htpy-equiv-cube :
@@ -142,7 +142,7 @@ is-equiv-htpy-eq-equiv-cube k X Y e =
 
 eq-htpy-equiv-cube :
   (k : ℕ) (X Y : cube k) (e f : equiv-cube k X Y) →
-  htpy-equiv-cube k X Y e f → Id e f
+  htpy-equiv-cube k X Y e f → e ＝ f
 eq-htpy-equiv-cube k X Y e f =
   map-inv-is-equiv (is-equiv-htpy-eq-equiv-cube k X Y e f)
 ```

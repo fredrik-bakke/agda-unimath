@@ -260,7 +260,7 @@ module _
 
   abstract
     not-not-eq-second-point-zero-min-reporting :
-      ¬¬ (Id second-point-min-repeating zero-ℕ)
+      ¬¬ (second-point-min-repeating ＝ zero-ℕ)
     not-not-eq-second-point-zero-min-reporting np =
       contradiction-le-ℕ
         ( pred-first)
@@ -318,7 +318,7 @@ module _
       equality-pred-second = pr2 is-successor-second-point-min-repeating
 
   has-finite-orbits-permutation' :
-    is-decidable (Id second-point-min-repeating zero-ℕ) →
+    is-decidable (second-point-min-repeating ＝ zero-ℕ) →
     Σ ℕ (λ k → (is-nonzero-ℕ k) × Id (iterate k (map-equiv f) a) a)
   pr1 (has-finite-orbits-permutation' (inl p)) = first-point-min-repeating
   pr1 (pr2 (has-finite-orbits-permutation' (inl p))) =
@@ -370,7 +370,7 @@ module _
       ( has-decidable-equality-ℕ second-point-min-repeating zero-ℕ)
     where
     cases-second-point :
-      is-decidable (Id second-point-min-repeating zero-ℕ) →
+      is-decidable (second-point-min-repeating ＝ zero-ℕ) →
       (pr1 has-finite-orbits-permutation) ≤-ℕ (number-of-elements-count eX)
     cases-second-point (inl p) =
       tr
@@ -612,7 +612,7 @@ module _
         Id T1 (class same-orbits-permutation t1) →
         is-decidable
           ( is-in-equivalence-class same-orbits-permutation T2 t1) →
-        is-decidable (Id T1 T2)
+        is-decidable (T1 ＝ T2)
       cases-decidable-equality T1 T2 t1 p1 (inl p) =
         inl
           ( ( p1) ∙
@@ -734,7 +734,7 @@ module _
           ( b))
       where
       induction-cases-equal-iterate-transposition :
-        is-decidable (Id k zero-ℕ) →
+        is-decidable (k ＝ zero-ℕ) →
         Id
           ( iterate k (map-equiv (composition-transposition-a-b g)) x)
           ( iterate k (map-equiv g) x)

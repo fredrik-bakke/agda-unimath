@@ -50,7 +50,7 @@ postulate 𝕊¹ : UU lzero
 
 postulate base-𝕊¹ : 𝕊¹
 
-postulate loop-𝕊¹ : Id base-𝕊¹ base-𝕊¹
+postulate loop-𝕊¹ : base-𝕊¹ ＝ base-𝕊¹
 
 free-loop-𝕊¹ : free-loop 𝕊¹
 pr1 free-loop-𝕊¹ = base-𝕊¹
@@ -137,7 +137,7 @@ uniqueness-universal-property-𝕊¹ {l} {X} =
   uniqueness-universal-property-circle free-loop-𝕊¹ universal-property-𝕊¹ X
 
 module _
-  {l : Level} {X : UU l} (x : X) (α : Id x x)
+  {l : Level} {X : UU l} (x : X) (α : x ＝ x)
   where
 
   Map-𝕊¹ : UU l

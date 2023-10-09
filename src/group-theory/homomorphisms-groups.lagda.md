@@ -100,7 +100,7 @@ module _
       ( semigroup-Group G)
       ( semigroup-Group H)
 
-  htpy-eq-hom-Group : (f g : hom-Group G H) → Id f g → htpy-hom-Group f g
+  htpy-eq-hom-Group : (f g : hom-Group G H) → f ＝ g → htpy-hom-Group f g
   htpy-eq-hom-Group =
     htpy-eq-hom-Semigroup
       ( semigroup-Group G)
@@ -124,11 +124,11 @@ module _
         ( semigroup-Group H)
 
   extensionality-hom-Group :
-    (f g : hom-Group G H) → Id f g ≃ htpy-hom-Group f g
+    (f g : hom-Group G H) → f ＝ g ≃ htpy-hom-Group f g
   pr1 (extensionality-hom-Group f g) = htpy-eq-hom-Group f g
   pr2 (extensionality-hom-Group f g) = is-equiv-htpy-eq-hom-Group f g
 
-  eq-htpy-hom-Group : {f g : hom-Group G H} → htpy-hom-Group f g → Id f g
+  eq-htpy-hom-Group : {f g : hom-Group G H} → htpy-hom-Group f g → f ＝ g
   eq-htpy-hom-Group =
     eq-htpy-hom-Semigroup (semigroup-Group G) (semigroup-Group H)
 

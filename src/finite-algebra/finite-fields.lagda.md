@@ -276,7 +276,7 @@ module _
   mul-Field-𝔽' = mul-Ring-𝔽' finite-ring-Field-𝔽
 
   ap-mul-Field-𝔽 :
-    {x x' y y' : type-Field-𝔽} (p : Id x x') (q : Id y y') →
+    {x x' y y' : type-Field-𝔽} (p : x ＝ x') (q : y ＝ y') →
     Id (mul-Field-𝔽 x y) (mul-Field-𝔽 x' y')
   ap-mul-Field-𝔽 p q = ap-binary mul-Field-𝔽 p q
 

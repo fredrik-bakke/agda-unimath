@@ -273,10 +273,10 @@ example was addapted from
             ( 𝓁 ∷ 𝒯 ∷ hidden-Arg l ∷ hidden-Arg r ∷ visible-Arg p ∷ nil)))
 
   module _ (a b : ℕ) (p : a ＝ b) where
-    ex3 : Id a b
+    ex3 : a ＝ b
     ex3 = try-path! p
 
-    ex4 : Id b a
+    ex4 : b ＝ a
     ex4 = try-path! p
 ```
 

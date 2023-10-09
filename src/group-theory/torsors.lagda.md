@@ -149,7 +149,7 @@ module _
     id-equiv-Abstract-Group-Action G (action-Torsor-Abstract-Group G X)
 
   equiv-eq-Torsor-Abstract-Group :
-    (Y : Torsor-Abstract-Group G l2) → Id X Y → equiv-Torsor-Abstract-Group Y
+    (Y : Torsor-Abstract-Group G l2) → X ＝ Y → equiv-Torsor-Abstract-Group Y
   equiv-eq-Torsor-Abstract-Group .X refl =
     id-equiv-Torsor-Abstract-Group
 
@@ -173,12 +173,12 @@ module _
       equiv-eq-Torsor-Abstract-Group
 
   eq-equiv-Torsor-Abstract-Group :
-    (Y : Torsor-Abstract-Group G l2) → equiv-Torsor-Abstract-Group Y → Id X Y
+    (Y : Torsor-Abstract-Group G l2) → equiv-Torsor-Abstract-Group Y → X ＝ Y
   eq-equiv-Torsor-Abstract-Group Y =
     map-inv-is-equiv (is-equiv-equiv-eq-Torsor-Abstract-Group Y)
 
   extensionality-Torsor-Abstract-Group :
-    (Y : Torsor-Abstract-Group G l2) → Id X Y ≃ equiv-Torsor-Abstract-Group Y
+    (Y : Torsor-Abstract-Group G l2) → X ＝ Y ≃ equiv-Torsor-Abstract-Group Y
   pr1 (extensionality-Torsor-Abstract-Group Y) =
     equiv-eq-Torsor-Abstract-Group Y
   pr2 (extensionality-Torsor-Abstract-Group Y) =
@@ -210,7 +210,7 @@ module _
 
   htpy-eq-equiv-Torsor-Abstract-Group :
     (f : equiv-Torsor-Abstract-Group G X Y) →
-    Id e f → htpy-equiv-Torsor-Abstract-Group f
+    e ＝ f → htpy-equiv-Torsor-Abstract-Group f
   htpy-eq-equiv-Torsor-Abstract-Group .e refl =
     refl-htpy-equiv-Torsor-Abstract-Group
 
@@ -234,7 +234,7 @@ module _
 
   extensionality-equiv-Torsor-Abstract-Group :
     (f : equiv-Torsor-Abstract-Group G X Y) →
-    Id e f ≃ htpy-equiv-Torsor-Abstract-Group f
+    e ＝ f ≃ htpy-equiv-Torsor-Abstract-Group f
   pr1 (extensionality-equiv-Torsor-Abstract-Group f) =
     htpy-eq-equiv-Torsor-Abstract-Group f
   pr2 (extensionality-equiv-Torsor-Abstract-Group f) =
@@ -242,7 +242,7 @@ module _
 
   eq-htpy-equiv-Torsor-Abstract-Group :
     (f : equiv-Torsor-Abstract-Group G X Y) →
-    htpy-equiv-Torsor-Abstract-Group f → Id e f
+    htpy-equiv-Torsor-Abstract-Group f → e ＝ f
   eq-htpy-equiv-Torsor-Abstract-Group f =
     map-inv-is-equiv (is-equiv-htpy-eq-equiv-Torsor-Abstract-Group f)
 ```
@@ -391,7 +391,7 @@ module _
 
   preserves-mul-equiv-eq-Torsor-Abstract-Group :
     {l2 : Level} (X Y Z : Torsor-Abstract-Group G l2)
-    (p : Id X Y) (q : Id Y Z) →
+    (p : X ＝ Y) (q : Y ＝ Z) →
     Id
       ( equiv-eq-Torsor-Abstract-Group G X Z (p ∙ q))
       ( comp-equiv-Torsor-Abstract-Group G X Y Z

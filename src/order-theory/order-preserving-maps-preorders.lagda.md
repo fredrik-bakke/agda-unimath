@@ -88,7 +88,7 @@ module _
   refl-htpy-hom-Preorder f = refl-htpy
 
   htpy-eq-hom-Preorder :
-    (f g : hom-Preorder P Q) → Id f g → htpy-hom-Preorder f g
+    (f g : hom-Preorder P Q) → f ＝ g → htpy-hom-Preorder f g
   htpy-eq-hom-Preorder f .f refl = refl-htpy-hom-Preorder f
 
   is-contr-total-htpy-hom-Preorder :
@@ -110,12 +110,12 @@ module _
       ( htpy-eq-hom-Preorder f)
 
   extensionality-hom-Preorder :
-    (f g : hom-Preorder P Q) → Id f g ≃ htpy-hom-Preorder f g
+    (f g : hom-Preorder P Q) → f ＝ g ≃ htpy-hom-Preorder f g
   pr1 (extensionality-hom-Preorder f g) = htpy-eq-hom-Preorder f g
   pr2 (extensionality-hom-Preorder f g) = is-equiv-htpy-eq-hom-Preorder f g
 
   eq-htpy-hom-Preorder :
-    (f g : hom-Preorder P Q) → htpy-hom-Preorder f g → Id f g
+    (f g : hom-Preorder P Q) → htpy-hom-Preorder f g → f ＝ g
   eq-htpy-hom-Preorder f g =
     map-inv-is-equiv (is-equiv-htpy-eq-hom-Preorder f g)
 ```

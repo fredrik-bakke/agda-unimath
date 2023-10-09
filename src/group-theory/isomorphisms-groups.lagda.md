@@ -226,11 +226,11 @@ module _
   {l : Level} (G : Group l)
   where
 
-  iso-eq-Group : (H : Group l) → Id G H → type-iso-Group G H
+  iso-eq-Group : (H : Group l) → G ＝ H → type-iso-Group G H
   iso-eq-Group = iso-eq-Large-Precategory Group-Large-Precategory G
 
   abstract
-    extensionality-Group' : (H : Group l) → Id G H ≃ type-iso-Group G H
+    extensionality-Group' : (H : Group l) → G ＝ H ≃ type-iso-Group G H
     extensionality-Group' H =
       ( extensionality-Semigroup
         ( semigroup-Group G)

@@ -75,7 +75,7 @@ left-unit-law-horizontal-concat-Ω² {α = α} =
   ( left-unit-law-horizontal-concat-Id² α) ∙ (ap-id α)
 
 naturality-right-unit :
-  {l : Level} {A : UU l} {x y : A} {p q : Id x y} (α : Id p q) →
+  {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} (α : p ＝ q) →
   Id (ap (concat' x refl) α ∙ right-unit) (right-unit ∙ α)
 naturality-right-unit {p = refl} refl = refl
 

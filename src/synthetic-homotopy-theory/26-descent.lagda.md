@@ -338,7 +338,7 @@ computes to `refl-htpy`.
 ```agda
 tr-id-left-subst :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} {f : A → B} {x y : A}
-  (p : Id x y) (b : B) → (q : Id (f x) b) →
+  (p : x ＝ y) (b : B) → (q : Id (f x) b) →
   Id (tr (λ (a : A) → Id (f a) b) p q) ((inv (ap f p)) ∙ q)
 tr-id-left-subst refl b q = refl
 
@@ -555,7 +555,7 @@ reflexive-equiv-Fam-pushout (pair PA (pair PB PS)) =
 equiv-Fam-pushout-eq :
   {l1 l2 l3 l : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   {f : S → A} {g : S → B} {P Q : Fam-pushout l f g} →
-  Id P Q → equiv-Fam-pushout P Q
+  P ＝ Q → equiv-Fam-pushout P Q
 equiv-Fam-pushout-eq {P = P} {.P} refl =
   reflexive-equiv-Fam-pushout P
 
@@ -596,7 +596,7 @@ is-equiv-equiv-Fam-pushout-eq P =
 equiv-equiv-Fam-pushout :
   {l1 l2 l3 l : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   {f : S → A} {g : S → B} (P Q : Fam-pushout l f g) →
-  Id P Q ≃ equiv-Fam-pushout P Q
+  P ＝ Q ≃ equiv-Fam-pushout P Q
 equiv-equiv-Fam-pushout P Q =
   pair
     ( equiv-Fam-pushout-eq)
@@ -605,7 +605,7 @@ equiv-equiv-Fam-pushout P Q =
 eq-equiv-Fam-pushout :
   {l1 l2 l3 l : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   {f : S → A} {g : S → B} {P Q : Fam-pushout l f g} →
-  (equiv-Fam-pushout P Q) → Id P Q
+  (equiv-Fam-pushout P Q) → P ＝ Q
 eq-equiv-Fam-pushout {P = P} {Q} =
   map-inv-is-equiv (is-equiv-equiv-Fam-pushout-eq P Q)
 
@@ -665,7 +665,7 @@ is-equiv-Fam-pushout-cocone-UU l {f = f} {g} =
             ( λ s → univalence (PA (f s)) (PB (g s)))))
 
 htpy-equiv-eq-ap-fam :
-  {l1 l2 : Level} {A : UU l1} (B : A → UU l2) {x y : A} (p : Id x y) →
+  {l1 l2 : Level} {A : UU l1} (B : A → UU l2) {x y : A} (p : x ＝ y) →
   htpy-equiv (equiv-tr B p) (equiv-eq (ap B p))
 htpy-equiv-eq-ap-fam B {x} {.x} refl =
   refl-htpy-equiv id-equiv
@@ -815,7 +815,7 @@ cocone-flattening-pushout f g c P Q e =
 {-
 coherence-bottom-flattening-lemma' :
   {l1 l2 l3 : Level} {B : UU l1} {Q : B → UU l2} {T : UU l3}
-  {b b' : B} (α : Id b b') {y : Q b} {y' : Q b'} (β : Id (tr Q α y) y')
+  {b b' : B} (α : b ＝ b') {y : Q b} {y' : Q b'} (β : Id (tr Q α y) y')
   (h : (b : B) → Q b → T) → Id (h b y) (h b' y')
 coherence-bottom-flattening-lemma' refl refl h = refl
 

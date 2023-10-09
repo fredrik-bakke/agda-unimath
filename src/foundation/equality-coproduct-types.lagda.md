@@ -32,7 +32,7 @@ open import foundation-core.truncation-levels
 
 ## Idea
 
-In order to construct an identification `Id x y` in a coproduct `coprod A B`,
+In order to construct an identification `x ＝ y` in a coproduct `coprod A B`,
 both `x` and `y` must be of the form `inl _` or of the form `inr _`. If that is
 the case, then an identification can be constructed by constructin an
 identification in A or in B, according to the case. This leads to the
@@ -53,7 +53,7 @@ module _
 
 ## Properties
 
-### The type `Eq-coprod x y` is equivalent to `Id x y`
+### The type `Eq-coprod x y` is equivalent to `x ＝ y`
 
 We will use the fundamental theorem of identity types.
 

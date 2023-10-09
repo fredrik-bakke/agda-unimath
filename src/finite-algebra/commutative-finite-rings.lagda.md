@@ -308,7 +308,7 @@ module _
   mul-Commutative-Ring-𝔽' = mul-Ring-𝔽' finite-ring-Commutative-Ring-𝔽
 
   ap-mul-Commutative-Ring-𝔽 :
-    {x x' y y' : type-Commutative-Ring-𝔽} (p : Id x x') (q : Id y y') →
+    {x x' y y' : type-Commutative-Ring-𝔽} (p : x ＝ x') (q : y ＝ y') →
     Id (mul-Commutative-Ring-𝔽 x y) (mul-Commutative-Ring-𝔽 x' y')
   ap-mul-Commutative-Ring-𝔽 p q = ap-binary mul-Commutative-Ring-𝔽 p q
 

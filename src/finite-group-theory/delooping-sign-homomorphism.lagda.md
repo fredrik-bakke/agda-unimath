@@ -304,7 +304,7 @@ module _
     ( X Y : UU l1) →
     ( eX : mere-equiv (Fin (n +ℕ 2)) X) →
     ( eY : mere-equiv (Fin (n +ℕ 2)) Y) →
-    Id X Y →
+    X ＝ Y →
     Id
       ( equivalence-class (R (n +ℕ 2) (X , eX)))
       ( equivalence-class (R (n +ℕ 2) (Y , eY)))
@@ -356,7 +356,7 @@ module _
       ( X Y : UU l1)
       ( eX : mere-equiv (Fin (n +ℕ 2)) X)
       ( eY : mere-equiv (Fin (n +ℕ 2)) Y)
-      ( p : Id X Y) →
+      ( p : X ＝ Y) →
       ( Id (tr (mere-equiv (Fin (n +ℕ 2))) p eX) eY) →
       ( sX : is-set X)
       ( sY : is-set Y) →

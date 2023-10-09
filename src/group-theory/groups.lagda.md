@@ -105,7 +105,7 @@ module _
   mul-Group = pr1 has-associative-mul-Group
 
   ap-mul-Group :
-    {x x' y y' : type-Group} (p : Id x x') (q : Id y y') →
+    {x x' y y' : type-Group} (p : x ＝ x') (q : y ＝ y') →
     Id (mul-Group x y) (mul-Group x' y')
   ap-mul-Group p q = ap-binary mul-Group p q
 
@@ -131,7 +131,7 @@ module _
   unit-Group = pr1 is-unital-Group
 
   is-unit-Group : type-Group → UU l
-  is-unit-Group x = Id x unit-Group
+  is-unit-Group x = x ＝ unit-Group
 
   is-prop-is-unit-Group : (x : type-Group) → is-prop (is-unit-Group x)
   is-prop-is-unit-Group x = is-set-type-Group x unit-Group

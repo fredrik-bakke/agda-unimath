@@ -131,26 +131,26 @@ second version.
 
 This version of the Eckmann-Hilton argument makes more salient the connection
 between the Eckmann-Hilton argument and the 2-D descent data of a fibration. For
-now, consider the family of based path spaces `Id base : X → UU`. A 1-loop `l`
+now, consider the family of based path spaces `base ＝ : X → UU`. A 1-loop `l`
 induces an autoequivalence `Ω X ≃ Ω X` given by concatinating on the right by
 `l`. This is shown in
 [`tr-Id-right`](https://unimath.github.io/agda-unimath/foundation.identity-types.html#11216).
 A 2-loop `s` induces a homotpy `id {A = Ω X} ~ id` given by
 [`htpy-identification-left-whisk`](https://unimath.github.io/agda-unimath/foundation.path-algebra.html#7977).
-This claim is shown in TODO (provide link). Thus, the 2-D descent data of
-`Id base` is (up to equivalence) exactly the homotopy at the heart of this
-version of the Eckmann-Hilton argument.
+This claim is shown in TODO (provide link). Thus, the 2-D descent data of `base`
+＝ is (up to equivalence) exactly the homotopy at the heart of this version of
+the Eckmann-Hilton argument.
 
 Recall that homotpies of type `id ~ id` automatically commute with each other
 via
 [`eckmann-hilton-htpy`](https://unimath.github.io/agda-unimath/foundation.homotopies.html#8218).
 This identification is constructed using the naturality condition of the two
-homotopies involved. Thus, in the case of `Id base`, we can see a very close
+homotopies involved. Thus, in the case of `base`, ＝ we can see a very close
 correspondence between the Eckmann-Hilton identification of 2-loops in the base
 type `X` and the Eckmann-Hilton identification of the homotopies induced by said
 2-loops.
 
-Of course `Id base` is a special type family. But this idea generalizes
+Of course `base` ＝ is a special type family. But this idea generalizes
 nonetheless. Given a type family `B : X → UU`, any 2-loops `α β : Ω X` induce
 homotopies `tr² B α` and `tr² B β` of type `id {A = B base} ~ id`. Again, these
 homotpies automatically commute with each other via their naturality conditions.

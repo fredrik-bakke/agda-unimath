@@ -85,21 +85,21 @@ bool-aut-bool :
 bool-aut-bool e = map-equiv e true
 
 decide-true-false :
-  (b : bool) → coprod (Id b true) (Id b false)
+  (b : bool) → coprod (b ＝ true) (b ＝ false)
 decide-true-false true = inl refl
 decide-true-false false = inr refl
 
 eq-false :
-  (b : bool) → (b ≠ true) → (Id b false)
+  (b : bool) → (b ≠ true) → (b ＝ false)
 eq-false true p = ind-empty (p refl)
 eq-false false p = refl
 
 eq-true :
-  (b : bool) → (b ≠ false) → Id b true
+  (b : bool) → (b ≠ false) → b ＝ true
 eq-true true p = refl
 eq-true false p = ind-empty (p refl)
 
-Eq-𝟚-eq : (x y : bool) → Id x y → Eq-𝟚 x y
+Eq-𝟚-eq : (x y : bool) → x ＝ y → Eq-𝟚 x y
 Eq-𝟚-eq x .x refl = reflexive-Eq-𝟚 x
 
 eq-false-equiv' :

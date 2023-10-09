@@ -39,7 +39,7 @@ data Fin : ℕ → UU lzero where
   zero-Fin : ∀ {n} → Fin (succ-ℕ n)
   succ-Fin : ∀ {n} → Fin n → Fin (succ-ℕ n)
 
-finEq : ∀ {n} → (a b : Fin n) → is-decidable (Id a b)
+finEq : ∀ {n} → (a b : Fin n) → is-decidable (a ＝ b)
 finEq zero-Fin zero-Fin = inl refl
 finEq zero-Fin (succ-Fin b) = inr (λ ())
 finEq (succ-Fin a) zero-Fin = inr (λ ())

@@ -87,7 +87,7 @@ its homotopy groups up to level `n` at all base points are finite.
 is-locally-finite-Prop :
   {l : Level} → UU l → Prop l
 is-locally-finite-Prop A =
-  Π-Prop A (λ x → Π-Prop A (λ y → is-finite-Prop (Id x y)))
+  Π-Prop A (λ x → Π-Prop A (λ y → is-finite-Prop (x ＝ y)))
 
 is-locally-finite : {l : Level} → UU l → UU l
 is-locally-finite A = type-Prop (is-locally-finite-Prop A)
@@ -106,7 +106,7 @@ is-truncated-π-finite-Prop (succ-ℕ k) X =
   prod-Prop
     ( is-finite-Prop (type-trunc-Set X))
     ( Π-Prop X
-      ( λ x → Π-Prop X (λ y → is-truncated-π-finite-Prop k (Id x y))))
+      ( λ x → Π-Prop X (λ y → is-truncated-π-finite-Prop k (x ＝ y))))
 
 is-truncated-π-finite : {l : Level} (k : ℕ) → UU l → UU l
 is-truncated-π-finite k A =
@@ -145,7 +145,7 @@ is-π-finite-Prop zero-ℕ X = has-finite-connected-components-Prop X
 is-π-finite-Prop (succ-ℕ k) X =
   prod-Prop ( is-π-finite-Prop zero-ℕ X)
             ( Π-Prop X
-              ( λ x → Π-Prop X (λ y → is-π-finite-Prop k (Id x y))))
+              ( λ x → Π-Prop X (λ y → is-π-finite-Prop k (x ＝ y))))
 
 is-π-finite : {l : Level} (k : ℕ) → UU l → UU l
 is-π-finite k X = type-Prop (is-π-finite-Prop k X)
@@ -612,7 +612,7 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
               ( mere-eq-Prop (x , y) (x' , y')))
               ( δ))
         where
-        δ : Id a x → is-decidable (mere-eq (x , y) (x' , y'))
+        δ : a ＝ x → is-decidable (mere-eq (x , y) (x' , y'))
         δ refl =
           apply-universal-property-trunc-Prop
             ( mere-eq-is-0-connected C a x')
@@ -620,7 +620,7 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
               ( mere-eq-Prop (a , y) (x' , y')))
             ( ε)
           where
-          ε : Id a x' → is-decidable (mere-eq (x , y) (x' , y'))
+          ε : a ＝ x' → is-decidable (mere-eq (x , y) (x' , y'))
           ε refl =
             is-decidable-equiv e
               ( is-decidable-type-trunc-Prop-is-finite
@@ -629,22 +629,22 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
                   ( λ ω → is-finite-is-decidable-Prop (P ω) (d ω))))
             where
             ℙ : is-contr
-                ( Σ ( type-hom-Set (trunc-Set (Id a a)) (Prop-Set _))
+                ( Σ ( type-hom-Set (trunc-Set (a ＝ a)) (Prop-Set _))
                     ( λ h →
                       ( λ a₁ → h (unit-trunc-Set a₁)) ~
                       ( λ ω₁ → trunc-Prop (Id (tr B ω₁ y) y'))))
             ℙ = universal-property-trunc-Set
-                ( Id a a)
+                ( a ＝ a)
                 ( Prop-Set _)
                 ( λ ω → trunc-Prop (Id (tr B ω y) y'))
-            P : type-trunc-Set (Id a a) → Prop _
+            P : type-trunc-Set (a ＝ a) → Prop _
             P = pr1 (center ℙ)
             compute-P :
-              ( ω : Id a a) →
+              ( ω : a ＝ a) →
               type-Prop (P (unit-trunc-Set ω)) ≃
               type-trunc-Prop (Id (tr B ω y) y')
             compute-P ω = equiv-eq (ap pr1 (pr2 (center ℙ) ω))
-            d : (t : type-trunc-Set (Id a a)) → is-decidable (type-Prop (P t))
+            d : (t : type-trunc-Set (a ＝ a)) → is-decidable (type-Prop (P t))
             d = apply-dependent-universal-property-trunc-Set'
                 ( λ t → set-Prop (is-decidable-Prop (P t)))
                 ( λ ω →
@@ -657,7 +657,7 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
                         ( unit-trunc-Set (tr B ω y))
                         ( unit-trunc-Set y'))))
             f : type-hom-Prop
-                ( trunc-Prop (Σ (type-trunc-Set (Id a a)) (type-Prop ∘ P)))
+                ( trunc-Prop (Σ (type-trunc-Set (a ＝ a)) (type-Prop ∘ P)))
                 ( mere-eq-Prop {A = Σ A B} (a , y) (a , y'))
             f t = apply-universal-property-trunc-Prop t
                     ( mere-eq-Prop (a , y) (a , y'))
@@ -676,10 +676,10 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
                         ( u)
                         ( v)
             e : mere-eq {A = Σ A B} (a , y) (a , y') ≃
-                type-trunc-Prop (Σ (type-trunc-Set (Id a a)) (type-Prop ∘ P))
+                type-trunc-Prop (Σ (type-trunc-Set (a ＝ a)) (type-Prop ∘ P))
             e = equiv-iff
                   ( mere-eq-Prop (a , y) (a , y'))
-                  ( trunc-Prop (Σ (type-trunc-Set (Id a a)) (type-Prop ∘ P)))
+                  ( trunc-Prop (Σ (type-trunc-Set (a ＝ a)) (type-Prop ∘ P)))
                   ( λ t →
                     apply-universal-property-trunc-Prop t
                       ( trunc-Prop _)
@@ -810,7 +810,7 @@ abstract
   has-finite-connected-components-Σ' :
     {l1 l2 : Level} {A : UU l1} {B : A → UU l2} →
     (k : ℕ) → (Fin k ≃ (type-trunc-Set A)) →
-    ((x y : A) → has-finite-connected-components (Id x y)) →
+    ((x y : A) → has-finite-connected-components (x ＝ y)) →
     ((x : A) → has-finite-connected-components (B x)) →
     has-finite-connected-components (Σ A B)
   has-finite-connected-components-Σ' zero-ℕ e H K =

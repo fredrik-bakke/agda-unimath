@@ -159,7 +159,7 @@ module _
     right-unit-law-mul-Monoid (monoid-Commutative-Monoid M)
 
   is-unit-Commutative-Monoid : type-Commutative-Monoid M → UU l
-  is-unit-Commutative-Monoid x = Id x unit-Commutative-Monoid
+  is-unit-Commutative-Monoid x = x ＝ unit-Commutative-Monoid
 
   is-unit-monoid-Prop : type-Commutative-Monoid M → Prop l
   is-unit-monoid-Prop x =

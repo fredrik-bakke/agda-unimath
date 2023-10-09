@@ -506,7 +506,7 @@ abstract
     let tr-c = tr (λ x → cone x g C) (eq-htpy Hf) c
         tr-tr-c = tr (λ y → cone f' y C) (eq-htpy Hg) tr-c
     in
-    Id tr-tr-c c' → htpy-parallel-cone Hf Hg c c'
+    tr-tr-c ＝ c' → htpy-parallel-cone Hf Hg c c'
   htpy-parallel-cone-eq {A = A} {B} {X} {C} {f} {f'} Hf {g} {g'} Hg c c' p =
     ind-htpy f
     ( λ f'' Hf' →
@@ -579,7 +579,7 @@ eq-htpy-parallel-cone :
   let tr-c = tr (λ x → cone x g C) (eq-htpy Hf) c
       tr-tr-c = tr (λ y → cone f' y C) (eq-htpy Hg) tr-c
   in
-  htpy-parallel-cone Hf Hg c c' → Id tr-tr-c c'
+  htpy-parallel-cone Hf Hg c c' → tr-tr-c ＝ c'
 eq-htpy-parallel-cone Hf Hg c c' =
   map-inv-is-equiv
     { f = htpy-parallel-cone-eq Hf Hg c c'}
@@ -1009,7 +1009,7 @@ cone-ap :
   cone
     ( λ (α : Id (p c1) (p c2)) → (ap f α) ∙ (H c2))
     ( λ (β : Id (q c1) (q c2)) → (H c1) ∙ (ap g β))
-    ( Id c1 c2)
+    ( c1 ＝ c2)
 pr1 (cone-ap f g (pair p (pair q H)) c1 c2) = ap p
 pr1 (pr2 (cone-ap f g (pair p (pair q H)) c1 c2)) = ap q
 pr2 (pr2 (cone-ap f g (pair p (pair q H)) c1 c2)) γ =
@@ -1027,7 +1027,7 @@ cone-ap' :
   cone
     ( λ (α : Id (p c1) (p c2)) → tr (λ t → Id (f (p c1)) t) (H c2) (ap f α))
     ( λ (β : Id (q c1) (q c2)) → (H c1) ∙ (ap g β))
-    ( Id c1 c2)
+    ( c1 ＝ c2)
 pr1 (cone-ap' f g (pair p (pair q H)) c1 c2) = ap p
 pr1 (pr2 (cone-ap' f g (pair p (pair q H)) c1 c2)) = ap q
 pr2 (pr2 (cone-ap' f g (pair p (pair q H)) c1 c2)) γ =

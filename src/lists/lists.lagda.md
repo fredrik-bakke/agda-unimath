@@ -151,18 +151,18 @@ Eq-list : {l1 : Level} {A : UU l1} → list A → list A → UU l1
 Eq-list {l1} nil nil = raise-unit l1
 Eq-list {l1} nil (cons x l') = raise-empty l1
 Eq-list {l1} (cons x l) nil = raise-empty l1
-Eq-list {l1} (cons x l) (cons x' l') = (Id x x') × Eq-list l l'
+Eq-list {l1} (cons x l) (cons x' l') = (x ＝ x') × Eq-list l l'
 
 refl-Eq-list : {l1 : Level} {A : UU l1} (l : list A) → Eq-list l l
 refl-Eq-list nil = raise-star
 refl-Eq-list (cons x l) = pair refl (refl-Eq-list l)
 
 Eq-eq-list :
-  {l1 : Level} {A : UU l1} (l l' : list A) → Id l l' → Eq-list l l'
+  {l1 : Level} {A : UU l1} (l l' : list A) → l ＝ l' → Eq-list l l'
 Eq-eq-list l .l refl = refl-Eq-list l
 
 eq-Eq-list :
-  {l1 : Level} {A : UU l1} (l l' : list A) → Eq-list l l' → Id l l'
+  {l1 : Level} {A : UU l1} (l l' : list A) → Eq-list l l' → l ＝ l'
 eq-Eq-list nil nil (map-raise star) = refl
 eq-Eq-list nil (cons x l') (map-raise f) = ex-falso f
 eq-Eq-list (cons x l) nil (map-raise f) = ex-falso f
@@ -170,7 +170,7 @@ eq-Eq-list (cons x l) (cons .x l') (pair refl e) =
   ap (cons x) (eq-Eq-list l l' e)
 
 square-eq-Eq-list :
-  {l1 : Level} {A : UU l1} {x : A} {l l' : list A} (p : Id l l') →
+  {l1 : Level} {A : UU l1} {x : A} {l l' : list A} (p : l ＝ l') →
   Id
     ( Eq-eq-list (cons x l) (cons x l') (ap (cons x) p))
     ( pair refl (Eq-eq-list l l' p))
@@ -193,7 +193,7 @@ eq-Eq-refl-Eq-list nil = refl
 eq-Eq-refl-Eq-list (cons x l) = ap (ap (cons x)) (eq-Eq-refl-Eq-list l)
 
 is-retraction-eq-Eq-list :
-  {l1 : Level} {A : UU l1} (l l' : list A) (p : Id l l') →
+  {l1 : Level} {A : UU l1} (l l' : list A) (p : l ＝ l') →
   Id (eq-Eq-list l l' (Eq-eq-list l l' p)) p
 is-retraction-eq-Eq-list nil .nil refl = refl
 is-retraction-eq-Eq-list (cons x l) .(cons x l) refl =
@@ -208,7 +208,7 @@ is-equiv-Eq-eq-list l l' =
     ( is-retraction-eq-Eq-list l l')
 
 equiv-Eq-list :
-  {l1 : Level} {A : UU l1} (l l' : list A) → Id l l' ≃ Eq-list l l'
+  {l1 : Level} {A : UU l1} (l l' : list A) → l ＝ l' ≃ Eq-list l l'
 equiv-Eq-list l l' =
   pair (Eq-eq-list l l') (is-equiv-Eq-eq-list l l')
 

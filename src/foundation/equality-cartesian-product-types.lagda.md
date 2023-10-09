@@ -24,7 +24,7 @@ open import foundation-core.transport-along-identifications
 ## Idea
 
 Identifications `Id (pair x y) (pair x' y')` in a cartesian product are
-equivalently described as pairs of identifications `Id x x'` and `Id y y'`. This
+equivalently described as pairs of identifications `x ＝ x'` and `y ＝ y'`. This
 provides us with a characterization of the identity type of cartesian product
 types.
 
@@ -41,7 +41,7 @@ module _
 
 ## Properties
 
-### The type `Eq-prod s t` is equivalent to `Id s t`
+### The type `Eq-prod s t` is equivalent to `s ＝ t`
 
 ```agda
 module _

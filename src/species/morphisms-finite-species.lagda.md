@@ -113,7 +113,7 @@ right-unit-law-comp-hom-species-𝔽 F G f = refl
 htpy-eq-hom-species-𝔽 :
   {l1 l2 l3 : Level} (F : species-𝔽 l1 l2) (G : species-𝔽 l1 l3)
   (f g : hom-species-𝔽 F G) →
-  Id f g → htpy-hom-species-𝔽 F G f g
+  f ＝ g → htpy-hom-species-𝔽 F G f g
 htpy-eq-hom-species-𝔽 F G f g refl X y = refl
 
 is-contr-htpy-hom-species-𝔽 :
@@ -135,7 +135,7 @@ is-equiv-htpy-eq-hom-species-𝔽 F G f =
 extensionality-hom-species-𝔽 :
   {l1 l2 l3 : Level} (F : species-𝔽 l1 l2) (G : species-𝔽 l1 l3)
   (f g : hom-species-𝔽 F G) →
-  Id f g ≃ htpy-hom-species-𝔽 F G f g
+  f ＝ g ≃ htpy-hom-species-𝔽 F G f g
 pr1 (extensionality-hom-species-𝔽 F G f g) =
   htpy-eq-hom-species-𝔽 F G f g
 pr2 (extensionality-hom-species-𝔽 F G f g) =

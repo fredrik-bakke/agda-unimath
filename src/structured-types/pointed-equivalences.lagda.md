@@ -155,7 +155,7 @@ module _
       ( pair (type-Pointed-Type A) id-equiv)
       ( is-contr-total-path (point-Pointed-Type A))
 
-  extensionality-Pointed-Type : (B : Pointed-Type l1) → Id A B ≃ (A ≃∗ B)
+  extensionality-Pointed-Type : (B : Pointed-Type l1) → A ＝ B ≃ (A ≃∗ B)
   extensionality-Pointed-Type =
     extensionality-Σ
       ( λ b e → Id (map-equiv e (point-Pointed-Type A)) b)
@@ -164,7 +164,7 @@ module _
       ( λ B → equiv-univalence)
       ( λ a → id-equiv)
 
-  eq-pointed-equiv : (B : Pointed-Type l1) → A ≃∗ B → Id A B
+  eq-pointed-equiv : (B : Pointed-Type l1) → A ≃∗ B → A ＝ B
   eq-pointed-equiv B = map-inv-equiv (extensionality-Pointed-Type B)
 ```
 

@@ -99,7 +99,7 @@ module _
   id-equiv-Infinite-Cyclic-Type = id-equiv-Cyclic-Type zero-ℕ X
 
   equiv-eq-Infinite-Cyclic-Type :
-    (Y : Infinite-Cyclic-Type l1) → Id X Y → equiv-Infinite-Cyclic-Type Y
+    (Y : Infinite-Cyclic-Type l1) → X ＝ Y → equiv-Infinite-Cyclic-Type Y
   equiv-eq-Infinite-Cyclic-Type = equiv-eq-Cyclic-Type zero-ℕ X
 
   is-contr-total-equiv-Infinite-Cyclic-Type :
@@ -113,7 +113,7 @@ module _
     is-equiv-equiv-eq-Cyclic-Type zero-ℕ X
 
   extensionality-Infinite-Cyclic-Type :
-    (Y : Infinite-Cyclic-Type l1) → Id X Y ≃ equiv-Infinite-Cyclic-Type Y
+    (Y : Infinite-Cyclic-Type l1) → X ＝ Y ≃ equiv-Infinite-Cyclic-Type Y
   extensionality-Infinite-Cyclic-Type = extensionality-Cyclic-Type zero-ℕ X
 
 module _
@@ -206,7 +206,7 @@ module _
         ℤ-Infinite-Cyclic-Type)
 
 -- Infinite-Cyclic-Type-𝕊¹ : 𝕊¹ → Infinite-Cyclic-Type
--- pr1 (pr1 (Infinite-Cyclic-Type-𝕊¹ x)) = Id x x
+-- pr1 (pr1 (Infinite-Cyclic-Type-𝕊¹ x)) = x ＝ x
 -- pr2 (pr1 (Infinite-Cyclic-Type-𝕊¹ x)) = {!!}
 -- pr2 (Infinite-Cyclic-Type-𝕊¹ x) = {!!}
 ```

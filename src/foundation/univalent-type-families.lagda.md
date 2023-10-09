@@ -21,7 +21,7 @@ open import foundation-core.identity-types
 A type family `B` over `A` is said to be univalent if the map
 
 ```text
-  equiv-tr : (Id x y) → (B x ≃ B y)
+  equiv-tr : (x ＝ y) → (B x ≃ B y)
 ```
 
 is an equivalence for every `x y : A`.

@@ -122,7 +122,7 @@ module _
 
   htpy-eq-equiv-Abstract-Group-Action :
     (f : equiv-Abstract-Group-Action G X Y) →
-    Id e f → htpy-equiv-Abstract-Group-Action f
+    e ＝ f → htpy-equiv-Abstract-Group-Action f
   htpy-eq-equiv-Abstract-Group-Action .e refl =
     refl-htpy-equiv-Abstract-Group-Action
 
@@ -162,7 +162,7 @@ module _
 
   extensionality-equiv-Abstract-Group-Action :
     (f : equiv-Abstract-Group-Action G X Y) →
-    Id e f ≃ htpy-equiv-Abstract-Group-Action f
+    e ＝ f ≃ htpy-equiv-Abstract-Group-Action f
   pr1 (extensionality-equiv-Abstract-Group-Action f) =
     htpy-eq-equiv-Abstract-Group-Action f
   pr2 (extensionality-equiv-Abstract-Group-Action f) =
@@ -170,7 +170,7 @@ module _
 
   eq-htpy-equiv-Abstract-Group-Action :
     (f : equiv-Abstract-Group-Action G X Y) →
-    htpy-equiv-Abstract-Group-Action f → Id e f
+    htpy-equiv-Abstract-Group-Action f → e ＝ f
   eq-htpy-equiv-Abstract-Group-Action f =
     map-inv-is-equiv (is-equiv-htpy-eq-equiv-Abstract-Group-Action f)
 
@@ -223,7 +223,7 @@ module _
 
   equiv-eq-Abstract-Group-Action :
     (Y : Abstract-Group-Action G l2) →
-    Id X Y → equiv-Abstract-Group-Action G X Y
+    X ＝ Y → equiv-Abstract-Group-Action G X Y
   equiv-eq-Abstract-Group-Action .X refl = id-equiv-Abstract-Group-Action
 
   abstract
@@ -266,13 +266,13 @@ module _
 
   eq-equiv-Abstract-Group-Action :
     (Y : Abstract-Group-Action G l2) →
-    equiv-Abstract-Group-Action G X Y → Id X Y
+    equiv-Abstract-Group-Action G X Y → X ＝ Y
   eq-equiv-Abstract-Group-Action Y =
     map-inv-is-equiv (is-equiv-equiv-eq-Abstract-Group-Action Y)
 
   extensionality-Abstract-Group-Action :
     (Y : Abstract-Group-Action G l2) →
-    Id X Y ≃ equiv-Abstract-Group-Action G X Y
+    X ＝ Y ≃ equiv-Abstract-Group-Action G X Y
   pr1 (extensionality-Abstract-Group-Action Y) =
     equiv-eq-Abstract-Group-Action Y
   pr2 (extensionality-Abstract-Group-Action Y) =

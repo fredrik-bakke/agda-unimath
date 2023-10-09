@@ -131,7 +131,7 @@ module _
 
   ap-add-Ring-𝔽 :
     {x y x' y' : type-Ring-𝔽 R} →
-    Id x x' → Id y y' → Id (add-Ring-𝔽 x y) (add-Ring-𝔽 x' y')
+    x ＝ x' → y ＝ y' → Id (add-Ring-𝔽 x y) (add-Ring-𝔽 x' y')
   ap-add-Ring-𝔽 = ap-add-Ring (ring-Ring-𝔽 R)
 
   associative-add-Ring-𝔽 :
@@ -271,7 +271,7 @@ module _
   mul-Ring-𝔽' = mul-Ring' (ring-Ring-𝔽 R)
 
   ap-mul-Ring-𝔽 :
-    {x x' y y' : type-Ring-𝔽 R} (p : Id x x') (q : Id y y') →
+    {x x' y y' : type-Ring-𝔽 R} (p : x ＝ x') (q : y ＝ y') →
     Id (mul-Ring-𝔽 x y) (mul-Ring-𝔽 x' y')
   ap-mul-Ring-𝔽 = ap-mul-Ring (ring-Ring-𝔽 R)
 

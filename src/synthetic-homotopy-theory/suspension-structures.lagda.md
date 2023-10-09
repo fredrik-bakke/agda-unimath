@@ -121,7 +121,7 @@ equiv-suspension-structure-suspension-cocone :
   suspension-cocone X Z ≃ suspension-structure X Z
 equiv-suspension-structure-suspension-cocone X Z =
   equiv-Σ
-    ( λ z1 → Σ Z (λ z2 → (x : X) → Id z1 z2))
+    ( λ z1 → Σ Z (λ z2 → (x : X) → z1 ＝ z2))
     ( equiv-universal-property-unit Z)
     ( λ z1 →
       equiv-Σ

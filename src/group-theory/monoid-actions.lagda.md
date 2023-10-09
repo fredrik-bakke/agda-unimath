@@ -53,11 +53,11 @@ module _
 
   ap-mul-Monoid-Action :
     {m : type-Monoid M} {x y : type-Monoid-Action} →
-    Id x y → Id (mul-Monoid-Action m x) (mul-Monoid-Action m y)
+    x ＝ y → Id (mul-Monoid-Action m x) (mul-Monoid-Action m y)
   ap-mul-Monoid-Action {m} = ap (mul-Monoid-Action m)
 
   ap-mul-Monoid-Action' :
-    {m n : type-Monoid M} (p : Id m n) {x : type-Monoid-Action} →
+    {m n : type-Monoid M} (p : m ＝ n) {x : type-Monoid-Action} →
     Id (mul-Monoid-Action m x) (mul-Monoid-Action n x)
   ap-mul-Monoid-Action' p {x} =
     ap (λ t → mul-Monoid-Action t x) p

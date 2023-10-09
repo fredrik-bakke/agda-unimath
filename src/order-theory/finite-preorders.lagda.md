@@ -189,7 +189,7 @@ module _
     is-finite-type-decidable-subtype S (is-finite-type-Preorder-𝔽 P)
 
   eq-type-finite-Subpreorder :
-    (x y : type-finite-Subpreorder) → Id (pr1 x) (pr1 y) → Id x y
+    (x y : type-finite-Subpreorder) → Id (pr1 x) (pr1 y) → x ＝ y
   eq-type-finite-Subpreorder =
     eq-type-Decidable-Subpreorder (preorder-Preorder-𝔽 P) S
 

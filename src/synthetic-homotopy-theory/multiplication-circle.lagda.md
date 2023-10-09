@@ -56,7 +56,7 @@ htpy-id-id-Π-𝕊¹ =
       ( loop-𝕊¹)
       ( refl))
 
-htpy-id-id-𝕊¹ : (x : 𝕊¹) → Id x x
+htpy-id-id-𝕊¹ : (x : 𝕊¹) → x ＝ x
 htpy-id-id-𝕊¹ = pr1 htpy-id-id-Π-𝕊¹
 
 htpy-id-id-base-𝕊¹ : Id (htpy-id-id-𝕊¹ base-𝕊¹) loop-𝕊¹
@@ -70,7 +70,7 @@ Mul-Π-𝕊¹ : 𝕊¹ → UU lzero
 Mul-Π-𝕊¹ x = 𝕊¹-Pointed-Type →∗ (pair 𝕊¹ x)
 
 dependent-identification-Mul-Π-𝕊¹ :
-  {x : 𝕊¹} (p : Id base-𝕊¹ x) (q : Mul-Π-𝕊¹ base-𝕊¹) (r : Mul-Π-𝕊¹ x) →
+  {x : 𝕊¹} (p : base-𝕊¹ ＝ x) (q : Mul-Π-𝕊¹ base-𝕊¹) (r : Mul-Π-𝕊¹ x) →
   (H : pr1 q ~ pr1 r) → Id (pr2 q ∙ p) (H base-𝕊¹ ∙ pr2 r) →
   Id (tr Mul-Π-𝕊¹ p q) r
 dependent-identification-Mul-Π-𝕊¹ {x} refl q r H u =

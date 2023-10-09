@@ -94,7 +94,7 @@ module hom-Fam-pushout
         ( λ s → inv-htpy-right-unit-htpy))
 
   htpy-hom-Fam-pushout-eq :
-    ( h k : hom-Fam-pushout) → Id h k → htpy-hom-Fam-pushout h k
+    ( h k : hom-Fam-pushout) → h ＝ k → htpy-hom-Fam-pushout h k
   htpy-hom-Fam-pushout-eq h .h refl =
     reflexive-htpy-hom-Fam-pushout h
 
@@ -135,7 +135,7 @@ module hom-Fam-pushout
       ( htpy-hom-Fam-pushout-eq h)
 
   eq-htpy-hom-Fam-pushout :
-    ( h k : hom-Fam-pushout) → htpy-hom-Fam-pushout h k → Id h k
+    ( h k : hom-Fam-pushout) → htpy-hom-Fam-pushout h k → h ＝ k
   eq-htpy-hom-Fam-pushout h k =
     map-inv-is-equiv (is-equiv-htpy-hom-Fam-pushout-eq h k)
 
@@ -150,13 +150,13 @@ morphism of descent data.
 ```agda
 Naturality-fam-maps :
   { l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
-  ( f : (a : A) → B a → C a) {x x' : A} (p : Id x x') → UU (l2 ⊔ l3)
+  ( f : (a : A) → B a → C a) {x x' : A} (p : x ＝ x') → UU (l2 ⊔ l3)
 Naturality-fam-maps {B = B} {C} f {x} {x'} p =
   (y : B x) → Id (f x' (tr B p y)) (tr C p (f x y))
 
 naturality-fam-maps :
   { l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
-  ( f : (a : A) → B a → C a) {x x' : A} (p : Id x x') →
+  ( f : (a : A) → B a → C a) {x x' : A} (p : x ＝ x') →
   Naturality-fam-maps f p
 naturality-fam-maps f refl y = refl
 
@@ -178,7 +178,7 @@ hom-Fam-pushout-map {f = f} {g} c P Q h =
 ```agda
 square-path-over-fam-maps :
   { l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
-  { x x' : A} (p : Id x x') (f : B x → C x) (f' : B x' → C x') →
+  { x x' : A} (p : x ＝ x') (f : B x → C x) (f' : B x' → C x') →
   Id (tr (λ a → B a → C a) p f) f' →
   ( y : B x) → Id (f' (tr B p y)) (tr C p (f y))
 square-path-over-fam-maps refl f f' = htpy-eq ∘ inv
@@ -196,7 +196,7 @@ hom-Fam-pushout-dependent-cocone {f = f} {g} c P Q =
 
 is-equiv-square-path-over-fam-maps :
   { l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
-  { x x' : A} (p : Id x x') (f : B x → C x) (f' : B x' → C x') →
+  { x x' : A} (p : x ＝ x') (f : B x → C x) (f' : B x' → C x') →
   is-equiv (square-path-over-fam-maps p f f')
 is-equiv-square-path-over-fam-maps refl f f' =
   is-equiv-comp htpy-eq inv (is-equiv-inv f f') (funext f' f)

@@ -253,14 +253,14 @@ module _
     where
     first-element : (Fin 2 ≃ (type-2-Element-Type X)) →
       Σ ( type-2-Element-Type X)
-        ( λ x → ¬ ((y : type-2-Element-Type X) → Id (f x) (f y)))
+        ( λ x → ¬ ((y : type-2-Element-Type X) → f x ＝ f y))
     first-element h =
       exists-not-not-forall-count (λ z → (w : type-2-Element-Type X) →
       Id (f z) (f w)) (λ z → {!!})
         {!!} {!!}
     two-elements-different-image :
       Σ ( type-2-Element-Type X)
-        ( λ x → Σ (type-2-Element-Type X) (λ y → ¬ (Id (f x) (f y))))
+        ( λ x → Σ (type-2-Element-Type X) (λ y → f x ≠ f y))
     two-elements-different-image = {!!}
 -}
 ```

@@ -85,7 +85,7 @@ module _
   pr1 (refl-Eq-free-loop (pair x α)) = refl
   pr2 (refl-Eq-free-loop (pair x α)) = right-unit
 
-  Eq-eq-free-loop : (α α' : free-loop X) → Id α α' → Eq-free-loop α α'
+  Eq-eq-free-loop : (α α' : free-loop X) → α ＝ α' → Eq-free-loop α α'
   Eq-eq-free-loop α .α refl = refl-Eq-free-loop α
 
   abstract
@@ -97,7 +97,7 @@ module _
         ( is-contr-total-path x)
         ( pair x refl)
         ( is-contr-is-equiv'
-          ( Σ (Id x x) (λ α' → Id α α'))
+          ( Σ (x ＝ x) (λ α' → α ＝ α'))
           ( tot (λ α' α → right-unit ∙ α))
           ( is-equiv-tot-is-fiberwise-equiv
             ( λ α' → is-equiv-concat right-unit α'))
@@ -133,7 +133,7 @@ module _
   pr2 (refl-Eq-free-dependent-loop (pair y p)) = right-unit
 
   Eq-free-dependent-loop-eq :
-    ( p p' : free-dependent-loop α P) → Id p p' → Eq-free-dependent-loop p p'
+    ( p p' : free-dependent-loop α P) → p ＝ p' → Eq-free-dependent-loop p p'
   Eq-free-dependent-loop-eq p .p refl = refl-Eq-free-dependent-loop p
 
   abstract
@@ -146,7 +146,7 @@ module _
         ( is-contr-total-path y)
         ( pair y refl)
         ( is-contr-is-equiv'
-          ( Σ (Id (tr P (loop-free-loop α) y) y) (λ p' → Id p p'))
+          ( Σ (Id (tr P (loop-free-loop α) y) y) (λ p' → p ＝ p'))
           ( tot (λ p' α → right-unit ∙ α))
           ( is-equiv-tot-is-fiberwise-equiv
             ( λ p' → is-equiv-concat right-unit p'))
@@ -163,7 +163,7 @@ module _
 
   eq-Eq-free-dependent-loop :
     (p p' : free-dependent-loop α P) →
-    Eq-free-dependent-loop p p' → Id p p'
+    Eq-free-dependent-loop p p' → p ＝ p'
   eq-Eq-free-dependent-loop p p' =
     map-inv-is-equiv (is-equiv-Eq-free-dependent-loop-eq p p')
 ```

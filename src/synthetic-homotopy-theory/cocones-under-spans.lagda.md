@@ -105,7 +105,7 @@ pr2 (pr2 (reflexive-htpy-cocone f g (i , j , H))) = right-unit-htpy
 htpy-cocone-eq :
   {l1 l2 l3 l4 : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   (f : S → A) (g : S → B) {X : UU l4} (c c' : cocone f g X) →
-  Id c c' → htpy-cocone f g c c'
+  c ＝ c' → htpy-cocone f g c c'
 htpy-cocone-eq f g c .c refl = reflexive-htpy-cocone f g c
 
 is-contr-total-htpy-cocone :
@@ -145,7 +145,7 @@ is-equiv-htpy-cocone-eq f g c =
 eq-htpy-cocone :
   {l1 l2 l3 l4 : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   (f : S → A) (g : S → B) {X : UU l4} (c c' : cocone f g X) →
-  htpy-cocone f g c c' → Id c c'
+  htpy-cocone f g c c' → c ＝ c'
 eq-htpy-cocone f g c c' = map-inv-is-equiv (is-equiv-htpy-cocone-eq f g c c')
 ```
 

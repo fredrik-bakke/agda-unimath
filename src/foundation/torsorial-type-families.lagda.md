@@ -29,7 +29,7 @@ A type family `E` over `B` is said to be **torsorial** if its
 [contractible](foundation.contractible-types.md). By the
 [fundamental theorem of identity types](foundation.fundamental-theorem-of-identity-types.md)
 it follows that a type family `E` is torsorial if and only if it is in the
-[image](foundation.images.md) of `Id : B → (B → 𝒰)`.
+[image](foundation.images.md) of `: ＝ B → (B → 𝒰)`.
 
 ## Definition
 
@@ -70,15 +70,15 @@ module _
 
 ## Properties
 
-#### `fib Id B ≃ is-contr (Σ A B)` for any type family `B` over `A`
+#### `fib B ＝ ≃ is-contr (Σ A B)` for any type family `B` over `A`
 
 In other words, a type family `B` over `A` is in the
-[image](foundation.images.md) of `Id : A → (A → 𝒰)` if and only if `B` is
+[image](foundation.images.md) of `: ＝ A → (A → 𝒰)` if and only if `B` is
 torsorial. Since being contractible is a
 [proposition](foundation.propositions.md), this observation leads to an
-alternative proof of the above claim that `Id : A → (A → 𝒰)` is an
+alternative proof of the above claim that `: ＝ A → (A → 𝒰)` is an
 [embedding](foundation.embeddings.md). Our previous proof of the fact that
-`Id : A → (A → 𝒰)` is an embedding can be found in
+`: ＝ A → (A → 𝒰)` is an embedding can be found in
 [`foundation.universal-property-identity-types`](foundation.universal-property-identity-types.md).
 
 ```agda

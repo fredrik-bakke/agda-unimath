@@ -41,7 +41,7 @@ equiv-species-subuniverse {l1} P Q S T =
 extensionality-species-subuniverse :
   {l1 l2 l3 : Level} (P : subuniverse l1 l2) (Q : subuniverse l1 l3) →
   (S : species-subuniverse P Q) → (T : species-subuniverse P Q) →
-  (Id S T) ≃ (equiv-species-subuniverse P Q S T)
+  (S ＝ T) ≃ (equiv-species-subuniverse P Q S T)
 extensionality-species-subuniverse P Q S T =
   extensionality-fam-subuniverse Q S T
 ```

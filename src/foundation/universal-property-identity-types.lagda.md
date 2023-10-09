@@ -74,19 +74,19 @@ equiv-ev-refl' a {B} =
   ( equiv-Π-equiv-family (λ x → equiv-precomp-Π (equiv-inv a x) (B x)))
 ```
 
-### `Id : A → (A → 𝒰)` is an embedding
+### `: ＝ A → (A → 𝒰)` is an embedding
 
 We first show that [axiom L](foundation.axiom-l.md) implies that the map
-`Id : A → (A → 𝒰)` is an [embedding](foundation.embeddings.md). Since the
+`: ＝ A → (A → 𝒰)` is an [embedding](foundation.embeddings.md). Since the
 [univalence axiom](foundation.univalence.md) implies axiom L, it follows that
-`Id : A → (A → 𝒰)` is an embedding under the postulates of agda-unimath.
+`: ＝ A → (A → 𝒰)` is an embedding under the postulates of agda-unimath.
 
-#### Axiom L implies that `Id : A → (A → 𝒰)` is an embedding
+#### Axiom L implies that `: ＝ A → (A → 𝒰)` is an embedding
 
-The proof that axiom L implies that `Id : A → (A → 𝒰)` is an embedding proceeds
+The proof that axiom L implies that `: ＝ A → (A → 𝒰)` is an embedding proceeds
 via the
 [fundamental theorem of identity types](foundation.fundamental-theorem-of-identity-types.md)
-by showing that the [fiber](foundation.fibers-of-maps.md) of `Id` at `Id a` is
+by showing that the [fiber](foundation.fibers-of-maps.md) of `Id` at `a` ＝ is
 [contractible](foundation.contractible-types.md) for each `a : A`. To see this,
 we first note that this fiber has an element `(a , refl)`. Therefore it suffices
 to show that this fiber is a proposition. We do this by constructing an
@@ -100,7 +100,7 @@ Since the codomain of this embedding is contractible, the claim follows. The
 above embedding is constructed as the composite of the following embeddings
 
 ```text
-  Σ (x : A), Id x ＝ Id a
+  Σ (x : A), x ＝ ＝ Id a
     ↪ Σ (x : A), (y : A) → (x ＝ y) ＝ (a ＝ y)
     ↪ Σ (x : A), (y : A) → (x ＝ y) ≃ (a ＝ y)
     ↪ Σ (x : A), Σ (e : (y : A) → (x ＝ y) → (a ＝ y)), (y : A) → is-equiv (e y)
@@ -139,16 +139,16 @@ module _
                     ( fundamental-theorem-id (is-contr-total-path a))) ∘e
                   ( distributive-Π-Σ)))))
           ( emb-Σ
-            ( λ x → (y : A) → Id x y ≃ Id a y)
+            ( λ x → (y : A) → x ＝ y ≃ a ＝ y)
             ( id-emb)
             ( λ x →
               comp-emb
-                ( emb-Π (λ y → emb-L L (Id x y) (Id a y)))
+                ( emb-Π (λ y → emb-L L (x ＝ y) (a ＝ y)))
                 ( emb-equiv equiv-funext))))
         ( emb-equiv (inv-equiv (equiv-fiber Id (Id a))))
 ```
 
-#### `Id : A → (A → 𝒰)` is an embedding
+#### `: ＝ A → (A → 𝒰)` is an embedding
 
 ```agda
 module _
@@ -195,11 +195,11 @@ module _
 
 - In
   [`foundation.torsorial-type-families`](foundation.torsorial-type-families.md)
-  we will show that the fiber of `Id : A → (A → 𝒰)`at`B : A → 𝒰`is equivalent
+  we will show that the fiber of `: ＝ A → (A → 𝒰)`at`B : A → 𝒰`is equivalent
   to`is-contr (Σ A B)`.
 
 ## References
 
-- The fact that axiom L is sufficient to prove that `Id : A → (A → 𝒰)` is an
+- The fact that axiom L is sufficient to prove that `: ＝ A → (A → 𝒰)` is an
   embedding was first observed and formalized by Martín Escardó,
   [https://www.cs.bham.ac.uk//~mhe/TypeTopology/UF.IdEmbedding.html](https://www.cs.bham.ac.uk//~mhe/TypeTopology/UF.IdEmbedding.html).

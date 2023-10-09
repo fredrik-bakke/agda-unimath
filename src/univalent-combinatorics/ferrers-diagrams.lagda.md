@@ -153,7 +153,7 @@ module _
   pr2 id-equiv-ferrers-diagram x = id-equiv
 
   equiv-eq-ferrers-diagram :
-    (E : ferrers-diagram l2 l3 A) → Id D E → equiv-ferrers-diagram E
+    (E : ferrers-diagram l2 l3 A) → D ＝ E → equiv-ferrers-diagram E
   equiv-eq-ferrers-diagram .D refl = id-equiv-ferrers-diagram
 
   is-contr-total-equiv-ferrers-diagram :
@@ -185,7 +185,7 @@ module _
       equiv-eq-ferrers-diagram
 
   eq-equiv-ferrers-diagram :
-    (E : ferrers-diagram l2 l3 A) → equiv-ferrers-diagram E → Id D E
+    (E : ferrers-diagram l2 l3 A) → equiv-ferrers-diagram E → D ＝ E
   eq-equiv-ferrers-diagram E =
     map-inv-is-equiv (is-equiv-equiv-eq-ferrers-diagram E)
 ```
@@ -209,7 +209,7 @@ module _
     id-equiv-ferrers-diagram (ferrers-diagram-ferrers-diagram-𝔽 A D)
 
   equiv-eq-ferrers-diagram-𝔽 :
-    (E : ferrers-diagram-𝔽 l2 l3 A) → Id D E → equiv-ferrers-diagram-𝔽 E
+    (E : ferrers-diagram-𝔽 l2 l3 A) → D ＝ E → equiv-ferrers-diagram-𝔽 E
   equiv-eq-ferrers-diagram-𝔽 .D refl = id-equiv-ferrers-diagram-𝔽
 
   is-contr-total-equiv-ferrers-diagram-𝔽 :
@@ -254,7 +254,7 @@ module _
       equiv-eq-ferrers-diagram-𝔽
 
   eq-equiv-ferrers-diagram-𝔽 :
-    (E : ferrers-diagram-𝔽 l2 l3 A) → equiv-ferrers-diagram-𝔽 E → Id D E
+    (E : ferrers-diagram-𝔽 l2 l3 A) → equiv-ferrers-diagram-𝔽 E → D ＝ E
   eq-equiv-ferrers-diagram-𝔽 E =
     map-inv-is-equiv (is-equiv-equiv-eq-ferrers-diagram-𝔽 E)
 ```

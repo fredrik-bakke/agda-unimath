@@ -158,17 +158,17 @@ module _
 
   Eq-vec : (n : ℕ) → vec A n → vec A n → UU l
   Eq-vec zero-ℕ empty-vec empty-vec = raise-unit l
-  Eq-vec (succ-ℕ n) (x ∷ xs) (y ∷ ys) = (Id x y) × (Eq-vec n xs ys)
+  Eq-vec (succ-ℕ n) (x ∷ xs) (y ∷ ys) = (x ＝ y) × (Eq-vec n xs ys)
 
   refl-Eq-vec : (n : ℕ) → (u : vec A n) → Eq-vec n u u
   refl-Eq-vec zero-ℕ empty-vec = map-raise star
   pr1 (refl-Eq-vec (succ-ℕ n) (x ∷ xs)) = refl
   pr2 (refl-Eq-vec (succ-ℕ n) (x ∷ xs)) = refl-Eq-vec n xs
 
-  Eq-eq-vec : (n : ℕ) → (u v : vec A n) → Id u v → Eq-vec n u v
+  Eq-eq-vec : (n : ℕ) → (u v : vec A n) → u ＝ v → Eq-vec n u v
   Eq-eq-vec n u .u refl = refl-Eq-vec n u
 
-  eq-Eq-vec : (n : ℕ) → (u v : vec A n) → Eq-vec n u v → Id u v
+  eq-Eq-vec : (n : ℕ) → (u v : vec A n) → Eq-vec n u v → u ＝ v
   eq-Eq-vec zero-ℕ empty-vec empty-vec eq-vec = refl
   eq-Eq-vec (succ-ℕ n) (x ∷ xs) (.x ∷ ys) (refl , eqs) =
     ap (x ∷_) (eq-Eq-vec n xs ys eqs)
@@ -181,7 +181,7 @@ module _
     ap (ap (x ∷_)) (is-retraction-eq-Eq-vec n xs xs refl)
 
   square-Eq-eq-vec :
-    (n : ℕ) (x : A) (u v : vec A n) (p : Id u v) →
+    (n : ℕ) (x : A) (u v : vec A n) (p : u ＝ v) →
     (Eq-eq-vec _ (x ∷ u) (x ∷ v) (ap (x ∷_) p)) ＝ (refl , (Eq-eq-vec n u v p))
   square-Eq-eq-vec zero-ℕ x empty-vec empty-vec refl = refl
   square-Eq-eq-vec (succ-ℕ n) a (x ∷ xs) (.x ∷ .xs) refl = refl
@@ -202,7 +202,7 @@ module _
       ( is-section-eq-Eq-vec n u v)
       ( is-retraction-eq-Eq-vec n u v)
 
-  extensionality-vec : (n : ℕ) → (u v : vec A n) → Id u v ≃ Eq-vec n u v
+  extensionality-vec : (n : ℕ) → (u v : vec A n) → u ＝ v ≃ Eq-vec n u v
   extensionality-vec n u v = (Eq-eq-vec n u v , is-equiv-Eq-eq-vec n u v)
 ```
 

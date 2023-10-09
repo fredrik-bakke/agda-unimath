@@ -35,7 +35,7 @@ open import foundation-core.transport-along-identifications
 
 ## Definition
 
-A type `A` is said to have decidable equality if `Id x y` is a decidable type
+A type `A` is said to have decidable equality if `x ＝ y` is a decidable type
 for every `x y : A`.
 
 ```agda

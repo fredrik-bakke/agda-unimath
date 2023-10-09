@@ -125,7 +125,7 @@ module _
 
   htpy-eq-hom-Abstract-Group-Action :
     (g : hom-Abstract-Group-Action G X Y) →
-    Id f g → htpy-hom-Abstract-Group-Action g
+    f ＝ g → htpy-hom-Abstract-Group-Action g
   htpy-eq-hom-Abstract-Group-Action .f refl =
     refl-htpy-hom-Abstract-Group-Action
 
@@ -159,7 +159,7 @@ module _
 
   extensionality-hom-Abstract-Group-Action :
     (g : hom-Abstract-Group-Action G X Y) →
-    Id f g ≃ htpy-hom-Abstract-Group-Action g
+    f ＝ g ≃ htpy-hom-Abstract-Group-Action g
   pr1 (extensionality-hom-Abstract-Group-Action g) =
     htpy-eq-hom-Abstract-Group-Action g
   pr2 (extensionality-hom-Abstract-Group-Action g) =
@@ -167,7 +167,7 @@ module _
 
   eq-htpy-hom-Abstract-Group-Action :
     (g : hom-Abstract-Group-Action G X Y) →
-    htpy-hom-Abstract-Group-Action g → Id f g
+    htpy-hom-Abstract-Group-Action g → f ＝ g
   eq-htpy-hom-Abstract-Group-Action g =
     map-inv-is-equiv (is-equiv-htpy-eq-hom-Abstract-Group-Action g)
 ```
