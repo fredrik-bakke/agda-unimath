@@ -68,7 +68,7 @@ south-suspension {X = X} =
 
 meridian-suspension :
   {l : Level} {X : UU l} → X →
-  Id (north-suspension {X = X}) (south-suspension {X = X})
+  north-suspension {X = X} ＝ south-suspension {X = X}
 meridian-suspension {X = X} =
   glue-pushout (const X unit star) (const X unit star)
 

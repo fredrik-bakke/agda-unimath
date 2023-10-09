@@ -210,7 +210,7 @@ loop at `N`. The choice of which meridian to start with is arbitrary, but
 informs the rest of the construction hereafter.
 
 ```agda
-north-sphere-1-loop : Id (north-sphere 1) (north-sphere 1)
+north-sphere-1-loop : north-sphere 1 ＝ north-sphere 1
 north-sphere-1-loop =
   ( meridian-sphere 0 (zero-Fin 1)) ∙
   ( inv (meridian-sphere 0 (one-Fin 1)))
@@ -220,12 +220,12 @@ sphere-1-circle =
   map-apply-universal-property-𝕊¹ (north-sphere 1) north-sphere-1-loop
 
 sphere-1-circle-base-𝕊¹-eq-north-sphere-1 :
-  Id (sphere-1-circle base-𝕊¹) (north-sphere 1)
+  sphere-1-circle base-𝕊¹ ＝ north-sphere 1
 sphere-1-circle-base-𝕊¹-eq-north-sphere-1 =
   base-universal-property-𝕊¹ (north-sphere 1) north-sphere-1-loop
 
 sphere-1-circle-base-𝕊¹-eq-south-sphere-1 :
-  Id (sphere-1-circle base-𝕊¹) (south-sphere 1)
+  sphere-1-circle base-𝕊¹ ＝ south-sphere 1
 sphere-1-circle-base-𝕊¹-eq-south-sphere-1 =
   ( sphere-1-circle-base-𝕊¹-eq-north-sphere-1) ∙
   ( meridian-sphere 0 (one-Fin 1))

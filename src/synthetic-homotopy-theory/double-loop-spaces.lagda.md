@@ -35,7 +35,7 @@ module _
   Ω² A = iterated-loop-space 2 A
 
   type-Ω² : {A : UU l} (a : A) → UU l
-  type-Ω² a = Id (refl {x = a}) (refl {x = a})
+  type-Ω² a = refl {x = a} ＝ refl {x = a}
 
   refl-Ω² : {A : UU l} {a : A} → type-Ω² a
   refl-Ω² = refl

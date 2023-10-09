@@ -33,7 +33,7 @@ module _
   Ω³ A = iterated-loop-space 3 A
 
   type-Ω³ : {A : UU l} (a : A) → UU l
-  type-Ω³ a = Id (refl-Ω² {a = a}) (refl-Ω² {a = a})
+  type-Ω³ a = refl-Ω² {a = a} ＝ refl-Ω² {a = a}
 
   refl-Ω³ : {A : UU l} {a : A} → type-Ω³ a
   refl-Ω³ = refl
@@ -56,17 +56,17 @@ z-concat-Ω³ = z-concat-Id³
 
 ap-x-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} {α α' β β' : type-Ω³ a}
-  (s : α ＝ α') (t : β ＝ β') → Id (x-concat-Ω³ α β) (x-concat-Ω³ α' β')
+  (s : α ＝ α') (t : β ＝ β') → x-concat-Ω³ α β ＝ x-concat-Ω³ α' β'
 ap-x-concat-Ω³ s t = ap-binary x-concat-Ω³ s t
 
 ap-y-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} {α α' β β' : type-Ω³ a}
-  (s : α ＝ α') (t : β ＝ β') → Id (y-concat-Ω³ α β) (y-concat-Ω³ α' β')
+  (s : α ＝ α') (t : β ＝ β') → y-concat-Ω³ α β ＝ y-concat-Ω³ α' β'
 ap-y-concat-Ω³ s t = j-concat-Id⁴ s t
 
 ap-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} {α α' β β' : type-Ω³ a}
-  (s : α ＝ α') (t : β ＝ β') → Id (z-concat-Ω³ α β) (z-concat-Ω³ α' β')
+  (s : α ＝ α') (t : β ＝ β') → z-concat-Ω³ α β ＝ z-concat-Ω³ α' β'
 ap-z-concat-Ω³ s t = k-concat-Id⁴ s t
 ```
 
@@ -166,7 +166,7 @@ interchange-y-z-concat-Ω³ α β γ δ =
 ```agda
 outer-eckmann-hilton-connection-x-y-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α δ : type-Ω³ a) →
-  Id (y-concat-Ω³ α δ) (x-concat-Ω³ α δ)
+  y-concat-Ω³ α δ ＝ x-concat-Ω³ α δ
 outer-eckmann-hilton-connection-x-y-concat-Ω³ α δ =
   ( j-concat-Id⁴
     ( inv (right-unit-law-x-concat-Ω³ α))
@@ -178,7 +178,7 @@ outer-eckmann-hilton-connection-x-y-concat-Ω³ α δ =
 
 inner-eckmann-hilton-connection-x-y-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (β γ : type-Ω³ a) →
-  Id (y-concat-Ω³ β γ) (x-concat-Ω³ γ β)
+  y-concat-Ω³ β γ ＝ x-concat-Ω³ γ β
 inner-eckmann-hilton-connection-x-y-concat-Ω³ β γ =
   ( j-concat-Id⁴
     ( inv (left-unit-law-x-concat-Ω³ β))
@@ -191,7 +191,7 @@ inner-eckmann-hilton-connection-x-y-concat-Ω³ β γ =
 {-
 outer-eckmann-hilton-connection-x-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α δ : type-Ω³ a) →
-  Id (z-concat-Ω³ α δ) (x-concat-Ω³ α δ)
+  z-concat-Ω³ α δ ＝ x-concat-Ω³ α δ
 outer-eckmann-hilton-connection-x-z-concat-Ω³ α δ =
   ( k-concat-Id⁴
     ( inv (right-unit-law-x-concat-Ω³ α))
@@ -205,7 +205,7 @@ outer-eckmann-hilton-connection-x-z-concat-Ω³ α δ =
 {-
 inner-eckmann-hilton-connection-x-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (β γ : type-Ω³ a) →
-  Id (z-concat-Ω³ β γ) (x-concat-Ω³ γ β)
+  z-concat-Ω³ β γ ＝ x-concat-Ω³ γ β
 inner-eckmann-hilton-connection-x-z-concat-Ω³ β γ =
   ( k-concat-Id⁴
     ( inv (left-unit-law-x-concat-Ω³ β))
@@ -219,7 +219,7 @@ inner-eckmann-hilton-connection-x-z-concat-Ω³ β γ =
 {-
 outer-eckmann-hilton-connection-y-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α δ : type-Ω³ a) →
-  Id (z-concat-Ω³ α δ) (y-concat-Ω³ α δ)
+  z-concat-Ω³ α δ ＝ y-concat-Ω³ α δ
 outer-eckmann-hilton-connection-y-z-concat-Ω³ α δ =
   ( k-concat-Id⁴
     ( inv (right-unit-law-y-concat-Ω³ α))
@@ -233,7 +233,7 @@ outer-eckmann-hilton-connection-y-z-concat-Ω³ α δ =
 {-
 inner-eckmann-hilton-connection-y-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (β γ : type-Ω³ a) →
-  Id (z-concat-Ω³ β γ) (y-concat-Ω³ γ β)
+  z-concat-Ω³ β γ ＝ y-concat-Ω³ γ β
 inner-eckmann-hilton-connection-y-z-concat-Ω³ β γ =
   ( k-concat-Id⁴
     ( inv (left-unit-law-y-concat-Ω³ β))

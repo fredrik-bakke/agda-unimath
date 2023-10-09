@@ -83,7 +83,7 @@ module _
   right-inverse-law-add-prod-Ab = right-inverse-law-mul-Group group-prod-Ab
 
   commutative-add-prod-Ab :
-    (x y : type-prod-Ab) → Id (add-prod-Ab x y) (add-prod-Ab y x)
+    (x y : type-prod-Ab) → add-prod-Ab x y ＝ add-prod-Ab y x
   commutative-add-prod-Ab (pair x1 y1) (pair x2 y2) =
     eq-pair (commutative-add-Ab A x1 x2) (commutative-add-Ab B y1 y2)
 

@@ -348,7 +348,7 @@ compute-htpy-precompose-total-lifts :
   ( htpy-precompose-total-lifts P (refl-htpy {f = f})) ~
   ( refl-htpy' (map-Σ (fam-lifts A P) (λ h → h ∘ f) (precompose-lifts P f)))
 compute-htpy-precompose-total-lifts {A = A} P f (pair h h') =
-  let α = λ (t : Id (h ∘ f) (h ∘ f)) → tr (fam-lifts A P) t (λ a → h' (f a))
+  let α = λ (t : h ∘ f ＝ h ∘ f) → tr (fam-lifts A P) t (λ a → h' (f a))
   in
   ap eq-pair-Σ'
     ( eq-pair-Σ
@@ -816,7 +816,7 @@ cocone-flattening-pushout f g c P Q e =
 coherence-bottom-flattening-lemma' :
   {l1 l2 l3 : Level} {B : UU l1} {Q : B → UU l2} {T : UU l3}
   {b b' : B} (α : b ＝ b') {y : Q b} {y' : Q b'} (β : tr Q α y ＝ y')
-  (h : (b : B) → Q b → T) → Id (h b y) (h b' y')
+  (h : (b : B) → Q b → T) → h b y ＝ h b' y'
 coherence-bottom-flattening-lemma' refl refl h = refl
 
 coherence-bottom-flattening-lemma :

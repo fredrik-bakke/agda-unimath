@@ -215,7 +215,7 @@ module _
 
   ap-mul-Semiring :
     {x x' y y' : type-Semiring R} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Semiring x y) (mul-Semiring x' y')
+    mul-Semiring x y ＝ mul-Semiring x' y'
   ap-mul-Semiring p q = ap-binary mul-Semiring p q
 
   associative-mul-Semiring :

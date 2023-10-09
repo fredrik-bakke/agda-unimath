@@ -534,7 +534,7 @@ map-prod-cone {A' = A'} {B'} f g f' g' =
     ( λ t →
       ( tot (λ s → eq-pair')) ∘
       ( map-interchange-Σ-Σ (λ y p y' → Id (f' (pr2 t)) (g' y'))))) ∘
-  ( map-interchange-Σ-Σ (λ x t x' → Σ _ (λ y' → Id (f' x') (g' y'))))
+  ( map-interchange-Σ-Σ (λ x t x' → Σ _ (λ y' → f' x' ＝ g' y')))
 
 triangle-map-prod-cone :
   {l1 l2 l3 l4 l1' l2' l3' l4' : Level}

@@ -115,7 +115,7 @@ module _
 
   ap-add-Ring :
     {x y x' y' : type-Ring R} →
-    x ＝ x' → y ＝ y' → Id (add-Ring x y) (add-Ring x' y')
+    x ＝ x' → y ＝ y' → add-Ring x y ＝ add-Ring x' y'
   ap-add-Ring = ap-add-Ab (ab-Ring R)
 
   associative-add-Ring :
@@ -126,7 +126,7 @@ module _
   is-group-additive-semigroup-Ring : is-group (additive-semigroup-Ring R)
   is-group-additive-semigroup-Ring = is-group-Ab (ab-Ring R)
 
-  commutative-add-Ring : (x y : type-Ring R) → Id (add-Ring x y) (add-Ring y x)
+  commutative-add-Ring : (x y : type-Ring R) → add-Ring x y ＝ add-Ring y x
   commutative-add-Ring = commutative-add-Ab (ab-Ring R)
 
   interchange-add-add-Ring :
@@ -366,7 +366,7 @@ module _
 
   ap-mul-Ring :
     {x x' y y' : type-Ring R} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Ring x y) (mul-Ring x' y')
+    mul-Ring x y ＝ mul-Ring x' y'
   ap-mul-Ring p q = ap-binary mul-Ring p q
 
   associative-mul-Ring :

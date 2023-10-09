@@ -182,7 +182,7 @@ module _
 
   commutative-add-vec-Euclidean-Domain :
     {n : ℕ} (v w : vec-Euclidean-Domain R n) →
-    Id (add-vec-Euclidean-Domain v w) (add-vec-Euclidean-Domain w v)
+    add-vec-Euclidean-Domain v w ＝ add-vec-Euclidean-Domain w v
   commutative-add-vec-Euclidean-Domain empty-vec empty-vec = refl
   commutative-add-vec-Euclidean-Domain (x ∷ v) (y ∷ w) =
     ap-binary _∷_

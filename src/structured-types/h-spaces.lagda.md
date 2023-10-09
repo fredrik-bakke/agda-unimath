@@ -88,7 +88,7 @@ module _
 
   ap-mul-H-Space :
     {a b c d : type-H-Space} → a ＝ b → c ＝ d →
-    Id (mul-H-Space a c) (mul-H-Space b d)
+    mul-H-Space a c ＝ mul-H-Space b d
   ap-mul-H-Space p q = ap-binary mul-H-Space p q
 
   magma-H-Space : Magma l

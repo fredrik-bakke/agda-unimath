@@ -95,7 +95,7 @@ htpy-eq-dependent-cocone-map :
   dependent-cocone-map f g c P h ＝ dependent-cocone-map f g c P h' → h ~ h'
 htpy-eq-dependent-cocone-map f g c ind-c {P} h h' p =
   ind-induction-principle-pushout f g c ind-c
-    ( λ x → Id (h x) (h' x))
+    ( λ x → h x ＝ h' x)
     ( pair
       ( horizontal-htpy-eq-dependent-cocone f g c P
         ( dependent-cocone-map f g c P h)

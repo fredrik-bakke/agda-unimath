@@ -233,7 +233,7 @@ module _
 
   is-injective-map-Fin-two-ℕ :
     (f : Fin 2 → A) →
-    ¬ (Id (f zero-Fin) (f one-Fin)) → is-injective f
+    ¬ (f zero-Fin ＝ f one-Fin) → is-injective f
   is-injective-map-Fin-two-ℕ f H {inl (inr star)} {inl (inr star)} p = refl
   is-injective-map-Fin-two-ℕ f H {inl (inr star)} {inr star} p = ex-falso (H p)
   is-injective-map-Fin-two-ℕ f H {inr star} {inl (inr star)} p =
@@ -243,7 +243,7 @@ module _
   is-injective-element-unordered-pair :
     (p : unordered-pair A) →
     ¬ ( (x y : type-unordered-pair p) →
-        Id (element-unordered-pair p x) (element-unordered-pair p y)) →
+        element-unordered-pair p x ＝ element-unordered-pair p y) →
     is-injective (element-unordered-pair p)
   is-injective-element-unordered-pair (pair X f) H {x} {y} p =
     apply-universal-property-trunc-Prop
@@ -256,7 +256,7 @@ module _
         ( λ x → ¬ ((y : type-2-Element-Type X) → f x ＝ f y))
     first-element h =
       exists-not-not-forall-count (λ z → (w : type-2-Element-Type X) →
-      Id (f z) (f w)) (λ z → {!!})
+      f z ＝ f w) (λ z → {!!})
         {!!} {!!}
     two-elements-different-image :
       Σ ( type-2-Element-Type X)

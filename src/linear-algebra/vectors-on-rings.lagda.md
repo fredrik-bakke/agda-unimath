@@ -161,7 +161,7 @@ module _
   pr2 (pr2 (pr2 (vec-Ring-Monoid n))) = right-unit-law-add-vec-Ring
 
   commutative-add-vec-Ring :
-    {n : ℕ} (v w : vec-Ring R n) → Id (add-vec-Ring v w) (add-vec-Ring w v)
+    {n : ℕ} (v w : vec-Ring R n) → add-vec-Ring v w ＝ add-vec-Ring w v
   commutative-add-vec-Ring empty-vec empty-vec = refl
   commutative-add-vec-Ring (x ∷ v) (y ∷ w) =
     ap-binary _∷_

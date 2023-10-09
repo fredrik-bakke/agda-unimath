@@ -41,7 +41,7 @@ module _
   where
 
   type-Ω : UU l
-  type-Ω = Id (point-Pointed-Type A) (point-Pointed-Type A)
+  type-Ω = point-Pointed-Type A ＝ point-Pointed-Type A
 
   refl-Ω : type-Ω
   refl-Ω = refl

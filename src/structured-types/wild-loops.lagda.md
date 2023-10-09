@@ -62,7 +62,7 @@ module _
 
   ap-mul-Wild-Loop :
     {a b c d : type-Wild-Loop} → a ＝ b → c ＝ d →
-    Id (mul-Wild-Loop a c) (mul-Wild-Loop b d)
+    mul-Wild-Loop a c ＝ mul-Wild-Loop b d
   ap-mul-Wild-Loop = ap-mul-H-Space h-space-Wild-Loop
 
   magma-Wild-Loop : Magma l

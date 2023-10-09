@@ -86,7 +86,7 @@ module _
       ( associative-add-Ring R2 y1 y2 y3)
 
   commutative-add-prod-Ring :
-    (x y : type-prod-Ring) → Id (add-prod-Ring x y) (add-prod-Ring y x)
+    (x y : type-prod-Ring) → add-prod-Ring x y ＝ add-prod-Ring y x
   commutative-add-prod-Ring (pair x1 y1) (pair x2 y2) =
     eq-pair
       ( commutative-add-Ring R1 x1 x2)

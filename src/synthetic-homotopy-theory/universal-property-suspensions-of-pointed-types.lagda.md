@@ -168,7 +168,7 @@ module _
             ( λ y1 →
               type-Pointed-Type X → point-Pointed-Type Y ＝ y1)
             ( λ z →
-              Σ ( Id (point-Pointed-Type Y) (pr1 z))
+              Σ ( point-Pointed-Type Y ＝ pr1 z)
                 ( λ x → pr2 z (point-Pointed-Type X) ＝ x))) ∘e
           ( ( inv-equiv
             ( right-unit-law-Σ-is-contr

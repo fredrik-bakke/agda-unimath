@@ -24,7 +24,7 @@ is-decidable-is-ordered-repetition-of-values-ℕ-Fin k f x = {!!}
 
 {-
   is-decidable-strictly-bounded-Σ-ℕ' x
-    ( λ y → Id (f y) (f x))
+    ( λ y → f y ＝ f x)
     ( λ y → has-decidable-equality-Fin k (f y) (f x))
 -}
 
@@ -37,7 +37,7 @@ is-decidable-is-ordered-repetition-of-values-ℕ-count e f x = {!!}
 
 {-
   is-decidable-strictly-bounded-Σ-ℕ' x
-    ( λ y → Id (f y) (f x))
+    ( λ y → f y ＝ f x)
     ( λ y → has-decidable-equality-count e (f y) (f x))
   -}
 ```

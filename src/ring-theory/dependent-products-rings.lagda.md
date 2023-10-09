@@ -93,7 +93,7 @@ module _
   right-inverse-law-add-Π-Ring = right-inverse-law-add-Ab ab-Π-Ring
 
   commutative-add-Π-Ring :
-    (x y : type-Π-Ring) → Id (add-Π-Ring x y) (add-Π-Ring y x)
+    (x y : type-Π-Ring) → add-Π-Ring x y ＝ add-Π-Ring y x
   commutative-add-Π-Ring = commutative-add-Semiring semiring-Π-Ring
 
   mul-Π-Ring : type-Π-Ring → type-Π-Ring → type-Π-Ring

@@ -146,7 +146,7 @@ module _
     (x : type-Ab) → add-Ab x (neg-Ab x) ＝ zero-Ab
   right-inverse-law-add-Ab = right-inverse-law-mul-Group group-Ab
 
-  commutative-add-Ab : (x y : type-Ab) → Id (add-Ab x y) (add-Ab y x)
+  commutative-add-Ab : (x y : type-Ab) → add-Ab x y ＝ add-Ab y x
   commutative-add-Ab = pr2 A
 
   interchange-add-add-Ab :

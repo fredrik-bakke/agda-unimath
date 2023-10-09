@@ -130,7 +130,7 @@ module _
     mul-Wild-Monoid M (f u) (map-elim-list-Wild-Monoid x)
 
   preserves-unit-map-elim-list-Wild-Monoid :
-    Id (map-elim-list-Wild-Monoid nil) (unit-Wild-Monoid M)
+    map-elim-list-Wild-Monoid nil ＝ unit-Wild-Monoid M
   preserves-unit-map-elim-list-Wild-Monoid = refl
 
   preserves-mul-map-elim-list-Wild-Monoid :
@@ -324,7 +324,7 @@ elim-list-Wild-Monoid M f =
 --          ( α (concat-list x y) ∙ pr2 (pr1 h) x y)
 --   β nil y = {!!}
 --   β (cons x x₁) y = {!!}
---   γ : Id (pr2 g) (α nil ∙ pr2 h)
+--   γ : pr2 g ＝ α nil ∙ pr2 h
 --   γ =
 --     ( inv right-unit) ∙
 --     ( ( ap (concat (pr2 g) (pr1 (pr2 M))) (inv (left-inv (pr2 h)))) ∙

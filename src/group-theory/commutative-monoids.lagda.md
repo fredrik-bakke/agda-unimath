@@ -34,7 +34,7 @@ A commutative monoid is a monoid `M` in which `xy = yx` holds for all `x y : M`.
 is-commutative-Monoid :
   {l : Level} (M : Monoid l) → UU l
 is-commutative-Monoid M =
-  (x y : type-Monoid M) → Id (mul-Monoid M x y) (mul-Monoid M y x)
+  (x y : type-Monoid M) → mul-Monoid M x y ＝ mul-Monoid M y x
 
 Commutative-Monoid : (l : Level) → UU (lsuc l)
 Commutative-Monoid l = Σ (Monoid l) is-commutative-Monoid

@@ -337,10 +337,10 @@ We show that systems form a category.
     {l1 l2 l3 l4 l5 l6 : Level} {A : system l1 l2} {B B' : system l3 l4}
     {C C' : system l5 l6} {g : hom-system B C} {g' : hom-system B' C'}
     (p : B ＝ B')
-    {p' : Id (constant-fibered-system A B) (constant-fibered-system A B')}
+    {p' : constant-fibered-system A B ＝ constant-fibered-system A B'}
     (α : Id (ap (constant-fibered-system A) p) p')
     (q : C ＝ C')
-    {q' : Id (constant-fibered-system A C) (constant-fibered-system A C')}
+    {q' : constant-fibered-system A C ＝ constant-fibered-system A C'}
     (β : Id (ap (constant-fibered-system A) q) q')
     (r : Id (tr (λ t → t) (ap-binary hom-system p q) g) g')
     {f : hom-system A B} {f' : hom-system A B'} →
@@ -406,9 +406,9 @@ We show that systems form a category.
     {l1 l2 l3 l4 l5 l6 : Level} {A : system l1 l2} {B : system l3 l4}
     {C C' : system l5 l6} (p : C ＝ C') {g : hom-system B C}
     {g' : hom-system B C'}
-    {p' : Id (constant-fibered-system B C) (constant-fibered-system B C')}
+    {p' : constant-fibered-system B C ＝ constant-fibered-system B C'}
     (α : Id (ap (constant-fibered-system B) p) p')
-    {q' : Id (constant-fibered-system A C) (constant-fibered-system A C')}
+    {q' : constant-fibered-system A C ＝ constant-fibered-system A C'}
     (β : Id (ap (constant-fibered-system A) p) q')
     (H : htpy-section-system' p' g g') →
     (f : hom-system A B) →

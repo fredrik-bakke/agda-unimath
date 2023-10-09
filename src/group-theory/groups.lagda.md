@@ -106,7 +106,7 @@ module _
 
   ap-mul-Group :
     {x x' y y' : type-Group} (p : x ＝ x') (q : y ＝ y') →
-    Id (mul-Group x y) (mul-Group x' y')
+    mul-Group x y ＝ mul-Group x' y'
   ap-mul-Group p q = ap-binary mul-Group p q
 
   mul-Group' : type-Group → type-Group → type-Group

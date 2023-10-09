@@ -70,7 +70,7 @@ homotopies of sections of fibered systems.
     {l1 l2 l3 l4 : Level} {T : UU l1} {A : system l2 T} {S : T → UU l3}
     {B B' : fibered-system l4 S A} (α : B ＝ B') {f f' : (X : T) → S X}
     (g : section-system B f) (g' : section-system B' f') →
-    fibered-system l4 (λ t → Id (f t) (f' t)) A
+    fibered-system l4 (λ t → f t ＝ f' t) A
   fibered-system.element (Eq-fibered-system' {B = B} refl {f} g g') {X} p x =
     Id
       ( tr

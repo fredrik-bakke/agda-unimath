@@ -66,7 +66,7 @@ in each variable.
 ```agda
 outer-eckmann-hilton-interchange-connection-Ω² :
   {l : Level} {A : UU l} {a : A} (α δ : type-Ω² a) →
-  Id (horizontal-concat-Ω² α δ) (vertical-concat-Ω² α δ)
+  horizontal-concat-Ω² α δ ＝ vertical-concat-Ω² α δ
 outer-eckmann-hilton-interchange-connection-Ω² α δ =
   ( z-concat-Id³ (inv right-unit) (inv left-unit)) ∙
   ( ( interchange-Ω² α refl refl δ) ∙
@@ -76,7 +76,7 @@ outer-eckmann-hilton-interchange-connection-Ω² α δ =
 
 inner-eckmann-hilton-interchange-connection-Ω² :
   {l : Level} {A : UU l} {a : A} (β γ : type-Ω² a) →
-  Id ( horizontal-concat-Ω² β γ) (vertical-concat-Ω² γ β)
+   horizontal-concat-Ω² β γ ＝ vertical-concat-Ω² γ β
 inner-eckmann-hilton-interchange-connection-Ω² β γ =
   ( z-concat-Id³ (inv left-unit) (inv right-unit)) ∙
   ( ( interchange-Ω² refl β γ refl) ∙
@@ -86,7 +86,7 @@ inner-eckmann-hilton-interchange-connection-Ω² β γ =
 
 eckmann-hilton-interchange-Ω² :
   {l : Level} {A : UU l} {a : A} (α β : type-Ω² a) →
-  Id (α ∙ β) (β ∙ α)
+  α ∙ β ＝ β ∙ α
 eckmann-hilton-interchange-Ω² α β =
   ( inv (outer-eckmann-hilton-interchange-connection-Ω² α β)) ∙
   ( inner-eckmann-hilton-interchange-connection-Ω² α β)

@@ -76,7 +76,7 @@ module _
 
   Eq-Data-𝕀 : (x y : Data-𝕀 P) → UU l
   Eq-Data-𝕀 x y =
-    Σ ( Id (pr1 x) (pr1 y)) (λ α →
+    Σ ( pr1 x ＝ pr1 y) (λ α →
       Σ ( Id (pr1 (pr2 x)) (pr1 (pr2 y))) (λ β →
         Id ( pr2 (pr2 x) ∙ β) ( (ap (tr P path-𝕀) α) ∙ pr2 (pr2 y))))
 
@@ -84,7 +84,7 @@ module _
   extensionality-Data-𝕀 (pair u (pair v α)) =
     extensionality-Σ
       ( λ {u'} vα' p →
-        Σ (Id v (pr1 vα')) (λ q → Id (α ∙ q) (ap (tr P path-𝕀) p ∙ pr2 vα')))
+        Σ (v ＝ pr1 vα') (λ q → Id (α ∙ q) (ap (tr P path-𝕀) p ∙ pr2 vα')))
       ( refl)
       ( pair refl right-unit)
       ( λ u' → id-equiv)
@@ -105,7 +105,7 @@ module _
   eq-Eq-Data-𝕀' {x} {y} = map-inv-equiv (extensionality-Data-𝕀 x y)
 
   eq-Eq-Data-𝕀 :
-    {x y : Data-𝕀 P} (α : Id (pr1 x) (pr1 y))
+    {x y : Data-𝕀 P} (α : pr1 x ＝ pr1 y)
     (β : Id (pr1 (pr2 x)) (pr1 (pr2 y)))
     (γ : Id (pr2 (pr2 x) ∙ β) (ap (tr P path-𝕀) α ∙ pr2 (pr2 y))) →
     x ＝ y
@@ -128,9 +128,9 @@ is-section-inv-ev-𝕀 (pair u (pair v q)) =
 
 tr-value :
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} (f g : (x : A) → B x) {x y : A}
-  (p : x ＝ y) (q : Id (f x) (g x)) (r : Id (f y) (g y)) →
+  (p : x ＝ y) (q : f x ＝ g x) (r : f y ＝ g y) →
   Id (apd f p ∙ r) (ap (tr B p) q ∙ apd g p) →
-  Id (tr (λ x → Id (f x) (g x)) p q) r
+  Id (tr (λ x → f x ＝ g x) p q) r
 tr-value f g refl q r s = (inv (ap-id q) ∙ inv right-unit) ∙ inv s
 
 is-retraction-inv-ev-𝕀 :

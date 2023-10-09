@@ -63,7 +63,7 @@ module _
   compute-mul-double-counting-Commutative-Monoid :
     {l2 : Level} {A : UU l2} (e1 : count A) (e2 : count A) →
     (x : A → type-Commutative-Monoid M) →
-    Id (mul-count-Commutative-Monoid e1 x) (mul-count-Commutative-Monoid e2 x)
+    mul-count-Commutative-Monoid e1 x ＝ mul-count-Commutative-Monoid e2 x
   compute-mul-double-counting-Commutative-Monoid e1 e2 x = {!!}
 -}
 ```

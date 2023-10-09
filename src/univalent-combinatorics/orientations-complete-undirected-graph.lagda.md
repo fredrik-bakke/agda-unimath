@@ -24,6 +24,7 @@ open import foundation.action-on-identifications-functions
 open import foundation.cartesian-product-types
 open import foundation.coproduct-types
 open import foundation.decidable-equivalence-relations
+open import foundation.negated-equality
 open import foundation.decidable-propositions
 open import foundation.decidable-types
 open import foundation.dependent-pair-types
@@ -90,7 +91,7 @@ module _
     orientation-Complete-Undirected-Graph →
     2-Element-Decidable-Subtype l (type-UU-Fin n X) → Decidable-Prop l
   pr1 (2-Element-Decidable-Subtype-subtype-pointwise-difference d d' Y) =
-    ¬ (Id (d Y) (d' Y))
+    d Y ≠ d' Y
   pr1 (pr2 (2-Element-Decidable-Subtype-subtype-pointwise-difference d d' Y)) =
     is-prop-neg
   pr2 (pr2 (2-Element-Decidable-Subtype-subtype-pointwise-difference d d' Y)) =
@@ -188,10 +189,10 @@ module _
             ( r))
       cases-g :
         (Y : 2-Element-Decidable-Subtype l (type-UU-Fin n X)) →
-        ¬ (Id (d1 Y) (d3 Y)) → (is-decidable (Id (d1 Y) (d2 Y))) →
-        is-decidable (Id (d2 Y) (d3 Y)) →
-        (¬ (Id (d1 Y) (d2 Y)) × ¬ (¬ (Id (d2 Y) (d3 Y)))) +
-        (¬ (Id (d2 Y) (d3 Y)) × ¬ (¬ (Id (d1 Y) (d2 Y))))
+        d1 Y ≠ d3 Y → is-decidable (d1 Y ＝ d2 Y) →
+        is-decidable (d2 Y ＝ d3 Y) →
+        ((d1 Y ≠ d2 Y) × (¬ (d2 Y ≠ d3 Y))) +
+        ((d2 Y ≠ d3 Y) × (¬ (d1 Y ≠ d2 Y)))
       cases-g Y nr (inl p) (inl q) = ex-falso (nr (p ∙ q))
       cases-g Y nr (inl p) (inr nq) = inr (pair nq (λ f → f p))
       cases-g Y nr (inr np) (inl q) = inl (pair np (λ f → f q))
@@ -270,14 +271,14 @@ module _
         ( trunc-Prop
           ( ( Fin (pr1 has-finite-cardinality-d'-d)) ≃
             ( Σ ( 2-Element-Decidable-Subtype l (type-UU-Fin n X))
-                ( λ Y → ¬ (Id (d' Y) (d Y))))))
+                ( λ Y → d' Y ≠ d Y))))
         ( λ h → unit-trunc-Prop (h' ∘e h))
       where
       h' :
         Σ ( 2-Element-Decidable-Subtype l (type-UU-Fin n X))
-          ( λ Y → ¬ (Id (d Y) (d' Y))) ≃
+          ( λ Y → d Y ≠ d' Y) ≃
         Σ ( 2-Element-Decidable-Subtype l (type-UU-Fin n X))
-          ( λ Y → ¬ (Id (d' Y) (d Y)))
+          ( λ Y → d' Y ≠ d Y)
       pr1 h' (pair Y np) = pair Y (λ p' → np (inv p'))
       pr2 h' =
         is-equiv-is-invertible
@@ -3109,14 +3110,14 @@ module _
             ( np))))
       ( orientation-two-elements-count j i (np ∘ inv))) →
     ¬ ( sim-Equivalence-Relation
-      ( even-difference-orientation-Complete-Undirected-Graph
-        ( number-of-elements-count eX)
-        ( pair X (unit-trunc-Prop (equiv-count eX))))
-      ( orientation-aut-count
-        ( transposition
-          ( standard-2-Element-Decidable-Subtype
-            ( has-decidable-equality-count eX)
-            ( np))))
+        ( even-difference-orientation-Complete-Undirected-Graph
+          ( number-of-elements-count eX)
+          ( pair X (unit-trunc-Prop (equiv-count eX))))
+        ( orientation-aut-count
+          ( transposition
+            ( standard-2-Element-Decidable-Subtype
+              ( has-decidable-equality-count eX)
+              ( np))))
       ( map-orientation-complete-undirected-graph-equiv
         ( number-of-elements-count eX)
         ( pair X (unit-trunc-Prop (equiv-count eX)))
@@ -3134,27 +3135,27 @@ module _
     tr
       ( λ d →
         ¬ ( sim-Equivalence-Relation
-          ( even-difference-orientation-Complete-Undirected-Graph
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX))))
-          ( d)
-          ( map-orientation-complete-undirected-graph-equiv
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( transposition (standard-2-Element-Decidable-Subtype
-              ( has-decidable-equality-count eX)
-              ( np)))
-            ( d))))
+            ( even-difference-orientation-Complete-Undirected-Graph
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX))))
+            ( d)
+            ( map-orientation-complete-undirected-graph-equiv
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( transposition (standard-2-Element-Decidable-Subtype
+                ( has-decidable-equality-count eX)
+                ( np)))
+              ( d))))
       ( inv pl)
       ( tr
         ( λ d →
           ¬ ( sim-Equivalence-Relation
-            ( even-difference-orientation-Complete-Undirected-Graph
-              ( number-of-elements-count eX)
-              ( pair X (unit-trunc-Prop (equiv-count eX))))
-            ( orientation-two-elements-count i j np)
-            ( d)))
+              ( even-difference-orientation-Complete-Undirected-Graph
+                ( number-of-elements-count eX)
+                ( pair X (unit-trunc-Prop (equiv-count eX))))
+              ( orientation-two-elements-count i j np)
+              ( d)))
         ( inv
           ( eq-map-orientation-transposition-orientation-two-elements-count
               i j np))
@@ -3170,18 +3171,18 @@ module _
     tr
       ( λ d →
         ¬ ( sim-Equivalence-Relation
-          ( even-difference-orientation-Complete-Undirected-Graph
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX))))
-          ( d)
-          ( map-orientation-complete-undirected-graph-equiv
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( transposition (standard-2-Element-Decidable-Subtype
-              ( has-decidable-equality-count eX)
-              ( np)))
-            ( d))))
+            ( even-difference-orientation-Complete-Undirected-Graph
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX))))
+            ( d)
+            ( map-orientation-complete-undirected-graph-equiv
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( transposition (standard-2-Element-Decidable-Subtype
+                ( has-decidable-equality-count eX)
+                ( np)))
+              ( d))))
       ( inv pr)
       ( tr
         ( λ d →
@@ -3217,30 +3218,30 @@ module _
   not-even-difference-orientation-aut-transposition-count :
     ( Y : 2-Element-Decidable-Subtype l X) →
     ¬ ( sim-Equivalence-Relation
-      ( even-difference-orientation-Complete-Undirected-Graph
-        ( number-of-elements-count eX)
-        ( pair X (unit-trunc-Prop (equiv-count eX))))
-      ( orientation-aut-count (transposition Y))
-      ( map-orientation-complete-undirected-graph-equiv
-        ( number-of-elements-count eX)
-        ( pair X (unit-trunc-Prop (equiv-count eX)))
-        ( pair X (unit-trunc-Prop (equiv-count eX)))
-        ( transposition Y)
-        ( orientation-aut-count (transposition Y))))
+        ( even-difference-orientation-Complete-Undirected-Graph
+          ( number-of-elements-count eX)
+          ( pair X (unit-trunc-Prop (equiv-count eX))))
+        ( orientation-aut-count (transposition Y))
+        ( map-orientation-complete-undirected-graph-equiv
+          ( number-of-elements-count eX)
+          ( pair X (unit-trunc-Prop (equiv-count eX)))
+          ( pair X (unit-trunc-Prop (equiv-count eX)))
+          ( transposition Y)
+          ( orientation-aut-count (transposition Y))))
   not-even-difference-orientation-aut-transposition-count Y =
     tr
       ( λ Y' →
         ¬ ( sim-Equivalence-Relation
-          ( even-difference-orientation-Complete-Undirected-Graph
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX))))
-          ( orientation-aut-count (transposition Y'))
-          ( map-orientation-complete-undirected-graph-equiv
-            ( number-of-elements-count eX)
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( pair X (unit-trunc-Prop (equiv-count eX)))
-            ( transposition Y')
-            ( orientation-aut-count (transposition Y')))))
+            ( even-difference-orientation-Complete-Undirected-Graph
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX))))
+            ( orientation-aut-count (transposition Y'))
+            ( map-orientation-complete-undirected-graph-equiv
+              ( number-of-elements-count eX)
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( pair X (unit-trunc-Prop (equiv-count eX)))
+              ( transposition Y')
+              ( orientation-aut-count (transposition Y')))))
       ( pr2 (pr2 (pr2 (two-elements-transposition eX Y))))
       ( cases-not-even-difference-orientation-aut-transposition-count
         ( pr1 (two-elements-transposition eX Y))
@@ -3330,11 +3331,11 @@ module _
             ( number-of-elements-count eX)
             ( pair X (unit-trunc-Prop (equiv-count eX))))) →
       ¬ ( is-in-equivalence-class
-        ( even-difference-orientation-Complete-Undirected-Graph
-          (number-of-elements-count eX)
-          (pair X (unit-trunc-Prop (equiv-count eX))))
-        ( T)
-        ( canonical-orientation-count)) →
+          ( even-difference-orientation-Complete-Undirected-Graph
+            (number-of-elements-count eX)
+            (pair X (unit-trunc-Prop (equiv-count eX))))
+          ( T)
+          ( canonical-orientation-count)) →
       ( t :
         orientation-Complete-Undirected-Graph
           ( number-of-elements-count eX)

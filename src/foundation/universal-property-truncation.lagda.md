@@ -157,14 +157,14 @@ abstract
 abstract
   apply-effectiveness-unit-trunc-Set :
     {l1 : Level} {A : UU l1} {x y : A} →
-    Id (unit-trunc-Set x) (unit-trunc-Set y) → mere-eq x y
+    unit-trunc-Set x ＝ unit-trunc-Set y → mere-eq x y
   apply-effectiveness-unit-trunc-Set {A = A} {x} {y} =
     map-equiv (is-effective-unit-trunc-Set A x y)
 
 abstract
   apply-effectiveness-unit-trunc-Set' :
     {l1 : Level} {A : UU l1} {x y : A} →
-    mere-eq x y → Id (unit-trunc-Set x) (unit-trunc-Set y)
+    mere-eq x y → unit-trunc-Set x ＝ unit-trunc-Set y
   apply-effectiveness-unit-trunc-Set' {A = A} {x} {y} =
     map-inv-equiv (is-effective-unit-trunc-Set A x y)
 
