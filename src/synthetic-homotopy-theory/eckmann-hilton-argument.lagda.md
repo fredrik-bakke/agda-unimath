@@ -76,7 +76,7 @@ outer-eckmann-hilton-interchange-connection-Ω² α δ =
 
 inner-eckmann-hilton-interchange-connection-Ω² :
   {l : Level} {A : UU l} {a : A} (β γ : type-Ω² a) →
-   horizontal-concat-Ω² β γ ＝ vertical-concat-Ω² γ β
+  horizontal-concat-Ω² β γ ＝ vertical-concat-Ω² γ β
 inner-eckmann-hilton-interchange-connection-Ω² β γ =
   ( z-concat-Id³ (inv left-unit) (inv right-unit)) ∙
   ( ( interchange-Ω² refl β γ refl) ∙

@@ -899,8 +899,8 @@ module _
         pair-k2 :
           Σ ( ℕ)
             ( λ l →
-              is-nonzero-ℕ l ×
-              l +ℕ k ＝ (pr1 (minimal-element-iterate g a b pa)))
+              ( is-nonzero-ℕ l) ×
+              ( l +ℕ k ＝ pr1 (minimal-element-iterate g a b pa)))
         pair-k2 =
           (subtraction-le-ℕ k (pr1 (minimal-element-iterate g a b pa)) ineq)
       pr2 (neq-iterate-nonzero-le-minimal-element pa k (pair nz ineq)) r =

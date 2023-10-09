@@ -239,7 +239,7 @@ module _
 
   commutative-add-Subgroup-Ab :
     ( x y : type-ab-Subgroup-Ab) →
-     add-ab-Subgroup-Ab x y ＝ add-ab-Subgroup-Ab y x
+    add-ab-Subgroup-Ab x y ＝ add-ab-Subgroup-Ab y x
   commutative-add-Subgroup-Ab x y =
     eq-subgroup-ab-eq-ab (commutative-add-Ab A (pr1 x) (pr1 y))
 
