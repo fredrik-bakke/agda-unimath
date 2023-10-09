@@ -40,5 +40,5 @@ module _
           ( λ y →
             ∃-Prop
               ( type-Group G)
-              ( λ g → Id (mul-Abstract-Group-Action G X g x) y)))
+              ( λ g → mul-Abstract-Group-Action G X g x ＝ y)))
 ```

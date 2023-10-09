@@ -58,7 +58,7 @@ abstract
   compute-zero-elim-ℤ :
     { l1 : Level} (P : ℤ → UU l1)
     ( p0 : P zero-ℤ) (pS : (k : ℤ) → (P k) ≃ (P (succ-ℤ k))) →
-    Id (elim-ℤ P p0 pS zero-ℤ) p0
+    elim-ℤ P p0 pS zero-ℤ ＝ p0
   compute-zero-elim-ℤ P p0 pS = refl
 
   compute-succ-elim-ℤ :
@@ -84,7 +84,7 @@ ELIM-ℤ :
 ELIM-ℤ P p0 pS =
   Σ ( (k : ℤ) → P k)
     ( λ f →
-      ( ( Id (f zero-ℤ) p0) ×
+      ( ( f zero-ℤ ＝ p0) ×
         ( (k : ℤ) → Id (f (succ-ℤ k)) ((map-equiv (pS k)) (f k)))))
 
 Elim-ℤ :
@@ -166,7 +166,7 @@ abstract
             ( pair (pr1 s) (pair p K))
             ( refl-htpy))
         ( is-contr-is-equiv'
-          ( Σ (Id (pr1 s zero-ℤ) p0) (λ α → Id α (pr1 (pr2 s))))
+          ( Σ (pr1 s zero-ℤ ＝ p0) (λ α → Id α (pr1 (pr2 s))))
           ( tot (λ α → right-transpose-eq-concat refl α (pr1 (pr2 s))))
           ( is-equiv-tot-is-fiberwise-equiv
             ( λ α → is-equiv-right-transpose-eq-concat refl α (pr1 (pr2 s))))

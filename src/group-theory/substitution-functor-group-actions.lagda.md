@@ -138,7 +138,7 @@ module _
       ( type-Group G)
       ( λ g →
         ( Id (mul-Group H (map-hom-Group G H f g) h) h') ×
-        ( Id (mul-Abstract-Group-Action G X g x) x'))
+        ( mul-Abstract-Group-Action G X g x ＝ x'))
   pr1
     ( pr2 (Equivalence-Relation-obj-left-adjoint-subst-Abstract-Group-Action X))
     ( h , x) =

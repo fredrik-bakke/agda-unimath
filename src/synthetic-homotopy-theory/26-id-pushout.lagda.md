@@ -455,7 +455,7 @@ hom-identity-is-universal-Fam-pushout :
   ( P : Fam-pushout l4 f g) (a : A) (p : pr1 P a) →
   is-universal-Fam-pushout l5 P a p →
   Σ ( hom-Fam-pushout P (desc-fam c (Id (pr1 c a))))
-    ( λ h → Id (pr1 h a p) refl)
+    ( λ h → pr1 h a p ＝ refl)
 hom-identity-is-universal-Fam-pushout {f = f} {g} c up-X P a p is-univ-P =
   {!!}
 

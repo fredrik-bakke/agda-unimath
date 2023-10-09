@@ -37,17 +37,17 @@ operation, including its laws.
 ```agda
 preserves-left-unit-law-mul :
   {l1 l2 : Level} {A : UU l1} {B : UU l2}
-  (μ : A → A → A) {eA : A} → ((x : A) → Id (μ eA x) x) →
-  (ν : B → B → B) {eB : B} → ((y : B) → Id (ν eB y) y) →
-  (f : A → B) → Id (f eA) eB → preserves-mul μ ν f → UU (l1 ⊔ l2)
+  (μ : A → A → A) {eA : A} → ((x : A) → μ eA x ＝ x) →
+  (ν : B → B → B) {eB : B} → ((y : B) → ν eB y ＝ y) →
+  (f : A → B) → f eA ＝ eB → preserves-mul μ ν f → UU (l1 ⊔ l2)
 preserves-left-unit-law-mul {A = A} {B} μ {eA} lA ν {eB} lB f p μf =
   (x : A) → Id (ap f (lA x)) (μf eA x ∙ (ap (λ t → ν t (f x)) p ∙ lB (f x)))
 
 preserves-right-unit-law-mul :
   {l1 l2 : Level} {A : UU l1} {B : UU l2}
-  (μ : A → A → A) {eA : A} → ((x : A) → Id (μ x eA) x) →
-  (ν : B → B → B) {eB : B} → ((y : B) → Id (ν y eB) y) →
-  (f : A → B) → Id (f eA) eB → preserves-mul μ ν f → UU (l1 ⊔ l2)
+  (μ : A → A → A) {eA : A} → ((x : A) → μ x eA ＝ x) →
+  (ν : B → B → B) {eB : B} → ((y : B) → ν y eB ＝ y) →
+  (f : A → B) → f eA ＝ eB → preserves-mul μ ν f → UU (l1 ⊔ l2)
 preserves-right-unit-law-mul {A = A} {B} μ {eA} rA ν {eB} rB f p μf =
   (x : A) → Id (ap f (rA x)) (μf x eA ∙ (ap (ν (f x)) p ∙ rB (f x)))
 
@@ -224,11 +224,11 @@ preserves-mul-htpy {A = A} μA μB μf μg H =
 {-
 preserves-left-unit-law-mul-htpy :
   {l1 l2 : Level} {A : UU l1} {B : UU l2}
-  (μA : A → A → A) {eA : A} (lA : (a : A) → Id (μA eA a) a)
-  (μB : B → B → B) {eB : B} (lB : (b : B) → Id (μB eB b) b)
-  {f : A → B} {pf : Id (f eA) eB} (μf : preserves-mul μA μB f)
+  (μA : A → A → A) {eA : A} (lA : (a : A) → μA eA a ＝ a)
+  (μB : B → B → B) {eB : B} (lB : (b : B) → μB eB b ＝ b)
+  {f : A → B} {pf : f eA ＝ eB} (μf : preserves-mul μA μB f)
   (lf : preserves-left-unit-law-mul μA lA μB lB f pf μf)
-  {g : A → B} {pg : Id (g eA) eB} (μg : preserves-mul μA μB g)
+  {g : A → B} {pg : g eA ＝ eB} (μg : preserves-mul μA μB g)
   (lg : preserves-left-unit-law-mul μA lA μB lB g pg μg) →
   {H : f ~ g} (μH : preserves-mul-htpy μA μB μf μg H) (pH : Id pf (H eA ∙ pg)) →
   UU (l1 ⊔ l2)

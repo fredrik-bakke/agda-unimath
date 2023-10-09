@@ -185,13 +185,13 @@ module _
   is-zero-semiring-Prop x = Id-Prop (set-Semiring R) x zero-Semiring
 
   left-unit-law-add-Semiring :
-    (x : type-Semiring R) → Id (add-Semiring R zero-Semiring x) x
+    (x : type-Semiring R) → add-Semiring R zero-Semiring x ＝ x
   left-unit-law-add-Semiring =
     left-unit-law-mul-Commutative-Monoid
       ( additive-commutative-monoid-Semiring R)
 
   right-unit-law-add-Semiring :
-    (x : type-Semiring R) → Id (add-Semiring R x zero-Semiring) x
+    (x : type-Semiring R) → add-Semiring R x zero-Semiring ＝ x
   right-unit-law-add-Semiring =
     right-unit-law-mul-Commutative-Monoid
       ( additive-commutative-monoid-Semiring R)
@@ -280,12 +280,12 @@ module _
   one-Semiring = unit-Monoid multiplicative-monoid-Semiring
 
   left-unit-law-mul-Semiring :
-    (x : type-Semiring R) → Id (mul-Semiring R one-Semiring x) x
+    (x : type-Semiring R) → mul-Semiring R one-Semiring x ＝ x
   left-unit-law-mul-Semiring =
     left-unit-law-mul-Monoid multiplicative-monoid-Semiring
 
   right-unit-law-mul-Semiring :
-    (x : type-Semiring R) → Id (mul-Semiring R x one-Semiring) x
+    (x : type-Semiring R) → mul-Semiring R x one-Semiring ＝ x
   right-unit-law-mul-Semiring =
     right-unit-law-mul-Monoid multiplicative-monoid-Semiring
 ```

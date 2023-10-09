@@ -163,7 +163,7 @@ pr2 (pr2 (cocone-map f g c h)) = h ·l coherence-square-cocone f g c
 cocone-map-id :
   {l1 l2 l3 l4 : Level} {S : UU l1} {A : UU l2} {B : UU l3}
   (f : S → A) (g : S → B) {X : UU l4} (c : cocone f g X) →
-  Id (cocone-map f g c id) c
+  cocone-map f g c id ＝ c
 cocone-map-id f g c =
   eq-pair-Σ refl
     ( eq-pair-Σ refl (eq-htpy (ap-id ∘ coherence-square-cocone f g c)))

@@ -338,8 +338,8 @@ computes to `refl-htpy`.
 ```agda
 tr-id-left-subst :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} {f : A → B} {x y : A}
-  (p : x ＝ y) (b : B) → (q : Id (f x) b) →
-  Id (tr (λ (a : A) → Id (f a) b) p q) ((inv (ap f p)) ∙ q)
+  (p : x ＝ y) (b : B) → (q : f x ＝ b) →
+  Id (tr (λ (a : A) → f a ＝ b) p q) ((inv (ap f p)) ∙ q)
 tr-id-left-subst refl b q = refl
 
 compute-htpy-precompose-total-lifts :
@@ -815,7 +815,7 @@ cocone-flattening-pushout f g c P Q e =
 {-
 coherence-bottom-flattening-lemma' :
   {l1 l2 l3 : Level} {B : UU l1} {Q : B → UU l2} {T : UU l3}
-  {b b' : B} (α : b ＝ b') {y : Q b} {y' : Q b'} (β : Id (tr Q α y) y')
+  {b b' : B} (α : b ＝ b') {y : Q b} {y' : Q b'} (β : tr Q α y ＝ y')
   (h : (b : B) → Q b → T) → Id (h b y) (h b' y')
 coherence-bottom-flattening-lemma' refl refl h = refl
 

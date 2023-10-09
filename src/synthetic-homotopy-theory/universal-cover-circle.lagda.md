@@ -90,7 +90,7 @@ abstract
   is-equiv-functor-free-dependent-loop-is-fiberwise-equiv
     (pair x l) {P} {Q} {f} is-equiv-f =
     is-equiv-map-Σ
-      ( λ q₀ → Id (tr Q l q₀) q₀)
+      ( λ q₀ → tr Q l q₀ ＝ q₀)
       ( _)
       ( _)
       ( is-equiv-f x)
@@ -461,7 +461,7 @@ contraction-total-fundamental-cover-circle-data :
       ( h)
       ( h)) →
   ( t : Σ X (fundamental-cover-circle l dup-circle)) →
-  Id (center-total-fundamental-cover-circle l dup-circle) t
+  center-total-fundamental-cover-circle l dup-circle ＝ t
 contraction-total-fundamental-cover-circle-data
   {l1} l dup-circle h p (pair x y) =
   map-inv-is-equiv
@@ -590,7 +590,7 @@ point-fundamental-cover-circle l dup-circle =
 fundamental-cover-circle-eq :
   { l1 : Level} {X : UU l1} (l : free-loop X) →
   ( dup-circle : {l2 : Level} → dependent-universal-property-circle l2 l) →
-  ( x : X) → Id (base-free-loop l) x → fundamental-cover-circle l dup-circle x
+  ( x : X) → base-free-loop l ＝ x → fundamental-cover-circle l dup-circle x
 fundamental-cover-circle-eq l dup-circle .(base-free-loop l) refl =
   point-fundamental-cover-circle l dup-circle
 
@@ -608,7 +608,7 @@ equiv-fundamental-cover-circle :
   { l1 : Level} {X : UU l1} (l : free-loop X) →
   ( dup-circle : {l2 : Level} → dependent-universal-property-circle l2 l) →
   ( x : X) →
-  ( Id (base-free-loop l) x) ≃ (fundamental-cover-circle l dup-circle x)
+  ( base-free-loop l ＝ x) ≃ (fundamental-cover-circle l dup-circle x)
 equiv-fundamental-cover-circle l dup-circle x =
   pair
     ( fundamental-cover-circle-eq l dup-circle x)

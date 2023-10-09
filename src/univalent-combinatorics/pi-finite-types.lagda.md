@@ -589,7 +589,7 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
         ( β))
     where
     β : (x : Σ A B) (v : type-trunc-Set (Σ A B)) →
-        is-decidable (Id (unit-trunc-Set x) v)
+        is-decidable (unit-trunc-Set x ＝ v)
     β (x , y) =
       apply-dependent-universal-property-trunc-Set'
         ( λ u →
@@ -632,17 +632,17 @@ has-finite-connected-components-Σ-is-0-connected {A = A} {B} C H K =
                 ( Σ ( type-hom-Set (trunc-Set (a ＝ a)) (Prop-Set _))
                     ( λ h →
                       ( λ a₁ → h (unit-trunc-Set a₁)) ~
-                      ( λ ω₁ → trunc-Prop (Id (tr B ω₁ y) y'))))
+                      ( λ ω₁ → trunc-Prop (tr B ω₁ y ＝ y'))))
             ℙ = universal-property-trunc-Set
                 ( a ＝ a)
                 ( Prop-Set _)
-                ( λ ω → trunc-Prop (Id (tr B ω y) y'))
+                ( λ ω → trunc-Prop (tr B ω y ＝ y'))
             P : type-trunc-Set (a ＝ a) → Prop _
             P = pr1 (center ℙ)
             compute-P :
               ( ω : a ＝ a) →
               type-Prop (P (unit-trunc-Set ω)) ≃
-              type-trunc-Prop (Id (tr B ω y) y')
+              type-trunc-Prop (tr B ω y ＝ y')
             compute-P ω = equiv-eq (ap pr1 (pr2 (center ℙ) ω))
             d : (t : type-trunc-Set (a ＝ a)) → is-decidable (type-Prop (P t))
             d = apply-dependent-universal-property-trunc-Set'

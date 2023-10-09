@@ -211,13 +211,13 @@ module _
 
   left-unit-law-add-Subgroup-Ab :
     (x : type-ab-Subgroup-Ab) →
-    Id (add-ab-Subgroup-Ab zero-ab-Subgroup-Ab x) x
+    add-ab-Subgroup-Ab zero-ab-Subgroup-Ab x ＝ x
   left-unit-law-add-Subgroup-Ab =
     left-unit-law-mul-Subgroup (group-Ab A) B
 
   right-unit-law-add-Subgroup-Ab :
     (x : type-ab-Subgroup-Ab) →
-    Id (add-ab-Subgroup-Ab x zero-ab-Subgroup-Ab) x
+    add-ab-Subgroup-Ab x zero-ab-Subgroup-Ab ＝ x
   right-unit-law-add-Subgroup-Ab =
     right-unit-law-mul-Subgroup (group-Ab A) B
 

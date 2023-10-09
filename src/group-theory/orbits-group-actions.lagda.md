@@ -32,5 +32,5 @@ module _
   hom-orbit-Abstract-Group-Action :
     (x y : type-Abstract-Group-Action G X) → UU (l1 ⊔ l2)
   hom-orbit-Abstract-Group-Action x y =
-    Σ (type-Group G) (λ g → Id (mul-Abstract-Group-Action G X g x) y)
+    Σ (type-Group G) (λ g → mul-Abstract-Group-Action G X g x ＝ y)
 ```

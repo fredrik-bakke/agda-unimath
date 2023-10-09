@@ -123,7 +123,7 @@ homotopies of sections of fibered systems.
 
   concat-htpy-section-system' :
     {l1 l2 l3 l4 : Level} {A : system l1 l2} {B B' B'' : fibered-system l3 l4 A}
-    {α : B ＝ B'} {β : B' ＝ B''} (γ : B ＝ B'') (δ : Id (α ∙ β) γ)
+    {α : B ＝ B'} {β : B' ＝ B''} (γ : B ＝ B'') (δ : α ∙ β ＝ γ)
     {f : section-system B} {g : section-system B'}
     {h : section-system B''}
     (G : htpy-section-system' α f g) (H : htpy-section-system' β g h) →
@@ -161,7 +161,7 @@ homotopies of sections of fibered systems.
 
   inv-htpy-section-system' :
     {l1 l2 l3 l4 : Level} {A : system l1 l2} {B B' : fibered-system l3 l4 A}
-    {α : B ＝ B'} (β : B' ＝ B) (γ : Id (inv α) β)
+    {α : B ＝ B'} (β : B' ＝ B) (γ : inv α ＝ β)
     {f : section-system B} {g : section-system B'} →
     htpy-section-system' α f g → htpy-section-system' β g f
   section-system.type (inv-htpy-section-system' {α = refl} .refl refl H) X =

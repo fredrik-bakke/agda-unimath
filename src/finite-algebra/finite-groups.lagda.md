@@ -145,11 +145,11 @@ module _
   is-unit-finite-group-Prop = is-unit-group-Prop group-Group-𝔽
 
   left-unit-law-mul-Group-𝔽 :
-    (x : type-Group-𝔽) → Id (mul-Group-𝔽 unit-Group-𝔽 x) x
+    (x : type-Group-𝔽) → mul-Group-𝔽 unit-Group-𝔽 x ＝ x
   left-unit-law-mul-Group-𝔽 = left-unit-law-mul-Group group-Group-𝔽
 
   right-unit-law-mul-Group-𝔽 :
-    (x : type-Group-𝔽) → Id (mul-Group-𝔽 x unit-Group-𝔽) x
+    (x : type-Group-𝔽) → mul-Group-𝔽 x unit-Group-𝔽 ＝ x
   right-unit-law-mul-Group-𝔽 = right-unit-law-mul-Group group-Group-𝔽
 
   pointed-type-Group-𝔽 : Pointed-Type l
@@ -170,7 +170,7 @@ module _
   right-inverse-law-mul-Group-𝔽 = right-inverse-law-mul-Group group-Group-𝔽
 
   inv-unit-Group-𝔽 :
-    Id (inv-Group-𝔽 unit-Group-𝔽) unit-Group-𝔽
+    inv-Group-𝔽 unit-Group-𝔽 ＝ unit-Group-𝔽
   inv-unit-Group-𝔽 = inv-unit-Group group-Group-𝔽
 ```
 

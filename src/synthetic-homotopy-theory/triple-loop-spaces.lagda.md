@@ -77,27 +77,27 @@ ap-z-concat-Ω³ s t = k-concat-Id⁴ s t
 ```agda
 left-unit-law-x-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (x-concat-Ω³ refl-Ω³ α) α
+  x-concat-Ω³ refl-Ω³ α ＝ α
 left-unit-law-x-concat-Ω³ α = left-unit
 
 right-unit-law-x-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (x-concat-Ω³ α refl-Ω³) α
+  x-concat-Ω³ α refl-Ω³ ＝ α
 right-unit-law-x-concat-Ω³ α = right-unit
 
 left-unit-law-y-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (y-concat-Ω³ refl-Ω³ α) α
+  y-concat-Ω³ refl-Ω³ α ＝ α
 left-unit-law-y-concat-Ω³ α = left-unit-law-horizontal-concat-Ω²
 
 right-unit-law-y-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (y-concat-Ω³ α refl-Ω³) α
+  y-concat-Ω³ α refl-Ω³ ＝ α
 right-unit-law-y-concat-Ω³ α = right-unit-law-horizontal-concat-Ω²
 
 left-unit-law-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (z-concat-Ω³ refl-Ω³ α) α
+  z-concat-Ω³ refl-Ω³ α ＝ α
 left-unit-law-z-concat-Ω³ α =
   ( left-unit-law-z-concat-Id³ α) ∙
   ( ( inv right-unit) ∙
@@ -117,7 +117,7 @@ super-naturality-right-unit α = {!!}
 {-
 right-unit-law-z-concat-Ω³ :
   {l : Level} {A : UU l} {a : A} (α : type-Ω³ a) →
-  Id (z-concat-Ω³ α refl-Ω³) α
+  z-concat-Ω³ α refl-Ω³ ＝ α
 right-unit-law-z-concat-Ω³ α =
   ( right-unit-law-z-concat-Id³ α) ∙
   {!!}

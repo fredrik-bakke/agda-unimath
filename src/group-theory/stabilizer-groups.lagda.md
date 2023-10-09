@@ -32,5 +32,5 @@ module _
   type-stabilizer-Abstract-Group-Action :
     type-Abstract-Group-Action G X → UU (l1 ⊔ l2)
   type-stabilizer-Abstract-Group-Action x =
-    Σ (type-Group G) (λ g → Id (mul-Abstract-Group-Action G X g x) x)
+    Σ (type-Group G) (λ g → mul-Abstract-Group-Action G X g x ＝ x)
 ```

@@ -609,7 +609,7 @@ module _
 
   abstract
     preserves-id-equiv-simpson-comp-equiv :
-      (X : UU-Fin l n) → Id (simpson-comp-equiv X X id-equiv) id-equiv
+      (X : UU-Fin l n) → simpson-comp-equiv X X id-equiv ＝ id-equiv
     preserves-id-equiv-simpson-comp-equiv X =
       eq-htpy-equiv left-unit-law-equiv
 

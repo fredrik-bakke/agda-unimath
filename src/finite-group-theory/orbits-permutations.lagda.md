@@ -1392,7 +1392,7 @@ module _
       h'-inl :
         ( k : Fin (number-of-elements-count h))
         ( T : equivalence-class (same-orbits-permutation-count g)) →
-        Id (map-equiv-count h k) T →
+        map-equiv-count h k ＝ T →
         is-decidable
           ( is-in-equivalence-class (same-orbits-permutation-count g) T a) →
         is-decidable

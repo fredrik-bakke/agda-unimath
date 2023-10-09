@@ -183,7 +183,7 @@ module _
 
   abstract
     left-computation-standard-transposition :
-      Id (map-standard-transposition x) y
+      map-standard-transposition x ＝ y
     left-computation-standard-transposition
       with is-decidable-type-prop-standard-2-Element-Decidable-Subtype H p x
     ... | inl pp =
@@ -198,7 +198,7 @@ module _
 
   abstract
     right-computation-standard-transposition :
-      Id (map-standard-transposition y) x
+      map-standard-transposition y ＝ x
     right-computation-standard-transposition
       with is-decidable-type-prop-standard-2-Element-Decidable-Subtype H p y
     ... | inl pp =
@@ -214,7 +214,7 @@ module _
   abstract
     is-fixed-point-standard-transposition :
       (z : X) → x ≠ z → y ≠ z →
-      Id (map-standard-transposition z) z
+      map-standard-transposition z ＝ z
     is-fixed-point-standard-transposition z q r
       with is-decidable-type-prop-standard-2-Element-Decidable-Subtype H p z
     ... | inl (inl h) = ex-falso (q h)
@@ -260,7 +260,7 @@ module _
   where
 
   abstract
-    is-not-identity-map-transposition : Id (map-transposition P) id → empty
+    is-not-identity-map-transposition : map-transposition P ＝ id → empty
     is-not-identity-map-transposition f =
       is-not-identity-swap-2-Element-Type
         ( 2-element-type-2-Element-Decidable-Subtype P)
@@ -289,10 +289,10 @@ module _
   where
 
   element-is-not-identity-map-transposition :
-    Σ X (λ x → ¬ (Id (map-transposition Y x) x))
+    Σ X (λ x → ¬ (map-transposition Y x ＝ x))
   element-is-not-identity-map-transposition =
     exists-not-not-forall-count
-      ( λ z → Id (map-transposition Y z) z)
+      ( λ z → map-transposition Y z ＝ z)
       ( λ x → has-decidable-equality-count eX (map-transposition Y x) x)
       ( eX)
       ( λ H → is-not-identity-map-transposition Y (eq-htpy H))
@@ -371,7 +371,7 @@ module _
         ( type-decidable-prop-pr1-two-elements-transposition)
     type-t-coprod-id :
       (x : X) →
-      ( Id (pr1 two-elements-transposition) x) +
+      ( pr1 two-elements-transposition ＝ x) +
       ( Id (pr1 (pr2 two-elements-transposition)) x) →
       type-Decidable-Prop (pr1 Y x)
     type-t-coprod-id x (inl Q) =
@@ -401,7 +401,7 @@ module _
             ( pr1 (pr2 two-elements-transposition))
             ( type-decidable-prop-pr1-pr2-two-elements-transposition)))
         ( k3) →
-      ( Id (pr1 two-elements-transposition) x) +
+      ( pr1 two-elements-transposition ＝ x) +
       ( Id (pr1 (pr2 two-elements-transposition)) x)
     cases-coprod-id-type-t x p h (inl (inr star)) (inl (inr star)) k3 K1 K2 K3 =
       inl (ap pr1 (is-injective-map-equiv (inv-equiv h) (K2 ∙ inv K1)))
@@ -429,7 +429,7 @@ module _
       inl (ap pr1 (is-injective-map-equiv (inv-equiv h) (K2 ∙ inv K1)))
     coprod-id-type-t :
       (x : X) → type-Decidable-Prop (pr1 Y x) →
-      ( Id (pr1 two-elements-transposition) x) +
+      ( pr1 two-elements-transposition ＝ x) +
       ( Id (pr1 (pr2 two-elements-transposition)) x)
     coprod-id-type-t x p =
       apply-universal-property-trunc-Prop (pr2 Y)
@@ -478,13 +478,13 @@ module _
       (x y : X) (np : x ≠ y) →
       (type-Decidable-Prop (pr1 Y x)) →
       (type-Decidable-Prop (pr1 Y y)) →
-      is-decidable (Id (pr1 two-elements-transposition) x) →
+      is-decidable (pr1 two-elements-transposition ＝ x) →
       is-decidable (Id (pr1 (pr2 two-elements-transposition)) x) →
-      is-decidable (Id (pr1 two-elements-transposition) y) →
+      is-decidable (pr1 two-elements-transposition ＝ y) →
       is-decidable (Id (pr1 (pr2 two-elements-transposition)) y) →
-      ( ( Id (pr1 two-elements-transposition) x) ×
+      ( ( pr1 two-elements-transposition ＝ x) ×
         ( Id (pr1 (pr2 two-elements-transposition)) y)) +
-      ( ( Id (pr1 two-elements-transposition) y) ×
+      ( ( pr1 two-elements-transposition ＝ y) ×
         ( Id (pr1 (pr2 two-elements-transposition)) x))
     cases-eq-two-elements-transposition x y np p1 p2 (inl q) r s (inl u) =
       inl (pair q u)
@@ -560,9 +560,9 @@ module _
       (x y : X) (np : x ≠ y) →
       (type-Decidable-Prop (pr1 Y x)) →
       (type-Decidable-Prop (pr1 Y y)) →
-      ( ( Id (pr1 two-elements-transposition) x) ×
+      ( ( pr1 two-elements-transposition ＝ x) ×
         ( Id (pr1 (pr2 two-elements-transposition)) y)) +
-      ( ( Id (pr1 two-elements-transposition) y) ×
+      ( ( pr1 two-elements-transposition ＝ y) ×
         ( Id (pr1 (pr2 two-elements-transposition)) x))
     eq-two-elements-transposition x y np p1 p2 =
       cases-eq-two-elements-transposition x y np p1 p2

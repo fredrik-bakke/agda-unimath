@@ -91,12 +91,12 @@ module _
     associative-add-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
   left-unit-law-add-Π-Ring-𝔽 :
-    (x : type-Π-Ring-𝔽) → Id (add-Π-Ring-𝔽 zero-Π-Ring-𝔽 x) x
+    (x : type-Π-Ring-𝔽) → add-Π-Ring-𝔽 zero-Π-Ring-𝔽 x ＝ x
   left-unit-law-add-Π-Ring-𝔽 =
     left-unit-law-add-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
   right-unit-law-add-Π-Ring-𝔽 :
-    (x : type-Π-Ring-𝔽) → Id (add-Π-Ring-𝔽 x zero-Π-Ring-𝔽) x
+    (x : type-Π-Ring-𝔽) → add-Π-Ring-𝔽 x zero-Π-Ring-𝔽 ＝ x
   right-unit-law-add-Π-Ring-𝔽 =
     right-unit-law-add-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
@@ -128,12 +128,12 @@ module _
     associative-mul-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
   left-unit-law-mul-Π-Ring-𝔽 :
-    (x : type-Π-Ring-𝔽) → Id (mul-Π-Ring-𝔽 one-Π-Ring-𝔽 x) x
+    (x : type-Π-Ring-𝔽) → mul-Π-Ring-𝔽 one-Π-Ring-𝔽 x ＝ x
   left-unit-law-mul-Π-Ring-𝔽 =
     left-unit-law-mul-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 
   right-unit-law-mul-Π-Ring-𝔽 :
-    (x : type-Π-Ring-𝔽) → Id (mul-Π-Ring-𝔽 x one-Π-Ring-𝔽) x
+    (x : type-Π-Ring-𝔽) → mul-Π-Ring-𝔽 x one-Π-Ring-𝔽 ＝ x
   right-unit-law-mul-Π-Ring-𝔽 =
     right-unit-law-mul-Π-Ring (type-𝔽 I) (ring-Ring-𝔽 ∘ A)
 

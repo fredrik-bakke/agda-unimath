@@ -590,7 +590,7 @@ module _
 
   equiv-Eq-equiv-Torsor-Abstract-Group :
     (X : Torsor-Abstract-Group G l1) →
-    Id (principal-Torsor-Abstract-Group G) X ≃ Eq-Torsor-Abstract-Group X
+    principal-Torsor-Abstract-Group G ＝ X ≃ Eq-Torsor-Abstract-Group X
   equiv-Eq-equiv-Torsor-Abstract-Group X =
     ( pair
       ( Eq-equiv-Torsor-Abstract-Group X)

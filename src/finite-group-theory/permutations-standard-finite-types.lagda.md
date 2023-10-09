@@ -128,7 +128,7 @@ abstract
   retraction-permutation-list-transpositions-Fin' :
     (n : ℕ) (f : Permutation (succ-ℕ n)) →
     (x : Fin (succ-ℕ n)) → Id (map-equiv f (inr star)) x →
-    (y z : Fin (succ-ℕ n)) → Id (map-equiv f y) z →
+    (y z : Fin (succ-ℕ n)) → map-equiv f y ＝ z →
     Id
       ( map-equiv
         ( permutation-list-transpositions

@@ -26,11 +26,11 @@ two steps. First, we construct the booleanization, which is a map
 `is-decidable A → bool`, that sends elements of the form `inl a` to `true` and
 elements of the form `inr na` to `false`. Then we construct the boolean
 reflection function, which takes a decision `d : is-decidable A` and an
-identification `Id (booleanization d) true` to an element of `A`. This allows us
+identification `booleanization d ＝ true` to an element of `A`. This allows us
 to construct an element of `A` if it has elements, by
 `boolean-reflection d refl`. Indeed, if `A` was nonempty, then the decision
 `d : is-decidable A` must have been of the form `inl a` for some element `a`,
-and that `refl` is indeed an identification `Id (booleanization d) true`.
+and that `refl` is indeed an identification `booleanization d ＝ true`.
 
 ## Definition
 

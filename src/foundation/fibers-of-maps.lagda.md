@@ -34,7 +34,7 @@ module _
   where
 
   square-fiber :
-    ( f ∘ (pr1 {B = λ x → Id (f x) b})) ~
+    ( f ∘ (pr1 {B = λ x → f x ＝ b})) ~
     ( (const unit B b) ∘ (const (fiber f b) unit star))
   square-fiber = pr2
 

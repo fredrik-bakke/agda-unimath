@@ -41,19 +41,19 @@ postulate
 
   ind-𝕀 :
     {l : Level} (P : 𝕀 → UU l) (u : P source-𝕀) (v : P target-𝕀)
-    (q : Id (tr P path-𝕀 u) v) → (x : 𝕀) → P x
+    (q : tr P path-𝕀 u ＝ v) → (x : 𝕀) → P x
 
   compute-source-𝕀 :
     {l : Level} {P : 𝕀 → UU l} (u : P source-𝕀) (v : P target-𝕀)
-    (q : Id (tr P path-𝕀 u) v) → Id (ind-𝕀 P u v q source-𝕀) u
+    (q : tr P path-𝕀 u ＝ v) → ind-𝕀 P u v q source-𝕀 ＝ u
 
   compute-target-𝕀 :
     {l : Level} {P : 𝕀 → UU l} (u : P source-𝕀) (v : P target-𝕀)
-    (q : Id (tr P path-𝕀 u) v) → Id (ind-𝕀 P u v q target-𝕀) v
+    (q : tr P path-𝕀 u ＝ v) → ind-𝕀 P u v q target-𝕀 ＝ v
 
   compute-path-𝕀 :
     {l : Level} {P : 𝕀 → UU l} (u : P source-𝕀) (v : P target-𝕀)
-    (q : Id (tr P path-𝕀 u) v) →
+    (q : tr P path-𝕀 u ＝ v) →
     Id
       ( apd (ind-𝕀 P u v q) path-𝕀 ∙ compute-target-𝕀 u v q)
       ( ap (tr P path-𝕀) (compute-source-𝕀 u v q) ∙ q)
@@ -65,7 +65,7 @@ postulate
 
 ```agda
 Data-𝕀 : {l : Level} → (𝕀 → UU l) → UU l
-Data-𝕀 P = Σ (P source-𝕀) (λ u → Σ (P target-𝕀) (λ v → Id (tr P path-𝕀 u) v))
+Data-𝕀 P = Σ (P source-𝕀) (λ u → Σ (P target-𝕀) (λ v → tr P path-𝕀 u ＝ v))
 
 ev-𝕀 : {l : Level} {P : 𝕀 → UU l} → ((x : 𝕀) → P x) → Data-𝕀 P
 ev-𝕀 f = triple (f source-𝕀) (f target-𝕀) (apd f path-𝕀)
@@ -89,7 +89,7 @@ module _
       ( pair refl right-unit)
       ( λ u' → id-equiv)
       ( extensionality-Σ
-        ( λ {v'} α' q → Id (α ∙ q) α')
+        ( λ {v'} α' q → α ∙ q ＝ α')
         ( refl)
         ( right-unit)
         ( λ v' → id-equiv)

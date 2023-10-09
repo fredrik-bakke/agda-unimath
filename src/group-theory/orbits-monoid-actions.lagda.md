@@ -42,7 +42,7 @@ module _
 
   hom-orbit-Monoid-Action : (x y : type-Monoid-Action M X) → UU (l1 ⊔ l2)
   hom-orbit-Monoid-Action x y =
-    Σ (type-Monoid M) ( λ m → Id (mul-Monoid-Action M X m x) y)
+    Σ (type-Monoid M) ( λ m → mul-Monoid-Action M X m x ＝ y)
 
   element-hom-orbit-Monoid-Action :
     {x y : type-Monoid-Action M X} → hom-orbit-Monoid-Action x y → type-Monoid M

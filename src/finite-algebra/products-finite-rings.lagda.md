@@ -67,12 +67,12 @@ module _
   neg-prod-Ring-𝔽 = neg-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
   left-unit-law-add-prod-Ring-𝔽 :
-    (x : type-prod-Ring-𝔽) → Id (add-prod-Ring-𝔽 zero-prod-Ring-𝔽 x) x
+    (x : type-prod-Ring-𝔽) → add-prod-Ring-𝔽 zero-prod-Ring-𝔽 x ＝ x
   left-unit-law-add-prod-Ring-𝔽 =
     left-unit-law-add-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
   right-unit-law-add-prod-Ring-𝔽 :
-    (x : type-prod-Ring-𝔽) → Id (add-prod-Ring-𝔽 x zero-prod-Ring-𝔽) x
+    (x : type-prod-Ring-𝔽) → add-prod-Ring-𝔽 x zero-prod-Ring-𝔽 ＝ x
   right-unit-law-add-prod-Ring-𝔽 =
     right-unit-law-add-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
@@ -116,12 +116,12 @@ module _
     associative-mul-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
   left-unit-law-mul-prod-Ring-𝔽 :
-    (x : type-prod-Ring-𝔽) → Id (mul-prod-Ring-𝔽 one-prod-Ring-𝔽 x) x
+    (x : type-prod-Ring-𝔽) → mul-prod-Ring-𝔽 one-prod-Ring-𝔽 x ＝ x
   left-unit-law-mul-prod-Ring-𝔽 =
     left-unit-law-mul-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 
   right-unit-law-mul-prod-Ring-𝔽 :
-    (x : type-prod-Ring-𝔽) → Id (mul-prod-Ring-𝔽 x one-prod-Ring-𝔽) x
+    (x : type-prod-Ring-𝔽) → mul-prod-Ring-𝔽 x one-prod-Ring-𝔽 ＝ x
   right-unit-law-mul-prod-Ring-𝔽 =
     right-unit-law-mul-prod-Ring (ring-Ring-𝔽 R1) (ring-Ring-𝔽 R2)
 

@@ -25,7 +25,7 @@ open import foundation-core.transport-along-identifications
 
 Given a map `f : A → B` and a point `b : B`, the fiber of `f` at `b` is the
 preimage of `f` at `b`. In other words, it consists of the elements `a : A`
-equipped with an identification `Id (f a) b`.
+equipped with an identification `f a ＝ b`.
 
 ## Definition
 

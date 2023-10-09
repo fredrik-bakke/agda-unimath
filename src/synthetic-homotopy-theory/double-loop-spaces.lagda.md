@@ -60,17 +60,17 @@ horizontal-concat-Ω² α β = horizontal-concat-Id² α β
 ```agda
 left-unit-law-vertical-concat-Ω² :
   {l : Level} {A : UU l} {a : A} {α : type-Ω² a} →
-  Id (vertical-concat-Ω² refl-Ω² α) α
+  vertical-concat-Ω² refl-Ω² α ＝ α
 left-unit-law-vertical-concat-Ω² = left-unit
 
 right-unit-law-vertical-concat-Ω² :
   {l : Level} {A : UU l} {a : A} {α : type-Ω² a} →
-  Id (vertical-concat-Ω² α refl-Ω²) α
+  vertical-concat-Ω² α refl-Ω² ＝ α
 right-unit-law-vertical-concat-Ω² = right-unit
 
 left-unit-law-horizontal-concat-Ω² :
   {l : Level} {A : UU l} {a : A} {α : type-Ω² a} →
-  Id (horizontal-concat-Ω² refl-Ω² α) α
+  horizontal-concat-Ω² refl-Ω² α ＝ α
 left-unit-law-horizontal-concat-Ω² {α = α} =
   ( left-unit-law-horizontal-concat-Id² α) ∙ (ap-id α)
 
@@ -86,7 +86,7 @@ naturality-right-unit-Ω² α = inv right-unit ∙ naturality-right-unit α
 
 right-unit-law-horizontal-concat-Ω² :
   {l : Level} {A : UU l} {a : A} {α : type-Ω² a} →
-  Id (horizontal-concat-Ω² α refl-Ω²) α
+  horizontal-concat-Ω² α refl-Ω² ＝ α
 right-unit-law-horizontal-concat-Ω² {α = α} =
   ( right-unit-law-horizontal-concat-Id² α) ∙ (naturality-right-unit-Ω² α)
 

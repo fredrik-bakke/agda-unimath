@@ -61,12 +61,12 @@ module _
   pr2 unit-prod-Monoid = unit-Monoid N
 
   left-unit-law-mul-prod-Monoid :
-    (x : type-prod-Monoid) → Id (mul-prod-Monoid unit-prod-Monoid x) x
+    (x : type-prod-Monoid) → mul-prod-Monoid unit-prod-Monoid x ＝ x
   left-unit-law-mul-prod-Monoid (pair x y) =
     eq-pair (left-unit-law-mul-Monoid M x) (left-unit-law-mul-Monoid N y)
 
   right-unit-law-mul-prod-Monoid :
-    (x : type-prod-Monoid) → Id (mul-prod-Monoid x unit-prod-Monoid) x
+    (x : type-prod-Monoid) → mul-prod-Monoid x unit-prod-Monoid ＝ x
   right-unit-law-mul-prod-Monoid (pair x y) =
     eq-pair (right-unit-law-mul-Monoid M x) (right-unit-law-mul-Monoid N y)
 

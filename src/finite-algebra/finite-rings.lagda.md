@@ -215,11 +215,11 @@ module _
   is-nonzero-finite-ring-Prop = is-nonzero-ring-Prop (ring-Ring-𝔽 R)
 
   left-unit-law-add-Ring-𝔽 :
-    (x : type-Ring-𝔽 R) → Id (add-Ring-𝔽 R zero-Ring-𝔽 x) x
+    (x : type-Ring-𝔽 R) → add-Ring-𝔽 R zero-Ring-𝔽 x ＝ x
   left-unit-law-add-Ring-𝔽 = left-unit-law-add-Ring (ring-Ring-𝔽 R)
 
   right-unit-law-add-Ring-𝔽 :
-    (x : type-Ring-𝔽 R) → Id (add-Ring-𝔽 R x zero-Ring-𝔽) x
+    (x : type-Ring-𝔽 R) → add-Ring-𝔽 R x zero-Ring-𝔽 ＝ x
   right-unit-law-add-Ring-𝔽 = right-unit-law-add-Ring (ring-Ring-𝔽 R)
 ```
 
@@ -316,11 +316,11 @@ module _
   one-Ring-𝔽 = one-Ring (ring-Ring-𝔽 R)
 
   left-unit-law-mul-Ring-𝔽 :
-    (x : type-Ring-𝔽 R) → Id (mul-Ring-𝔽 R one-Ring-𝔽 x) x
+    (x : type-Ring-𝔽 R) → mul-Ring-𝔽 R one-Ring-𝔽 x ＝ x
   left-unit-law-mul-Ring-𝔽 = left-unit-law-mul-Ring (ring-Ring-𝔽 R)
 
   right-unit-law-mul-Ring-𝔽 :
-    (x : type-Ring-𝔽 R) → Id (mul-Ring-𝔽 R x one-Ring-𝔽) x
+    (x : type-Ring-𝔽 R) → mul-Ring-𝔽 R x one-Ring-𝔽 ＝ x
   right-unit-law-mul-Ring-𝔽 = right-unit-law-mul-Ring (ring-Ring-𝔽 R)
 ```
 

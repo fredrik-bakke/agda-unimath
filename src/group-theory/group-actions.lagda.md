@@ -89,7 +89,7 @@ module _
 
   transpose-eq-mul-Abstract-Group-Action :
     (g : type-Group G) (x y : type-Abstract-Group-Action) →
-    Id (mul-Abstract-Group-Action g x) y →
+    mul-Abstract-Group-Action g x ＝ y →
     Id x (mul-Abstract-Group-Action (inv-Group G g) y)
   transpose-eq-mul-Abstract-Group-Action g x
     .(mul-Abstract-Group-Action g x) refl =

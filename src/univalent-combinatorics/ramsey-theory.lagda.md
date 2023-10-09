@@ -43,7 +43,7 @@ is-ramsey-set {l} {k} q r A =
         ( λ P →
           (Q : subset-of-size r A) →
           ((x : type-𝔽 A) → type-Prop ((pr1 Q) x) → type-Prop ((pr1 P) x)) →
-          Id (c Q) i))
+          c Q ＝ i))
 {-
 is-ramsey-set-empty-coloring : (r : ℕ) → is-ramsey-set ex-falso r empty-𝔽
 is-ramsey-set-empty-coloring zero-ℕ c = {!!}

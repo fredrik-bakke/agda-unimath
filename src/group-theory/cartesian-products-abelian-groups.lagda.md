@@ -67,11 +67,11 @@ module _
   associative-add-prod-Ab = associative-mul-Group group-prod-Ab
 
   left-unit-law-add-prod-Ab :
-    (x : type-prod-Ab) → Id (add-prod-Ab zero-prod-Ab x) x
+    (x : type-prod-Ab) → add-prod-Ab zero-prod-Ab x ＝ x
   left-unit-law-add-prod-Ab = left-unit-law-mul-Group group-prod-Ab
 
   right-unit-law-add-prod-Ab :
-    (x : type-prod-Ab) → Id (add-prod-Ab x zero-prod-Ab) x
+    (x : type-prod-Ab) → add-prod-Ab x zero-prod-Ab ＝ x
   right-unit-law-add-prod-Ab = right-unit-law-mul-Group group-prod-Ab
 
   left-inverse-law-add-prod-Ab :

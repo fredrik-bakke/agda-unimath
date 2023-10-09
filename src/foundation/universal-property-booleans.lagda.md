@@ -103,8 +103,8 @@ Eq-𝟚-eq : (x y : bool) → x ＝ y → Eq-𝟚 x y
 Eq-𝟚-eq x .x refl = reflexive-Eq-𝟚 x
 
 eq-false-equiv' :
-  (e : bool ≃ bool) → Id (map-equiv e true) true →
-  is-decidable (Id (map-equiv e false) false) → Id (map-equiv e false) false
+  (e : bool ≃ bool) → map-equiv e true ＝ true →
+  is-decidable (map-equiv e false ＝ false) → map-equiv e false ＝ false
 eq-false-equiv' e p (inl q) = q
 eq-false-equiv' e p (inr x) =
   ind-empty

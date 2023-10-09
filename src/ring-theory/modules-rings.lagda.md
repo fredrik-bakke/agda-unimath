@@ -88,13 +88,13 @@ module _
 
   left-unit-law-add-left-module-Ring :
     (x : type-left-module-Ring) →
-    Id (add-left-module-Ring zero-left-module-Ring x) x
+    add-left-module-Ring zero-left-module-Ring x ＝ x
   left-unit-law-add-left-module-Ring =
     left-unit-law-add-Ab ab-left-module-Ring
 
   right-unit-law-add-left-module-Ring :
     (x : type-left-module-Ring) →
-    Id (add-left-module-Ring x zero-left-module-Ring) x
+    add-left-module-Ring x zero-left-module-Ring ＝ x
   right-unit-law-add-left-module-Ring =
     right-unit-law-add-Ab ab-left-module-Ring
 
@@ -246,7 +246,7 @@ module _
 
   right-zero-law-mul-left-module-Ring :
     (r : type-Ring R) →
-    Id ( mul-left-module-Ring r zero-left-module-Ring) zero-left-module-Ring
+     mul-left-module-Ring r zero-left-module-Ring ＝ zero-left-module-Ring
   right-zero-law-mul-left-module-Ring r =
     preserves-zero-hom-Ab
       ( ab-left-module-Ring)
@@ -337,13 +337,13 @@ module _
 
   left-unit-law-add-right-module-Ring :
     (x : type-right-module-Ring) →
-    Id (add-right-module-Ring zero-right-module-Ring x) x
+    add-right-module-Ring zero-right-module-Ring x ＝ x
   left-unit-law-add-right-module-Ring =
     left-unit-law-add-Ab ab-right-module-Ring
 
   right-unit-law-add-right-module-Ring :
     (x : type-right-module-Ring) →
-    Id (add-right-module-Ring x zero-right-module-Ring) x
+    add-right-module-Ring x zero-right-module-Ring ＝ x
   right-unit-law-add-right-module-Ring =
     right-unit-law-add-Ab ab-right-module-Ring
 
@@ -495,7 +495,7 @@ module _
 
   right-zero-law-mul-right-module-Ring :
     (r : type-Ring R) →
-    Id ( mul-right-module-Ring r zero-right-module-Ring) zero-right-module-Ring
+     mul-right-module-Ring r zero-right-module-Ring ＝ zero-right-module-Ring
   right-zero-law-mul-right-module-Ring r =
     preserves-zero-hom-Ab
       ( ab-right-module-Ring)

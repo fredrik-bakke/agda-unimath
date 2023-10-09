@@ -125,7 +125,7 @@ equiv-suspension-structure-suspension-cocone X Z =
     ( equiv-universal-property-unit Z)
     ( λ z1 →
       equiv-Σ
-        ( λ z2 → (x : X) → Id (z1 star) z2)
+        ( λ z2 → (x : X) → z1 star ＝ z2)
         ( equiv-universal-property-unit Z)
         ( λ z2 → id-equiv))
 

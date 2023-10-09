@@ -126,7 +126,7 @@ inv-Q8 -j-Q8 = j-Q8
 inv-Q8 k-Q8 = -k-Q8
 inv-Q8 -k-Q8 = k-Q8
 
-left-unit-law-mul-Q8 : (x : Q8) → Id (mul-Q8 e-Q8 x) x
+left-unit-law-mul-Q8 : (x : Q8) → mul-Q8 e-Q8 x ＝ x
 left-unit-law-mul-Q8 e-Q8 = refl
 left-unit-law-mul-Q8 -e-Q8 = refl
 left-unit-law-mul-Q8 i-Q8 = refl
@@ -136,7 +136,7 @@ left-unit-law-mul-Q8 -j-Q8 = refl
 left-unit-law-mul-Q8 k-Q8 = refl
 left-unit-law-mul-Q8 -k-Q8 = refl
 
-right-unit-law-mul-Q8 : (x : Q8) → Id (mul-Q8 x e-Q8) x
+right-unit-law-mul-Q8 : (x : Q8) → mul-Q8 x e-Q8 ＝ x
 right-unit-law-mul-Q8 e-Q8 = refl
 right-unit-law-mul-Q8 -e-Q8 = refl
 right-unit-law-mul-Q8 i-Q8 = refl

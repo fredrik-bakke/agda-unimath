@@ -141,11 +141,11 @@ module _
   pr2 (is-unit-group-Prop x) = is-prop-is-unit-Group x
 
   left-unit-law-mul-Group :
-    (x : type-Group) → Id (mul-Group unit-Group x) x
+    (x : type-Group) → mul-Group unit-Group x ＝ x
   left-unit-law-mul-Group = pr1 (pr2 is-unital-Group)
 
   right-unit-law-mul-Group :
-    (x : type-Group) → Id (mul-Group x unit-Group) x
+    (x : type-Group) → mul-Group x unit-Group ＝ x
   right-unit-law-mul-Group = pr2 (pr2 is-unital-Group)
 
   pointed-type-Group : Pointed-Type l
@@ -173,7 +173,7 @@ module _
   pr2 (pr2 (is-invertible-element-Group x)) = left-inverse-law-mul-Group x
 
   inv-unit-Group :
-    Id (inv-Group unit-Group) unit-Group
+    inv-Group unit-Group ＝ unit-Group
   inv-unit-Group =
     ( inv (left-unit-law-mul-Group (inv-Group unit-Group))) ∙
       ( right-inverse-law-mul-Group unit-Group)
@@ -570,7 +570,7 @@ module _
   where
 
   is-idempotent-Group : type-Group G → UU l
-  is-idempotent-Group x = Id (mul-Group G x x) x
+  is-idempotent-Group x = mul-Group G x x ＝ x
 
   is-unit-is-idempotent-Group :
     {x : type-Group G} → is-idempotent-Group x → is-unit-Group G x

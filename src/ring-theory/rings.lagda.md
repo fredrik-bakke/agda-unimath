@@ -275,10 +275,10 @@ module _
   is-nonzero-ring-Prop : type-Ring R → Prop l
   is-nonzero-ring-Prop x = neg-Prop (is-zero-ring-Prop x)
 
-  left-unit-law-add-Ring : (x : type-Ring R) → Id (add-Ring R zero-Ring x) x
+  left-unit-law-add-Ring : (x : type-Ring R) → add-Ring R zero-Ring x ＝ x
   left-unit-law-add-Ring = left-unit-law-add-Ab (ab-Ring R)
 
-  right-unit-law-add-Ring : (x : type-Ring R) → Id (add-Ring R x zero-Ring) x
+  right-unit-law-add-Ring : (x : type-Ring R) → add-Ring R x zero-Ring ＝ x
   right-unit-law-add-Ring = right-unit-law-add-Ab (ab-Ring R)
 ```
 
@@ -408,10 +408,10 @@ module _
   one-Ring : type-Ring R
   one-Ring = unit-Monoid multiplicative-monoid-Ring
 
-  left-unit-law-mul-Ring : (x : type-Ring R) → Id (mul-Ring R one-Ring x) x
+  left-unit-law-mul-Ring : (x : type-Ring R) → mul-Ring R one-Ring x ＝ x
   left-unit-law-mul-Ring = left-unit-law-mul-Monoid multiplicative-monoid-Ring
 
-  right-unit-law-mul-Ring : (x : type-Ring R) → Id (mul-Ring R x one-Ring) x
+  right-unit-law-mul-Ring : (x : type-Ring R) → mul-Ring R x one-Ring ＝ x
   right-unit-law-mul-Ring = right-unit-law-mul-Monoid multiplicative-monoid-Ring
 ```
 

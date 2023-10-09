@@ -86,7 +86,7 @@ uniqueness-dependent-universal-property-𝕊¹ {l} {P} =
     dependent-universal-property-𝕊¹
 
 module _
-  {l : Level} (P : 𝕊¹ → UU l) (p0 : P base-𝕊¹) (α : Id (tr P loop-𝕊¹ p0) p0)
+  {l : Level} (P : 𝕊¹ → UU l) (p0 : P base-𝕊¹) (α : tr P loop-𝕊¹ p0 ＝ p0)
   where
 
   Π-𝕊¹ : UU l
@@ -105,7 +105,7 @@ module _
     pr1 apply-dependent-universal-property-𝕊¹
 
   base-dependent-universal-property-𝕊¹ :
-    Id (function-apply-dependent-universal-property-𝕊¹ base-𝕊¹) p0
+    function-apply-dependent-universal-property-𝕊¹ base-𝕊¹ ＝ p0
   base-dependent-universal-property-𝕊¹ =
     pr1 (pr2 apply-dependent-universal-property-𝕊¹)
 
@@ -154,7 +154,7 @@ module _
     pr1 apply-universal-property-𝕊¹
 
   base-universal-property-𝕊¹ :
-    Id (map-apply-universal-property-𝕊¹ base-𝕊¹) x
+    map-apply-universal-property-𝕊¹ base-𝕊¹ ＝ x
   base-universal-property-𝕊¹ =
     pr1 (pr2 apply-universal-property-𝕊¹)
 

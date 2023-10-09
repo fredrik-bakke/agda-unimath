@@ -43,7 +43,7 @@ module _
       ( preserves-point-pointed-map f)
       ( ap (map-pointed-map f) p)
 
-  preserves-refl-map-Ω : Id (map-Ω refl) refl
+  preserves-refl-map-Ω : map-Ω refl ＝ refl
   preserves-refl-map-Ω = preserves-refl-tr-Ω (pr2 f)
 
   pointed-map-Ω : Ω A →∗ Ω B

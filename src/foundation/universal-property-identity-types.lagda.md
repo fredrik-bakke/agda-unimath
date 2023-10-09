@@ -93,7 +93,7 @@ to show that this fiber is a proposition. We do this by constructing an
 embedding
 
 ```text
-  fiber Id (Id a) ↪ Σ A (Id a).
+  fiber Id a ＝ ↪ Σ A (Id a).
 ```
 
 Since the codomain of this embedding is contractible, the claim follows. The
@@ -126,7 +126,7 @@ module _
             ( eq-is-contr (is-contr-total-path a))))
       ( λ _ → ap Id)
     where
-    emb-fiber : (a : A) → fiber' Id (Id a) ↪ Σ A (Id a)
+    emb-fiber : (a : A) → fiber' Id a ＝ ↪ Σ A (Id a)
     emb-fiber a =
       comp-emb
         ( comp-emb
