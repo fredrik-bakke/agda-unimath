@@ -52,14 +52,13 @@ module _
         ( ( preserves-point-function-pointed-Π f) ∙
           ( inv (preserves-point-function-pointed-Π g))))
 
-  extensionality-pointed-Π : (g : pointed-Π A B) → f ＝ g ≃ htpy-pointed-Π g
+  extensionality-pointed-Π : (g : pointed-Π A B) → (f ＝ g) ≃ htpy-pointed-Π g
   extensionality-pointed-Π =
     extensionality-Σ
       ( λ {g} q H →
-          Id
-            ( H (point-Pointed-Type A))
-            ( preserves-point-function-pointed-Π f ∙
-              inv (preserves-point-function-pointed-Π (g , q))))
+        ( H (point-Pointed-Type A)) ＝
+        ( preserves-point-function-pointed-Π f ∙
+          inv (preserves-point-function-pointed-Π (g , q))))
       ( refl-htpy)
       ( inv (right-inv (preserves-point-function-pointed-Π f)))
       ( λ g → equiv-funext)
@@ -110,7 +109,7 @@ module _
   htpy-pointed-map : (g : A →∗ B) → UU (l1 ⊔ l2)
   htpy-pointed-map = htpy-pointed-Π f
 
-  extensionality-pointed-map : (g : A →∗ B) → f ＝ g ≃ (htpy-pointed-map g)
+  extensionality-pointed-map : (g : A →∗ B) → (f ＝ g) ≃ (htpy-pointed-map g)
   extensionality-pointed-map = extensionality-pointed-Π f
 
   eq-htpy-pointed-map : (g : A →∗ B) → (htpy-pointed-map g) → f ＝ g
