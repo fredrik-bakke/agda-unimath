@@ -246,7 +246,7 @@ module _
 
   right-zero-law-mul-left-module-Ring :
     (r : type-Ring R) →
-     mul-left-module-Ring r zero-left-module-Ring ＝ zero-left-module-Ring
+    mul-left-module-Ring r zero-left-module-Ring ＝ zero-left-module-Ring
   right-zero-law-mul-left-module-Ring r =
     preserves-zero-hom-Ab
       ( ab-left-module-Ring)
@@ -495,7 +495,7 @@ module _
 
   right-zero-law-mul-right-module-Ring :
     (r : type-Ring R) →
-     mul-right-module-Ring r zero-right-module-Ring ＝ zero-right-module-Ring
+    mul-right-module-Ring r zero-right-module-Ring ＝ zero-right-module-Ring
   right-zero-law-mul-right-module-Ring r =
     preserves-zero-hom-Ab
       ( ab-right-module-Ring)

@@ -590,10 +590,9 @@ module _
 
   equiv-Eq-equiv-Torsor-Abstract-Group :
     (X : Torsor-Abstract-Group G l1) →
-    principal-Torsor-Abstract-Group G ＝ X ≃ Eq-Torsor-Abstract-Group X
+    (principal-Torsor-Abstract-Group G ＝ X) ≃ Eq-Torsor-Abstract-Group X
   equiv-Eq-equiv-Torsor-Abstract-Group X =
-    ( pair
-      ( Eq-equiv-Torsor-Abstract-Group X)
+    ( ( Eq-equiv-Torsor-Abstract-Group X) ,
       ( is-equiv-Eq-equiv-Torsor-Abstract-Group X)) ∘e
     ( extensionality-Torsor-Abstract-Group G
       ( principal-Torsor-Abstract-Group G)
@@ -601,9 +600,8 @@ module _
 
   preserves-mul-equiv-Eq-equiv-Torsor-Abstract-Group :
     ( p q :
-      Id
-        ( principal-Torsor-Abstract-Group G)
-        ( principal-Torsor-Abstract-Group G)) →
+      ( principal-Torsor-Abstract-Group G) ＝
+      ( principal-Torsor-Abstract-Group G)) →
     Id
       ( map-equiv
         ( equiv-Eq-equiv-Torsor-Abstract-Group
