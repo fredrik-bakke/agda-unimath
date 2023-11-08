@@ -86,8 +86,7 @@ is-closed-under-is-empty-subuniverses P Q =
 
 ```agda
 raise-ex-falso-emb :
-  (l1 : Level) {l2 : Level} {A : UU l2} →
-  raise-empty l1 ↪ A
+  (l1 : Level) {l2 : Level} {A : UU l2} → raise-empty l1 ↪ A
 raise-ex-falso-emb l =
   comp-emb ex-falso-emb (emb-equiv (inv-equiv (compute-raise-empty l)))
 ```
@@ -132,21 +131,18 @@ abstract
 
 ```agda
 abstract
-  is-prop-raise-empty :
-    {l1 : Level} → is-prop (raise-empty l1)
+  is-prop-raise-empty : {l1 : Level} → is-prop (raise-empty l1)
   is-prop-raise-empty {l1} =
     is-prop-equiv'
       ( compute-raise l1 empty)
       ( is-prop-empty)
 
-raise-empty-Prop :
-  (l1 : Level) → Prop l1
+raise-empty-Prop : (l1 : Level) → Prop l1
 pr1 (raise-empty-Prop l1) = raise-empty l1
 pr2 (raise-empty-Prop l1) = is-prop-raise-empty
 
 abstract
-  is-empty-raise-empty :
-    {l1 : Level} → is-empty (raise-empty l1)
+  is-empty-raise-empty : {l1 : Level} → is-empty (raise-empty l1)
   is-empty-raise-empty {l1} = map-inv-equiv (compute-raise-empty l1)
 ```
 
@@ -154,8 +150,7 @@ abstract
 
 ```agda
 is-contr-type-is-empty :
-  (l : Level) →
-  is-contr (type-subuniverse is-empty-Prop)
+  (l : Level) → is-contr (type-subuniverse is-empty-Prop)
 pr1 (is-contr-type-is-empty l) = raise-empty l , is-empty-raise-empty
 pr2 (is-contr-type-is-empty l) x =
   eq-pair-Σ

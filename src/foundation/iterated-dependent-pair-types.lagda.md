@@ -85,9 +85,8 @@ pr2 (iterated-pair (cons-iterated-element y a)) = iterated-pair a
 ```agda
 is-contr-Σ-telescope : {l : Level} {n : ℕ} → telescope l n → UU l
 is-contr-Σ-telescope (base-telescope A) = is-contr A
-is-contr-Σ-telescope (cons-telescope A) =
+is-contr-Σ-telescope (cons-telescope {X = X} A) =
   (is-contr X) × (Σ X (λ x → is-contr-Σ-telescope (A x)))
-  where X = _
 
 is-contr-iterated-Σ :
   {l : Level} (n : ℕ) {{A : telescope l n}} →

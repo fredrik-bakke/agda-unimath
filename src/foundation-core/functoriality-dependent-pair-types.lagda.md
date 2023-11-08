@@ -98,7 +98,7 @@ module _
     (g : (x : A) → C x → D (f x)) {g' : (x : A) → C x → D (f' x)}
     (K : (x : A) → ((tr D (H x)) ∘ (g x)) ~ (g' x)) →
     (map-Σ D f g) ~ (map-Σ D f' g')
-  htpy-map-Σ H g K t = eq-pair-Σ' (pair (H (pr1 t)) (K (pr1 t) (pr2 t)))
+  htpy-map-Σ H g K t = eq-pair-Σ' (H (pr1 t) , K (pr1 t) (pr2 t))
 ```
 
 ### The map `tot` preserves homotopies
@@ -107,16 +107,15 @@ module _
 tot-htpy :
   {l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
   {f g : (x : A) → B x → C x} → (H : (x : A) → f x ~ g x) → tot f ~ tot g
-tot-htpy H (pair x y) = eq-pair-Σ refl (H x y)
+tot-htpy H (x , y) = eq-pair-Σ refl (H x y)
 ```
 
 ### The map `tot` preserves identity maps
 
 ```agda
 tot-id :
-  {l1 l2 : Level} {A : UU l1} (B : A → UU l2) →
-  (tot (λ x (y : B x) → y)) ~ id
-tot-id B (pair x y) = refl
+  {l1 l2 : Level} {A : UU l1} (B : A → UU l2) → tot (λ x (y : B x) → y) ~ id
+tot-id B (x , y) = refl
 ```
 
 ### The map `tot` preserves composition
@@ -126,8 +125,8 @@ preserves-comp-tot :
   {l1 l2 l3 l4 : Level}
   {A : UU l1} {B : A → UU l2} {B' : A → UU l3} {B'' : A → UU l4}
   (f : (x : A) → B x → B' x) (g : (x : A) → B' x → B'' x) →
-  tot (λ x → (g x) ∘ (f x)) ~ ((tot g) ∘ (tot f))
-preserves-comp-tot f g (pair x y) = refl
+  tot (λ x → (g x) ∘ (f x)) ~ tot g ∘ tot f
+preserves-comp-tot f g (x , y) = refl
 ```
 
 ### The fibers of `tot`
@@ -143,22 +142,22 @@ module _
 
   map-compute-fiber-tot :
     (t : Σ A C) → fiber (tot f) t → fiber (f (pr1 t)) (pr2 t)
-  pr1 (map-compute-fiber-tot .(tot f (pair x y)) (pair (pair x y) refl)) = y
-  pr2 (map-compute-fiber-tot .(tot f (pair x y)) (pair (pair x y) refl)) = refl
+  pr1 (map-compute-fiber-tot .(tot f (x , y)) ((x , y) , refl)) = y
+  pr2 (map-compute-fiber-tot .(tot f (x , y)) ((x , y) , refl)) = refl
 
   map-inv-compute-fiber-tot :
     (t : Σ A C) → fiber (f (pr1 t)) (pr2 t) → fiber (tot f) t
-  pr1 (pr1 (map-inv-compute-fiber-tot (pair a .(f a y)) (pair y refl))) = a
-  pr2 (pr1 (map-inv-compute-fiber-tot (pair a .(f a y)) (pair y refl))) = y
-  pr2 (map-inv-compute-fiber-tot (pair a .(f a y)) (pair y refl)) = refl
+  pr1 (pr1 (map-inv-compute-fiber-tot (a , .(f a y)) (y , refl))) = a
+  pr2 (pr1 (map-inv-compute-fiber-tot (a , .(f a y)) (y , refl))) = y
+  pr2 (map-inv-compute-fiber-tot (a , .(f a y)) (y , refl)) = refl
 
   is-section-map-inv-compute-fiber-tot :
-    (t : Σ A C) → (map-compute-fiber-tot t ∘ map-inv-compute-fiber-tot t) ~ id
-  is-section-map-inv-compute-fiber-tot (pair x .(f x y)) (pair y refl) = refl
+    (t : Σ A C) → map-compute-fiber-tot t ∘ map-inv-compute-fiber-tot t ~ id
+  is-section-map-inv-compute-fiber-tot (x , .(f x y)) (y , refl) = refl
 
   is-retraction-map-inv-compute-fiber-tot :
-    (t : Σ A C) → (map-inv-compute-fiber-tot t ∘ map-compute-fiber-tot t) ~ id
-  is-retraction-map-inv-compute-fiber-tot ._ (pair (pair x y) refl) =
+    (t : Σ A C) → map-inv-compute-fiber-tot t ∘ map-compute-fiber-tot t ~ id
+  is-retraction-map-inv-compute-fiber-tot ._ ((x , y) , refl) =
     refl
 
   abstract
@@ -214,10 +213,10 @@ module _
       is-equiv-is-contr-map
         ( λ z →
           is-contr-is-equiv'
-            ( fiber (tot f) (pair x z))
-            ( map-compute-fiber-tot f (pair x z))
-            ( is-equiv-map-compute-fiber-tot f (pair x z))
-            ( is-contr-map-is-equiv is-equiv-tot-f (pair x z)))
+            ( fiber (tot f) (x , z))
+            ( map-compute-fiber-tot f (x , z))
+            ( is-equiv-map-compute-fiber-tot f (x , z))
+            ( is-contr-map-is-equiv is-equiv-tot-f (x , z)))
 ```
 
 ### The action of `tot` on equivalences
@@ -227,10 +226,9 @@ module _
   {l1 l2 l3 : Level} {A : UU l1} {B : A → UU l2} {C : A → UU l3}
   where
 
-  equiv-tot : ((x : A) → B x ≃ C x) → (Σ A B) ≃ (Σ A C)
-  pr1 (equiv-tot e) = tot (λ x → map-equiv (e x))
-  pr2 (equiv-tot e) =
-    is-equiv-tot-is-fiberwise-equiv (λ x → is-equiv-map-equiv (e x))
+  equiv-tot : ((x : A) → B x ≃ C x) → Σ A B ≃ Σ A C
+  pr1 (equiv-tot e) = tot (map-equiv ∘ e)
+  pr2 (equiv-tot e) = is-equiv-tot-is-fiberwise-equiv (is-equiv-map-equiv ∘ e)
 ```
 
 ### The fibers of `map-Σ-map-base`
@@ -242,29 +240,28 @@ module _
 
   fiber-map-Σ-map-base-fiber :
     (t : Σ B C) → fiber f (pr1 t) → fiber (map-Σ-map-base f C) t
-  pr1 (pr1 (fiber-map-Σ-map-base-fiber (pair .(f x) z) (pair x refl))) = x
-  pr2 (pr1 (fiber-map-Σ-map-base-fiber (pair .(f x) z) (pair x refl))) = z
-  pr2 (fiber-map-Σ-map-base-fiber (pair .(f x) z) (pair x refl)) = refl
+  pr1 (pr1 (fiber-map-Σ-map-base-fiber (.(f x) , z) (x , refl))) = x
+  pr2 (pr1 (fiber-map-Σ-map-base-fiber (.(f x) , z) (x , refl))) = z
+  pr2 (fiber-map-Σ-map-base-fiber (.(f x) , z) (x , refl)) = refl
 
   fiber-fiber-map-Σ-map-base :
     (t : Σ B C) → fiber (map-Σ-map-base f C) t → fiber f (pr1 t)
   pr1
     ( fiber-fiber-map-Σ-map-base
-      .(map-Σ-map-base f C (pair x z)) (pair (pair x z) refl)) = x
+      .(map-Σ-map-base f C (x , z)) ((x , z) , refl)) = x
   pr2
     ( fiber-fiber-map-Σ-map-base
-      .(map-Σ-map-base f C (pair x z)) (pair (pair x z) refl)) = refl
+      .(map-Σ-map-base f C (x , z)) ((x , z) , refl)) = refl
 
   is-section-fiber-fiber-map-Σ-map-base :
     (t : Σ B C) →
     (fiber-map-Σ-map-base-fiber t ∘ fiber-fiber-map-Σ-map-base t) ~ id
-  is-section-fiber-fiber-map-Σ-map-base .(pair (f x) z) (pair (pair x z) refl) =
-    refl
+  is-section-fiber-fiber-map-Σ-map-base .((f x) , z) ((x , z) , refl) = refl
 
   is-retraction-fiber-fiber-map-Σ-map-base :
     (t : Σ B C) →
     (fiber-fiber-map-Σ-map-base t ∘ fiber-map-Σ-map-base-fiber t) ~ id
-  is-retraction-fiber-fiber-map-Σ-map-base (pair .(f x) z) (pair x refl) = refl
+  is-retraction-fiber-fiber-map-Σ-map-base (.(f x) , z) (x , refl) = refl
 
   abstract
     is-equiv-fiber-map-Σ-map-base-fiber :
@@ -292,10 +289,10 @@ module _
   abstract
     is-contr-map-map-Σ-map-base :
       is-contr-map f → is-contr-map (map-Σ-map-base f C)
-    is-contr-map-map-Σ-map-base is-contr-f (pair y z) =
+    is-contr-map-map-Σ-map-base is-contr-f (y , z) =
       is-contr-equiv'
         ( fiber f y)
-        ( equiv-fiber-map-Σ-map-base-fiber f C (pair y z))
+        ( equiv-fiber-map-Σ-map-base-fiber f C (y , z))
         ( is-contr-f y)
 ```
 
@@ -315,9 +312,14 @@ module _
 equiv-Σ-equiv-base :
   {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} (C : B → UU l3) (e : A ≃ B) →
   Σ A (C ∘ map-equiv e) ≃ Σ B C
-pr1 (equiv-Σ-equiv-base C (pair f is-equiv-f)) = map-Σ-map-base f C
-pr2 (equiv-Σ-equiv-base C (pair f is-equiv-f)) =
+pr1 (equiv-Σ-equiv-base C (f , is-equiv-f)) = map-Σ-map-base f C
+pr2 (equiv-Σ-equiv-base C (f , is-equiv-f)) =
   is-equiv-map-Σ-map-base f C is-equiv-f
+
+equiv-Σ-equiv-base' :
+  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} (C : A → UU l3) (e : A ≃ B) →
+  Σ A C ≃ Σ B (C ∘ map-inv-equiv e)
+equiv-Σ-equiv-base' C e = inv-equiv (equiv-Σ-equiv-base C (inv-equiv e))
 ```
 
 ### The functorial action of dependent pair types preserves equivalences
@@ -378,13 +380,13 @@ module _
 
   fiber-triangle :
     (x : X) → (fiber f x) → (fiber g x)
-  pr1 (fiber-triangle .(f a) (pair a refl)) = h a
-  pr2 (fiber-triangle .(f a) (pair a refl)) = inv (H a)
+  pr1 (fiber-triangle .(f a) (a , refl)) = h a
+  pr2 (fiber-triangle .(f a) (a , refl)) = inv (H a)
 
   square-tot-fiber-triangle :
     ( h ∘ (map-equiv-total-fiber f)) ~
     ( map-equiv-total-fiber g ∘ tot fiber-triangle)
-  square-tot-fiber-triangle (pair .(f a) (pair a refl)) = refl
+  square-tot-fiber-triangle (.(f a) , a , refl) = refl
 ```
 
 ### In a commuting triangle, the top map is an equivalence if and only if it induces an equivalence on fibers

@@ -63,8 +63,7 @@ module _
         ( λ x →
           ( y : B x) →
             Id
-              ( ( map-inv-left-unit-law-Σ-is-contr ∘
-                  map-left-unit-law-Σ-is-contr)
+              ( ( map-inv-left-unit-law-Σ-is-contr ∘ map-left-unit-law-Σ-is-contr)
                 ( x , y))
               ( x , y))
         ( λ y → ap
@@ -110,16 +109,13 @@ module _
     is-equiv-pr1-is-contr : ((a : A) → is-contr (B a)) → is-equiv (pr1 {B = B})
     is-equiv-pr1-is-contr is-contr-B =
       is-equiv-is-contr-map
-        ( λ x → is-contr-equiv
-          ( B x)
-          ( equiv-fiber-pr1 B x)
-          ( is-contr-B x))
+        ( λ x → is-contr-equiv (B x) (equiv-fiber-pr1 B x) (is-contr-B x))
 
-  equiv-pr1 : ((a : A) → is-contr (B a)) → (Σ A B) ≃ A
+  equiv-pr1 : ((a : A) → is-contr (B a)) → Σ A B ≃ A
   pr1 (equiv-pr1 is-contr-B) = pr1
   pr2 (equiv-pr1 is-contr-B) = is-equiv-pr1-is-contr is-contr-B
 
-  right-unit-law-Σ-is-contr : ((a : A) → is-contr (B a)) → (Σ A B) ≃ A
+  right-unit-law-Σ-is-contr : ((a : A) → is-contr (B a)) → Σ A B ≃ A
   right-unit-law-Σ-is-contr = equiv-pr1
 
   abstract
@@ -132,7 +128,8 @@ module _
 
   map-inv-right-unit-law-Σ-is-contr :
     ((a : A) → is-contr (B a)) → A → Σ A B
-  map-inv-right-unit-law-Σ-is-contr H a = (a , center (H a))
+  pr1 (map-inv-right-unit-law-Σ-is-contr H a) = a
+  pr2 (map-inv-right-unit-law-Σ-is-contr H a) = center (H a)
 
   is-section-map-inv-right-unit-law-Σ-is-contr :
     (H : (a : A) → is-contr (B a)) →
@@ -177,9 +174,9 @@ module _
   pr2 (pr2 (map-associative-Σ ((x , y) , z))) = z
 
   map-inv-associative-Σ : Σ A (λ x → Σ (B x) (λ y → C (x , y))) → Σ (Σ A B) C
-  pr1 (pr1 (map-inv-associative-Σ (x , y , z))) = x
-  pr2 (pr1 (map-inv-associative-Σ (x , y , z))) = y
-  pr2 (map-inv-associative-Σ (x , y , z)) = z
+  pr1 (pr1 (map-inv-associative-Σ (x , (y , z)))) = x
+  pr2 (pr1 (map-inv-associative-Σ (x , (y , z)))) = y
+  pr2 (map-inv-associative-Σ (x , (y , z))) = z
 
   is-retraction-map-inv-associative-Σ :
     map-inv-associative-Σ ∘ map-associative-Σ ~ id
@@ -310,8 +307,8 @@ module _
     {x y : Σ (C a) (D a b)} →
     map-equiv interchange-Σ-Σ ((a , b) , x) ＝
     map-equiv interchange-Σ-Σ ((a , b) , y)
-  eq-interchange-Σ-Σ-is-contr H =
-    ap (map-equiv interchange-Σ-Σ) (ap (pair _) (eq-is-contr H))
+  eq-interchange-Σ-Σ-is-contr {a} {b} H =
+    ap (map-equiv interchange-Σ-Σ) (ap (pair (a , b)) (eq-is-contr H))
 ```
 
 ### Swapping the order of quantification in a Σ-type, on the left

@@ -39,10 +39,7 @@ module _
   pr1 (pr2 discrete-Σ-Decomposition) a =
     ( raise-unit l2 , unit-trunc-Prop (raise-star))
   pr2 (pr2 discrete-Σ-Decomposition) =
-    inv-equiv
-      ( equiv-pr1
-        ( λ _ →
-          is-contr-raise-unit))
+    inv-equiv (equiv-pr1 (λ _ → is-contr-raise-unit))
 
 module _
   {l1 l2 l3 : Level} {A : UU l1}
