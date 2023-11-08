@@ -130,9 +130,12 @@ module _
       ( factorization-through-factorization F)
 ```
 
-## Properties
+## Operations
 
-### Whiskering of factorizations by retracts
+### Whiskering factorizations by image retracts
+
+If `X` is a retract of `Y`, then every factorization through `X` also gives a
+factorization through `Y`.
 
 ```agda
 module _
@@ -149,6 +152,87 @@ module _
   pr2 (pr2 (whisker-image-factorization-through (s , r , h) (fr , fl , fH))) =
     (fr ·l (h ·r fl)) ∙h fH
 ```
+
+### Whiskering by function homotopy
+
+If `f` is homotopic to `g`, then every factorization of `f` is also a
+factorization of `g`.
+
+```agda
+module _
+  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} (f g : A → B) (H : f ~ g)
+  where
+
+  whisker-htpy-is-factorization :
+    {X : UU l3} → (fR : X → B) (fL : A → X) →
+    is-factorization f fR fL → is-factorization g fR fL
+  whisker-htpy-is-factorization fR fL F = F ∙h H
+
+  whisker-htpy-factorization-through :
+    {X : UU l3} → factorization-through f X → factorization-through g X
+  pr1 (whisker-htpy-factorization-through F) =
+    right-map-factorization-through F
+  pr1 (pr2 (whisker-htpy-factorization-through F)) =
+    left-map-factorization-through F
+  pr2 (pr2 (whisker-htpy-factorization-through F)) =
+    whisker-htpy-is-factorization
+      ( right-map-factorization-through F)
+      ( left-map-factorization-through F)
+      ( is-factorization-factorization-through F)
+
+  whisker-htpy-factorization : factorization l3 f → factorization l3 g
+  pr1 (whisker-htpy-factorization F) = image-factorization F
+  pr2 (whisker-htpy-factorization F) =
+    whisker-htpy-factorization-through (factorization-through-factorization F)
+```
+
+### Precomposing factorizations by maps
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
+  (f : A → B) (g : C → A)
+  where
+
+  precomp-factorization-through :
+    {X : UU l4} → factorization-through f X → factorization-through (f ∘ g) X
+  pr1 (precomp-factorization-through F) =
+    right-map-factorization-through F
+  pr1 (pr2 (precomp-factorization-through F)) =
+    left-map-factorization-through F ∘ g
+  pr2 (pr2 (precomp-factorization-through F)) =
+    is-factorization-factorization-through F ·r g
+
+  precomp-factorization : factorization l4 f → factorization l4 (f ∘ g)
+  pr1 (precomp-factorization F) = image-factorization F
+  pr2 (precomp-factorization F) =
+    precomp-factorization-through (factorization-through-factorization F)
+```
+
+### Postcomposing factorizations by maps
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {C : UU l3}
+  (f : A → B) (g : B → C)
+  where
+
+  postcomp-factorization-through :
+    {X : UU l4} → factorization-through f X → factorization-through (g ∘ f) X
+  pr1 (postcomp-factorization-through F) =
+    g ∘ right-map-factorization-through F
+  pr1 (pr2 (postcomp-factorization-through F)) =
+    left-map-factorization-through F
+  pr2 (pr2 (postcomp-factorization-through F)) =
+    g ·l is-factorization-factorization-through F
+
+  postcomp-factorization : factorization l4 f → factorization l4 (g ∘ f)
+  pr1 (postcomp-factorization F) = image-factorization F
+  pr2 (postcomp-factorization F) =
+    postcomp-factorization-through (factorization-through-factorization F)
+```
+
+## Operations
 
 ### Characterization of identifications of factorizations through a type
 

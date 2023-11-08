@@ -180,6 +180,106 @@ module _
       ( is-function-class-factorization-function-class-factorization)
 ```
 
+## Operations
+
+### Whiskering by function homotopy
+
+If `f` is homotopic to `g`, then every function class factorization of `f` is
+also a function class factorization of `g`.
+
+```agda
+module _
+  {l1 l2 l3 lL lR : Level}
+  (L : function-class l1 l3 lL)
+  (R : function-class l3 l2 lR)
+  {A : UU l1} {B : UU l2}
+  (f g : A → B) (H : f ~ g)
+  where
+
+  whisker-htpy-function-class-factorization :
+    function-class-factorization L R f → function-class-factorization L R g
+  pr1 (whisker-htpy-function-class-factorization F) =
+    whisker-htpy-factorization f g H
+      ( factorization-function-class-factorization L R F)
+  pr2 (whisker-htpy-function-class-factorization F) =
+    is-function-class-factorization-function-class-factorization L R F
+```
+
+### Precomposing function class factorizations by maps
+
+We can precompose a function class factorization by a map `g` as in the
+following diagram
+
+```text
+              Im f
+              ^ \
+      L ∋ fL /   \ fR ∈ R
+            /     v
+ C -----> A -----> B
+     g        f
+```
+
+whenever the composite `fL ∘ g` is in `L`.
+
+```agda
+module _
+  {l1 l2 lL lR : Level}
+  (L : function-class l1 l1 lL)
+  (R : function-class l1 l2 lR)
+  {A C : UU l1} {B : UU l2}
+  (f : A → B) (F : function-class-factorization L R f)
+  (g : C → A)
+  (comp-L-g-fL :
+    is-in-function-class L (left-map-function-class-factorization L R F ∘ g))
+  where
+
+  precomp-function-class-factorization :
+    function-class-factorization L R (f ∘ g)
+  pr1 precomp-function-class-factorization =
+    precomp-factorization f g (factorization-function-class-factorization L R F)
+  pr1 (pr2 precomp-function-class-factorization) = comp-L-g-fL
+  pr2 (pr2 precomp-function-class-factorization) =
+    is-in-right-class-right-map-function-class-factorization L R F
+```
+
+### Postcomposing function class factorizations by maps
+
+We can postcompose a function class factorization by a map `g` as in the
+following diagram
+
+```text
+        Im f
+        ^ \
+L ∋ fL /   \ fR ∈ R
+      /     v
+    A -----> B -----> C
+        f        g
+```
+
+whenever the composite `fL ∘ g` is in `L`.
+
+```agda
+module _
+  {l1 l2 lL lR : Level}
+  (L : function-class l1 l2 lL)
+  (R : function-class l2 l2 lR)
+  {A : UU l1} {B C : UU l2}
+  (f : A → B) (F : function-class-factorization L R f)
+  (g : B → C)
+  (comp-R-g-fR :
+    is-in-function-class R (g ∘ right-map-function-class-factorization L R F))
+  where
+
+  postcomp-function-class-factorization :
+    function-class-factorization L R (g ∘ f)
+  pr1 postcomp-function-class-factorization =
+    postcomp-factorization f g
+      ( factorization-function-class-factorization L R F)
+  pr1 (pr2 postcomp-function-class-factorization) =
+    is-in-left-class-left-map-function-class-factorization L R F
+  pr2 (pr2 postcomp-function-class-factorization) = comp-R-g-fR
+```
+
 ## Properties
 
 ### Characterization of identifications of factorizations of a map into function classes
