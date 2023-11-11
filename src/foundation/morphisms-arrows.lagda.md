@@ -460,7 +460,79 @@ module _
 
 #### Right whiskering
 
-Exercise for Fredrik.
+Given a diagram of arrows
+
+```text
+               α
+      γ      ----->
+  f -----> g   H     h
+             ----->
+               β
+```
+
+where `H` is a homotopy of morphisms of arrows `H : α ~ β`, then we can _right
+whisker_ by `γ` to obtain a homotopy of morphisms of arrows `Hγ : αγ ~ βγ`.
+
+```agda
+module _
+  {l1 l2 l3 l4 l5 l6 : Level}
+  {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4} {U : UU l5} {V : UU l6}
+  (f : A → B) (g : X → Y) (h : U → V)
+  (α β : hom-arrow g h) (γ : hom-arrow f g) (H : htpy-hom-arrow g h α β)
+  where
+
+  htpy-domain-right-whisker-htpy-hom-arrow :
+    map-domain-comp-hom-arrow f g h α γ ~ map-domain-comp-hom-arrow f g h β γ
+  htpy-domain-right-whisker-htpy-hom-arrow =
+    htpy-domain-htpy-hom-arrow g h α β H ·r map-domain-hom-arrow f g γ
+
+  htpy-codomain-right-whisker-htpy-hom-arrow :
+    map-codomain-comp-hom-arrow f g h α γ ~
+    map-codomain-comp-hom-arrow f g h β γ
+  htpy-codomain-right-whisker-htpy-hom-arrow =
+    htpy-codomain-htpy-hom-arrow g h α β H ·r map-codomain-hom-arrow f g γ
+```
+
+TODO
+
+### Morphisms of arrows give morphisms of precomposition arrows
+
+A morphism of arrows `α : f → g` gives a morphism of precomposition arrows
+`(-)^α : (–)^g → (–)^f`.
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
+  (f : A → B) (g : X → Y) (α : hom-arrow f g)
+  where
+
+  precomp-hom-arrow :
+    {l : Level} (S : UU l) → hom-arrow (precomp g S) (precomp f S)
+  pr1 (precomp-hom-arrow S) = precomp (map-codomain-hom-arrow f g α) S
+  pr1 (pr2 (precomp-hom-arrow S)) = precomp (map-domain-hom-arrow f g α) S
+  pr2 (pr2 (precomp-hom-arrow S)) h =
+    eq-htpy (h ·l (inv-htpy (coh-hom-arrow f g α)))
+```
+
+### Morphisms of arrows give morphisms of postcomposition arrows
+
+A morphism of arrows `α : f → g` gives a morphism of precomposition arrows
+`α^(-) : f^(-) → g^(-)`.
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
+  (f : A → B) (g : X → Y) (α : hom-arrow f g)
+  where
+
+  postcomp-hom-arrow :
+    {l : Level} (S : UU l) → hom-arrow (postcomp S f) (postcomp S g)
+  pr1 (postcomp-hom-arrow S) = postcomp S (map-domain-hom-arrow f g α)
+  pr1 (pr2 (postcomp-hom-arrow S)) = postcomp S (map-codomain-hom-arrow f g α)
+  pr2 (pr2 (postcomp-hom-arrow S)) h = eq-htpy (coh-hom-arrow f g α ·r h)
+```
 
 ### Associativity of composition of morphisms of arrows
 
