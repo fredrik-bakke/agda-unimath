@@ -126,16 +126,16 @@ maps.
 module _
   {l1 l2 l3 l4 l5 l6 : Level}
   {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4} {U : UU l5} {V : UU l6}
-  (f : A → B) (g : X → Y) (h : U → V) (b : hom-arrow g h) (a : hom-arrow f g)
+  (f : A → B) (g : X → Y) (h : U → V) (β : hom-arrow g h) (α : hom-arrow f g)
   where
 
   map-domain-comp-hom-arrow : A → U
   map-domain-comp-hom-arrow =
-    map-domain-hom-arrow g h b ∘ map-domain-hom-arrow f g a
+    map-domain-hom-arrow g h β ∘ map-domain-hom-arrow f g α
 
   map-codomain-comp-hom-arrow : B → V
   map-codomain-comp-hom-arrow =
-    map-codomain-hom-arrow g h b ∘ map-codomain-hom-arrow f g a
+    map-codomain-hom-arrow g h β ∘ map-codomain-hom-arrow f g α
 
   coh-comp-hom-arrow :
     coherence-square-maps
@@ -145,23 +145,20 @@ module _
       ( map-codomain-comp-hom-arrow)
   coh-comp-hom-arrow =
     pasting-horizontal-coherence-square-maps
-      ( map-domain-hom-arrow f g a)
-      ( map-domain-hom-arrow g h b)
+      ( map-domain-hom-arrow f g α)
+      ( map-domain-hom-arrow g h β)
       ( f)
       ( g)
       ( h)
-      ( map-codomain-hom-arrow f g a)
-      ( map-codomain-hom-arrow g h b)
-      ( coh-hom-arrow f g a)
-      ( coh-hom-arrow g h b)
+      ( map-codomain-hom-arrow f g α)
+      ( map-codomain-hom-arrow g h β)
+      ( coh-hom-arrow f g α)
+      ( coh-hom-arrow g h β)
 
   comp-hom-arrow : hom-arrow f h
-  pr1 comp-hom-arrow =
-    map-domain-comp-hom-arrow
-  pr1 (pr2 comp-hom-arrow) =
-    map-codomain-comp-hom-arrow
-  pr2 (pr2 comp-hom-arrow) =
-    coh-comp-hom-arrow
+  pr1 comp-hom-arrow = map-domain-comp-hom-arrow
+  pr1 (pr2 comp-hom-arrow) = map-codomain-comp-hom-arrow
+  pr2 (pr2 comp-hom-arrow) = coh-comp-hom-arrow
 ```
 
 ### Homotopies of morphisms of arrows
@@ -473,6 +470,22 @@ Given a diagram of arrows
 where `H` is a homotopy of morphisms of arrows `H : α ~ β`, then we can _right
 whisker_ by `γ` to obtain a homotopy of morphisms of arrows `Hγ : αγ ~ βγ`.
 
+**Proof:**
+
+We need to construct a coherence square
+
+```text
+                  H₁γ₁ ·r f
+  ((α₁ ∘ γ₁) ∘ f) --------> ((β₁ ∘ γ₁) ∘ f)
+          |                       |
+     α'γ' |                       | β'γ'
+          V                       V
+  (h ∘ (α₀ ∘ γ₀)) --------> (h ∘ (β₀ ∘ γ₀))
+                  h ·l H₀γ₀
+```
+
+TODO
+
 ```agda
 module _
   {l1 l2 l3 l4 l5 l6 : Level}
@@ -492,8 +505,6 @@ module _
   htpy-codomain-right-whisker-htpy-hom-arrow =
     htpy-codomain-htpy-hom-arrow g h α β H ·r map-codomain-hom-arrow f g γ
 ```
-
-TODO
 
 ### Morphisms of arrows give morphisms of precomposition arrows
 
