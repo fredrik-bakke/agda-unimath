@@ -11,6 +11,7 @@ open import foundation.action-on-identifications-functions
 open import foundation.commuting-squares-of-homotopies
 open import foundation.commuting-squares-of-identifications
 open import foundation.dependent-pair-types
+open import foundation.function-extensionality
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopy-induction
 open import foundation.structure-identity-principle
@@ -163,7 +164,7 @@ module _
     coh-comp-hom-arrow
 ```
 
-### Homotopies of morphsims of arrows
+### Homotopies of morphisms of arrows
 
 A **homotopy of morphisms of arrows** from `(i , j , H)` to `(i' , j' , H')` is
 a triple `(I , J , K)` consisting of homotopies `I : i ~ i'` and `J : j ~ j'`
@@ -332,7 +333,7 @@ module _
       ( htpy-codomain-inv-htpy-hom-arrow)
   coh-inv-htpy-hom-arrow a =
     ( ap
-      ( concat (coh-hom-arrow f g β a) _)
+      ( concat (coh-hom-arrow f g β a) (g (map-domain-hom-arrow f g α a)))
       ( ap-inv g (htpy-domain-htpy-hom-arrow f g α β H a))) ∙
     ( double-transpose-eq-concat'
       ( coh-hom-arrow f g α a)
@@ -350,6 +351,19 @@ module _
 ### Whiskering of homotopies of morphisms of arrows
 
 #### Left whiskering
+
+Given a diagram of arrows
+
+```text
+      α
+    ----->     γ
+  f   H    g -----> h
+    ----->
+      β
+```
+
+where `H` is a homotopy of morphisms of arrows `H : α ~ β`, then we can _left
+whisker_ by `γ` to obtain a homotopy of morphisms of arrows `γH : γα ~ γβ`.
 
 ```agda
 module _
@@ -376,61 +390,61 @@ module _
       ( comp-hom-arrow f g h γ β)
       ( htpy-domain-left-whisker-htpy-hom-arrow)
       ( htpy-codomain-left-whisker-htpy-hom-arrow)
-  coh-left-whisker-htpy-hom-arrow a =
+  coh-left-whisker-htpy-hom-arrow x =
     ( inv
       ( ap
         ( concat _ _)
         ( ap-comp h
           ( map-domain-hom-arrow g h γ)
-          ( htpy-domain-htpy-hom-arrow f g α β H a)))) ∙
+          ( htpy-domain-htpy-hom-arrow f g α β H x)))) ∙
     ( assoc
-      ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α a))
-      ( coh-hom-arrow g h γ (map-domain-hom-arrow f g α a))
+      ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α x))
+      ( coh-hom-arrow g h γ (map-domain-hom-arrow f g α x))
       ( ap
         ( h ∘ map-domain-hom-arrow g h γ)
-        ( htpy-domain-htpy-hom-arrow f g α β H a))) ∙
+        ( htpy-domain-htpy-hom-arrow f g α β H x))) ∙
     ( ap
       ( concat
-        ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α a))
-        ( h _))
+        ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α x))
+        ( h (map-domain-hom-arrow g h γ (map-domain-hom-arrow f g β x))))
       ( nat-htpy
         ( coh-hom-arrow g h γ)
-        ( htpy-domain-htpy-hom-arrow f g α β H a))) ∙
+        ( htpy-domain-htpy-hom-arrow f g α β H x))) ∙
     ( inv
       ( assoc
-        ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α a))
+        ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α x))
         ( ap
           ( map-codomain-hom-arrow g h γ ∘ g)
-          ( htpy-domain-htpy-hom-arrow f g α β H a))
-        ( coh-hom-arrow g h γ (map-domain-hom-arrow f g β a)))) ∙
+          ( htpy-domain-htpy-hom-arrow f g α β H x))
+        ( coh-hom-arrow g h γ (map-domain-hom-arrow f g β x)))) ∙
     ( ap
-      ( concat' _ (coh-hom-arrow g h γ (map-domain-hom-arrow f g β a)))
+      ( concat' _ (coh-hom-arrow g h γ (map-domain-hom-arrow f g β x)))
       ( ( ap
           ( concat
-            ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α a))
-            ( _))
+            ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g α x))
+            ( map-codomain-hom-arrow g h γ (g (map-domain-hom-arrow f g β x))))
           ( ap-comp
             ( map-codomain-hom-arrow g h γ)
             ( g)
-            ( htpy-domain-htpy-hom-arrow f g α β H a))) ∙
-        ( ( inv
-            ( ap-concat
-              ( map-codomain-hom-arrow g h γ)
-              ( coh-hom-arrow f g α a)
-              ( ap g (htpy-domain-htpy-hom-arrow f g α β H a)))) ∙
-          ( ap
-            ( ap (map-codomain-hom-arrow g h γ))
-            ( coh-htpy-hom-arrow f g α β H a)) ∙
+            ( htpy-domain-htpy-hom-arrow f g α β H x))) ∙
+        ( inv
           ( ap-concat
             ( map-codomain-hom-arrow g h γ)
-            ( htpy-codomain-htpy-hom-arrow f g α β H (f a))
-            ( coh-hom-arrow f g β a))))) ∙
+            ( coh-hom-arrow f g α x)
+            ( ap g (htpy-domain-htpy-hom-arrow f g α β H x)))) ∙
+        ( ap
+          ( ap (map-codomain-hom-arrow g h γ))
+          ( coh-htpy-hom-arrow f g α β H x)) ∙
+        ( ap-concat
+          ( map-codomain-hom-arrow g h γ)
+          ( htpy-codomain-htpy-hom-arrow f g α β H (f x))
+          ( coh-hom-arrow f g β x)))) ∙
     ( assoc
       ( ap
         ( map-codomain-hom-arrow g h γ)
-        ( htpy-codomain-htpy-hom-arrow f g α β H (f a)))
-      ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g β a))
-      ( coh-hom-arrow g h γ (map-domain-hom-arrow f g β a)))
+        ( htpy-codomain-htpy-hom-arrow f g α β H (f x)))
+      ( ap (map-codomain-hom-arrow g h γ) (coh-hom-arrow f g β x))
+      ( coh-hom-arrow g h γ (map-domain-hom-arrow f g β x)))
 
   left-whisker-htpy-hom-arrow :
     htpy-hom-arrow f h
@@ -530,9 +544,7 @@ module _
   where
 
   left-unit-law-comp-hom-arrow :
-    htpy-hom-arrow f g
-      ( comp-hom-arrow f g g id-hom-arrow α)
-      ( α)
+    htpy-hom-arrow f g (comp-hom-arrow f g g id-hom-arrow α) α
   pr1 left-unit-law-comp-hom-arrow = refl-htpy
   pr1 (pr2 left-unit-law-comp-hom-arrow) = refl-htpy
   pr2 (pr2 left-unit-law-comp-hom-arrow) =
@@ -554,9 +566,7 @@ module _
   where
 
   right-unit-law-comp-hom-arrow :
-    htpy-hom-arrow f g
-      ( comp-hom-arrow f f g α id-hom-arrow)
-      ( α)
+    htpy-hom-arrow f g (comp-hom-arrow f f g α id-hom-arrow) α
   pr1 right-unit-law-comp-hom-arrow = refl-htpy
   pr1 (pr2 right-unit-law-comp-hom-arrow) = refl-htpy
   pr2 (pr2 right-unit-law-comp-hom-arrow) = right-unit-htpy
