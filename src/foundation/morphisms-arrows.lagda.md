@@ -14,6 +14,8 @@ open import foundation.dependent-pair-types
 open import foundation.function-extensionality
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopy-induction
+open import foundation.precomposition-functions
+open import foundation.postcomposition-functions
 open import foundation.structure-identity-principle
 open import foundation.universe-levels
 
