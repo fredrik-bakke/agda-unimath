@@ -233,8 +233,7 @@ module _
   pr1 (pr2 refl-htpy-hom-arrow) = refl-htpy
   pr2 (pr2 refl-htpy-hom-arrow) = right-unit-htpy
 
-  is-torsorial-htpy-hom-arrow :
-    is-torsorial htpy-hom-arrow
+  is-torsorial-htpy-hom-arrow : is-torsorial htpy-hom-arrow
   is-torsorial-htpy-hom-arrow =
     is-torsorial-Eq-structure
       ( λ i jH I → Σ _ _)
