@@ -305,8 +305,7 @@ module _
     map-equiv equiv-htpy-eq-functor-Category
 
   eq-htpy-functor-Category : htpy-functor-Category → F ＝ G
-  eq-htpy-functor-Category =
-    map-inv-equiv equiv-htpy-eq-functor-Category
+  eq-htpy-functor-Category = map-inv-equiv equiv-htpy-eq-functor-Category
 
   is-section-eq-htpy-functor-Category :
     htpy-eq-functor-Category ∘ eq-htpy-functor-Category ~ id
