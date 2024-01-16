@@ -154,22 +154,25 @@ module _
 ```agda
 module _
   {l1 l2 : Level} {A : UU l1} {B : A → UU l2} {f g h : (x : A) → B x}
-  (H : f ~ g) (K : g ~ h) (L : f ~ h) (M : H ∙h K ~ L)
+  (H : f ~ g) (K : g ~ h) (L : f ~ h)
   where
 
-  left-transpose-htpy-concat : K ~ inv-htpy H ∙h L
-  left-transpose-htpy-concat x =
+  left-transpose-htpy-concat : (M : H ∙h K ~ L) → K ~ inv-htpy H ∙h L
+  left-transpose-htpy-concat M x =
     left-transpose-eq-concat (H x) (K x) (L x) (M x)
 
-  inv-htpy-left-transpose-htpy-concat : inv-htpy H ∙h L ~ K
-  inv-htpy-left-transpose-htpy-concat = inv-htpy left-transpose-htpy-concat
+  left-transpose-htpy-concat' : (M : L ~ H ∙h K) → inv-htpy H ∙h L ~ K
+  left-transpose-htpy-concat' M x =
+    left-transpose-eq-concat' (H x) (K x) (L x) (M x)
 
-  right-transpose-htpy-concat : H ~ L ∙h inv-htpy K
-  right-transpose-htpy-concat x =
+  right-transpose-htpy-concat : (M : H ∙h K ~ L) → H ~ L ∙h inv-htpy K
+  right-transpose-htpy-concat M x =
     right-transpose-eq-concat (H x) (K x) (L x) (M x)
 
-  inv-htpy-right-transpose-htpy-concat : L ∙h inv-htpy K ~ H
-  inv-htpy-right-transpose-htpy-concat = inv-htpy right-transpose-htpy-concat
+  right-transpose-htpy-concat' : (M : L ~ H ∙h K) → L ∙h inv-htpy K ~ H
+  right-transpose-htpy-concat' M x =
+    right-transpose-eq-concat' (H x) (K x) (L x) (M x)
+
 ```
 
 ### Associativity of concatenation of homotopies

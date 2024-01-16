@@ -54,7 +54,7 @@ module _
   {l1 l2 l3 : Level} (G : Group l1) (S : subset-Group l2 G) (G' : Group l3)
   where
 
-  distributivity-hom-group-ev-formal-combination :
+  distributive-hom-group-ev-formal-combination :
     ( f : hom-Group (group-Subgroup G (subgroup-subset-Group G S)) G') →
     ( l : formal-combination-subset-Group G S) →
     Id
@@ -76,9 +76,9 @@ module _
               ( ( ev-formal-combination-subset-Group G S (unit-list (s , x))) ,
                 ( unit-trunc-Prop (unit-list (s , x) , refl)))))
         ( l))
-  distributivity-hom-group-ev-formal-combination f nil =
+  distributive-hom-group-ev-formal-combination f nil =
     preserves-unit-hom-Group (group-Subgroup G (subgroup-subset-Group G S)) G' f
-  distributivity-hom-group-ev-formal-combination f (cons (s , x) l) =
+  distributive-hom-group-ev-formal-combination f (cons (s , x) l) =
     ( ap
       ( map-hom-Group (group-Subgroup G (subgroup-subset-Group G S)) G' f)
       ( eq-pair-Σ
@@ -99,7 +99,7 @@ module _
           ( pair
             ( ev-formal-combination-subset-Group G S (unit-list (s , x)))
             ( unit-trunc-Prop (unit-list (s , x) , refl)))))
-      ( distributivity-hom-group-ev-formal-combination f l))
+      ( distributive-hom-group-ev-formal-combination f l))
 
   map-restriction-generating-subset-Subgroup :
     hom-Group (group-Subgroup G (subgroup-subset-Group G S)) G' →
@@ -147,13 +147,13 @@ module _
                     ( G')
                     ( f))
                   ( eq-pair-Σ (inv Q) (eq-is-prop is-prop-type-trunc-Prop))) ∙
-                ( distributivity-hom-group-ev-formal-combination f y) ∙
+                ( distributive-hom-group-ev-formal-combination f y) ∙
                 ( ap
                   ( λ F →
                     fold-list (unit-Group G') (λ Y → mul-Group G' (F Y)) y)
                   ( eq-htpy (lemma (htpy-eq P)))) ∙
                 ( inv
-                  ( distributivity-hom-group-ev-formal-combination g y)) ∙
+                  ( distributive-hom-group-ev-formal-combination g y)) ∙
                 ( ap
                   ( map-hom-Group
                     ( group-Subgroup G (subgroup-subset-Group G S))

@@ -31,7 +31,7 @@ identity types.
 ```agda
 ap :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) {x y : A} →
-  x ＝ y → (f x) ＝ (f y)
+  x ＝ y → f x ＝ f y
 ap f refl = refl
 ```
 
@@ -41,7 +41,7 @@ ap f refl = refl
 
 ```agda
 ap-id :
-  {l : Level} {A : UU l} {x y : A} (p : x ＝ y) → (ap id p) ＝ p
+  {l : Level} {A : UU l} {x y : A} (p : x ＝ y) → ap id p ＝ p
 ap-id refl = refl
 ```
 
@@ -50,7 +50,7 @@ ap-id refl = refl
 ```agda
 ap-comp :
   {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3} (g : B → C)
-  (f : A → B) {x y : A} (p : x ＝ y) → (ap (g ∘ f) p) ＝ ((ap g ∘ ap f) p)
+  (f : A → B) {x y : A} (p : x ＝ y) → ap (g ∘ f) p ＝ (ap g ∘ ap f) p
 ap-comp g f refl = refl
 
 ap-comp-assoc :
@@ -74,13 +74,13 @@ ap-refl f x = refl
 ```agda
 ap-concat :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) {x y z : A}
-  (p : x ＝ y) (q : y ＝ z) → (ap f (p ∙ q)) ＝ ((ap f p) ∙ (ap f q))
+  (p : x ＝ y) (q : y ＝ z) → ap f (p ∙ q) ＝ ap f p ∙ ap f q
 ap-concat f refl q = refl
 
 ap-concat-eq :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) {x y z : A}
   (p : x ＝ y) (q : y ＝ z) (r : x ＝ z)
-  (H : r ＝ (p ∙ q)) → (ap f r) ＝ ((ap f p) ∙ (ap f q))
+  (H : r ＝ p ∙ q) → ap f r ＝ ap f p ∙ ap f q
 ap-concat-eq f p q .(p ∙ q) refl = ap-concat f p q
 ```
 
@@ -98,7 +98,7 @@ ap-inv f refl = refl
 ```agda
 ap-const :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (b : B) {x y : A}
-  (p : x ＝ y) → (ap (const A B b) p) ＝ refl
+  (p : x ＝ y) → ap (const A B b) p ＝ refl
 ap-const b refl = refl
 ```
 
@@ -110,11 +110,11 @@ will compute here the action on identifications of the map `_∙ refl`.
 ```agda
 inv-ap-refl-concat :
   {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} (r : p ＝ q) →
-  (right-unit ∙ (r ∙ inv right-unit)) ＝ (ap (_∙ refl) r)
+  right-unit ∙ (r ∙ inv right-unit) ＝ ap (_∙ refl) r
 inv-ap-refl-concat refl = right-inv right-unit
 
 ap-refl-concat :
   {l : Level} {A : UU l} {x y : A} {p q : x ＝ y} (r : p ＝ q) →
-  (ap (_∙ refl) r) ＝ (right-unit ∙ (r ∙ inv right-unit))
+  ap (_∙ refl) r ＝ right-unit ∙ (r ∙ inv right-unit)
 ap-refl-concat = inv ∘ inv-ap-refl-concat
 ```

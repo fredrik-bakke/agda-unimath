@@ -355,22 +355,22 @@ module _
       ( refl-htpy' f')
       ( back-right)
   coherence-htpy-parallel-cone-coherence-cube-maps c =
-    ( assoc-htpy
-      ( h ·l (inv-htpy back-left))
-      ( bottom ·r hA)
-      ( (k ·l back-right) ∙h (refl-htpy' (k ∘ (hC ∘ g'))))) ∙h
-    ( ( ap-concat-htpy'
+    ( ( assoc-htpy
+        ( h ·l inv-htpy back-left)
+        ( bottom ·r hA)
+        ( k ·l back-right ∙h refl-htpy)) ∙h
+      ( ap-concat-htpy'
         ( _)
-        ( left-whisk-inv-htpy h back-left)) ∙h
-      ( inv-htpy-left-transpose-htpy-concat (h ·l back-left) _ _
-        ( ( (inv-htpy-assoc-htpy (h ·l back-left) (front-left ·r f') _) ∙h
-            ( ( inv-htpy-assoc-htpy
-                ( (h ·l back-left) ∙h (front-left ·r f'))
-                ( hD ·l top)
-                ( (inv-htpy front-right) ·r g')) ∙h
-              ( inv-htpy-right-transpose-htpy-concat _ (front-right ·r g') _
-                ( (assoc-htpy (bottom ·r hA) _ _) ∙h (inv-htpy c))))) ∙h
-          ( ap-concat-htpy (bottom ·r hA) inv-htpy-right-unit-htpy))))
+        ( left-whisk-inv-htpy h back-left))) ∙h
+    ( left-transpose-htpy-concat' (h ·l back-left) _ _
+        ( ( ( ( ap-concat-htpy (bottom ·r hA) right-unit-htpy) ∙h
+              ( right-transpose-htpy-concat _ (front-right ·r g') _
+                ( assoc-htpy (bottom ·r hA) _ _ ∙h inv-htpy c))) ∙h
+            ( assoc-htpy
+              ( ( h ·l back-left) ∙h (front-left ·r f'))
+              ( hD ·l top)
+              ( inv-htpy front-right ·r g'))) ∙h
+          ( assoc-htpy (h ·l back-left) (front-left ·r f') _)))
 ```
 
 ### Commuting cubes of maps induce commuting cubes of precomposition maps

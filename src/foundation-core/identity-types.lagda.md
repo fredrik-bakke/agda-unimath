@@ -165,10 +165,22 @@ module _
     p ∙ q ＝ r → q ＝ inv p ∙ r
   left-transpose-eq-concat refl q r s = s
 
+  left-transpose-eq-concat' :
+    {x y : A} (p : x ＝ y) {z : A} (q : y ＝ z) (r : x ＝ z) →
+    r ＝ p ∙ q → inv p ∙ r ＝ q
+  left-transpose-eq-concat' p q r s =
+    inv (left-transpose-eq-concat p q r (inv s))
+
   right-transpose-eq-concat :
     {x y : A} (p : x ＝ y) {z : A} (q : y ＝ z) (r : x ＝ z) →
     p ∙ q ＝ r → p ＝ r ∙ inv q
   right-transpose-eq-concat p refl r s = (inv right-unit ∙ s) ∙ inv right-unit
+
+  right-transpose-eq-concat' :
+    {x y : A} (p : x ＝ y) {z : A} (q : y ＝ z) (r : x ＝ z) →
+    r ＝ p ∙ q → r ∙ inv q ＝ p
+  right-transpose-eq-concat' p q r s =
+    inv (right-transpose-eq-concat p q r (inv s))
 
   double-transpose-eq-concat :
     {x y u v : A} (r : x ＝ u) (p : x ＝ y) (s : u ＝ v) (q : y ＝ v) →

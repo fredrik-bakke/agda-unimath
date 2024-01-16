@@ -331,17 +331,12 @@ module _
             ( inv (H (map-inv-equiv left (map-equiv left a)))))
           ( inv
             ( coherence-square-identifications-comp-vertical
-              { p-left =
-                  ap
-                    ( map-inv-equiv right)
-                    ( H (map-inv-equiv left (map-equiv left a)))}
               { p-top =
                   ap
                     ( map-inv-equiv right)
                     ( ap
                       ( bottom)
                       ( is-section-map-inv-equiv left (map-equiv left a)))}
-              { q-bottom = ap top (is-retraction-map-inv-equiv left a)}
               ( coherence-square-identifications-top-paste
                 ( ap
                   ( map-inv-equiv right)

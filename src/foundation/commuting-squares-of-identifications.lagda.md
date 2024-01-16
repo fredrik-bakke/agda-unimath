@@ -91,9 +91,8 @@ module _
       p-top (p-left ∙ q-left) (p-right ∙ q-right) q-bottom
   coherence-square-identifications-comp-vertical p q =
     ( assoc p-left q-left q-bottom ∙
-      ( ( ap-binary (_∙_) (refl {x = p-left}) q ∙
-          inv (assoc p-left middle q-right)) ∙
-        ap-binary (_∙_) p (refl {x = q-right}))) ∙
+      ( ( ap (p-left ∙_) q ∙ inv (assoc p-left middle q-right)) ∙
+        ( ap (_∙ q-right) p))) ∙
       assoc p-top p-right q-right
 ```
 
@@ -195,7 +194,7 @@ module _
     (top : x ＝ y) (left : x ＝ z) (right : y ＝ w) (bottom : z ＝ w) →
     coherence-square-identifications top left right bottom →
     coherence-square-identifications (inv top) right left (inv bottom)
-  coherence-square-identifications-horizontal-inv refl refl right refl coh =
+  coherence-square-identifications-horizontal-inv refl refl _ refl coh =
     right-unit ∙ inv coh
 ```
 
@@ -214,5 +213,5 @@ module _
       ( ap f left)
       ( ap f right)
       ( ap f bottom)
-  coherence-square-identifications-ap refl refl right refl coh = ap (ap f) coh
+  coherence-square-identifications-ap refl refl _ _ = ap (ap f)
 ```

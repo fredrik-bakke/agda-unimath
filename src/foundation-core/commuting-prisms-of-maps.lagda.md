@@ -235,19 +235,19 @@ module _
           ( inv-htpy-distributive-inv-concat-htpy
             ( inv-right ·r h)
             ( g' ·l inv-left)))) ∙h
-      ( inv-htpy-right-transpose-htpy-concat
-        ( inv-htpy inv-front ∙h (hC ·l top))
-        ( inv-right ·r h ∙h (g' ·l inv-left))
-        ( bottom ·r hA)
-        ( ( assoc-htpy
-            ( inv-htpy inv-front)
-            ( hC ·l top)
-            ( inv-right ·r h ∙h (g' ·l inv-left))) ∙h
-          ( inv-htpy-left-transpose-htpy-concat
-            ( inv-front)
-            ( bottom ·r hA)
-            ( (hC ·l top) ∙h (inv-right ·r h ∙h (g' ·l inv-left)))
-            ( H))))
+      ( right-transpose-htpy-concat'
+          ( inv-htpy inv-front ∙h (hC ·l top))
+          ( inv-right ·r h ∙h (g' ·l inv-left))
+          ( bottom ·r hA)
+          ( ( left-transpose-htpy-concat
+              ( inv-front)
+              ( bottom ·r hA)
+              ( (hC ·l top) ∙h (inv-right ·r h ∙h (g' ·l inv-left)))
+              ( H)) ∙h
+            ( inv-htpy-assoc-htpy
+              ( inv-htpy inv-front)
+              ( hC ·l top)
+              ( inv-right ·r h ∙h (g' ·l inv-left)))))
 
   module _
     ( inv-top : coherence-triangle-maps' f g h)
@@ -288,9 +288,10 @@ module _
             ( inv-htpy (inv-right ·r h ∙h (g' ·l inv-left)))
             ( hC ·l inv-top)
             ( inv-front)) ∙h
-          ( inv-htpy-left-transpose-htpy-concat
-            ( inv-right ·r h ∙h (g' ·l inv-left))
-            ( inv-bottom ·r hA)
-            ( (hC ·l inv-top) ∙h inv-front)
-            ( H))))
+          ( inv-htpy
+            ( left-transpose-htpy-concat
+              ( inv-right ·r h ∙h (g' ·l inv-left))
+              ( inv-bottom ·r hA)
+              ( (hC ·l inv-top) ∙h inv-front)
+              ( H)))))
 ```
