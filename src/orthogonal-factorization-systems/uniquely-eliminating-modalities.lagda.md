@@ -28,12 +28,15 @@ open import orthogonal-factorization-systems.modal-operators
 
 ## Idea
 
-A **uniquely eliminating modality** is a _higher mode of logic_ defined in terms
-of a monadic
+A
+{{#concept "uniquely eliminating modality" Agda=uniquely-eliminating-modality}}
+is a _higher mode of logic_ defined in terms of a monadic
 [modal operator](orthogonal-factorization-systems.modal-operators.md) `○`
 satisfying a certain [locality](orthogonal-factorization-systems.local-types.md)
-condition. Namely, that dependent precomposition by the modal unit `unit-○` is
-an equivalence for type families over types in the image of the operator:
+condition. Namely, that
+[dependent precomposition](foundation-core.dependent-precomposition.md) by the
+modal unit `unit-○` is an [equivalence](foundation-core.equivalences.md) for
+type families over types in the image of the operator:
 
 ```text
   - ∘ unit-○ : Π (x : ○ X) (○ (P x)) ≃ Π (x : X) (○ (P (unit-○ x)))

@@ -154,7 +154,7 @@ module _
   where
 
   has-all-localizations-is-reflective-subuniverse :
-    (A : UU l1) → subuniverse-localization P A
+    (A : UU l1) → localization-subuniverse P A
   pr1 (has-all-localizations-is-reflective-subuniverse A) =
     operator-is-reflective-subuniverse P is-reflective-P A
   pr1 (pr2 (has-all-localizations-is-reflective-subuniverse A)) =
@@ -169,20 +169,20 @@ module _
 
 module _
   {l1 l2 : Level} (P : subuniverse l1 l2)
-  (L : (A : UU l1) → subuniverse-localization P A)
+  (L : (A : UU l1) → localization-subuniverse P A)
   where
 
   is-reflective-has-all-localizations-subuniverse :
     is-reflective-subuniverse P
   pr1 is-reflective-has-all-localizations-subuniverse A =
-    type-subuniverse-localization P (L A)
+    type-localization-subuniverse P (L A)
   pr1 (pr2 is-reflective-has-all-localizations-subuniverse) {A} =
-    unit-subuniverse-localization P (L A)
+    unit-localization-subuniverse P (L A)
   pr1 (pr2 (pr2 is-reflective-has-all-localizations-subuniverse)) A =
-    is-in-subuniverse-subuniverse-localization P (L A)
+    is-in-subuniverse-localization-subuniverse P (L A)
   pr2 (pr2 (pr2 is-reflective-has-all-localizations-subuniverse))
     A B is-in-subuniverse-A =
-    is-local-at-unit-is-in-subuniverse-subuniverse-localization
+    is-local-at-unit-is-in-subuniverse-localization-subuniverse
       P (L B) A is-in-subuniverse-A
 ```
 

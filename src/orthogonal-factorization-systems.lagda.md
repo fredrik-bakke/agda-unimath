@@ -26,6 +26,7 @@ open import orthogonal-factorization-systems.function-classes public
 open import orthogonal-factorization-systems.functoriality-higher-modalities public
 open import orthogonal-factorization-systems.functoriality-pullback-hom public
 open import orthogonal-factorization-systems.global-function-classes public
+open import orthogonal-factorization-systems.global-modal-operators public
 open import orthogonal-factorization-systems.higher-modalities public
 open import orthogonal-factorization-systems.identity-modality public
 open import orthogonal-factorization-systems.lifting-operations public

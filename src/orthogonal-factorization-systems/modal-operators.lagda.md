@@ -20,10 +20,12 @@ open import foundation.universe-levels
 
 ## Idea
 
-Underlying every modality is a **modal operator**, which is an operation on
+Underlying every modality is a
+{{#concept "modal operator" Agda=operator-modality}}, which is an operation on
 types that construct new types. For a _monadic_ modality `○`, there is moreover
-a **modal unit** that compares every type `X` to its modal type `○ X`
-(`X → ○ X`).
+a {{#concept "modal unit" Disambiguation="monadic modality" Agda=unit-modality}}
+which is a family of comparison maps for every type `X` from `X` into its modal
+image `○ X`.
 
 ## Definitions
 
@@ -43,6 +45,10 @@ unit-modality {l1} ○ = {X : UU l1} → X → ○ X
 
 ### The subuniverse of modal types
 
+Given a modal operator and a modal unit, we say that a type `X` is
+{{#concept "modal" Disambiguation="type" Agda=is-modal}} if the unit is an
+equivalence at `X`.
+
 ```agda
 module _
   {l1 l2 : Level} {○ : operator-modality l1 l2} (unit-○ : unit-modality ○)
@@ -57,22 +63,23 @@ module _
   modal-type : UU (lsuc l1 ⊔ l2)
   modal-type = Σ (UU l1) (is-modal)
 
-  is-modal-Prop : (X : UU l1) → Prop (l1 ⊔ l2)
-  is-modal-Prop X = is-equiv-Prop (unit-○ {X})
+  modal-subuniverse : (X : UU l1) → Prop (l1 ⊔ l2)
+  modal-subuniverse X = is-equiv-Prop (unit-○ {X})
 
   is-property-is-modal : (X : UU l1) → is-prop (is-modal X)
-  is-property-is-modal X = is-prop-type-Prop (is-modal-Prop X)
+  is-property-is-modal X = is-prop-type-Prop (modal-subuniverse X)
 
   is-subuniverse-is-modal : is-subuniverse is-modal
   is-subuniverse-is-modal = is-property-is-modal
 
   modal-type-subuniverse : subuniverse l1 (l1 ⊔ l2)
-  modal-type-subuniverse = is-modal-Prop
+  modal-type-subuniverse = modal-subuniverse
 ```
 
 ### Modal small types
 
-A small type is said to be modal if its small equivalent is modal.
+A [small type](foundation.small-types.md) is said to be _modal_ if its small
+equivalent is modal.
 
 ```agda
 is-modal-type-is-small :

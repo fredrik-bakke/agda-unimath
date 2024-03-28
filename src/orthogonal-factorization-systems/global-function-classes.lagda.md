@@ -24,9 +24,8 @@ open import orthogonal-factorization-systems.function-classes
 
 ## Idea
 
-A **global function class** is a global [subtype](foundation.subtypes.md) of
-function types that is closed under composition with
-[equivalences](foundation-core.equivalences.md).
+A **global function class** is a global subtype of function types that is closed
+under composition with [equivalences](foundation-core.equivalences.md).
 
 Note that composition with homogenous equivalences follows from
 [univalence](foundation.univalence.md), so this condition should hold for the

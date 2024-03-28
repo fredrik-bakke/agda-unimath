@@ -30,7 +30,8 @@ open import foundation-core.transport-along-identifications
 
 ## Idea
 
-**Subuniverses** are [subtypes](foundation-core.subtypes.md) of the universe.
+{{#concept "Subuniverses" Agda=subuniverse}} are
+[subtypes](foundation-core.subtypes.md) of the universe.
 
 ## Definitions
 
