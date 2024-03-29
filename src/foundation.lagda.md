@@ -174,6 +174,7 @@ open import foundation.fibered-maps public
 open import foundation.fibers-of-maps public
 open import foundation.finitely-coherent-equivalences public
 open import foundation.finitely-coherently-invertible-maps public
+open import foundation.fixed-points-endofunctions public
 open import foundation.full-subtypes public
 open import foundation.function-extensionality public
 open import foundation.function-types public
