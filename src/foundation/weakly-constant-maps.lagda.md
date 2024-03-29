@@ -8,8 +8,8 @@ module foundation.weakly-constant-maps where
 
 ```agda
 open import foundation.dependent-pair-types
-open import foundation.universe-levels
 open import foundation.iterated-dependent-product-types
+open import foundation.universe-levels
 
 open import foundation-core.identity-types
 open import foundation-core.propositions
