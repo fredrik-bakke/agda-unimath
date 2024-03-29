@@ -20,17 +20,17 @@ open import foundation-core.sets
 
 ## Idea
 
-A **preidempotent map** is a map `f : A → A` equipped with a homotopy
-`f ∘ f ~ f`.
+A {{#concept "preidempotent map" Agda=is-preidempotent-map}} is a map
+`f : A → A` equipped with a homotopy `f ∘ f ~ f`.
 
 ## Definition
 
 ```agda
-is-preidempotent : {l : Level} {A : UU l} → (A → A) → UU l
-is-preidempotent f = (f ∘ f) ~ f
+is-preidempotent-map : {l : Level} {A : UU l} → (A → A) → UU l
+is-preidempotent-map f = (f ∘ f) ~ f
 
 preidempotent-map : {l : Level} (A : UU l) → UU l
-preidempotent-map A = Σ (A → A) is-preidempotent
+preidempotent-map A = Σ (A → A) (is-preidempotent-map)
 ```
 
 ## Properties
@@ -38,10 +38,29 @@ preidempotent-map A = Σ (A → A) is-preidempotent
 ### Being preidempotent over a set is a property
 
 ```agda
-is-prop-is-preidempotent-is-set :
-  {l : Level} {A : UU l} → is-set A → (f : A → A) → is-prop (is-preidempotent f)
-is-prop-is-preidempotent-is-set is-set-A f =
-  is-prop-Π λ x → is-set-A (f (f x)) (f x)
+module _
+  {l : Level} {A : UU l} (is-set-A : is-set A) (f : A → A)
+  where
+
+  is-prop-is-preidempotent-map-is-set : is-prop (is-preidempotent-map f)
+  is-prop-is-preidempotent-map-is-set =
+    is-prop-Π (λ x → is-set-A (f (f x)) (f x))
+
+  is-preidempotent-map-is-set-Prop : Prop l
+  is-preidempotent-map-is-set-Prop =
+    ( is-preidempotent-map f , is-prop-is-preidempotent-map-is-set)
+
+module _
+  {l : Level} (A : Set l) (f : type-Set A → type-Set A)
+  where
+
+  is-prop-is-preidempotent-map-Set : is-prop (is-preidempotent-map f)
+  is-prop-is-preidempotent-map-Set =
+    is-prop-is-preidempotent-map-is-set (is-set-type-Set A) f
+
+  is-preidempotent-map-prop-Set : Prop l
+  is-preidempotent-map-prop-Set =
+    ( is-preidempotent-map f , is-prop-is-preidempotent-map-Set)
 ```
 
 ## References
