@@ -8,13 +8,18 @@ module foundation.split-idempotent-maps where
 
 ```agda
 open import foundation.dependent-pair-types
+open import foundation.equality-dependent-pair-types
 open import foundation.homotopy-algebra
+open import foundation.identity-types
 open import foundation.preidempotent-maps
+open import foundation.quasiidempotent-maps
 open import foundation.retracts-of-types
 open import foundation.universe-levels
+open import foundation.weakly-constant-maps
 open import foundation.whiskering-homotopies-composition
 
 open import foundation-core.equivalences
+open import foundation-core.fibers-of-maps
 open import foundation-core.function-types
 open import foundation-core.homotopies
 open import foundation-core.propositions
@@ -150,34 +155,9 @@ module _
 
 ## Properties
 
-### Split idempotent maps are preidempotent
-
-```agda
-module _
-  {l1 l2 : Level} {A : UU l1} {f : A → A} (H : is-split-idempotent-map l2 f)
-  where
-
-  is-preidempotent-is-split-idempotent-map : is-preidempotent-map f
-  is-preidempotent-is-split-idempotent-map =
-    is-preidempotent-map-inv-htpy
-      ( is-preidempotent-inclusion-retraction
-        ( inclusion-is-split-idempotent-map H)
-        ( map-retraction-is-split-idempotent-map H)
-        ( is-retraction-map-retraction-is-split-idempotent-map H))
-      ( htpy-is-split-idempotent-map H)
-
-module _
-  {l1 l2 : Level} {A : UU l1} (H : split-idempotent-map l2 A)
-  where
-
-  is-preidempotent-split-idempotent-map :
-    is-preidempotent-map (map-split-idempotent-map H)
-  is-preidempotent-split-idempotent-map =
-    is-preidempotent-is-split-idempotent-map
-      ( is-split-idempotent-split-idempotent-map H)
-```
-
 ### The splitting type of a split idempotent map is essentially unique
+
+This is Lemma 3.4 in {{#cite Shu17}}.
 
 ```agda
 module _
@@ -238,6 +218,90 @@ module _
       is-equiv-map-essentially-unique-splitting-type-is-split-idempotent-map
         ( H)
         ( H'))
+```
+
+### Split idempotent maps are preidempotent
+
+This is Lemma 3.3 in {{#cite Shu17}}.
+
+```agda
+module _
+  {l1 l2 : Level} {A : UU l1} {f : A → A} (H : is-split-idempotent-map l2 f)
+  where
+
+  is-preidempotent-is-split-idempotent-map : is-preidempotent-map f
+  is-preidempotent-is-split-idempotent-map =
+    is-preidempotent-map-inv-htpy
+      ( is-preidempotent-inclusion-retraction
+        ( inclusion-is-split-idempotent-map H)
+        ( map-retraction-is-split-idempotent-map H)
+        ( is-retraction-map-retraction-is-split-idempotent-map H))
+      ( htpy-is-split-idempotent-map H)
+
+module _
+  {l1 l2 : Level} {A : UU l1} (H : split-idempotent-map l2 A)
+  where
+
+  is-preidempotent-split-idempotent-map :
+    is-preidempotent-map (map-split-idempotent-map H)
+  is-preidempotent-split-idempotent-map =
+    is-preidempotent-is-split-idempotent-map
+      ( is-split-idempotent-split-idempotent-map H)
+```
+
+### Every preidempotent on a set splits
+
+This is Theorem 3.7 of {{#cite Shu17}}.
+
+```agda
+module _
+  {l : Level} {A : UU l} {f : A → A}
+  (is-set-A : is-set A) (H : is-preidempotent-map f)
+  where
+
+  splitting-type-is-split-idempotent-is-preidempotent-map-is-set : UU l
+  splitting-type-is-split-idempotent-is-preidempotent-map-is-set =
+    Σ A (λ x → f x ＝ x)
+
+  inclusion-is-split-idempotent-is-preidempotent-map-is-set :
+    Σ A (λ x → f x ＝ x) → A
+  inclusion-is-split-idempotent-is-preidempotent-map-is-set = pr1
+
+  map-retraction-is-split-idempotent-is-preidempotent-map-is-set :
+    A → Σ A (λ x → f x ＝ x)
+  map-retraction-is-split-idempotent-is-preidempotent-map-is-set x = (f x , H x)
+
+  is-retraction-map-retraction-is-split-idempotent-is-preidempotent-map-is-set :
+    is-retraction
+      ( inclusion-is-split-idempotent-is-preidempotent-map-is-set)
+      ( map-retraction-is-split-idempotent-is-preidempotent-map-is-set)
+  is-retraction-map-retraction-is-split-idempotent-is-preidempotent-map-is-set
+    (x , p) =
+    eq-pair-Σ p (eq-is-prop (is-set-A (f x) x))
+
+  retraction-is-split-idempotent-is-preidempotent-map-is-set :
+    retraction (inclusion-is-split-idempotent-is-preidempotent-map-is-set)
+  retraction-is-split-idempotent-is-preidempotent-map-is-set =
+    ( map-retraction-is-split-idempotent-is-preidempotent-map-is-set ,
+      is-retraction-map-retraction-is-split-idempotent-is-preidempotent-map-is-set)
+
+  retract-is-split-idempotent-is-preidempotent-map-is-set :
+    splitting-type-is-split-idempotent-is-preidempotent-map-is-set retract-of A
+  retract-is-split-idempotent-is-preidempotent-map-is-set =
+    ( inclusion-is-split-idempotent-is-preidempotent-map-is-set ,
+      retraction-is-split-idempotent-is-preidempotent-map-is-set)
+
+  htpy-is-split-idempotent-is-preidempotent-map-is-set :
+    inclusion-is-split-idempotent-is-preidempotent-map-is-set ∘
+    map-retraction-is-split-idempotent-is-preidempotent-map-is-set ~
+    f
+  htpy-is-split-idempotent-is-preidempotent-map-is-set = refl-htpy
+
+  is-split-idempotent-is-preidempotent-map-is-set : is-split-idempotent-map l f
+  is-split-idempotent-is-preidempotent-map-is-set =
+    ( splitting-type-is-split-idempotent-is-preidempotent-map-is-set ,
+      retract-is-split-idempotent-is-preidempotent-map-is-set ,
+      htpy-is-split-idempotent-is-preidempotent-map-is-set)
 ```
 
 ## References
