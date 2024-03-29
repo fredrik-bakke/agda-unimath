@@ -30,7 +30,7 @@ open import foundation-core.sets
 A map `f : A → A` is
 {{#concept "split idempotent" Agda=is-split-idempotent-map}} if there exists a
 type `B` and an inclusion-retraction pair `r`, `i` displaying `B` as a
-[retract](foundation.retracts-of-types.md) such that `i ∘ r ~ f`. In other
+[retract](foundation-core.retracts-of-types.md) such that `i ∘ r ~ f`. In other
 words, if we have a commutative diagram
 
 ```text
