@@ -96,6 +96,20 @@ module _
   is-weakly-constant-ap {x} {y} p q =
     ( inv (compute-ap-is-weakly-constant-map p)) ∙
     ( compute-ap-is-weakly-constant-map q)
+
+module _
+  {l1 l2 : Level} {X : UU l1} {Y : UU l2}
+  (f : weakly-constant-map X Y)
+  where
+
+  ap-weakly-constant-map :
+    {x y : X} →
+    weakly-constant-map
+      ( x ＝ y)
+      ( map-weakly-constant-map f x ＝ map-weakly-constant-map f y)
+  ap-weakly-constant-map {x} {y} =
+    ( ap (map-weakly-constant-map f) {x} {y} ,
+      is-weakly-constant-ap (is-weakly-constant-weakly-constant-map f))
 ```
 
 ### The type of fixed points of a weakly constant endomap is a proposition
