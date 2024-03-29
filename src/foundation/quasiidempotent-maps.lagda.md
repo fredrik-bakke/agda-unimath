@@ -8,13 +8,17 @@ module foundation.quasiidempotent-maps where
 
 ```agda
 open import foundation.dependent-pair-types
+open import foundation.homotopy-algebra
 open import foundation.preidempotent-maps
 open import foundation.universe-levels
+open import foundation.whiskering-higher-homotopies-composition
 open import foundation.whiskering-homotopies-composition
 
 open import foundation-core.function-types
 open import foundation-core.homotopies
+open import foundation-core.identity-types
 open import foundation-core.propositions
+open import foundation-core.retractions
 open import foundation-core.sets
 ```
 
@@ -126,6 +130,30 @@ module _
   is-quasiidempotent-map-prop-Set : Prop l
   is-quasiidempotent-map-prop-Set =
     ( is-quasiidempotent-map f , is-prop-is-quasiidempotent-map-Set)
+```
+
+### If `i` and `r` is an inclusion-retraction pair, then `i ∘ r` is quasiidempotent
+
+```agda
+module _
+  {l1 l2 : Level} {A : UU l1} {B : UU l2}
+  (i : B → A) (r : A → B) (H : is-retraction i r)
+  where
+
+  coherence-is-quasiidempotent-inclusion-retraction :
+    coherence-is-quasiidempotent-map (i ∘ r)
+      ( is-preidempotent-inclusion-retraction i r H)
+  coherence-is-quasiidempotent-inclusion-retraction =
+    ( inv-preserves-comp-left-whisker-comp i r (i ·l H ·r r)) ∙h
+    ( double-whisker-comp²
+      ( i)
+      ( preserves-comp-left-whisker-comp r i H ∙h inv-coh-htpy-id H)
+      ( r))
+
+  is-quasiidempotent-inclusion-retraction : is-quasiidempotent-map (i ∘ r)
+  is-quasiidempotent-inclusion-retraction =
+    ( is-preidempotent-inclusion-retraction i r H ,
+      coherence-is-quasiidempotent-inclusion-retraction)
 ```
 
 ## References
