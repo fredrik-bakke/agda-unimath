@@ -66,7 +66,19 @@ module _
     ( is-preidempotent-map f , is-prop-is-preidempotent-map-Set)
 ```
 
-### Preidempotent maps are closed under homotopies
+### If `i` and `r` is an inclusion-retraction pair, then `i ∘ r` is preidempotent
+
+```agda
+module _
+  {l1 l2 : Level} {A : UU l1} {B : UU l2}
+  (i : B → A) (r : A → B) (H : is-retraction i r)
+  where
+
+  is-preidempotent-inclusion-retraction : is-preidempotent-map (i ∘ r)
+  is-preidempotent-inclusion-retraction = i ·l H ·r r
+```
+
+### Preidempotence is preserved by homotopies
 
 If a map `g` is homotopic to a preidempotent map `f`, then `g` is also
 preidempotent.
@@ -83,18 +95,6 @@ module _
   is-preidempotent-map-inv-htpy : f ~ g → is-preidempotent-map g
   is-preidempotent-map-inv-htpy H =
     inv-htpy (horizontal-concat-htpy H H) ∙h F ∙h H
-```
-
-### If `i` and `r` is an inclusion-retraction pair, then `i ∘ r` is preidempotent
-
-```agda
-module _
-  {l1 l2 : Level} {A : UU l1} {B : UU l2}
-  (i : B → A) (r : A → B) (H : is-retraction i r)
-  where
-
-  is-preidempotent-inclusion-retraction : is-preidempotent-map (i ∘ r)
-  is-preidempotent-inclusion-retraction = i ·l H ·r r
 ```
 
 ## References
