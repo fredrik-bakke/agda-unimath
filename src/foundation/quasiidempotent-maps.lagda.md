@@ -7,6 +7,7 @@ module foundation.quasiidempotent-maps where
 <details><summary>Imports</summary>
 
 ```agda
+open import foundation.action-on-identifications-functions
 open import foundation.dependent-pair-types
 open import foundation.homotopy-algebra
 open import foundation.preidempotent-maps
@@ -154,6 +155,106 @@ module _
   is-quasiidempotent-inclusion-retraction =
     ( is-preidempotent-inclusion-retraction i r H ,
       coherence-is-quasiidempotent-inclusion-retraction)
+```
+
+### Quasiidempotence is preserved by homotopies
+
+```agda
+module _
+  {l : Level} {A : UU l} {f g : A → A} (F : is-quasiidempotent-map f)
+  where
+
+  abstract
+    coherence-is-quasiidempotent-map-htpy :
+      (H : g ~ f) →
+      coherence-is-quasiidempotent-map g
+        ( is-preidempotent-map-htpy
+          ( is-preidempotent-is-quasiidempotent-map F)
+          ( H))
+    coherence-is-quasiidempotent-map-htpy H =
+      ( right-transpose-htpy-concat
+        ( g ·l
+          is-preidempotent-map-htpy
+            ( is-preidempotent-is-quasiidempotent-map F)
+            ( H))
+        ( H ·r g)
+        ( H ·r (g ∘ g) ∙h
+          ( ( f) ·l
+            ( g ·l H ∙h
+              H ·r f ∙h
+              is-preidempotent-is-quasiidempotent-map F ∙h inv-htpy H)))
+        ( inv-htpy
+          ( ( nat-htpy H) ∘
+            ( g ·l H ∙h
+              H ·r f ∙h
+              is-preidempotent-is-quasiidempotent-map F ∙h
+              inv-htpy H)))) ∙h
+      ( ap-concat-htpy'
+        ( inv-htpy (H ·r g))
+        ( ( ap-concat-htpy
+            ( H ·r ((g ∘ g)))
+            ( ( distributive-left-whisker-comp-concat f
+                ( g ·l H ∙h H ·r f ∙h is-preidempotent-is-quasiidempotent-map F)
+                ( inv-htpy H)) ∙h
+              ( ap-concat-htpy'
+                ( f ·l inv-htpy H)
+                ( ( distributive-left-whisker-comp-concat f
+                    ( g ·l H ∙h H ·r f)
+                    ( is-preidempotent-is-quasiidempotent-map F)) ∙h
+                  ( ap-binary-concat-htpy
+                    ( distributive-left-whisker-comp-concat f
+                      ( g ·l H)
+                      ( H ·r f))
+                    ( coh-is-quasiidempotent-map F)))) ∙h
+              ( assoc-htpy
+                ( f ·l g ·l H ∙h f ·l H ·r f)
+                ( is-preidempotent-is-quasiidempotent-map F ·r f)
+                ( f ·l inv-htpy H)) ∙h
+              ( ap-concat-htpy
+                ( f ·l g ·l H ∙h f ·l H ·r f)
+                ( ( nat-htpy (is-preidempotent-is-quasiidempotent-map F)) ∘
+                  ( inv-htpy H))) ∙h
+              ( inv-htpy
+                ( assoc-htpy
+                  ( f ·l g ·l H ∙h f ·l H ·r f)
+                  ( (f ∘ f) ·l inv-htpy H)
+                  ( is-preidempotent-is-quasiidempotent-map F ·r g))))) ∙h
+          ( inv-htpy
+            ( assoc-htpy
+              ( H ·r (g ∘ g))
+              ( f ·l g ·l H ∙h f ·l H ·r f ∙h (f ∘ f) ·l inv-htpy H)
+              ( is-preidempotent-is-quasiidempotent-map F ·r g))) ∙h
+          ( ap-concat-htpy'
+            ( is-preidempotent-is-quasiidempotent-map F ·r g)
+            ( ( ap-concat-htpy
+                ( H ·r (g ∘ g))
+                ( ap-concat-htpy'
+                  ( (f ∘ f) ·l inv-htpy H)
+                  ( ( ap-concat-htpy'
+                      ( f ·l H ·r f)
+                      ( preserves-comp-left-whisker-comp f g H)) ∙h
+                    ( inv-htpy (nat-htpy (f ·l H) ∘ H))) ∙h
+                  ( ap-concat-htpy
+                    ( f ·l H ·r g ∙h (f ∘ f) ·l H)
+                    ( left-whisker-inv-htpy (f ∘ f) H)) ∙h
+                  ( right-right-inv-htpy (f ·l H ·r g) ((f ∘ f) ·l H)))) ∙h
+              ( nat-htpy H ∘ (H ·r g))))))
+
+  is-quasiidempotent-map-htpy : (H : g ~ f) → is-quasiidempotent-map g
+  pr1 (is-quasiidempotent-map-htpy H) =
+    is-preidempotent-map-htpy
+      ( is-preidempotent-is-quasiidempotent-map F)
+      ( H)
+  pr2 (is-quasiidempotent-map-htpy H) =
+    coherence-is-quasiidempotent-map-htpy H
+
+  is-quasiidempotent-map-inv-htpy : (H : f ~ g) → is-quasiidempotent-map g
+  pr1 (is-quasiidempotent-map-inv-htpy H) =
+    is-preidempotent-map-htpy
+      ( is-preidempotent-is-quasiidempotent-map F)
+      ( inv-htpy H)
+  pr2 (is-quasiidempotent-map-inv-htpy H) =
+    coherence-is-quasiidempotent-map-htpy (inv-htpy H)
 ```
 
 ## References
