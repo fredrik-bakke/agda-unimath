@@ -94,7 +94,7 @@ module _
 
   is-preidempotent-map-inv-htpy : f ~ g → is-preidempotent-map g
   is-preidempotent-map-inv-htpy H =
-    inv-htpy (horizontal-concat-htpy H H) ∙h F ∙h H
+    horizontal-concat-htpy (inv-htpy H) (inv-htpy H) ∙h F ∙h H
 ```
 
 ## References

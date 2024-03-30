@@ -93,7 +93,7 @@ module _
 
 ## Properties
 
-### Being quasiidempotent over a set is a property
+### Being quasiidempotent on a set is a property
 
 ```agda
 module _
@@ -255,6 +255,45 @@ module _
       ( inv-htpy H)
   pr2 (is-quasiidempotent-map-inv-htpy H) =
     coherence-is-quasiidempotent-map-htpy (inv-htpy H)
+```
+
+### Realigning the quasiidempotence coherence
+
+Given a quasiidempotent `f` then any other preidempotence proof `H` that is
+homotopic to the coherent one is also coherent.
+
+```agda
+module _
+  {l : Level} {A : UU l} {f : A → A} (F : is-quasiidempotent-map f)
+  where
+
+  coherence-is-quasiidempotent-is-preidempotent-map-htpy :
+    (H : f ∘ f ~ f) (α : is-preidempotent-is-quasiidempotent-map F ~ H) →
+    coherence-is-quasiidempotent-map f H
+  coherence-is-quasiidempotent-is-preidempotent-map-htpy H α =
+    ( left-whisker-comp² f (inv-htpy α)) ∙h
+    ( coh-is-quasiidempotent-map F) ∙h
+    ( right-whisker-comp² α f)
+
+  coherence-is-quasiidempotent-is-preidempotent-map-inv-htpy :
+    (H : f ∘ f ~ f) (α : H ~ is-preidempotent-is-quasiidempotent-map F) →
+    coherence-is-quasiidempotent-map f H
+  coherence-is-quasiidempotent-is-preidempotent-map-inv-htpy H α =
+    ( left-whisker-comp² f α) ∙h
+    ( coh-is-quasiidempotent-map F) ∙h
+    ( right-whisker-comp² (inv-htpy α) f)
+
+  is-quasiidempotent-is-preidempotent-map-htpy :
+    (H : f ∘ f ~ f) (α : is-preidempotent-is-quasiidempotent-map F ~ H) →
+    is-quasiidempotent-map f
+  is-quasiidempotent-is-preidempotent-map-htpy H α =
+    ( H , coherence-is-quasiidempotent-is-preidempotent-map-htpy H α)
+
+  is-quasiidempotent-is-preidempotent-map-inv-htpy :
+    (H : f ∘ f ~ f) (α : H ~ is-preidempotent-is-quasiidempotent-map F) →
+    is-quasiidempotent-map f
+  is-quasiidempotent-is-preidempotent-map-inv-htpy H α =
+    ( H , coherence-is-quasiidempotent-is-preidempotent-map-inv-htpy H α)
 ```
 
 ## References

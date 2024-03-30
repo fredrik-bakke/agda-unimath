@@ -7,14 +7,23 @@ module foundation.split-idempotent-maps where
 <details><summary>Imports</summary>
 
 ```agda
+open import elementary-number-theory.natural-numbers
+
+open import foundation.action-on-higher-identifications-functions
+open import foundation.action-on-identifications-binary-functions
+open import foundation.action-on-identifications-functions
+open import foundation.commuting-squares-of-homotopies
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-pair-types
+open import foundation.fixed-points-endofunctions
 open import foundation.homotopy-algebra
 open import foundation.identity-types
+open import foundation.inverse-sequential-diagrams
+open import foundation.path-algebra
 open import foundation.preidempotent-maps
-open import foundation.fixed-points-endofunctions
 open import foundation.quasiidempotent-maps
 open import foundation.retracts-of-types
+open import foundation.sequential-limits
 open import foundation.universe-levels
 open import foundation.weakly-constant-maps
 open import foundation.whiskering-homotopies-composition
@@ -254,7 +263,7 @@ module _
 
 This is Lemma 3.6 in {{#cite Shu17}}, and remains to be formalized.
 
-```text
+```agda
 module _
   {l1 l2 : Level} {A : UU l1} {f : A → A} (H : is-split-idempotent-map l2 f)
   where
@@ -263,6 +272,15 @@ module _
     coherence-is-quasiidempotent-map f
       ( is-preidempotent-is-split-idempotent-map H)
   coherence-is-quasiidempotent-is-split-idempotent-map =
+    coherence-is-quasiidempotent-is-preidempotent-map-htpy
+      ( is-quasiidempotent-map-inv-htpy
+        ( is-quasiidempotent-inclusion-retraction
+          ( inclusion-is-split-idempotent-map H)
+          ( map-retraction-is-split-idempotent-map H)
+          (is-retraction-map-retraction-is-split-idempotent-map H))
+        ( htpy-is-split-idempotent-map H))
+      ( is-preidempotent-is-split-idempotent-map H)
+      ( ap-concat-htpy _ (inv-inv-htpy (htpy-is-split-idempotent-map H)))
 
   is-quasiidempotent-is-split-idempotent-map : is-quasiidempotent-map f
   is-quasiidempotent-is-split-idempotent-map =
@@ -295,11 +313,11 @@ module _
     fixed-point f
 
   inclusion-is-split-idempotent-is-preidempotent-map-is-set :
-    fixed-point f → A
+    splitting-type-is-split-idempotent-is-preidempotent-map-is-set → A
   inclusion-is-split-idempotent-is-preidempotent-map-is-set = pr1
 
   map-retraction-is-split-idempotent-is-preidempotent-map-is-set :
-    A → fixed-point f
+    A → splitting-type-is-split-idempotent-is-preidempotent-map-is-set
   map-retraction-is-split-idempotent-is-preidempotent-map-is-set x = (f x , H x)
 
   is-retraction-map-retraction-is-split-idempotent-is-preidempotent-map-is-set :
@@ -337,23 +355,29 @@ module _
 
 ### Weakly constant preidempotent maps split
 
+This is Theorem 3.9 of {{#cite Shu17}}.
+
 ```agda
 module _
   {l : Level} {A : UU l} {f : A → A}
   (H : is-preidempotent-map f) (W : is-weakly-constant-map f)
   where
 
-  splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map : UU l
+  splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map :
+    UU l
   splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map =
     fixed-point f
 
   inclusion-is-split-idempotent-is-weakly-constant-is-preidempotent-map :
-    fixed-point f → A
+    splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map →
+    A
   inclusion-is-split-idempotent-is-weakly-constant-is-preidempotent-map = pr1
 
   map-retraction-is-split-idempotent-is-weakly-constant-is-preidempotent-map :
-    A → fixed-point f
-  map-retraction-is-split-idempotent-is-weakly-constant-is-preidempotent-map x = (f x , H x)
+    A →
+    splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map
+  map-retraction-is-split-idempotent-is-weakly-constant-is-preidempotent-map x =
+    (f x , H x)
 
   is-retraction-map-retraction-is-split-idempotent-is-weakly-constant-is-preidempotent-map :
     is-retraction
@@ -381,7 +405,8 @@ module _
     f
   htpy-is-split-idempotent-is-weakly-constant-is-preidempotent-map = refl-htpy
 
-  is-split-idempotent-is-weakly-constant-is-preidempotent-map : is-split-idempotent-map l f
+  is-split-idempotent-is-weakly-constant-is-preidempotent-map :
+    is-split-idempotent-map l f
   is-split-idempotent-is-weakly-constant-is-preidempotent-map =
     ( splitting-type-is-split-idempotent-is-weakly-constant-is-preidempotent-map ,
       retract-is-split-idempotent-is-weakly-constant-is-preidempotent-map ,
