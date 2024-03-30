@@ -413,6 +413,219 @@ module _
       htpy-is-split-idempotent-is-weakly-constant-is-preidempotent-map)
 ```
 
+### Quasiidempotent maps split
+
+This is Theorem 5.3 of {{#cite Shu17}}.
+
+```agda
+module _
+  {l : Level} {A : UU l} {f : A → A}
+  (H : is-quasiidempotent-map f)
+  where
+
+  inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map :
+    inverse-sequential-diagram l
+  inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map =
+    ( (λ _ → A) , (λ _ → f))
+
+  splitting-type-is-split-idempotent-is-quasiidempotent-map : UU l
+  splitting-type-is-split-idempotent-is-quasiidempotent-map =
+    standard-sequential-limit
+      ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)
+
+  inclusion-is-split-idempotent-is-quasiidempotent-map :
+    splitting-type-is-split-idempotent-is-quasiidempotent-map → A
+  inclusion-is-split-idempotent-is-quasiidempotent-map (a , α) = a 0
+
+  map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    A → splitting-type-is-split-idempotent-is-quasiidempotent-map
+  map-retraction-is-split-idempotent-is-quasiidempotent-map x =
+    ( (λ n → f x) , (λ n → inv (is-preidempotent-is-quasiidempotent-map H x)))
+
+  lemma1-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    ((a , α) :
+      standard-sequential-limit
+        ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)) →
+    ((λ n → f (f (a (succ-ℕ n)))) , (λ n → ap (f ∘ f) (α (succ-ℕ n)))) ＝ (a , α)
+  lemma1-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    (a , α) =
+    eq-Eq-standard-sequential-limit
+      ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)
+      ( (λ n → f (f (a (succ-ℕ n)))) , (λ n → ap (f ∘ f) (α (succ-ℕ n))))
+      ( a , α)
+      ( ( λ n →
+          is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n)) ∙
+          inv (α n)) ,
+        ( λ n →
+          ( ap
+            ( ap (f ∘ f) (α (succ-ℕ n)) ∙_)
+            ( ( ap-concat f
+                ( is-preidempotent-is-quasiidempotent-map H
+                  ( a (succ-ℕ (succ-ℕ n))))
+                ( inv (α (succ-ℕ n)))) ∙
+              ( ap
+                ( _∙ ap f (inv (α (succ-ℕ n))))
+                ( coh-is-quasiidempotent-map H (a (succ-ℕ (succ-ℕ n))))))) ∙
+          ( inv
+            ( assoc
+              ( ap (f ∘ f) (α (succ-ℕ n)))
+              ( is-preidempotent-is-quasiidempotent-map H
+                ( f (a (succ-ℕ (succ-ℕ n)))))
+              ( ap f (inv (α (succ-ℕ n)))))) ∙
+          ( ap
+            ( _∙ ap f (inv (α (succ-ℕ n))))
+            ( inv
+              ( nat-htpy
+                ( is-preidempotent-is-quasiidempotent-map H)
+                ( α (succ-ℕ n))))) ∙
+          ( assoc
+            ( is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n)))
+            ( ap f (α (succ-ℕ n)))
+            ( ap f (inv (α (succ-ℕ n))))) ∙
+          ( ap
+            ( is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n)) ∙_)
+            ( ( inv (ap-concat f (α (succ-ℕ n)) (inv (α (succ-ℕ n))))) ∙
+              ( ap² f (right-inv (α (succ-ℕ n)))))) ∙
+          ( ap
+            ( is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n)) ∙_)
+            ( inv (left-inv (α n)))) ∙
+          ( inv
+            ( assoc
+              ( is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n)))
+              ( inv (α n))
+              ( α n)))))
+
+  lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    ((a , α) :
+      standard-sequential-limit
+        ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)) →
+    (λ _ → f (inclusion-is-split-idempotent-is-quasiidempotent-map (a , α))) ~
+    (λ n → f (f (a (succ-ℕ n))))
+  lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    ( a , α) 0 =
+    ap f (α 0)
+  lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    ( a , α) (succ-ℕ n) =
+    ( lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+      ( a , α)
+      ( n)) ∙
+    ( is-preidempotent-is-quasiidempotent-map H (a (succ-ℕ n))) ∙
+    ( ap f (α (succ-ℕ n)))
+
+  lemma2-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    ((a , α) :
+      standard-sequential-limit
+        ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)) →
+    coherence-square-homotopies
+      ( lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+        ( a , α))
+      ( λ n →
+         inv
+         (pr1 H
+          (inclusion-is-split-idempotent-is-quasiidempotent-map (a , α))))
+      ( λ n → ap (f ∘ f) (α (succ-ℕ n)))
+      ( λ n →
+         ap f
+         ( ( lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+              ( a , α)
+              ( n)) ∙
+            ( pr1 H (a (succ-ℕ n))) ∙
+            ( ap f (α (succ-ℕ n)))))
+  lemma2-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    ( a , α) 0 =
+    ( ap
+      ( inv (pr1 H (a 0)) ∙_)
+      ( ( ap-concat f
+          ( ap f (α 0) ∙ pr1 H (a 1))
+          ( ap f (α 1))) ∙
+        ( ap-binary (_∙_)
+          ( ap-concat f (ap f (α 0)) (pr1 H (a 1)))
+          ( inv (ap-comp f f (α 1)))))) ∙
+    ( inv
+        ( assoc
+          ( inv (pr1 H (a 0)))
+          ( ap f (ap f (α 0)) ∙ ap f (pr1 H (a 1)))
+          ( ap (f ∘ f) (α 1)))) ∙
+    ( ap
+      ( _∙ ap (f ∘ f) (α 1))
+      ( ap
+        ( inv (pr1 H (a 0)) ∙_)
+        ( ( ap-binary (_∙_)
+            ( inv (ap-comp f f (α 0)))
+            ( coh-is-quasiidempotent-map H (a 1))) ∙
+          ( inv (nat-htpy (pr1 H) (α 0)))) ∙
+        ( left-left-inv (pr1 H (a 0)) (ap f (α 0)))))
+
+  lemma2-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    ( a , α) (succ-ℕ n) =
+    equational-reasoning
+      ( ( inv
+          ( pr1 H (inclusion-is-split-idempotent-is-quasiidempotent-map
+            ( a , α)))) ∙
+        ( ap f
+          ( ( lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+              ( a , α)
+              ( succ-ℕ n)) ∙
+            ( pr1 H (a (succ-ℕ (succ-ℕ n)))) ∙
+            ( ap f (α (succ-ℕ (succ-ℕ n)))))))
+      ＝ {!   !} by {! !}
+      ＝ {!   !} by {! !}
+      ＝ {! !} by {! !}
+      ＝ {! !} by {! !}
+      ＝ (lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map (a , α) (succ-ℕ n) ∙ (ap (f ∘ f) (α (succ-ℕ (succ-ℕ n))))) by {! !}
+
+  lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    ((a , α) :
+      standard-sequential-limit
+        ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)) →
+    ( map-retraction-is-split-idempotent-is-quasiidempotent-map
+      ( inclusion-is-split-idempotent-is-quasiidempotent-map (a , α))) ＝
+      ( ( λ n → f (f (a (succ-ℕ n)))) , (λ n → ap (f ∘ f) (α (succ-ℕ n))))
+  lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+    ( a , α) =
+    eq-Eq-standard-sequential-limit
+      ( inverse-sequential-diagram-is-split-idempotent-is-quasiidempotent-map)
+      ( map-retraction-is-split-idempotent-is-quasiidempotent-map
+        ( inclusion-is-split-idempotent-is-quasiidempotent-map (a , α)))
+      ( (λ n → f (f (a (succ-ℕ n)))) , (λ n → ap (f ∘ f) (α (succ-ℕ n))))
+      ( lemma1-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+          ( a , α) ,
+        lemma2-lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+          ( a , α))
+
+  is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map :
+    is-retraction
+      ( inclusion-is-split-idempotent-is-quasiidempotent-map)
+      ( map-retraction-is-split-idempotent-is-quasiidempotent-map)
+  is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map =
+    lemma2-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map ∙h
+    lemma1-is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map
+
+  retraction-is-split-idempotent-is-quasiidempotent-map :
+    retraction (inclusion-is-split-idempotent-is-quasiidempotent-map)
+  retraction-is-split-idempotent-is-quasiidempotent-map =
+    ( map-retraction-is-split-idempotent-is-quasiidempotent-map ,
+      is-retraction-map-retraction-is-split-idempotent-is-quasiidempotent-map)
+
+  retract-is-split-idempotent-is-quasiidempotent-map :
+    splitting-type-is-split-idempotent-is-quasiidempotent-map retract-of A
+  retract-is-split-idempotent-is-quasiidempotent-map =
+    ( inclusion-is-split-idempotent-is-quasiidempotent-map ,
+      retraction-is-split-idempotent-is-quasiidempotent-map)
+
+  htpy-is-split-idempotent-is-quasiidempotent-map :
+    inclusion-is-split-idempotent-is-quasiidempotent-map ∘
+    map-retraction-is-split-idempotent-is-quasiidempotent-map ~
+    f
+  htpy-is-split-idempotent-is-quasiidempotent-map = refl-htpy
+
+  is-split-idempotent-is-quasiidempotent-map : is-split-idempotent-map l f
+  is-split-idempotent-is-quasiidempotent-map =
+    ( splitting-type-is-split-idempotent-is-quasiidempotent-map ,
+      retract-is-split-idempotent-is-quasiidempotent-map ,
+      htpy-is-split-idempotent-is-quasiidempotent-map)
+```
+
 ## References
 
 {{#bibliography}} {{#reference Shu17}} {{#reference Shu14SplittingIdempotents}}
