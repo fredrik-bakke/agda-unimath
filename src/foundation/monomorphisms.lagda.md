@@ -65,11 +65,11 @@ module _
   (p : is-mono l3 f) {X : UU l3} (g h : X → A)
   where
 
-  equiv-postcomp-is-mono : (g ＝ h) ≃ ((f ∘ g) ＝ (f ∘ h))
+  equiv-postcomp-is-mono : (g ＝ h) ≃ (f ∘ g ＝ f ∘ h)
   pr1 equiv-postcomp-is-mono = ap (f ∘_)
   pr2 equiv-postcomp-is-mono = p X g h
 
-  is-injective-postcomp-is-mono : (f ∘ g) ＝ (f ∘ h) → g ＝ h
+  is-injective-postcomp-is-mono : f ∘ g ＝ f ∘ h → g ＝ h
   is-injective-postcomp-is-mono = map-inv-equiv equiv-postcomp-is-mono
 ```
 
@@ -105,24 +105,22 @@ module _
   where
 
   map-inv-equiv-htpy-postcomp-is-emb :
-    (pr1 f ∘ g) ~ (pr1 f ∘ h) → g ~ h
+    pr1 f ∘ g ~ pr1 f ∘ h → g ~ h
   map-inv-equiv-htpy-postcomp-is-emb H x =
     map-inv-is-equiv (pr2 f (g x) (h x)) (H x)
 
   is-section-map-inv-equiv-htpy-postcomp-is-emb :
-    (pr1 f ·l_) ∘ map-inv-equiv-htpy-postcomp-is-emb ~ id
+    (map-emb f ·l_) ∘ map-inv-equiv-htpy-postcomp-is-emb ~ id
   is-section-map-inv-equiv-htpy-postcomp-is-emb H =
-    eq-htpy (λ x →
-      is-section-map-inv-is-equiv (pr2 f (g x) (h x)) (H x))
+    eq-htpy (λ x → is-section-map-inv-is-equiv (pr2 f (g x) (h x)) (H x))
 
   is-retraction-map-inv-equiv-htpy-postcomp-is-emb :
     map-inv-equiv-htpy-postcomp-is-emb ∘ (pr1 f ·l_) ~ id
   is-retraction-map-inv-equiv-htpy-postcomp-is-emb H =
-    eq-htpy (λ x →
-      is-retraction-map-inv-is-equiv (pr2 f (g x) (h x)) (H x))
+    eq-htpy (λ x → is-retraction-map-inv-is-equiv (pr2 f (g x) (h x)) (H x))
 
   equiv-htpy-postcomp-is-emb :
-    (g ~ h) ≃ ((pr1 f ∘ g) ~ (pr1 f ∘ h))
+    (g ~ h) ≃ (pr1 f ∘ g ~ pr1 f ∘ h)
   pr1 equiv-htpy-postcomp-is-emb = pr1 f ·l_
   pr2 equiv-htpy-postcomp-is-emb =
     is-equiv-is-invertible

@@ -31,7 +31,7 @@ identity types.
 ```agda
 ap :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) {x y : A} →
-  x ＝ y → (f x) ＝ (f y)
+  x ＝ y → f x ＝ f y
 ap f refl = refl
 ```
 
@@ -41,7 +41,7 @@ ap f refl = refl
 
 ```agda
 ap-id :
-  {l : Level} {A : UU l} {x y : A} (p : x ＝ y) → (ap id p) ＝ p
+  {l : Level} {A : UU l} {x y : A} (p : x ＝ y) → ap id p ＝ p
 ap-id refl = refl
 ```
 
@@ -50,7 +50,7 @@ ap-id refl = refl
 ```agda
 ap-comp :
   {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {C : UU l3} (g : B → C)
-  (f : A → B) {x y : A} (p : x ＝ y) → (ap (g ∘ f) p) ＝ ((ap g ∘ ap f) p)
+  (f : A → B) {x y : A} (p : x ＝ y) → ap (g ∘ f) p ＝ (ap g ∘ ap f) p
 ap-comp g f refl = refl
 
 ap-comp-assoc :
@@ -65,7 +65,7 @@ ap-comp-assoc h g f refl = refl
 ```agda
 ap-refl :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (f : A → B) (x : A) →
-  (ap f (refl {x = x})) ＝ refl
+  ap f (refl {x = x}) ＝ refl
 ap-refl f x = refl
 ```
 
@@ -100,7 +100,7 @@ ap-inv f refl = refl
 ```agda
 ap-const :
   {l1 l2 : Level} {A : UU l1} {B : UU l2} (b : B) {x y : A}
-  (p : x ＝ y) → (ap (const A B b) p) ＝ refl
+  (p : x ＝ y) → ap (const A B b) p ＝ refl
 ap-const b refl = refl
 ```
 
