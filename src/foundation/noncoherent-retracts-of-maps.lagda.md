@@ -8,15 +8,15 @@ module foundation.noncoherent-retracts-of-maps where
 
 ```agda
 open import foundation.action-on-identifications-functions
+open import foundation.cartesian-product-types
 open import foundation.commuting-prisms-of-maps
 open import foundation.commuting-triangles-of-morphisms-arrows
 open import foundation.dependent-pair-types
 open import foundation.function-extensionality
-open import foundation.functoriality-fibers-of-maps
 open import foundation.functoriality-action-on-identifications-functions
+open import foundation.functoriality-fibers-of-maps
 open import foundation.homotopies-morphisms-arrows
 open import foundation.morphisms-arrows
-open import foundation.cartesian-product-types
 open import foundation.path-algebra
 open import foundation.postcomposition-functions
 open import foundation.precomposition-functions
@@ -101,7 +101,8 @@ module _
   where
 
   noncoherent-retraction-hom-arrow : UU (l1 ⊔ l2 ⊔ l3 ⊔ l4)
-  noncoherent-retraction-hom-arrow = Σ (hom-arrow g f) (is-noncoherent-retraction-hom-arrow f g i)
+  noncoherent-retraction-hom-arrow =
+    Σ (hom-arrow g f) (is-noncoherent-retraction-hom-arrow f g i)
 
   module _
     (r : noncoherent-retraction-hom-arrow)
@@ -123,7 +124,8 @@ module _
   where
 
   noncoherent-retract-map : (g : X → Y) (f : A → B) → UU (l1 ⊔ l2 ⊔ l3 ⊔ l4)
-  noncoherent-retract-map g f = Σ (hom-arrow f g) (noncoherent-retraction-hom-arrow f g)
+  noncoherent-retract-map g f =
+    Σ (hom-arrow f g) (noncoherent-retraction-hom-arrow f g)
 
 module _
   {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
@@ -150,7 +152,8 @@ module _
   coh-inclusion-noncoherent-retract-map =
     coh-hom-arrow f g inclusion-noncoherent-retract-map
 
-  retraction-noncoherent-retract-map : noncoherent-retraction-hom-arrow f g inclusion-noncoherent-retract-map
+  retraction-noncoherent-retract-map :
+    noncoherent-retraction-hom-arrow f g inclusion-noncoherent-retract-map
   retraction-noncoherent-retract-map = pr2 R
 
   hom-retraction-noncoherent-retract-map : hom-arrow g f
@@ -188,15 +191,18 @@ module _
   is-retraction-map-domain-hom-retraction-noncoherent-retract-map =
     pr1 is-noncoherent-retraction-hom-retraction-noncoherent-retract-map
 
-  retraction-domain-noncoherent-retract-map : retraction map-domain-inclusion-noncoherent-retract-map
+  retraction-domain-noncoherent-retract-map :
+    retraction map-domain-inclusion-noncoherent-retract-map
   pr1 retraction-domain-noncoherent-retract-map =
     map-domain-hom-retraction-noncoherent-retract-map
   pr2 retraction-domain-noncoherent-retract-map =
     is-retraction-map-domain-hom-retraction-noncoherent-retract-map
 
   retract-domain-noncoherent-retract-map : A retract-of X
-  pr1 retract-domain-noncoherent-retract-map = map-domain-inclusion-noncoherent-retract-map
-  pr2 retract-domain-noncoherent-retract-map = retraction-domain-noncoherent-retract-map
+  pr1 retract-domain-noncoherent-retract-map =
+    map-domain-inclusion-noncoherent-retract-map
+  pr2 retract-domain-noncoherent-retract-map =
+    retraction-domain-noncoherent-retract-map
 
   is-retraction-map-codomain-hom-retraction-noncoherent-retract-map :
     is-retraction
@@ -213,8 +219,10 @@ module _
     is-retraction-map-codomain-hom-retraction-noncoherent-retract-map
 
   retract-codomain-noncoherent-retract-map : B retract-of Y
-  pr1 retract-codomain-noncoherent-retract-map = map-codomain-inclusion-noncoherent-retract-map
-  pr2 retract-codomain-noncoherent-retract-map = retraction-codomain-noncoherent-retract-map
+  pr1 retract-codomain-noncoherent-retract-map =
+    map-codomain-inclusion-noncoherent-retract-map
+  pr2 retract-codomain-noncoherent-retract-map =
+    retraction-codomain-noncoherent-retract-map
 ```
 
 ## Properties
@@ -345,11 +353,13 @@ module _
   (f : A → B) (g : X → Y) (R : noncoherent-retract-map g f) (S : UU l5)
   where
 
-  inclusion-precomp-noncoherent-retract-map : hom-arrow (precomp f S) (precomp g S)
+  inclusion-precomp-noncoherent-retract-map :
+    hom-arrow (precomp f S) (precomp g S)
   inclusion-precomp-noncoherent-retract-map =
     precomp-hom-arrow g f (hom-retraction-noncoherent-retract-map f g R) S
 
-  hom-retraction-precomp-noncoherent-retract-map : hom-arrow (precomp g S) (precomp f S)
+  hom-retraction-precomp-noncoherent-retract-map :
+    hom-arrow (precomp g S) (precomp f S)
   hom-retraction-precomp-noncoherent-retract-map =
     precomp-hom-arrow f g (inclusion-noncoherent-retract-map f g R) S
 
@@ -400,9 +410,12 @@ module _
   pr2 retraction-precomp-noncoherent-retract-map =
     is-noncoherent-retraction-hom-retraction-precomp-noncoherent-retract-map
 
-  noncoherent-retract-map-precomp-noncoherent-retract-map : noncoherent-retract-map (precomp g S) (precomp f S)
-  pr1 noncoherent-retract-map-precomp-noncoherent-retract-map = inclusion-precomp-noncoherent-retract-map
-  pr2 noncoherent-retract-map-precomp-noncoherent-retract-map = retraction-precomp-noncoherent-retract-map
+  noncoherent-retract-map-precomp-noncoherent-retract-map :
+    noncoherent-retract-map (precomp g S) (precomp f S)
+  pr1 noncoherent-retract-map-precomp-noncoherent-retract-map =
+    inclusion-precomp-noncoherent-retract-map
+  pr2 noncoherent-retract-map-precomp-noncoherent-retract-map =
+    retraction-precomp-noncoherent-retract-map
 ```
 
 ### If `f` is a retract of `g`, then `f ∘ -` is a retract of `g ∘ -`
@@ -413,11 +426,13 @@ module _
   (f : A → B) (g : X → Y) (R : noncoherent-retract-map g f) (S : UU l5)
   where
 
-  inclusion-postcomp-noncoherent-retract-map : hom-arrow (postcomp S f) (postcomp S g)
+  inclusion-postcomp-noncoherent-retract-map :
+    hom-arrow (postcomp S f) (postcomp S g)
   inclusion-postcomp-noncoherent-retract-map =
     postcomp-hom-arrow f g (inclusion-noncoherent-retract-map f g R) S
 
-  hom-retraction-postcomp-noncoherent-retract-map : hom-arrow (postcomp S g) (postcomp S f)
+  hom-retraction-postcomp-noncoherent-retract-map :
+    hom-arrow (postcomp S g) (postcomp S f)
   hom-retraction-postcomp-noncoherent-retract-map =
     postcomp-hom-arrow g f (hom-retraction-noncoherent-retract-map f g R) S
 
@@ -454,9 +469,11 @@ module _
       ( postcomp S g)
       ( inclusion-postcomp-noncoherent-retract-map)
       ( hom-retraction-postcomp-noncoherent-retract-map)
-  pr1 is-noncoherent-retraction-hom-retraction-postcomp-noncoherent-retract-map =
+  pr1
+    is-noncoherent-retraction-hom-retraction-postcomp-noncoherent-retract-map =
     is-retraction-map-domain-postcomp-noncoherent-retract-map
-  pr2 is-noncoherent-retraction-hom-retraction-postcomp-noncoherent-retract-map =
+  pr2
+    is-noncoherent-retraction-hom-retraction-postcomp-noncoherent-retract-map =
     is-retraction-map-codomain-postcomp-noncoherent-retract-map
 
   retraction-postcomp-noncoherent-retract-map :
@@ -567,7 +584,7 @@ module _
     ＝ {!   !}
       by {!   !}
     ＝
-      {! inv (pr2 (pr2 (pr2 R)) (f x)) ∙\n(ap (λ z → (map-codomain-hom-retraction-noncoherent-retract-map f g R ∘\n     map-codomain-inclusion-noncoherent-retract-map f g R)\n    z)\n p\n ∙ pr2 (pr2 (pr2 R)) (f y)) !}
+      {! inv (pr2 (pr2 (pr2 R)) (f x)) ∙\n (ap (λ z → (map-codomain-hom-retraction-noncoherent-retract-map f g R ∘\n map-codomain-inclusion-noncoherent-retract-map f g R) \n z) \n p\n ∙ pr2 (pr2 (pr2 R)) (f y)) !}
       by {!   !}
     ＝ p
       by inv (left-transpose-eq-concat _ p _ (nat-htpy-id (is-retraction-map-codomain-hom-retraction-noncoherent-retract-map f g R) p))
@@ -595,8 +612,10 @@ module _
 
   noncoherent-retract-map-ap-noncoherent-retract-map :
     noncoherent-retract-map (ap g) (ap f)
-  pr1 noncoherent-retract-map-ap-noncoherent-retract-map = inclusion-ap-noncoherent-retract-map
-  pr2 noncoherent-retract-map-ap-noncoherent-retract-map = retraction-ap-noncoherent-retract-map
+  pr1 noncoherent-retract-map-ap-noncoherent-retract-map =
+    inclusion-ap-noncoherent-retract-map
+  pr2 noncoherent-retract-map-ap-noncoherent-retract-map =
+    retraction-ap-noncoherent-retract-map
 ```
 
 ## References

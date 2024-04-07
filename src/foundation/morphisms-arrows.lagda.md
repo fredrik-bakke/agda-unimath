@@ -7,9 +7,9 @@ module foundation.morphisms-arrows where
 <details><summary>Imports</summary>
 
 ```agda
+open import foundation.action-on-identifications-functions
 open import foundation.cones-over-cospan-diagrams
 open import foundation.dependent-pair-types
-open import foundation.action-on-identifications-functions
 open import foundation.function-extensionality
 open import foundation.universe-levels
 open import foundation.whiskering-homotopies-composition

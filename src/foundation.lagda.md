@@ -178,6 +178,7 @@ open import foundation.full-subtypes public
 open import foundation.function-extensionality public
 open import foundation.function-types public
 open import foundation.functional-correspondences public
+open import foundation.functoriality-action-on-identifications-functions public
 open import foundation.functoriality-cartesian-product-types public
 open import foundation.functoriality-coproduct-types public
 open import foundation.functoriality-dependent-function-types public
@@ -263,6 +264,7 @@ open import foundation.multivariable-relations public
 open import foundation.multivariable-sections public
 open import foundation.negated-equality public
 open import foundation.negation public
+open import foundation.noncoherent-retracts-of-maps public
 open import foundation.noncontractible-types public
 open import foundation.operations-span-diagrams public
 open import foundation.operations-spans public

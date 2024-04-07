@@ -12,8 +12,8 @@ open import foundation.commuting-prisms-of-maps
 open import foundation.commuting-triangles-of-morphisms-arrows
 open import foundation.dependent-pair-types
 open import foundation.function-extensionality
-open import foundation.functoriality-fibers-of-maps
 open import foundation.functoriality-action-on-identifications-functions
+open import foundation.functoriality-fibers-of-maps
 open import foundation.homotopies-morphisms-arrows
 open import foundation.morphisms-arrows
 open import foundation.noncoherent-retracts-of-maps
