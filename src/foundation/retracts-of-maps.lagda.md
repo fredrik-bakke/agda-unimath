@@ -13,8 +13,11 @@ open import foundation.commuting-triangles-of-morphisms-arrows
 open import foundation.dependent-pair-types
 open import foundation.function-extensionality
 open import foundation.functoriality-fibers-of-maps
+open import foundation.functoriality-action-on-identifications-functions
 open import foundation.homotopies-morphisms-arrows
 open import foundation.morphisms-arrows
+open import foundation.noncoherent-retracts-of-maps
+open import foundation.path-algebra
 open import foundation.postcomposition-functions
 open import foundation.precomposition-functions
 open import foundation.retracts-of-types
@@ -47,8 +50,8 @@ of `X` and `B` of `Y` that fit into a commutative diagram
          i₀        r₀
     A ------> X ------> A
     |         |         |
-  f |    i    | g   r   | f
-    v         v         v
+  f |    I    | g  R    | f
+    ∨         ∨         ∨
     B ------> Y ------> B
          i₁        r₁
 ```
@@ -56,7 +59,7 @@ of `X` and `B` of `Y` that fit into a commutative diagram
 with coherences
 
 ```text
-  i : i₁ ∘ f ~ g ∘ i₀  and   r : r₁ ∘ g ~ f ∘ r₀
+  I : i₁ ∘ f ~ g ∘ i₀  and   R : r₁ ∘ g ~ f ∘ r₀
 ```
 
 witnessing that the left and right
@@ -64,11 +67,11 @@ witnessing that the left and right
 coherence
 
 ```text
-                     r ·r i₀
+                     R ·r i₀
        r₁ ∘ g ∘ i₀ ----------> f ∘ r₀ ∘ i₀
             |                      |
             |                      |
-  r₁ ·l i⁻¹ |          L           | f ·l H₀
+  r₁ ·l I⁻¹ |          L           | f ·l H₀
             |                      |
             V                      V
       r₁ ∘ i₁ ∘ f ---------------> f
@@ -240,14 +243,15 @@ module _
       ( id-hom-arrow)
       ( is-retraction-hom-retraction-retract-map)
 
-  retract-domain-retract-map :
-    A retract-of X
-  pr1 retract-domain-retract-map =
-    map-domain-inclusion-retract-map
-  pr1 (pr2 retract-domain-retract-map) =
+  retraction-domain-retract-map : retraction map-domain-inclusion-retract-map
+  pr1 retraction-domain-retract-map =
     map-domain-hom-retraction-retract-map
-  pr2 (pr2 retract-domain-retract-map) =
+  pr2 retraction-domain-retract-map =
     is-retraction-map-domain-hom-retraction-retract-map
+
+  retract-domain-retract-map : A retract-of X
+  pr1 retract-domain-retract-map = map-domain-inclusion-retract-map
+  pr2 retract-domain-retract-map = retraction-domain-retract-map
 
   is-retraction-map-codomain-hom-retraction-retract-map :
     is-retraction
@@ -259,13 +263,16 @@ module _
       ( id-hom-arrow)
       ( is-retraction-hom-retraction-retract-map)
 
-  retract-codomain-retract-map : B retract-of Y
-  pr1 retract-codomain-retract-map =
-    map-codomain-inclusion-retract-map
-  pr1 (pr2 retract-codomain-retract-map) =
+  retraction-codomain-retract-map :
+    retraction map-codomain-inclusion-retract-map
+  pr1 retraction-codomain-retract-map =
     map-codomain-hom-retraction-retract-map
-  pr2 (pr2 retract-codomain-retract-map) =
+  pr2 retraction-codomain-retract-map =
     is-retraction-map-codomain-hom-retraction-retract-map
+
+  retract-codomain-retract-map : B retract-of Y
+  pr1 retract-codomain-retract-map = map-codomain-inclusion-retract-map
+  pr2 retract-codomain-retract-map = retraction-codomain-retract-map
 
   coh-retract-map :
     coherence-retract-map f g
@@ -278,23 +285,25 @@ module _
       ( comp-hom-arrow f g f hom-retraction-retract-map inclusion-retract-map)
       ( id-hom-arrow)
       ( is-retraction-hom-retraction-retract-map)
+
+  is-noncoherent-retraction-hom-retraction-retract-map :
+    is-noncoherent-retraction-hom-arrow f g
+      ( inclusion-retract-map)
+      ( hom-retraction-retract-map)
+  is-noncoherent-retraction-hom-retraction-retract-map =
+    ( is-retraction-map-domain-hom-retraction-retract-map ,
+      is-retraction-map-codomain-hom-retraction-retract-map)
+
+  noncoherent-retract-map-retract-map : noncoherent-retract-map g f
+  noncoherent-retract-map-retract-map =
+    ( inclusion-retract-map ,
+      hom-retraction-retract-map ,
+      is-noncoherent-retraction-hom-retraction-retract-map)
 ```
 
 ## Properties
 
 ### Retracts of maps with sections have sections
-
-In fact, we only need the following data to show this:
-
-```text
-                 r₀
-            X ------> A
-            |         |
-          g |    r    | f
-            v         v
-  B ------> Y ------> B.
-       i₁   H₁   r₁
-```
 
 **Proof:** Note that `f` is the right map of a triangle
 
@@ -304,7 +313,7 @@ In fact, we only need the following data to show this:
         \       /
   r₁ ∘ g \     / f
           \   /
-           V V
+           ∨ ∨
             B.
 ```
 
@@ -315,46 +324,18 @@ has a section, and therefore `f` has a section.
 ```agda
 module _
   {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
-  (f : A → B) (g : X → Y) (r₀ : X → A) (R₁ : B retract-of Y)
-  (r : coherence-square-maps r₀ g f (map-retraction-retract R₁))
-  (s : section g)
-  where
-
-  section-retract-map-section' : section f
-  section-retract-map-section' =
-    section-right-map-triangle
-      ( map-retraction-retract R₁ ∘ g)
-      ( f)
-      ( r₀)
-      ( r)
-      ( section-comp (map-retraction-retract R₁) g s (section-retract R₁))
-
-module _
-  {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
   (f : A → B) (g : X → Y) (R : f retract-of-map g)
   where
 
   section-retract-map-section : section g → section f
   section-retract-map-section =
-    section-retract-map-section' f g
+    section-noncoherent-retract-map-section' f g
       ( map-domain-hom-retraction-retract-map f g R)
       ( retract-codomain-retract-map f g R)
       ( coh-hom-retraction-retract-map f g R)
 ```
 
 ### Retracts of maps with retractions have retractions
-
-In fact, we only need the following data to show this:
-
-```text
-         i₀   H   r₀
-    A ------> X ------> A
-    |         |
-  f |    i    | g
-    v         v
-    B ------> Y.
-         i₁
-```
 
 **Proof:** Note that `f` is the top map in the triangle
 
@@ -364,7 +345,7 @@ In fact, we only need the following data to show this:
         \       /
   g ∘ i₀ \     / i₁
           \   /
-           V V
+           ∨ ∨
             Y.
 ```
 
@@ -374,28 +355,12 @@ Since both `g` and `i₀` are assumed to have retractions, it follows that
 ```agda
 module _
   {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
-  (f : A → B) (g : X → Y) (R₀ : A retract-of X) (i₁ : B → Y)
-  (i : coherence-square-maps (inclusion-retract R₀) f g i₁)
-  (s : retraction g)
-  where
-
-  retraction-retract-map-retraction' : retraction f
-  retraction-retract-map-retraction' =
-    retraction-top-map-triangle
-      ( g ∘ inclusion-retract R₀)
-      ( i₁)
-      ( f)
-      ( inv-htpy i)
-      ( retraction-comp g (inclusion-retract R₀) s (retraction-retract R₀))
-
-module _
-  {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
   (f : A → B) (g : X → Y) (R : f retract-of-map g)
   where
 
   retraction-retract-map-retraction : retraction g → retraction f
   retraction-retract-map-retraction =
-    retraction-retract-map-retraction' f g
+    retraction-noncoherent-retract-map-retraction' f g
       ( retract-domain-retract-map f g R)
       ( map-codomain-inclusion-retract-map f g R)
       ( coh-inclusion-retract-map f g R)
@@ -406,33 +371,6 @@ module _
 We may observe that the higher coherence of a retract of maps is not needed.
 
 ```agda
-module _
-  {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
-  (f : A → B) (g : X → Y) (R₀ : A retract-of X) (R₁ : B retract-of Y)
-  (i : coherence-square-maps (inclusion-retract R₀) f g (inclusion-retract R₁))
-  (r :
-    coherence-square-maps
-      ( map-retraction-retract R₀)
-      ( g)
-      ( f)
-      ( map-retraction-retract R₁))
-  (H : is-equiv g)
-  where
-
-  is-equiv-retract-map-is-equiv' : is-equiv f
-  pr1 is-equiv-retract-map-is-equiv' =
-    section-retract-map-section' f g
-      ( map-retraction-retract R₀)
-      ( R₁)
-      ( r)
-      ( section-is-equiv H)
-  pr2 is-equiv-retract-map-is-equiv' =
-    retraction-retract-map-retraction' f g
-      ( R₀)
-      ( inclusion-retract R₁)
-      ( i)
-      ( retraction-is-equiv H)
-
 module _
   {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
   (f : A → B) (g : X → Y) (R : f retract-of-map g) (H : is-equiv g)
@@ -460,11 +398,11 @@ row of squares in the diagram below.
               j                     s
   fiber f b -----> fiber g (i₁ b) -----> fiber f b
      |                 |                    |
-     |       i'        |         r'         |
+     |       I'        |         R'         |
      v                 v                    v
      A ----- i₀ -----> X ------- r₀ ------> A
      |                 |                    |
-   f |       i         | g       r          | f
+   f |       I         | g       R          | f
      v                 v                    v
      B --------------> Y -----------------> B
              i₁                  r₁
@@ -481,7 +419,7 @@ obtain a commuting diagram
               j                     s                          ≃
   fiber f b -----> fiber g (i₁ b) -----> fiber f (r₀ (i₀ b)) -----> fiber f b
      |                 |                       |                        |
-     |       i'        |           r'          |                        |
+     |       I'        |           R'          |                        |
      v                 v                       v                        V
      A --------------> X --------------------> A ---------------------> A
              i₀                    r₀                       id

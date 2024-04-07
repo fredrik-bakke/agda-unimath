@@ -131,7 +131,7 @@ module _
   where
 
   tr-hom-arrow-inclusion-fiber :
-    {b b' : B} (p : b ＝ b') →
+    {b b' : B} → b ＝ b' →
     hom-arrow (inclusion-fiber f {b}) (inclusion-fiber f {b'})
   pr1 (tr-hom-arrow-inclusion-fiber p) = tot (λ a → concat' (f a) p)
   pr1 (pr2 (tr-hom-arrow-inclusion-fiber p)) = id

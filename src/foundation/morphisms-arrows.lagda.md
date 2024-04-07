@@ -349,49 +349,6 @@ module _
     eq-htpy (coh-hom-arrow f g α ·r h)
 ```
 
-### Morphisms of arrows give morphisms of actions on identifications
-
-A morphism of arrows `α : f → g` gives a morphism of actions on identifications
-`ap-hom-arrow α : ap f → ap g`.
-
-```agda
-module _
-  {l1 l2 l3 l4 : Level}
-  {A : UU l1} {B : UU l2} {X : UU l3} {Y : UU l4}
-  (f : A → B) (g : X → Y) (α : hom-arrow f g) {x y : A}
-  where
-
-  nat-coh-hom-arrow' :
-    (p : x ＝ y) →
-    coh-hom-arrow f g α x ∙ ap g (ap (map-domain-hom-arrow f g α) p) ＝
-    ap (map-codomain-hom-arrow f g α) (ap f p) ∙ coh-hom-arrow f g α y
-  nat-coh-hom-arrow' p =
-    ( ap
-      ( coh-hom-arrow f g α x ∙_)
-      ( inv (ap-comp g (map-domain-hom-arrow f g α) p))) ∙
-    ( nat-htpy (coh-hom-arrow f g α) p) ∙
-    ( ap
-      ( _∙ coh-hom-arrow f g α y)
-      ( ap-comp (map-codomain-hom-arrow f g α) f p))
-
-  ap-hom-arrow :
-    hom-arrow
-      ( ap f {x} {y})
-      ( ap g {map-domain-hom-arrow f g α x} {map-domain-hom-arrow f g α y})
-  pr1 ap-hom-arrow = ap (map-domain-hom-arrow f g α)
-  pr1 (pr2 ap-hom-arrow) p =
-    ( inv (coh-hom-arrow f g α x)) ∙
-    ( ( ap (map-codomain-hom-arrow f g α) p) ∙
-      ( coh-hom-arrow f g α y))
-  pr2 (pr2 ap-hom-arrow) p =
-    inv
-      ( left-transpose-eq-concat
-        ( coh-hom-arrow f g α x)
-        ( ap g (ap (map-domain-hom-arrow f g α) p))
-        ( ap (map-codomain-hom-arrow f g α) (ap f p) ∙ coh-hom-arrow f g α y)
-        ( nat-coh-hom-arrow' p))
-```
-
 ## See also
 
 - [Equivalences of arrows](foundation.equivalences-arrows.md)

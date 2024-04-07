@@ -148,6 +148,30 @@ module _
   left-left-inv p q = inv (assoc (inv p) p q) ∙ ap (_∙ q) (left-inv p)
 ```
 
+### Second-order associators
+
+```agda
+module _
+  {l : Level} {A : UU l} {x y z u v : A}
+  (p : x ＝ y) (q : y ＝ z) (r : z ＝ u) (s : u ＝ v)
+  where
+
+  assoc?² : ((p ∙ q) ∙ r) ∙ s ＝ p ∙ ((q ∙ r) ∙ s)
+  assoc?² = ap (_∙ s) (assoc p q r) ∙ assoc p (q ∙ r) s
+
+  assoc??² : (p ∙ (q ∙ r)) ∙ s ＝ p ∙ (q ∙ (r ∙ s))
+  assoc??² = assoc p (q ∙ r) s ∙ ap (p ∙_) (assoc q r s)
+
+  assoc???² : ((p ∙ q) ∙ r) ∙ s ＝ p ∙ (q ∙ (r ∙ s))
+  assoc???² = assoc (p ∙ q) r s ∙ assoc p q (r ∙ s)
+
+  assoc????² : (p ∙ q) ∙ (r ∙ s) ＝ p ∙ ((q ∙ r) ∙ s)
+  assoc????² = assoc p q (r ∙ s) ∙ ap (p ∙_) (inv (assoc q r s))
+
+  assoc?????² : (p ∙ q) ∙ (r ∙ s) ＝ (p ∙ (q ∙ r)) ∙ s
+  assoc?????² = inv (assoc (p ∙ q) r s) ∙ ap (_∙ s) (assoc p q r)
+```
+
 ## Properties of 2-paths
 
 ### Definition of vertical and horizontal concatenation in identity types of identity types (a type of 2-paths)

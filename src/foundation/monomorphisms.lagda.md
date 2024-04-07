@@ -43,7 +43,7 @@ module _
   where
 
   is-mono-Prop : Prop (l1 ⊔ l2 ⊔ lsuc l3)
-  is-mono-Prop = Π-Prop (UU l3) λ X → is-emb-Prop (postcomp X f)
+  is-mono-Prop = Π-Prop (UU l3) (λ X → is-emb-Prop (postcomp X f))
 
   is-mono : UU (l1 ⊔ l2 ⊔ lsuc l3)
   is-mono = type-Prop is-mono-Prop

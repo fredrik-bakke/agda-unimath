@@ -201,7 +201,7 @@ module _
 
   is-local-retract-map-is-local' : is-local g S → is-local f S
   is-local-retract-map-is-local' =
-    is-equiv-retract-map-is-equiv'
+    is-equiv-noncoherent-retract-map-is-equiv
       ( precomp f S)
       ( precomp g S)
       ( retract-precomp R₁ S)
