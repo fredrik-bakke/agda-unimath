@@ -29,11 +29,11 @@ open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopies
 open import foundation.identity-types
 open import foundation.injective-maps
+open import foundation.negated-equality
 open import foundation.negation
 open import foundation.precomposition-dependent-functions
 open import foundation.raising-universe-levels
 open import foundation.sets
-open import foundation.negated-equality
 open import foundation.torsorial-type-families
 open import foundation.transport-along-identifications
 open import foundation.truncated-types
