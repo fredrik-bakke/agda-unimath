@@ -33,19 +33,6 @@ operators are equivalences.
 
 ## Properites
 
-### Computing dependent identifications in constant type families
-
-```agda
-module _
-  {l1 l2 : Level} {A : UU l1} {B : UU l2}
-  where
-
-  compute-dependent-identification-constant-type-family :
-    {x y : A} (p : x ＝ y) {x' y' : B} →
-    (x' ＝ y') ≃ dependent-identification (λ _ → B) p x' y'
-  compute-dependent-identification-constant-type-family refl = id-equiv
-```
-
 ### Computing twice iterated dependent identifications
 
 ```agda
@@ -135,12 +122,19 @@ module _
     dependent-identification B (p ∙ q) x' z'
   concat-dependent-identification refl q refl q' = q'
 
-  compute-concat-dependent-identification-refl :
+  compute-concat-dependent-identification-left-base-refl :
     { y z : A} (q : y ＝ z) →
     { x' y' : B y} {z' : B z} (p' : x' ＝ y') →
     ( q' : dependent-identification B q y' z') →
     concat-dependent-identification refl q p' q' ＝ ap (tr B q) p' ∙ q'
-  compute-concat-dependent-identification-refl q refl q' = refl
+  compute-concat-dependent-identification-left-base-refl q refl q' = refl
+
+  -- compute-concat-dependent-identification-right-base-refl :
+  --   { x y : A} (p : x ＝ y) →
+  --   { x' : B x} {y' z' : B y} (p' : dependent-identification B p x' y') →
+  --   ( q' : y' ＝ z') →
+  --   concat-dependent-identification p refl p' q' ＝ {!   !}
+  -- compute-concat-dependent-identification-right-base-refl q refl q' = {!   !}
 ```
 
 #### Strictly right unital concatenation of dependent identifications
