@@ -206,12 +206,12 @@ module _
   where
 
   triangle-comparison-free-loop :
-    ( map-compute-free-dependent-loop-const α Y ∘ (ev-free-loop α Y)) ~
+    ( map-compute-free-dependent-loop-constant-type-family α Y ∘ (ev-free-loop α Y)) ~
     ( ev-free-loop-Π α (λ x → Y))
   triangle-comparison-free-loop f =
     eq-Eq-free-dependent-loop α
       ( λ x → Y)
-      ( map-compute-free-dependent-loop-const α Y
+      ( map-compute-free-dependent-loop-constant-type-family α Y
         ( ev-free-loop α Y f))
       ( ev-free-loop-Π α (λ x → Y) f)
       ( refl ,
@@ -228,10 +228,10 @@ module _
     universal-property-dependent-universal-property-circle dup-circle Y =
       is-equiv-top-map-triangle
         ( ev-free-loop-Π α (λ x → Y))
-        ( map-compute-free-dependent-loop-const α Y)
+        ( map-compute-free-dependent-loop-constant-type-family α Y)
         ( ev-free-loop α Y)
         ( inv-htpy (triangle-comparison-free-loop α Y))
-        ( is-equiv-map-equiv (compute-free-dependent-loop-const α Y))
+        ( is-equiv-map-equiv (compute-free-dependent-loop-constant-type-family α Y))
         ( dup-circle (λ x → Y))
 ```
 
