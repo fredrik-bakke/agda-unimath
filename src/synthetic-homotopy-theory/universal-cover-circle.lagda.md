@@ -33,6 +33,7 @@ open import foundation.negation
 open import foundation.precomposition-dependent-functions
 open import foundation.raising-universe-levels
 open import foundation.sets
+open import foundation.negated-equality
 open import foundation.torsorial-type-families
 open import foundation.transport-along-identifications
 open import foundation.truncated-types
@@ -644,7 +645,7 @@ module _
   where
 
   is-nontrivial-loop-dependent-universal-property-circle :
-    ¬ (loop-free-loop l ＝ refl)
+    loop-free-loop l ≠ refl
   is-nontrivial-loop-dependent-universal-property-circle p =
     is-nonzero-one-ℤ
       ( is-injective-equiv
