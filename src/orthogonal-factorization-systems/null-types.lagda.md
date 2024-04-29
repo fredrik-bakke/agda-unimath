@@ -12,8 +12,10 @@ open import foundation.dependent-pair-types
 open import foundation.diagonal-maps-of-types
 open import foundation.equivalences
 open import foundation.fibers-of-maps
+open import foundation.inhabited-types
 open import foundation.logical-equivalences
 open import foundation.precomposition-functions
+open import foundation.propositional-truncations
 open import foundation.propositions
 open import foundation.type-arithmetic-unit-type
 open import foundation.unit-type
@@ -104,4 +106,33 @@ module _
   is-local-is-null-fiber :
     (A : UU l3) → ((x : X) → is-null (fiber f x) A) → is-local f A
   is-local-is-null-fiber A = is-local-dependent-type-is-null-fiber (λ _ → A)
+```
+
+### Propositions are null at inhabited types
+
+```agda
+module _
+  {l1 l2 : Level} {Y : UU l1}
+  where
+
+  is-null-is-prop-is-inhabited' :
+    {P : UU l2} → Y → is-prop P → is-null Y P
+  is-null-is-prop-is-inhabited' {P} y is-prop-P =
+    is-equiv-has-converse-is-prop
+      ( is-prop-P)
+      ( is-prop-function-type is-prop-P)
+      ( λ f → f y)
+
+  is-null-is-prop-is-inhabited :
+    {P : UU l2} → is-inhabited Y → is-prop P → is-null Y P
+  is-null-is-prop-is-inhabited {P} is-inhabited-Y is-prop-P =
+    is-equiv-has-converse-is-prop
+      ( is-prop-P)
+      ( is-prop-function-type is-prop-P)
+      ( λ f → rec-trunc-Prop (P , is-prop-P) f is-inhabited-Y)
+
+  is-null-prop-is-inhabited :
+    is-inhabited Y → (P : Prop l2) → is-null Y (type-Prop P)
+  is-null-prop-is-inhabited is-inhabited-Y P =
+    is-null-is-prop-is-inhabited is-inhabited-Y (is-prop-type-Prop P)
 ```
