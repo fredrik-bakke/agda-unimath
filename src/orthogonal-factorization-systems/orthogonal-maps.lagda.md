@@ -419,6 +419,22 @@ module _
     is-orthogonal-pullback-condition f g'
   is-orthogonal-pullback-condition-htpy-right =
     is-orthogonal-pullback-condition-htpy refl-htpy
+
+  is-orthogonal-htpy :
+    {f' : A → B} {g' : X → Y} → f ~ f' → g ~ g' →
+    is-orthogonal f g → is-orthogonal f' g'
+  is-orthogonal-htpy {f'} {g'} F G H =
+    is-orthogonal-is-orthogonal-pullback-condition f' g'
+      ( is-orthogonal-pullback-condition-htpy F G
+        ( is-orthogonal-pullback-condition-is-orthogonal f g H))
+
+  is-orthogonal-htpy-left :
+    {f' : A → B} → f ~ f' → is-orthogonal f g → is-orthogonal f' g
+  is-orthogonal-htpy-left F = is-orthogonal-htpy F refl-htpy
+
+  is-orthogonal-htpy-right :
+    {g' : X → Y} → g ~ g' → is-orthogonal f g → is-orthogonal f g'
+  is-orthogonal-htpy-right G = is-orthogonal-htpy refl-htpy G
 ```
 
 ### Orthogonality is preserved under equivalences of maps
