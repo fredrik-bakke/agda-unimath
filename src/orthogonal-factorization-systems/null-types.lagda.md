@@ -7,11 +7,11 @@ module orthogonal-factorization-systems.null-types where
 <details><summary>Imports</summary>
 
 ```agda
+open import foundation.action-on-identifications-functions
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
 open import foundation.diagonal-maps-of-types
 open import foundation.equivalences
-open import foundation.action-on-identifications-functions
 open import foundation.equivalences-arrows
 open import foundation.fibers-of-maps
 open import foundation.function-extensionality
