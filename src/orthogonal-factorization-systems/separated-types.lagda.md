@@ -35,6 +35,24 @@ module _
   is-map-separated A = is-map-separated-family (λ _ → A)
 ```
 
+## Properties
+
+### If `f`-local types are closed under dependent sums then `f`-separated types are closed under dependent sums
+
+This is remarked in Remark 2.16 of {{#cite CORS20}}.
+
+### A type is `f`-separated if and only if it is local at the suspension of `f`
+
+This is lemma 2.15 of {{#cite CORS20}}.
+
+### The universe of `f`-separated types is `f`-separated
+
+This is proposition 2.18 of {{#cite CORS20}}.
+
+### If `P : X → 𝒰` is a family of `f`-local types over an `f`-separated type, then the dependent sum is `f`-separated
+
+This is Lemma 2.21 of {{#cite CORS20}}.
+
 ## References
 
 {{#bibliography}} {{#reference Rij19}}

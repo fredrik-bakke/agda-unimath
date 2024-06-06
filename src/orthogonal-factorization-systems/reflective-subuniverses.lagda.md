@@ -233,6 +233,38 @@ module _
       ( rec-modality-is-reflective-subuniverse)
 ```
 
+**Note.** That a reflective subuniverse satisfies the corresponding _induction
+principle_ precisely when it is
+[Σ-closed](orthogonal-factorization-systems.sigma-closed-reflective-subuniverses.md).
+
+### Reflective subuniverses are closed under pullbacks
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under products
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under identity types
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under dependent products indexed in arbitrary types
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under exponentiation at arbitrary types
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under sequential limits
+
+This remains to be formalized.
+
+### Reflective subuniverses are closed under equalizers
+
+This remains to be formalized.
+
 ## See also
 
 - [Σ-closed reflective subuniverses](orthogonal-factorization-systems.sigma-closed-reflective-subuniverses.md)
@@ -241,3 +273,4 @@ module _
 ## References
 
 {{#bibliography}} {{#reference UF13}} {{#reference RSS20}} {{#reference Rij19}}
+{{#reference CORS20}}
