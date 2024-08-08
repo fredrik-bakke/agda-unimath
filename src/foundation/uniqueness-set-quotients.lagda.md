@@ -152,15 +152,15 @@ module _
   is-set-quotient-is-equiv-is-set-quotient :
     is-set-quotient R C g → is-equiv h → is-set-quotient R B f
   is-set-quotient-is-equiv-is-set-quotient Ug E {l} X =
-    is-equiv-right-map-triangle
+    is-equiv-right-map-triangle'
       ( precomp-Set-Quotient R C g X)
       ( precomp-Set-Quotient R B f X)
       ( precomp h (type-Set X))
       ( λ k →
         eq-htpy-reflecting-map-equivalence-relation R X
-          ( precomp-Set-Quotient R C g X k)
           ( precomp-Set-Quotient R B f X (k ∘ h))
-          ( inv-htpy (k ·l H)))
+          ( precomp-Set-Quotient R C g X k)
+          ( k ·l H))
       ( Ug X)
       ( is-equiv-precomp-is-equiv h E (type-Set X))
 

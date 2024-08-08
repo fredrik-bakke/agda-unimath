@@ -353,23 +353,35 @@ module _
 ```agda
 module _
   {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {X : UU l3}
+  (f : A → X) (g : B → X) (h : A → B) (H : g ∘ h ~ f)
+  where
+
+  abstract
+    is-equiv-right-map-triangle' :
+      is-equiv f → is-equiv h → is-equiv g
+    is-equiv-right-map-triangle'
+      ( section-f , retraction-f)
+      ( (sh , is-section-sh) , retraction-h) =
+        ( pair
+          ( section-right-map-triangle' f g h H section-f)
+          ( retraction-left-map-triangle g f sh
+            ( g ·l inv-htpy (is-section-map-section h (sh , is-section-sh)) ∙h
+              H ·r map-section h (sh , is-section-sh))
+            ( retraction-f)
+            ( h , is-section-sh)))
+```
+
+```agda
+module _
+  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {X : UU l3}
   (f : A → X) (g : B → X) (h : A → B) (H : f ~ g ∘ h)
   where
 
   abstract
     is-equiv-right-map-triangle :
       is-equiv f → is-equiv h → is-equiv g
-    is-equiv-right-map-triangle
-      ( section-f , retraction-f)
-      ( (sh , is-section-sh) , retraction-h) =
-        ( pair
-          ( section-right-map-triangle f g h H section-f)
-          ( retraction-left-map-triangle g f sh
-            ( inv-htpy
-              ( ( H ·r map-section h (sh , is-section-sh)) ∙h
-                ( g ·l is-section-map-section h (sh , is-section-sh))))
-            ( retraction-f)
-            ( h , is-section-sh)))
+    is-equiv-right-map-triangle =
+      is-equiv-right-map-triangle' f g h (inv-htpy H)
 ```
 
 #### If the left and right maps in a commuting triangle are equivalences, then the top map is an equivalence

@@ -539,11 +539,11 @@ module _
               ( c : cone f g C) (c' : cone f g' C) →
                 is-equiv (htpy-parallel-cone-dependent-eq refl-htpy Hg c c'))
             ( λ c c' →
-              is-equiv-right-map-triangle
+              is-equiv-right-map-triangle'
                 ( htpy-eq-degenerate-parallel-cone c c')
                 ( htpy-parallel-cone-dependent-eq refl-htpy refl-htpy c c')
                 ( concat (compute-tr-right-tr-left-cone-eq-htpy-refl-htpy c) c')
-                ( inv-htpy (left-map-triangle-parallel-cone-eq c c'))
+                ( left-map-triangle-parallel-cone-eq c c')
                 ( fundamental-theorem-id
                   ( is-torsorial-htpy-parallel-cone
                     ( refl-htpy' f)
