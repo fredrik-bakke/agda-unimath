@@ -10,10 +10,18 @@ module category-theory.maps-set-magmoids where
 open import category-theory.set-magmoids
 
 open import foundation.action-on-identifications-functions
+open import foundation.binary-transport
 open import foundation.commuting-pentagons-of-identifications
 open import foundation.dependent-pair-types
+open import foundation.equality-dependent-function-types
+open import foundation.equivalences
 open import foundation.function-types
+open import foundation.fundamental-theorem-of-identity-types
+open import foundation.homotopies
+open import foundation.homotopy-induction
 open import foundation.identity-types
+open import foundation.structure-identity-principle
+open import foundation.torsorial-type-families
 open import foundation.universe-levels
 ```
 
@@ -21,8 +29,8 @@ open import foundation.universe-levels
 
 ## Idea
 
-A **map** from a [set-magmoid](category-theory.set-magmoids.md) `C` to a set
-magmoid `D` consists of:
+A **map** from a [set-magmoid](category-theory.set-magmoids.md) `C` to a
+set-magmoid `D` consists of:
 
 - a map `F₀ : C → D` on objects, and
 - a map `F₁ : hom x y → hom (F₀ x) (F₀ y)` on morphisms.
@@ -141,7 +149,7 @@ module _
   associative-comp-map-Set-Magmoid = refl
 ```
 
-#### Mac Lane pentagon for map composition
+#### The Mac Lane pentagon for map composition
 
 The Mac Lane pentagon is a higher coherence of the associator for map
 composition. Since map composition is strictly associative, the Mac Lane
@@ -209,6 +217,124 @@ module _
         ( associative-comp-map-Set-Magmoid A C D E
           (comp-map-Set-Magmoid A B C G F) H I))
   mac-lane-pentagon-comp-map-Set-Magmoid = refl
+```
+
+### Computing transport in the hom-family
+
+```agda
+module _
+  {l1 l2 : Level} (C : Set-Magmoid l1 l2)
+  {x x' y y' : obj-Set-Magmoid C}
+  where
+
+  compute-binary-tr-hom-Set-Magmoid :
+    (p : x ＝ x') (q : y ＝ y') (f : hom-Set-Magmoid C x y) →
+    left-whisker-hom-Set-Magmoid C
+      ( q)
+      ( right-whisker-hom-Set-Magmoid C f (inv p)) ＝
+    ( binary-tr (hom-Set-Magmoid C) p q f)
+  compute-binary-tr-hom-Set-Magmoid refl refl f = refl
+
+  naturality-binary-tr-hom-Set-Magmoid :
+    (p : x ＝ x') (q : y ＝ y')
+    (f : hom-Set-Magmoid C x y) →
+    right-whisker-hom-Set-Magmoid C
+      ( binary-tr (hom-Set-Magmoid C) p q f) p ＝
+    left-whisker-hom-Set-Magmoid C q f
+  naturality-binary-tr-hom-Set-Magmoid refl refl f = refl
+
+  naturality-binary-tr-hom-Set-Magmoid' :
+    (p : x ＝ x') (q : y ＝ y')
+    (f : hom-Set-Magmoid C x y) →
+    left-whisker-hom-Set-Magmoid C q f ＝
+    right-whisker-hom-Set-Magmoid C
+      ( binary-tr (hom-Set-Magmoid C) p q f) p
+  naturality-binary-tr-hom-Set-Magmoid' refl refl f = refl
+```
+
+### Characterization of equality of maps between set-magmoids
+
+Equalities of maps between set-magmoids `f ＝ g` are characterized by a homotopy
+of the underlying maps on objects `H : f₀ ~ g₀`, such that for every morphism
+`a : hom(x, y)` in `C` we have a degenerate commuting square
+
+```text
+          Hx
+    f₀x ====== g₀x
+     |          |
+ f₁a |          | g₁a
+     ∨          ∨
+    f₀y ====== g₀y.
+          Hy
+```
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  (C : Set-Magmoid l1 l2)
+  (D : Set-Magmoid l3 l4)
+  where
+
+  coherence-htpy-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) →
+    obj-map-Set-Magmoid C D f ~ obj-map-Set-Magmoid C D g →
+    UU (l1 ⊔ l2 ⊔ l4)
+  coherence-htpy-map-Set-Magmoid f g H =
+    {x y : obj-Set-Magmoid C}
+    (a : hom-Set-Magmoid C x y) →
+    right-whisker-hom-Set-Magmoid D (hom-map-Set-Magmoid C D g a) (H x) ＝
+    left-whisker-hom-Set-Magmoid D (H y) (hom-map-Set-Magmoid C D f a)
+
+  htpy-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) → UU (l1 ⊔ l2 ⊔ l3 ⊔ l4)
+  htpy-map-Set-Magmoid f g =
+    Σ ( obj-map-Set-Magmoid C D f ~ obj-map-Set-Magmoid C D g)
+      ( coherence-htpy-map-Set-Magmoid f g)
+
+  refl-htpy-map-Set-Magmoid :
+    (f : map-Set-Magmoid C D) → htpy-map-Set-Magmoid f f
+  pr1 (refl-htpy-map-Set-Magmoid f) = refl-htpy
+  pr2 (refl-htpy-map-Set-Magmoid f) a =
+    naturality-binary-tr-hom-Set-Magmoid D
+      ( refl)
+      ( refl)
+      ( hom-map-Set-Magmoid C D f a)
+
+  htpy-eq-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) → f ＝ g → htpy-map-Set-Magmoid f g
+  htpy-eq-map-Set-Magmoid f .f refl = refl-htpy-map-Set-Magmoid f
+
+  is-torsorial-htpy-map-Set-Magmoid :
+    (f : map-Set-Magmoid C D) →
+    is-torsorial (htpy-map-Set-Magmoid f)
+  is-torsorial-htpy-map-Set-Magmoid f =
+    is-torsorial-Eq-structure
+      ( is-torsorial-htpy (obj-map-Set-Magmoid C D f))
+      ( obj-map-Set-Magmoid C D f , refl-htpy)
+      ( is-torsorial-Eq-implicit-Π
+        ( λ x →
+          is-torsorial-Eq-implicit-Π
+            ( λ y → is-torsorial-htpy' (hom-map-Set-Magmoid C D f))))
+
+  is-equiv-htpy-eq-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) → is-equiv (htpy-eq-map-Set-Magmoid f g)
+  is-equiv-htpy-eq-map-Set-Magmoid f =
+    fundamental-theorem-id
+      ( is-torsorial-htpy-map-Set-Magmoid f)
+      ( htpy-eq-map-Set-Magmoid f)
+
+  equiv-htpy-eq-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) → (f ＝ g) ≃ htpy-map-Set-Magmoid f g
+  pr1 (equiv-htpy-eq-map-Set-Magmoid f g) =
+    htpy-eq-map-Set-Magmoid f g
+  pr2 (equiv-htpy-eq-map-Set-Magmoid f g) =
+    is-equiv-htpy-eq-map-Set-Magmoid f g
+
+  eq-htpy-map-Set-Magmoid :
+    (f g : map-Set-Magmoid C D) →
+    htpy-map-Set-Magmoid f g → f ＝ g
+  eq-htpy-map-Set-Magmoid f g =
+    map-inv-equiv (equiv-htpy-eq-map-Set-Magmoid f g)
 ```
 
 ## See also

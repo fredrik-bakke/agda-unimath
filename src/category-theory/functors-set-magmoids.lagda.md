@@ -217,7 +217,10 @@ module _
 
 ### Extensionality of functors between set-magmoids
 
-#### Equality of functors is equality of underlying maps
+#### Equality of functors is equality of the underlying maps
+
+**Proof.** This follows directly from the
+[subtype identity principle](foundation.subtype-identity-principle.md).
 
 ```agda
 module _
@@ -260,6 +263,43 @@ module _
     eq-eq-map-functor-Set-Magmoid ∘ eq-map-eq-functor-Set-Magmoid ~ id
   is-retraction-eq-eq-map-functor-Set-Magmoid =
     is-retraction-map-inv-equiv equiv-eq-map-eq-functor-Set-Magmoid
+```
+
+#### Equality of functors is homotopy of the underlying maps
+
+```agda
+module _
+  {l1 l2 l3 l4 : Level}
+  (A : Set-Magmoid l1 l2) (B : Set-Magmoid l3 l4)
+  (F G : functor-Set-Magmoid A B)
+  where
+
+  equiv-htpy-map-eq-functor-Set-Magmoid :
+    (F ＝ G) ≃
+    htpy-map-Set-Magmoid A B
+      ( map-functor-Set-Magmoid A B F)
+      ( map-functor-Set-Magmoid A B G)
+  equiv-htpy-map-eq-functor-Set-Magmoid =
+    ( equiv-htpy-eq-map-Set-Magmoid A B
+      ( map-functor-Set-Magmoid A B F)
+      ( map-functor-Set-Magmoid A B G)) ∘e
+    ( equiv-eq-map-eq-functor-Set-Magmoid A B F G)
+
+  htpy-map-eq-functor-Set-Magmoid :
+    F ＝ G →
+    htpy-map-Set-Magmoid A B
+      ( map-functor-Set-Magmoid A B F)
+      ( map-functor-Set-Magmoid A B G)
+  htpy-map-eq-functor-Set-Magmoid =
+    map-equiv equiv-htpy-map-eq-functor-Set-Magmoid
+
+  eq-htpy-map-functor-Set-Magmoid :
+    htpy-map-Set-Magmoid A B
+      ( map-functor-Set-Magmoid A B F)
+      ( map-functor-Set-Magmoid A B G) →
+    F ＝ G
+  eq-htpy-map-functor-Set-Magmoid =
+    map-inv-equiv equiv-htpy-map-eq-functor-Set-Magmoid
 ```
 
 ### Categorical laws for functor composition

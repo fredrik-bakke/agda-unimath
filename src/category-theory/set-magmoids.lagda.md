@@ -11,6 +11,7 @@ open import category-theory.composition-operations-on-binary-families-of-sets
 
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
+open import foundation.identity-types
 open import foundation.propositions
 open import foundation.sets
 open import foundation.truncated-types
@@ -22,7 +23,8 @@ open import foundation.universe-levels
 
 ## Idea
 
-A **set-magmoid** is the [structure](foundation.structure.md) of a
+A {{#concept "set-magmoid" Agda=Set-Magmoid}} is the
+[structure](foundation.structure.md) of a
 [composition operation on a binary family of sets](category-theory.composition-operations-on-binary-families-of-sets.md),
 and are in one sense the "oidification" of [magmas](structured-types.magmas.md)
 in [sets](foundation-core.sets.md). We call elements of the indexing type
@@ -37,7 +39,7 @@ identity-morphisms.
 
 Set-magmoids are commonly referred to as _magmoids_ in the literature, but we
 use the "set-" prefix to make clear its relation to magmas. Set-magmoids should
-not be confused with _strict_ magmoids, which would be set-magmoids whose
+also not be confused with _strict_ magmoids, which would be set-magmoids whose
 objects form a set.
 
 ## Definitions
@@ -119,6 +121,57 @@ module _
   postcomp-hom-Set-Magmoid = comp-hom-Set-Magmoid M f
 ```
 
+### Whiskering morphisms by equalities
+
+Since set-magmoids don't generally have units we don't have the usual comparison
+map
+
+```text
+  (x ＝ y) → hom(x, y)
+```
+
+on objects `x` and `y`. However, we still have weaker left and right whiskering
+operations on morphisms
+
+```text
+  (y ＝ y') → hom(x, y) → hom(x, y')
+```
+
+and
+
+```text
+  hom(x, y) → (x' ＝ x) → hom(x', y).
+```
+
+These can be viewed as additional composition operations between identifications
+on the objects and the morphisms of the precategory. Alternatively, they can be
+viewed as coherences between the composition structure on morphisms and
+composition structure on identifications of objects in that as soon as we have
+identity morphisms, we should expect to have commuting triangles
+
+```text
+          (x ＝ y) -----> hom(x, y)               (x ＝ y) -----> hom(x, y)
+                \         /                             \         /
+  left-whisker f \       / f ∘_          right-whisker g \       / _∘ g
+                  ∨     ∨                                 ∨     ∨
+                 hom(x, z)                               hom(z, x).
+```
+
+```agda
+module _
+  {l1 l2 : Level} (C : Set-Magmoid l1 l2)
+  {x y z : obj-Set-Magmoid C}
+  where
+
+  left-whisker-hom-Set-Magmoid :
+    y ＝ z → hom-Set-Magmoid C x y → hom-Set-Magmoid C x z
+  left-whisker-hom-Set-Magmoid refl f = f
+
+  right-whisker-hom-Set-Magmoid :
+    hom-Set-Magmoid C x y → z ＝ x → hom-Set-Magmoid C z y
+  right-whisker-hom-Set-Magmoid f refl = f
+```
+
 ### The predicate on set-magmoids of being associative
 
 ```agda
@@ -157,7 +210,7 @@ composition. It is enough to show that `e ＝ e'` since the right and left unit
 laws are propositions (because all hom-types are sets). By function
 extensionality, it is enough to show that `e x ＝ e' x` for all `x : A`. But by
 the unit laws we have the following chain of equalities:
-`e x ＝ (e' x) ∘ (e x) ＝ e' x.`
+`e x ＝ (e' x) ∘ (e x) ＝ e' x`.
 
 ```agda
 module _

@@ -7,7 +7,7 @@ module category-theory.commuting-squares-of-morphisms-in-precategories where
 <details><summary>Imports</summary>
 
 ```agda
-open import category-theory.commuting-squares-of-morphisms-in-set-magmoids
+open import category-theory.commuting-squares-of-morphisms-in-nonunital-precategories
 open import category-theory.precategories
 
 open import foundation.universe-levels
@@ -46,5 +46,6 @@ coherence-square-hom-Precategory :
   (bottom : hom-Precategory C z w) →
   UU l2
 coherence-square-hom-Precategory C =
-  coherence-square-hom-Set-Magmoid (set-magmoid-Precategory C)
+  coherence-square-hom-Nonunital-Precategory
+    ( nonunital-precategory-Precategory C)
 ```

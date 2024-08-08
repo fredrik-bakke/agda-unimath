@@ -12,6 +12,7 @@ open import category-theory.set-magmoids
 
 open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
+open import foundation.function-types
 open import foundation.identity-types
 open import foundation.propositions
 open import foundation.sets
@@ -160,6 +161,58 @@ module _
   postcomp-hom-Nonunital-Precategory :
     hom-Nonunital-Precategory C z x → hom-Nonunital-Precategory C z y
   postcomp-hom-Nonunital-Precategory = comp-hom-Nonunital-Precategory C f
+```
+
+### Whiskering morphisms by equalities
+
+On nonunital precatgories we don't have the usual comparison map
+
+```text
+  (x ＝ y) → hom(x, y)
+```
+
+on objects `x` and `y`. However, we still have weaker left and right whiskering
+operations on morphisms
+
+```text
+  (y ＝ y') → hom(x, y) → hom(x, y')
+```
+
+and
+
+```text
+  hom(x, y) → (x' ＝ x) → hom(x', y).
+```
+
+These can be viewed as additional composition operations between identifications
+on the objects and the morphisms of the precategory. Alternatively, they can be
+viewed as coherences between the composition structure on morphisms and
+composition structure on identifications of objects in that as soon as we have
+identity morphisms, we should expect to have commuting triangles
+
+```text
+          (x ＝ y) -----> hom(x, y)               (x ＝ y) -----> hom(x, y)
+                \         /                             \         /
+  left-whisker f \       / f ∘_          right-whisker g \       / _∘ g
+                  ∨     ∨                                 ∨     ∨
+                 hom(x, z)                               hom(z, x).
+```
+
+```agda
+module _
+  {l1 l2 : Level} (C : Nonunital-Precategory l1 l2)
+  {x y z : obj-Nonunital-Precategory C}
+  where
+
+  left-whisker-hom-Nonunital-Precategory :
+    y ＝ z → hom-Nonunital-Precategory C x y → hom-Nonunital-Precategory C x z
+  left-whisker-hom-Nonunital-Precategory =
+    left-whisker-hom-Set-Magmoid (set-magmoid-Nonunital-Precategory C)
+
+  right-whisker-hom-Nonunital-Precategory :
+    hom-Nonunital-Precategory C x y → z ＝ x → hom-Nonunital-Precategory C z y
+  right-whisker-hom-Nonunital-Precategory =
+    right-whisker-hom-Set-Magmoid (set-magmoid-Nonunital-Precategory C)
 ```
 
 ### The predicate on nonunital precategories of being unital

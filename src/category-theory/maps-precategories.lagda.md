@@ -122,6 +122,20 @@ module _
 
 ### Characterization of equality of maps between precategories
 
+Equalities of maps between precategories `f ＝ g` are characterized by a
+homotopy of the underlying maps on objects `H : f₀ ~ g₀`, such that for every
+morphism `a : hom(x,y)` in `C` we have a degenerate commuting square
+
+```text
+          Hx
+    f₀x ====== g₀x
+     |          |
+ f₁a |          | g₁a
+     ∨          ∨
+    f₀y ====== g₀y.
+          Hy
+```
+
 ```agda
 module _
   {l1 l2 l3 l4 : Level}
@@ -185,9 +199,9 @@ module _
                       ( obj-map-Precategory C D f y))
                   ( _~ hom-map-Precategory C D f))
                 ( equiv-tot
-                  ( λ g₁ →
+                  ( λ g →
                     equiv-binary-concat-htpy
-                      ( inv-htpy (right-unit-law-comp-hom-Precategory D ∘ g₁))
+                      ( inv-htpy (right-unit-law-comp-hom-Precategory D ∘ g))
                       ( left-unit-law-comp-hom-Precategory D ∘
                         hom-map-Precategory C D f)))
                 ( is-torsorial-htpy' (hom-map-Precategory C D f)))))
