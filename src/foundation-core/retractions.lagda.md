@@ -176,6 +176,26 @@ that would result in a cyclic module dependency.
 ```agda
 module _
   {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {X : UU l3}
+  (f : A → X) (g : B → X) (h : A → B) (H : g ∘ h ~ f)
+  (r : retraction f)
+  where
+
+  map-retraction-top-map-triangle' : B → A
+  map-retraction-top-map-triangle' = map-retraction f r ∘ g
+
+  is-retraction-map-retraction-top-map-triangle' :
+    is-retraction h map-retraction-top-map-triangle'
+  is-retraction-map-retraction-top-map-triangle' =
+    ( map-retraction f r ·l H) ∙h
+    ( is-retraction-map-retraction f r)
+
+  retraction-top-map-triangle' : retraction h
+  retraction-top-map-triangle' =
+    ( map-retraction-top-map-triangle' ,
+      is-retraction-map-retraction-top-map-triangle')
+
+module _
+  {l1 l2 l3 : Level} {A : UU l1} {B : UU l2} {X : UU l3}
   (f : A → X) (g : B → X) (h : A → B) (H : f ~ g ∘ h)
   (r : retraction f)
   where
@@ -186,8 +206,7 @@ module _
   is-retraction-map-retraction-top-map-triangle :
     is-retraction h map-retraction-top-map-triangle
   is-retraction-map-retraction-top-map-triangle =
-    ( inv-htpy (map-retraction f r ·l H)) ∙h
-    ( is-retraction-map-retraction f r)
+    is-retraction-map-retraction-top-map-triangle' f g h (inv-htpy H) r
 
   retraction-top-map-triangle : retraction h
   pr1 retraction-top-map-triangle =
