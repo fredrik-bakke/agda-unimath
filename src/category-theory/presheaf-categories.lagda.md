@@ -34,7 +34,7 @@ open import foundation.universe-levels
 Given a [precategory](category-theory.precategories.md) `C`, we can form its
 **presheaf [category](category-theory.large-categories.md)** as the
 [large category of functors](category-theory.functors-from-small-to-large-precategories.md)
-from the [opposite of](category-theory.opposite-precategories.md) `C`, `Cᵒᵖ`,
+from the [opposite](category-theory.opposite-precategories.md) of `C`, `Cᵒᵖ`,
 into the [large category of sets](foundation.category-of-sets.md)
 
 ```text
@@ -42,7 +42,7 @@ into the [large category of sets](foundation.category-of-sets.md)
 ```
 
 To this large category, there is an associated
-[small category](category-theory.categories.md) of small presheaves, taking
+[small category](category-theory.categories.md) of small presheaves taking
 values in small [sets](foundation-core.sets.md).
 
 ## Definitions

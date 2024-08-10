@@ -10,7 +10,9 @@ module category-theory.representable-functors-precategories where
 open import category-theory.copresheaf-categories
 open import category-theory.functors-precategories
 open import category-theory.maps-precategories
+open import foundation.equality-dependent-pair-types
 open import category-theory.natural-transformations-functors-precategories
+open import category-theory.natural-transformations-maps-precategories
 open import category-theory.opposite-precategories
 open import category-theory.precategories
 
@@ -18,7 +20,10 @@ open import foundation.category-of-sets
 open import foundation.dependent-pair-types
 open import foundation.function-extensionality
 open import foundation.homotopies
+open import foundation.propositions
+open import foundation.identity-types
 open import foundation.sets
+open import foundation.subtypes
 open import foundation.universe-levels
 ```
 
@@ -35,9 +40,9 @@ that:
 - sends a morphism `f : hom x y` of `C` to the function `hom c x → hom c y`
   defined by postcomposition with `f`.
 
-The functoriality axioms follow, by
-[function extensionality](foundation.function-extensionality.md), from
-associativity and the left unit law for the precategory `C`.
+The functoriality axioms follow from associativity and the left unit law for the
+precategory `C` using the
+[function extensionality axiom](foundation.function-extensionality.md).
 
 ## Definition
 
@@ -146,6 +151,52 @@ module _
     representable-functor-Precategory C
   pr2 map-representable-functor-copresheaf-Precategory =
     representable-natural-transformation-Precategory C
-```
 
-It remains to show that this map is functorial.
+  preserves-comp-map-representable-functor-copresheaf-Precategory :
+    preserves-comp-hom-map-Precategory
+      ( opposite-Precategory C)
+      ( copresheaf-precategory-Precategory C l2)
+      ( map-representable-functor-copresheaf-Precategory)
+  preserves-comp-map-representable-functor-copresheaf-Precategory
+    { x} {y} {z} f g =
+    eq-type-subtype
+      ( is-natural-transformation-prop-Precategory
+        ( C)
+        ( Set-Precategory l2)
+        ( representable-functor-Precategory C x)
+        ( representable-functor-Precategory C z))
+      ( eq-htpy
+        ( λ _ → eq-htpy (λ h → inv (associative-comp-hom-Precategory C h g f))))
+
+  preserves-id-map-representable-functor-copresheaf-Precategory :
+    preserves-id-hom-map-Precategory
+      ( opposite-Precategory C)
+      ( copresheaf-precategory-Precategory C l2)
+      ( map-representable-functor-copresheaf-Precategory)
+  preserves-id-map-representable-functor-copresheaf-Precategory x =
+    eq-type-subtype
+     ( is-natural-transformation-prop-Precategory
+        ( C)
+        ( Set-Precategory l2)
+        ( representable-functor-Precategory C x)
+        ( representable-functor-Precategory C x))
+      ( eq-htpy (λ _ → eq-htpy (right-unit-law-comp-hom-Precategory C)))
+
+  is-functor-emb-yoneda-copresheaf-Precategory :
+    is-functor-map-Precategory
+      ( opposite-Precategory C)
+      ( copresheaf-precategory-Precategory C l2)
+      ( map-representable-functor-copresheaf-Precategory)
+  is-functor-emb-yoneda-copresheaf-Precategory =
+    ( preserves-comp-map-representable-functor-copresheaf-Precategory ,
+      preserves-id-map-representable-functor-copresheaf-Precategory)
+
+  functor-emb-yoneda-copresheaf-Precategory :
+    functor-Precategory
+      ( opposite-Precategory C)
+      ( copresheaf-precategory-Precategory C l2)
+  functor-emb-yoneda-copresheaf-Precategory =
+    ( representable-functor-Precategory C ,
+      representable-natural-transformation-Precategory C ,
+      is-functor-emb-yoneda-copresheaf-Precategory)
+```

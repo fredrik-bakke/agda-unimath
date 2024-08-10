@@ -38,7 +38,7 @@ module _
 
   record functor-Large-Precategory : UUω
     where
-    constructor make-functor
+    constructor make-functor-Large-Precategory
     field
       obj-functor-Large-Precategory :
         { l1 : Level} →

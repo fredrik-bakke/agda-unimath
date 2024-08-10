@@ -23,9 +23,11 @@ open import foundation.universe-levels
 
 A [functor](category-theory.functors-precategories.md) between
 [precategories](category-theory.precategories.md) `C` and `D` is an
-**embedding** if it's an [embedding](foundation-core.embeddings.md) on objects
-and [fully faithful](category-theory.fully-faithful-functors-precategories.md).
-Hence embeddings are functors that are embeddings on objects and
+{{#concept "embedding" Disambiguation="of precategories" Agda=embedding-Precategory}}
+if it is
+[fully faithful](category-theory.fully-faithful-functors-precategories.md) and
+an [embedding](foundation-core.embeddings.md) on objects. Hence embeddings are
+functors that are embeddings on objects and
 [equivalences](foundation-core.equivalences.md) on
 hom-[sets](foundation-core.sets.md).
 
