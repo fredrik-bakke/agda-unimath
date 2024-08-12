@@ -34,8 +34,8 @@ These objects serve as our starting point in the study of the
 [stucture](foundation.structure.md) of
 [categories](category-theory.categories.md). Indeed, categories form a
 [subtype](foundation-core.subtypes.md) of set-magmoids, although
-structure-preserving maps of set-magmoids do not automatically preserve
-identity-morphisms.
+structure-preserving maps of set-magmoids do not automatically preserve identity
+morphisms because they don't neccessarily carry isomorphisms to isomorphisms.
 
 Set-magmoids are commonly referred to as _magmoids_ in the literature, but we
 use the "set-" prefix to make clear its relation to magmas. Set-magmoids should

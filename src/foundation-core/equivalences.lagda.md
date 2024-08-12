@@ -642,7 +642,7 @@ We will assume a commuting square
 ```agda
 module _
   {l1 l2 l3 l4 : Level} {A : UU l1} {B : UU l2} {C : UU l3} {D : UU l4}
-  (f : A → B) (g : C → D) (h : A → C) (i : B → D) (H : (i ∘ f) ~ (g ∘ h))
+  (f : A → B) (g : C → D) (h : A → C) (i : B → D) (H : i ∘ f ~ g ∘ h)
   where
 
   abstract

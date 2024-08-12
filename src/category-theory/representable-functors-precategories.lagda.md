@@ -136,7 +136,7 @@ module _
 
 ## Properties
 
-### Taking representable functors defines a functor into the presheaf category
+### Taking representable functors defines a functor into the copresheaf category
 
 ```agda
 module _

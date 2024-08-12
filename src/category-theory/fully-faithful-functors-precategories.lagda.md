@@ -330,17 +330,10 @@ module _
   is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory :
     is-iso-Precategory C
       ( hom-iso-is-essentially-injective-is-fully-faithful-functor-Precategory)
-  pr1
-    is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory =
-    hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
-  pr1
-    ( pr2
-        is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory) =
-    is-right-inverse-hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
-  pr2
-    ( pr2
-        is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory) =
-    is-left-inverse-hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
+  is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory =
+    ( hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory ,
+      is-right-inverse-hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory ,
+      is-left-inverse-hom-inv-iso-is-essentially-injective-is-fully-faithful-functor-Precategory)
 
 module _
   {l1 l2 l3 l4 : Level}
@@ -352,12 +345,11 @@ module _
 
   is-essentially-injective-is-fully-faithful-functor-Precategory :
     is-essentially-injective-functor-Precategory C D F
-  pr1 (is-essentially-injective-is-fully-faithful-functor-Precategory x y e) =
-    hom-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
-      C D F is-ff-F e
-  pr2 (is-essentially-injective-is-fully-faithful-functor-Precategory x y e) =
-    is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
-      C D F is-ff-F e
+  is-essentially-injective-is-fully-faithful-functor-Precategory x y e =
+    ( hom-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
+        C D F is-ff-F e ,
+      is-iso-iso-is-essentially-injective-is-fully-faithful-functor-Precategory
+        C D F is-ff-F e)
 ```
 
 ### Fully faithful functors are pseudomonic

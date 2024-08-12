@@ -318,8 +318,14 @@ module _
 
 ### Computation of fibers of families of maps out of the identity type
 
-We show that `fiber (f x) y ≃ ((* , f * refl) ＝ (x , y))` for every `x : A` and
-`y : B x`.
+Given an element `a : A` and a family of maps `f : (x : A) → (a ＝ x) → B x` we
+show that
+
+```text
+  fiber (f x) y ≃ ((a , f a refl) ＝ (x , y))
+```
+
+for every `x : A` and `y : B x`.
 
 ```agda
 module _
