@@ -123,9 +123,8 @@ module _
     is-equiv-prop-in-id x =
       fundamental-theorem-id-retraction x (i x)
         ( λ y →
-          pair
-            ( ind-Id x (λ z p → R x z) (ρ x) y)
-            ( λ r → eq-is-prop (p x y)))
+          ( ind-Id x (λ z p → R x z) (ρ x) y) ,
+          ( λ r → eq-is-prop (p x y)))
 
   abstract
     is-set-prop-in-id : is-set A

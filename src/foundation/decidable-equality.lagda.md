@@ -326,3 +326,9 @@ module _
   has-decidable-equality-right-summand d x y =
     is-decidable-iff is-injective-inr (ap inr) (d (inr x) (inr y))
 ```
+
+## External links
+
+- [Generalizations of Hedberg's Theorem](https://www.cs.bham.ac.uk/~mhe/GeneralizedHedberg/html/GeneralizedHedberg.html),
+  formalization in Agda authored by Thorsten Altenkirch, Thierry Coquand, Martin
+  Escardo, and Nicolai Kraus

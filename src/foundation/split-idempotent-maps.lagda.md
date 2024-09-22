@@ -643,7 +643,7 @@ module _
       ( map-retraction-is-split-idempotent-is-weakly-constant-is-idempotent)
   is-retraction-map-retraction-is-split-idempotent-is-weakly-constant-is-idempotent
     _ =
-    eq-is-prop (is-prop-fixed-point-is-weakly-constant W)
+    eq-is-prop (is-prop-fixed-point-is-weakly-constant-endomap W)
 
   retraction-is-split-idempotent-is-weakly-constant-is-idempotent :
     retraction
