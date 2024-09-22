@@ -11,10 +11,14 @@ open import foundation.action-on-identifications-functions
 open import foundation.dependent-pair-types
 open import foundation.fixed-points-endofunctions
 open import foundation.identity-types
+open import foundation.inhabited-types
 open import foundation.iterated-dependent-product-types
+open import foundation.logical-equivalences
+open import foundation.propositional-truncations
 open import foundation.universe-levels
 
 open import foundation-core.contractible-types
+open import foundation-core.function-types
 open import foundation-core.functoriality-dependent-pair-types
 open import foundation-core.propositions
 open import foundation-core.sets
@@ -84,12 +88,12 @@ This is Auxiliary Lemma 4.3 of {{#cite KECA17}}.
 ```agda
 module _
   {l1 l2 : Level} {X : UU l1} {Y : UU l2} {f : X → Y}
-  (W : is-weakly-constant f)
+  (H : is-weakly-constant f)
   where
 
   compute-ap-is-weakly-constant :
-    {x y : X} (p : x ＝ y) → inv (W x x) ∙ W x y ＝ ap f p
-  compute-ap-is-weakly-constant {x} refl = left-inv (W x x)
+    {x y : X} (p : x ＝ y) → inv (H x x) ∙ H x y ＝ ap f p
+  compute-ap-is-weakly-constant {x} refl = left-inv (H x x)
 
   is-weakly-constant-ap : {x y : X} → is-weakly-constant (ap f {x} {y})
   is-weakly-constant-ap {x} {y} p q =
@@ -118,23 +122,56 @@ Christian Sattler.
 
 ```agda
 module _
-  {l : Level} {A : UU l} {f : A → A} (W : is-weakly-constant f)
+  {l : Level} {A : UU l} {f : A → A} (H : is-weakly-constant f)
   where
 
-  is-proof-irrelevant-fixed-point-is-weakly-constant :
+  is-proof-irrelevant-fixed-point-is-weakly-constant-endomap :
     is-proof-irrelevant (fixed-point f)
-  is-proof-irrelevant-fixed-point-is-weakly-constant (x , p) =
+  is-proof-irrelevant-fixed-point-is-weakly-constant-endomap (x , p) =
     is-contr-equiv
       ( Σ A (λ z → f x ＝ z))
-      ( equiv-tot (λ z → equiv-concat (W x z) z))
+      ( equiv-tot (λ z → equiv-concat (H x z) z))
       ( is-torsorial-Id (f x))
 
-  is-prop-fixed-point-is-weakly-constant : is-prop (fixed-point f)
-  is-prop-fixed-point-is-weakly-constant =
+  is-prop-fixed-point-is-weakly-constant-endomap : is-prop (fixed-point f)
+  is-prop-fixed-point-is-weakly-constant-endomap =
     is-prop-is-proof-irrelevant
-      ( is-proof-irrelevant-fixed-point-is-weakly-constant)
+      ( is-proof-irrelevant-fixed-point-is-weakly-constant-endomap)
+
+  fixed-point-prop-is-weakly-constant-endomap : Prop l
+  fixed-point-prop-is-weakly-constant-endomap =
+    ( fixed-point f , is-prop-fixed-point-is-weakly-constant-endomap)
+```
+
+### The type of fixed points of a weakly constant endomap is equivalent to the propositional truncation
+
+```agda
+module _
+  {l : Level} {A : UU l} {f : A → A} (H : is-weakly-constant f)
+  where
+
+  has-fixed-point-has-element-is-weakly-constant-endomap : A → fixed-point f
+  has-fixed-point-has-element-is-weakly-constant-endomap x = (f x , H (f x) x)
+
+  has-fixed-point-is-inhabited-type-is-weakly-constant-endomap :
+    is-inhabited A → fixed-point f
+  has-fixed-point-is-inhabited-type-is-weakly-constant-endomap =
+    rec-trunc-Prop
+      ( fixed-point-prop-is-weakly-constant-endomap H)
+      ( has-fixed-point-has-element-is-weakly-constant-endomap)
+
+  iff-has-fixed-point-is-inhabited-type-is-weakly-constant-endomap :
+    is-inhabited A ↔ fixed-point f
+  iff-has-fixed-point-is-inhabited-type-is-weakly-constant-endomap =
+    ( has-fixed-point-is-inhabited-type-is-weakly-constant-endomap ,
+      unit-trunc-Prop ∘ pr1)
 ```
 
 ## References
 
 {{#bibliography}} {{#reference KECA17}}
+
+## External links
+
+- [weakly constant function](https://ncatlab.org/nlab/show/weakly+constant+function)
+  at $n$Lab
