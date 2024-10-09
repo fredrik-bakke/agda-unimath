@@ -14,6 +14,7 @@ open import foundation.dependent-pair-types
 open import foundation.function-types
 open import foundation.homotopies
 open import foundation.identity-types
+open import foundation.inverse-sequential-diagrams
 open import foundation.iterating-functions
 open import foundation.postcomposition-functions
 open import foundation.unit-type
@@ -53,17 +54,31 @@ In addition, maps of a globular diagram are subject to the relations
 
 ## Definitions
 
+### The coherence laws of globular diagrams
+
+```agda
+module _
+  {l : Level} {A : ℕ → UU l}
+  (s : (n : ℕ) → A (succ-ℕ n) → A n)
+  (t : (n : ℕ) → A (succ-ℕ n) → A n)
+  where
+
+  coherence-source-globular-diagram : UU l
+  coherence-source-globular-diagram =
+    ( (n : ℕ) → s n ∘ s (succ-ℕ n) ~ s n ∘ t (succ-ℕ n))
+
+  coherence-target-globular-diagram : UU l
+  coherence-target-globular-diagram =
+    ( (n : ℕ) → t n ∘ s (succ-ℕ n) ~ t n ∘ t (succ-ℕ n))
+
+  coherence-globular-diagram : UU l
+  coherence-globular-diagram =
+    coherence-source-globular-diagram × coherence-target-globular-diagram
+```
+
 ### Globular diagrams of types
 
 ```agda
-coherence-source-target-globular-diagram :
-  {l : Level} {A : ℕ → UU l}
-  (s : (n : ℕ) → A (succ-ℕ n) → A n)
-  (t : (n : ℕ) → A (succ-ℕ n) → A n) → UU l
-coherence-source-target-globular-diagram s t =
-  ( (n : ℕ) → s n ∘ s (succ-ℕ n) ~ s n ∘ t (succ-ℕ n)) ×
-  ( (n : ℕ) → t n ∘ s (succ-ℕ n) ~ t n ∘ t (succ-ℕ n))
-
 globular-diagram : (l : Level) → UU (lsuc l)
 globular-diagram l =
   Σ ( ℕ → UU l)
@@ -71,7 +86,7 @@ globular-diagram l =
       Σ ( (n : ℕ) → (A (succ-ℕ n) → A n))
         ( λ s →
           Σ ( (n : ℕ) → (A (succ-ℕ n) → A n))
-            ( λ t → coherence-source-target-globular-diagram s t)))
+            ( λ t → coherence-globular-diagram s t)))
 
 module _
   {l : Level} (A : globular-diagram l)
@@ -89,22 +104,40 @@ module _
   target-map-globular-diagram = pr1 (pr2 (pr2 A))
 
   coh-globular-diagram :
-    coherence-source-target-globular-diagram
+    coherence-globular-diagram
       ( source-map-globular-diagram)
       ( target-map-globular-diagram)
   coh-globular-diagram = pr2 (pr2 (pr2 A))
 
   coh-source-globular-diagram :
-    (n : ℕ) →
-    source-map-globular-diagram n ∘ source-map-globular-diagram (succ-ℕ n) ~
-    source-map-globular-diagram n ∘ target-map-globular-diagram (succ-ℕ n)
+    coherence-source-globular-diagram
+      ( source-map-globular-diagram)
+      ( target-map-globular-diagram)
   coh-source-globular-diagram = pr1 coh-globular-diagram
 
   coh-target-globular-diagram :
-    (n : ℕ) →
-    target-map-globular-diagram n ∘ source-map-globular-diagram (succ-ℕ n) ~
-    target-map-globular-diagram n ∘ target-map-globular-diagram (succ-ℕ n)
+    coherence-target-globular-diagram
+      ( source-map-globular-diagram)
+      ( target-map-globular-diagram)
   coh-target-globular-diagram = pr2 coh-globular-diagram
+```
+
+### The source and target inverse sequential diagrams
+
+```agda
+module _
+  {l : Level} (A : globular-diagram l)
+  where
+
+  source-inverse-sequential-diagram-globular-diagram :
+    inverse-sequential-diagram l
+  source-inverse-sequential-diagram-globular-diagram =
+    (family-globular-diagram A , source-map-globular-diagram A)
+
+  target-inverse-sequential-diagram-globular-diagram :
+    inverse-sequential-diagram l
+  target-inverse-sequential-diagram-globular-diagram =
+    (family-globular-diagram A , target-map-globular-diagram A)
 ```
 
 ## Operations
@@ -136,28 +169,64 @@ We can **left shift** a globular diagram of types by padding it with the
 [terminal type](foundation.unit-type.md) `unit`.
 
 ```agda
-left-shift-globular-diagram :
-  {l : Level} → globular-diagram l → globular-diagram l
-pr1 (left-shift-globular-diagram {l} A) zero-ℕ =
-  raise-unit l
-pr1 (left-shift-globular-diagram A) (succ-ℕ n) =
-  family-globular-diagram A n
-pr1 (pr2 (left-shift-globular-diagram A)) zero-ℕ =
-  raise-terminal-map (family-globular-diagram A 0)
-pr1 (pr2 (left-shift-globular-diagram A)) (succ-ℕ n) =
-  source-map-globular-diagram A n
-pr1 (pr2 (pr2 (left-shift-globular-diagram A))) zero-ℕ =
-  raise-terminal-map (family-globular-diagram A 0)
-pr1 (pr2 (pr2 (left-shift-globular-diagram A))) (succ-ℕ n) =
-  target-map-globular-diagram A n
-pr1 (pr2 (pr2 (pr2 (left-shift-globular-diagram A)))) zero-ℕ =
-  refl-htpy
-pr1 (pr2 (pr2 (pr2 (left-shift-globular-diagram A)))) (succ-ℕ n) =
-  coh-source-globular-diagram A n
-pr2 (pr2 (pr2 (pr2 (left-shift-globular-diagram A)))) zero-ℕ =
-  refl-htpy
-pr2 (pr2 (pr2 (pr2 (left-shift-globular-diagram A)))) (succ-ℕ n) =
-  coh-target-globular-diagram A n
+module _
+  {l : Level} (A : globular-diagram l)
+  where
+
+  family-left-shift-globular-diagram : ℕ → UU l
+  family-left-shift-globular-diagram zero-ℕ = raise-unit l
+  family-left-shift-globular-diagram (succ-ℕ n) = family-globular-diagram A n
+
+  source-map-left-shift-globular-diagram :
+    (n : ℕ) →
+    family-left-shift-globular-diagram (succ-ℕ n) →
+    family-left-shift-globular-diagram n
+  source-map-left-shift-globular-diagram zero-ℕ =
+    raise-terminal-map (family-globular-diagram A 0)
+  source-map-left-shift-globular-diagram (succ-ℕ n) =
+    source-map-globular-diagram A n
+
+  target-map-left-shift-globular-diagram :
+    (n : ℕ) →
+    family-left-shift-globular-diagram (succ-ℕ n) →
+    family-left-shift-globular-diagram n
+  target-map-left-shift-globular-diagram zero-ℕ =
+    raise-terminal-map (family-globular-diagram A 0)
+  target-map-left-shift-globular-diagram (succ-ℕ n) =
+    target-map-globular-diagram A n
+
+  coh-source-left-shift-globular-diagram :
+    coherence-source-globular-diagram
+      source-map-left-shift-globular-diagram
+      target-map-left-shift-globular-diagram
+  coh-source-left-shift-globular-diagram zero-ℕ =
+    refl-htpy
+  coh-source-left-shift-globular-diagram (succ-ℕ n) =
+    coh-source-globular-diagram A n
+
+  coh-target-left-shift-globular-diagram :
+    coherence-target-globular-diagram
+      source-map-left-shift-globular-diagram
+      target-map-left-shift-globular-diagram
+  coh-target-left-shift-globular-diagram zero-ℕ =
+    refl-htpy
+  coh-target-left-shift-globular-diagram (succ-ℕ n) =
+    coh-target-globular-diagram A n
+
+  coh-left-shift-globular-diagram :
+    coherence-globular-diagram
+      source-map-left-shift-globular-diagram
+      target-map-left-shift-globular-diagram
+  coh-left-shift-globular-diagram =
+    coh-source-left-shift-globular-diagram ,
+    coh-target-left-shift-globular-diagram
+
+  left-shift-globular-diagram : globular-diagram l
+  left-shift-globular-diagram =
+    family-left-shift-globular-diagram ,
+    source-map-left-shift-globular-diagram ,
+    target-map-left-shift-globular-diagram ,
+    coh-left-shift-globular-diagram
 
 iterated-left-shift-globular-diagram :
   {l : Level} (n : ℕ) →
