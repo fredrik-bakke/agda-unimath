@@ -34,6 +34,7 @@ open import structured-types.finite-multiplication-magmas public
 open import structured-types.function-h-spaces public
 open import structured-types.function-magmas public
 open import structured-types.function-wild-monoids public
+open import structured-types.globular-diagrams public
 open import structured-types.globular-types public
 open import structured-types.h-spaces public
 open import structured-types.initial-pointed-type-equipped-with-automorphism public
