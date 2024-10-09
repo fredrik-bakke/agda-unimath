@@ -213,3 +213,4 @@ globular-structure-Id A =
 - [Reflexive globular types](structured-types.reflexive-globular-types.md)
 - [Symmetric globular types](structured-types.symmetric-globular-types.md)
 - [Transitive globular types](structured-types.transitive-globular-types.md)
+- [Globular diagrams](structured-types.globular-diagrams.md)

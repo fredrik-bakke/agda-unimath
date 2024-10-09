@@ -283,7 +283,27 @@ the diagrams
             sₙ                        tₙ
 ```
 
-commute for each `n : ℕ`.
+commute for each `n : ℕ` by, say, the witnesses `Sₙ` and `Tₙ` respectively.
+
+Such that the hollow cylinder
+
+```text
+         -------->
+      Bₙ₊₂          Bₙ
+      ∧  -------->  ∧
+      |             |
+  hₙ₊₂|             | hₙ
+      |             |
+      |  -------->  |
+      Aₙ₊₂          Aₙ
+         -------->
+```
+
+has a filler
+
+```text
+
+```
 
 ```agda
 module _
