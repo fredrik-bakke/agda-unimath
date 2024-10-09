@@ -129,14 +129,14 @@ module _
   {l : Level} (A : globular-diagram l)
   where
 
-  source-inverse-sequential-diagram-globular-diagram :
+  source-diagram-globular-diagram :
     inverse-sequential-diagram l
-  source-inverse-sequential-diagram-globular-diagram =
+  source-diagram-globular-diagram =
     (family-globular-diagram A , source-map-globular-diagram A)
 
-  target-inverse-sequential-diagram-globular-diagram :
+  target-diagram-globular-diagram :
     inverse-sequential-diagram l
-  target-inverse-sequential-diagram-globular-diagram =
+  target-diagram-globular-diagram =
     (family-globular-diagram A , target-map-globular-diagram A)
 ```
 

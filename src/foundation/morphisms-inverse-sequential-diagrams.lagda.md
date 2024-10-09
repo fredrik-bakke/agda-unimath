@@ -171,7 +171,7 @@ module _
     Σ ( (n : ℕ) →
         map-hom-inverse-sequential-diagram A B f n ~
         map-hom-inverse-sequential-diagram A B g n)
-      ( λ H → coherence-htpy-hom-inverse-sequential-diagram f g H)
+      ( coherence-htpy-hom-inverse-sequential-diagram f g)
 
   refl-htpy-hom-inverse-sequential-diagram :
     (f : hom-inverse-sequential-diagram A B) →
@@ -193,11 +193,9 @@ module _
       ( is-torsorial-binary-htpy (map-hom-inverse-sequential-diagram A B f))
       ( map-hom-inverse-sequential-diagram A B f ,
         refl-binary-htpy (map-hom-inverse-sequential-diagram A B f))
-      ( is-torsorial-Eq-Π
+      ( is-torsorial-binary-htpy
         ( λ n →
-          is-torsorial-htpy
-            ( naturality-map-hom-inverse-sequential-diagram A B f n ∙h
-              refl-htpy)))
+          naturality-map-hom-inverse-sequential-diagram A B f n ∙h refl-htpy))
 
   is-equiv-htpy-eq-hom-inverse-sequential-diagram :
     (f g : hom-inverse-sequential-diagram A B) →

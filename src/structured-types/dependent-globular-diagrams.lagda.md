@@ -206,14 +206,14 @@ module _
 
   source-dependent-inverse-sequential-diagram-dependent-globular-diagram :
     dependent-inverse-sequential-diagram l2
-      ( source-inverse-sequential-diagram-globular-diagram A)
+      ( source-diagram-globular-diagram A)
   source-dependent-inverse-sequential-diagram-dependent-globular-diagram =
     ( family-dependent-globular-diagram A B ,
       source-map-dependent-globular-diagram A B)
 
   target-dependent-inverse-sequential-diagram-dependent-globular-diagram :
     dependent-inverse-sequential-diagram l2
-      ( target-inverse-sequential-diagram-globular-diagram A)
+      ( target-diagram-globular-diagram A)
   target-dependent-inverse-sequential-diagram-dependent-globular-diagram =
     ( family-dependent-globular-diagram A B ,
       target-map-dependent-globular-diagram A B)
@@ -296,7 +296,7 @@ module _
       family-dependent-globular-diagram A B n x) → UU (l1 ⊔ l2)
   naturality-source-section-dependent-globular-diagram h =
     naturality-section-dependent-inverse-sequential-diagram
-      ( source-inverse-sequential-diagram-globular-diagram A)
+      ( source-diagram-globular-diagram A)
       ( source-dependent-inverse-sequential-diagram-dependent-globular-diagram
         ( A)
         ( B))
@@ -307,7 +307,7 @@ module _
       family-dependent-globular-diagram A B n x) → UU (l1 ⊔ l2)
   naturality-target-section-dependent-globular-diagram h =
     naturality-section-dependent-inverse-sequential-diagram
-      ( target-inverse-sequential-diagram-globular-diagram A)
+      ( target-diagram-globular-diagram A)
       ( target-dependent-inverse-sequential-diagram-dependent-globular-diagram
         ( A)
         ( B))

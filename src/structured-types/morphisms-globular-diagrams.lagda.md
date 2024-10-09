@@ -11,6 +11,7 @@ open import elementary-number-theory.natural-numbers
 
 open import foundation.action-on-identifications-functions
 open import foundation.binary-homotopies
+open import foundation.cartesian-product-types
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-function-types
 open import foundation.fundamental-theorem-of-identity-types
@@ -112,18 +113,18 @@ module _
   naturality-target-map-hom-globular-diagram =
     pr2 naturality-map-hom-globular-diagram
 
-  hom-source-inverse-sequential-diagram-globular-diagram :
+  hom-source-diagram-globular-diagram :
     hom-inverse-sequential-diagram
-      ( source-inverse-sequential-diagram-globular-diagram A)
-      ( source-inverse-sequential-diagram-globular-diagram B)
-  hom-source-inverse-sequential-diagram-globular-diagram =
+      ( source-diagram-globular-diagram A)
+      ( source-diagram-globular-diagram B)
+  hom-source-diagram-globular-diagram =
     map-hom-globular-diagram , naturality-source-map-hom-globular-diagram
 
-  hom-target-inverse-sequential-diagram-globular-diagram :
+  hom-target-diagram-globular-diagram :
     hom-inverse-sequential-diagram
-      ( target-inverse-sequential-diagram-globular-diagram A)
-      ( target-inverse-sequential-diagram-globular-diagram B)
-  hom-target-inverse-sequential-diagram-globular-diagram =
+      ( target-diagram-globular-diagram A)
+      ( target-diagram-globular-diagram B)
+  hom-target-diagram-globular-diagram =
     map-hom-globular-diagram , naturality-target-map-hom-globular-diagram
 ```
 
@@ -156,21 +157,21 @@ module _
     naturality-source-hom-globular-diagram A C map-comp-hom-globular-diagram
   naturality-source-comp-hom-globular-diagram =
     naturality-comp-hom-inverse-sequential-diagram
-      ( source-inverse-sequential-diagram-globular-diagram A)
-      ( source-inverse-sequential-diagram-globular-diagram B)
-      ( source-inverse-sequential-diagram-globular-diagram C)
-      ( hom-source-inverse-sequential-diagram-globular-diagram B C g)
-      ( hom-source-inverse-sequential-diagram-globular-diagram A B f)
+      ( source-diagram-globular-diagram A)
+      ( source-diagram-globular-diagram B)
+      ( source-diagram-globular-diagram C)
+      ( hom-source-diagram-globular-diagram B C g)
+      ( hom-source-diagram-globular-diagram A B f)
 
   naturality-target-comp-hom-globular-diagram :
     naturality-target-hom-globular-diagram A C map-comp-hom-globular-diagram
   naturality-target-comp-hom-globular-diagram =
     naturality-comp-hom-inverse-sequential-diagram
-      ( target-inverse-sequential-diagram-globular-diagram A)
-      ( target-inverse-sequential-diagram-globular-diagram B)
-      ( target-inverse-sequential-diagram-globular-diagram C)
-      ( hom-target-inverse-sequential-diagram-globular-diagram B C g)
-      ( hom-target-inverse-sequential-diagram-globular-diagram A B f)
+      ( target-diagram-globular-diagram A)
+      ( target-diagram-globular-diagram B)
+      ( target-diagram-globular-diagram C)
+      ( hom-target-diagram-globular-diagram B C g)
+      ( hom-target-diagram-globular-diagram A B f)
 
   naturality-comp-hom-globular-diagram :
     naturality-hom-globular-diagram A C map-comp-hom-globular-diagram
@@ -181,4 +182,97 @@ module _
   comp-hom-globular-diagram : hom-globular-diagram A C
   comp-hom-globular-diagram =
     ( map-comp-hom-globular-diagram , naturality-comp-hom-globular-diagram)
+```
+
+## Properties
+
+### Characterization of equality of morphisms of globular diagrams of types
+
+```agda
+module _
+  {l1 l2 : Level}
+  (A : globular-diagram l1)
+  (B : globular-diagram l2)
+  where
+
+  coherence-htpy-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) →
+    ((n : ℕ) →
+      map-hom-globular-diagram A B f n ~
+      map-hom-globular-diagram A B g n) →
+    UU (l1 ⊔ l2)
+  coherence-htpy-hom-globular-diagram f g H =
+    ( coherence-htpy-hom-inverse-sequential-diagram
+      ( source-diagram-globular-diagram A)
+      ( source-diagram-globular-diagram B)
+      ( hom-source-diagram-globular-diagram A B f)
+      ( hom-source-diagram-globular-diagram A B g)
+      ( H)) ×
+    ( coherence-htpy-hom-inverse-sequential-diagram
+      ( target-diagram-globular-diagram A)
+      ( target-diagram-globular-diagram B)
+      ( hom-target-diagram-globular-diagram A B f)
+      ( hom-target-diagram-globular-diagram A B g)
+      ( H))
+
+  htpy-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) → UU (l1 ⊔ l2)
+  htpy-hom-globular-diagram f g =
+    Σ ( (n : ℕ) →
+        map-hom-globular-diagram A B f n ~
+        map-hom-globular-diagram A B g n)
+      ( coherence-htpy-hom-globular-diagram f g)
+
+  refl-htpy-hom-globular-diagram :
+    (f : hom-globular-diagram A B) → htpy-hom-globular-diagram f f
+  pr1 (refl-htpy-hom-globular-diagram f) n = refl-htpy
+  pr1 (pr2 (refl-htpy-hom-globular-diagram f)) n = right-unit-htpy
+  pr2 (pr2 (refl-htpy-hom-globular-diagram f)) n = right-unit-htpy
+
+  htpy-eq-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) →
+    f ＝ g →
+    htpy-hom-globular-diagram f g
+  htpy-eq-hom-globular-diagram f .f refl =
+    refl-htpy-hom-globular-diagram f
+
+  is-torsorial-htpy-hom-globular-diagram :
+    (f : hom-globular-diagram A B) →
+    is-torsorial (htpy-hom-globular-diagram f)
+  is-torsorial-htpy-hom-globular-diagram f =
+    is-torsorial-Eq-structure
+      ( is-torsorial-binary-htpy (map-hom-globular-diagram A B f))
+      ( map-hom-globular-diagram A B f ,
+        refl-binary-htpy (map-hom-globular-diagram A B f))
+      ( is-torsorial-Eq-structure
+        ( is-torsorial-binary-htpy
+          ( λ n →
+            naturality-source-map-hom-globular-diagram A B f n ∙h refl-htpy))
+        ( ( naturality-source-map-hom-globular-diagram A B f) ,
+          ( λ _ → right-unit-htpy))
+        ( is-torsorial-binary-htpy
+          ( λ n →
+            naturality-target-map-hom-globular-diagram A B f n ∙h refl-htpy)))
+
+  is-equiv-htpy-eq-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) →
+    is-equiv (htpy-eq-hom-globular-diagram f g)
+  is-equiv-htpy-eq-hom-globular-diagram f =
+    fundamental-theorem-id
+      ( is-torsorial-htpy-hom-globular-diagram f)
+      ( htpy-eq-hom-globular-diagram f)
+
+  extensionality-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) →
+    (f ＝ g) ≃ htpy-hom-globular-diagram f g
+  pr1 (extensionality-hom-globular-diagram f g) =
+    htpy-eq-hom-globular-diagram f g
+  pr2 (extensionality-hom-globular-diagram f g) =
+    is-equiv-htpy-eq-hom-globular-diagram f g
+
+  eq-htpy-hom-globular-diagram :
+    (f g : hom-globular-diagram A B) →
+    htpy-hom-globular-diagram f g → f ＝ g
+  eq-htpy-hom-globular-diagram f g =
+    map-inv-equiv (extensionality-hom-globular-diagram f g)
 ```
