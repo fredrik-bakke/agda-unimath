@@ -11,6 +11,7 @@ open import elementary-number-theory.natural-numbers
 
 open import foundation.dependent-pair-types
 open import foundation.inverse-sequential-diagrams
+open import foundation.iterating-dependent-functions
 open import foundation.unit-type
 open import foundation.universe-levels
 
@@ -158,6 +159,17 @@ pr1 (right-shift-dependent-inverse-sequential-diagram B) n =
   family-dependent-inverse-sequential-diagram B (succ-ℕ n)
 pr2 (right-shift-dependent-inverse-sequential-diagram B) n =
   map-dependent-inverse-sequential-diagram B (succ-ℕ n)
+
+iterated-right-shift-dependent-inverse-sequential-diagram :
+  {l1 l2 : Level} (n : ℕ) →
+  (A : inverse-sequential-diagram l1) →
+  dependent-inverse-sequential-diagram l2 A →
+  dependent-inverse-sequential-diagram l2
+    ( iterated-right-shift-inverse-sequential-diagram n A)
+iterated-right-shift-dependent-inverse-sequential-diagram n A =
+  iterate-dependent n
+    ( λ A → right-shift-dependent-inverse-sequential-diagram {A = A})
+    ( A)
 ```
 
 ### Left shifting a dependent inverse sequential diagram
@@ -179,6 +191,17 @@ pr2 (left-shift-dependent-inverse-sequential-diagram B) 0 x =
   raise-terminal-map (family-dependent-inverse-sequential-diagram B 0 x)
 pr2 (left-shift-dependent-inverse-sequential-diagram B) (succ-ℕ n) =
   map-dependent-inverse-sequential-diagram B n
+
+iterated-left-shift-dependent-inverse-sequential-diagram :
+  {l1 l2 : Level} (n : ℕ) →
+  (A : inverse-sequential-diagram l1) →
+  dependent-inverse-sequential-diagram l2 A →
+  dependent-inverse-sequential-diagram l2
+    ( iterated-left-shift-inverse-sequential-diagram n A)
+iterated-left-shift-dependent-inverse-sequential-diagram n A =
+  iterate-dependent n
+    ( λ A → left-shift-dependent-inverse-sequential-diagram {A = A})
+    ( A)
 ```
 
 ## Table of files about sequential limits
