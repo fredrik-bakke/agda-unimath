@@ -9,11 +9,11 @@ module foundation.equivalences-inverse-sequential-diagrams where
 ```agda
 open import elementary-number-theory.natural-numbers
 
+open import foundation.binary-homotopies
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-function-types
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopy-induction
-open import foundation.binary-homotopies
 open import foundation.inverse-sequential-diagrams
 open import foundation.morphisms-inverse-sequential-diagrams
 open import foundation.structure-identity-principle

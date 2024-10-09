@@ -9,13 +9,11 @@ module structured-types.equivalences-globular-diagrams where
 ```agda
 open import elementary-number-theory.natural-numbers
 
+open import foundation.binary-homotopies
 open import foundation.dependent-pair-types
 open import foundation.equality-dependent-function-types
 open import foundation.fundamental-theorem-of-identity-types
 open import foundation.homotopy-induction
-open import foundation.binary-homotopies
-open import structured-types.globular-diagrams
-open import structured-types.morphisms-globular-diagrams
 open import foundation.structure-identity-principle
 open import foundation.univalence
 open import foundation.universe-levels
@@ -25,6 +23,9 @@ open import foundation-core.function-types
 open import foundation-core.homotopies
 open import foundation-core.identity-types
 open import foundation-core.torsorial-type-families
+
+open import structured-types.globular-diagrams
+open import structured-types.morphisms-globular-diagrams
 ```
 
 </details>
@@ -109,7 +110,6 @@ is-torsorial-equiv-globular-diagram A =
       ( λ n → is-torsorial-equiv (family-globular-diagram A n)))
     ( family-globular-diagram A , λ n → id-equiv)
     ( {!   !})
-
 
   -- is-torsorial-Eq-structure
   --   ( is-torsorial-Eq-Π

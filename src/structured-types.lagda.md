@@ -25,6 +25,7 @@ open import structured-types.dependent-products-pointed-types public
 open import structured-types.dependent-products-wild-monoids public
 open import structured-types.dependent-reflexive-globular-types public
 open import structured-types.dependent-types-equipped-with-automorphisms public
+open import structured-types.equivalences-globular-diagrams public
 open import structured-types.equivalences-h-spaces public
 open import structured-types.equivalences-pointed-arrows public
 open import structured-types.equivalences-types-equipped-with-automorphisms public

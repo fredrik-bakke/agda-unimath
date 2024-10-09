@@ -301,10 +301,6 @@ Such that the hollow cylinder
 
 has a filler
 
-```text
-
-```
-
 ```agda
 module _
   {l1 l2 : Level} (A : globular-diagram l1)
