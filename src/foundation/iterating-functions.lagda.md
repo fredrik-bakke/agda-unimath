@@ -109,7 +109,8 @@ module _
     iterate (k +ℕ l) f x ＝ iterate k f (iterate l f x)
   iterate-add-ℕ k zero-ℕ f x = refl
   iterate-add-ℕ k (succ-ℕ l) f x =
-    ap f (iterate-add-ℕ k l f x) ∙ reassociate-iterate-succ-ℕ k f (iterate l f x)
+    ap f (iterate-add-ℕ k l f x) ∙
+    reassociate-iterate-succ-ℕ k f (iterate l f x)
 
   left-unit-law-iterate-add-ℕ :
     (l : ℕ) (f : X → X) (x : X) →

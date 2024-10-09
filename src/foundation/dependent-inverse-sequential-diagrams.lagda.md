@@ -115,9 +115,10 @@ module _
   naturality-section-dependent-inverse-sequential-diagram :
     (h :
       (n : ℕ) (x : family-inverse-sequential-diagram A n) →
-      family-dependent-inverse-sequential-diagram B n x)
-    (n : ℕ) → UU (l1 ⊔ l2)
-  naturality-section-dependent-inverse-sequential-diagram h n =
+      family-dependent-inverse-sequential-diagram B n x) →
+    UU (l1 ⊔ l2)
+  naturality-section-dependent-inverse-sequential-diagram h =
+    ( n : ℕ) →
     h n ∘ map-inverse-sequential-diagram A n ~
     map-dependent-inverse-sequential-diagram B n _ ∘ h (succ-ℕ n)
 
@@ -125,8 +126,7 @@ module _
   section-dependent-inverse-sequential-diagram =
     Σ ( (n : ℕ) (x : family-inverse-sequential-diagram A n) →
         family-dependent-inverse-sequential-diagram B n x)
-      ( λ h → (n : ℕ) →
-        naturality-section-dependent-inverse-sequential-diagram h n)
+      ( naturality-section-dependent-inverse-sequential-diagram)
 
   map-section-dependent-inverse-sequential-diagram :
     section-dependent-inverse-sequential-diagram →
@@ -135,10 +135,9 @@ module _
   map-section-dependent-inverse-sequential-diagram = pr1
 
   naturality-map-section-dependent-inverse-sequential-diagram :
-    (f : section-dependent-inverse-sequential-diagram) (n : ℕ) →
+    (f : section-dependent-inverse-sequential-diagram) →
     naturality-section-dependent-inverse-sequential-diagram
       ( map-section-dependent-inverse-sequential-diagram f)
-      ( n)
   naturality-map-section-dependent-inverse-sequential-diagram = pr2
 ```
 

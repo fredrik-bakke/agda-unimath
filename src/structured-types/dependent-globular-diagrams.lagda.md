@@ -199,7 +199,9 @@ module _
 
 ```agda
 module _
-  {l1 l2 : Level} (A : globular-diagram l1) (B : dependent-globular-diagram l2 A)
+  {l1 l2 : Level}
+  (A : globular-diagram l1)
+  (B : dependent-globular-diagram l2 A)
   where
 
   source-dependent-inverse-sequential-diagram-dependent-globular-diagram :
@@ -293,27 +295,23 @@ module _
     ( (n : ℕ) (x : family-globular-diagram A n) →
       family-dependent-globular-diagram A B n x) → UU (l1 ⊔ l2)
   naturality-source-section-dependent-globular-diagram h =
-    (n : ℕ) →
     naturality-section-dependent-inverse-sequential-diagram
       ( source-inverse-sequential-diagram-globular-diagram A)
       ( source-dependent-inverse-sequential-diagram-dependent-globular-diagram
         ( A)
         ( B))
       ( h)
-      ( n)
 
   naturality-target-section-dependent-globular-diagram :
     ( (n : ℕ) (x : family-globular-diagram A n) →
       family-dependent-globular-diagram A B n x) → UU (l1 ⊔ l2)
   naturality-target-section-dependent-globular-diagram h =
-    (n : ℕ) →
     naturality-section-dependent-inverse-sequential-diagram
       ( target-inverse-sequential-diagram-globular-diagram A)
       ( target-dependent-inverse-sequential-diagram-dependent-globular-diagram
         ( A)
         ( B))
       ( h)
-      ( n)
 
   naturality-section-dependent-globular-diagram :
     ( (n : ℕ) (x : family-globular-diagram A n) →
