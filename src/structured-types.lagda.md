@@ -51,6 +51,7 @@ open import structured-types.magmas public
 open import structured-types.maps-globular-types public
 open import structured-types.maps-large-globular-types public
 open import structured-types.mere-equivalences-types-equipped-with-endomorphisms public
+open import structured-types.morphisms-globular-diagrams public
 open import structured-types.morphisms-h-spaces public
 open import structured-types.morphisms-magmas public
 open import structured-types.morphisms-pointed-arrows public
