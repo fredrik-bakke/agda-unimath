@@ -1,0 +1,42 @@
+{
+  "lastUpdate": 1775137382492,
+  "repoUrl": "https://github.com/fredrik-bakke/agda-unimath",
+  "entries": {
+    "Benchmark": [
+      {
+        "commit": {
+          "author": {
+            "email": "fredrbak@gmail.com",
+            "name": "Fredrik Bakke",
+            "username": "fredrik-bakke"
+          },
+          "committer": {
+            "email": "fredrbak@gmail.com",
+            "name": "Fredrik Bakke",
+            "username": "fredrik-bakke"
+          },
+          "distinct": true,
+          "id": "ea5ccbc7fd64d270b2972293f942575bc9f7cd0d",
+          "message": "update front materials",
+          "timestamp": "2026-04-02T15:28:55+02:00",
+          "tree_id": "75e4a24347cb8f12e4b3d2b65db959e32573066b",
+          "url": "https://github.com/fredrik-bakke/agda-unimath/commit/ea5ccbc7fd64d270b2972293f942575bc9f7cd0d"
+        },
+        "date": 1775137382491,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Total",
+            "value": 828572,
+            "unit": "ms"
+          },
+          {
+            "name": "total_memory_in_use",
+            "value": 4429,
+            "unit": "MiB"
+          }
+        ]
+      }
+    ]
+  }
+}
