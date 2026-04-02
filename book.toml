@@ -41,8 +41,8 @@ contributors_file = "CONTRIBUTORS.toml"
 # Can be overridden by running
 # `export MDBOOK_PREPROCESSOR__GIT_METADATA__ENABLE=true` in your shell
 enable = false
-# Only show "Content created by" on Agda source files
-attribute_file_extensions = [ ".lagda.md" ]
+# Disable "Content created by" attribution everywhere
+attribute_file_extensions = []
 # Don't add anything to the "non-content" pages,
 # i.e. top-level markdown files which aren't guides
 suppress_processing = [
