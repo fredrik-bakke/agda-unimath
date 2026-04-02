@@ -1,5 +1,8 @@
 # Contributing to the library
 
+> I don't currently accept contributions, but feel free to contact me via my
+> academic contact details or on Discord.
+
 We employ several tools to maintain our library. This guide will walk you
 through their usage and help ensure your contributions meet our standards.
 
