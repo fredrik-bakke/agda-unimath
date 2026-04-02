@@ -102,7 +102,7 @@ additional-js = [
 ]
 no-section-label = false
 site-url = "/agda-unimath/"
-git-repository-url = "https://github.com/UniMath/agda-unimath"
+git-repository-url = "https://github.com/fredrik-bakke/agda-unimath"
 git-repository-icon = "fa-github"
 
 [output.html.print]

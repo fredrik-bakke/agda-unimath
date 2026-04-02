@@ -24,7 +24,7 @@ if (link) {
 
   if (excludeList.includes(filename)) {
     // Default to the main GitHub page for excluded pages
-    link.setAttribute('href', 'https://github.com/UniMath/agda-unimath');
+    link.setAttribute('href', 'https://github.com/fredrik-bakke/agda-unimath');
   } else {
     // Generate the correct file path on the repo side
     var path = '';
@@ -47,7 +47,7 @@ if (link) {
     }
 
     const prefixedHref =
-      'https://github.com/UniMath/agda-unimath/edit/master/' + path;
+      'https://github.com/fredrik-bakke/agda-unimath/edit/master/' + path;
     link.setAttribute('href', prefixedHref);
   }
 } else {

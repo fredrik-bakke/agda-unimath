@@ -163,8 +163,8 @@ contents of the file.
   ``[`foundation.univalence`](foundation.univalence.md)``, which will be
   displayed as [`foundation.univalence`](foundation.univalence.md).
 - If you just want to add a clickable link, use the pattern
-  `<https://unimath.github.io/agda-unimath/>`. This will be displayed as
-  <https://unimath.github.io/agda-unimath/>.
+  `<https://fredrik-bakke.github.io/agda-unimath/>`. This will be displayed as
+  <https://fredrik-bakke.github.io/agda-unimath/>.
 - Or if you want to add a clickable link with custom text use
   `[UniMath/agda-unimath](https://github.com/UniMath/agda-unimath)`. This will
   be displayed as

@@ -6,7 +6,7 @@ import sys
 from typing import List, Set
 
 GITHUB_ROOT = 'https://github.com/'
-GITHUB_REPO = 'UniMath/agda-unimath'
+GITHUB_REPO = 'fredrik-bakke/agda-unimath'
 
 
 def github_page_for_commit(commit):
