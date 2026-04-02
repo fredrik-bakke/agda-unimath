@@ -127,6 +127,12 @@
         };
 
         function init() {
+          const data = window.BENCHMARK_DATA;
+
+          if (!data || !data.entries) {
+            throw new Error('Benchmark data is unavailable');
+          }
+
           function collectBenchesPerTestCase(entries) {
             const map = new Map();
             for (const entry of entries) {
@@ -144,10 +150,10 @@
             return map;
           }
 
-          const data = window.BENCHMARK_DATA;
-
           // Render header
-          document.getElementById('last-update').textContent = new Date(data.lastUpdate).toString();
+          document.getElementById('last-update').textContent = data.lastUpdate
+            ? new Date(data.lastUpdate).toString()
+            : 'No benchmark data yet';
           const repoLink = document.getElementById('repository-link');
           repoLink.href = data.repoUrl;
           repoLink.textContent = data.repoUrl;
@@ -274,7 +280,22 @@
           }
         }
 
-        renderAllChars(init()); // Start
+        try {
+          const benchmarkSets = init();
+          const main = document.getElementById('main');
+          if (benchmarkSets.length === 0) {
+            const emptyElem = document.createElement('p');
+            emptyElem.textContent = 'No benchmark data yet.';
+            main.appendChild(emptyElem);
+          } else {
+            renderAllChars(benchmarkSets);
+          }
+        } catch (_error) {
+          const main = document.getElementById('main');
+          const emptyElem = document.createElement('p');
+          emptyElem.textContent = 'Benchmark data is currently unavailable.';
+          main.appendChild(emptyElem);
+        }
       })();
     </script>
   </body>

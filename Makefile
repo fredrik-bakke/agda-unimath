@@ -177,6 +177,9 @@ website-prepare: agda-html ./$(MDBOOK_SRC)/SUMMARY.md ./$(MDBOOK_SRC)/CONTRIBUTO
 	@# Copies the files from `$(DOCS_DIR)` to `$(MDBOOK_SRC)`, not just the literal `$(DOCS_DIR)` directory
 	@# The following works consistently across BSD (MacOS) and GNU (Linux)
 	@cp -r ./$(DOCS_DIR)/. ./$(MDBOOK_SRC)
+	@cp -r ./$(WEBSITE_DIR)/benchmarks ./$(MDBOOK_SRC)
+	@printf 'window.BENCHMARK_DATA = ' > ./$(MDBOOK_SRC)/benchmarks/data.js
+	@cat ./$(MDBOOK_SRC)/benchmarks/data.json >> ./$(MDBOOK_SRC)/benchmarks/data.js
 	@cp -r ./$(WEBSITE_IMAGES) ./$(MDBOOK_SRC)/website
 	@cp -r ./$(WEBSITE_CSS) ./$(MDBOOK_SRC)/website
 	@cp -r ./$(WEBSITE_JS) ./$(MDBOOK_SRC)/website

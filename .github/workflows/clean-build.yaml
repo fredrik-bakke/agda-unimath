@@ -15,6 +15,8 @@ jobs:
     strategy:
       matrix:
         agda: ['2.8.0']
+    permissions:
+      contents: write
     steps:
       - name: Checkout our repository
         uses: actions/checkout@v4
@@ -44,10 +46,13 @@ jobs:
       - name: Download previous typechecking profile
         run: |
           mkdir -p benchmark-cache
-          curl 'https://agda-unimath-benchmarks.netlify.app/data.json' -o benchmark-cache/data.json
-          # Stop if there is no initial data (the server gave us an HTML instead of a JSON)
-          (head -1 benchmark-cache/data.json | grep -v DOCTYPE) || { rm benchmark-cache/data.json; exit 0; }
-          curl 'https://agda-unimath-benchmarks.netlify.app/data.csv' -o benchmark-cache/data.csv
+          cd repo
+          git fetch origin benchmark-data || true
+          if git show-ref --verify --quiet refs/remotes/origin/benchmark-data; then
+            git show origin/benchmark-data:data.json > ../benchmark-cache/data.json
+          else
+            cp website/benchmarks/data.json ../benchmark-cache/data.json
+          fi
 
       - name: Process new profiling data
         run: |
@@ -72,16 +77,24 @@ jobs:
           name: 'Library profiling history'
           path: './benchmark-cache/data.csv'
 
-      - name: Prepare new revision of the profiling website
-        run: |
-          mkdir -p benchmark-website
-          cp repo/website/benchmarks/index.html benchmark-website/
-          cp benchmark-cache/data.* benchmark-website/
-          echo 'window.BENCHMARK_DATA =' | cat - benchmark-cache/data.json > benchmark-website/data.js
-
-      - name: Deploy the new profiling website
+      - name: Update benchmark-data branch
         env:
-          NETLIFY_SITE_ID: ${{ secrets.PERF_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.PERF_SITE_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          npx netlify-cli deploy --prod --dir=benchmark-website
+          repo_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone --depth 1 --branch benchmark-data "${repo_url}" benchmark-data-branch || true
+          if [ ! -d benchmark-data-branch/.git ]; then
+            git init benchmark-data-branch
+            cd benchmark-data-branch
+            git checkout --orphan benchmark-data
+            git remote add origin "${repo_url}"
+          else
+            cd benchmark-data-branch
+          fi
+          cp ../benchmark-cache/data.json ./data.json
+          cp ../benchmark-cache/data.csv ./data.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json data.csv
+          git commit -m "Update benchmark history for ${GITHUB_SHA}" || exit 0
+          git push origin benchmark-data
